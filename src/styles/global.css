@@ -44,7 +44,24 @@
 /* 英数字専用フォントクラス（日本語が混ざる文字列には使わない） */
 .font-bodoni-en { font-family: "Bodoni Moda", "Cormorant Garamond", serif; font-feature-settings: "liga", "dlig"; }
 .font-italiana { font-family: var(--font-italiana); font-weight: 400; letter-spacing: 0.05em; }
-.numeric-bodoni { font-family: "Bodoni Moda", "Cormorant Garamond", serif; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+
+/* ディスプレイ用の力強い数値（Bodoni Moda Bold, opsz最大、tabular-nums） */
+.numeric-bodoni {
+  font-family: "Bodoni Moda", "Cormorant Garamond", "Playfair Display", serif;
+  font-weight: 700;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+}
+
+/* h2 などの日本語混在見出し向けの「数字を Noto Sans JP で揃えるための隔離」 */
+.numeric-jp {
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+  font-weight: 800;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
 
 /* ── Base ───────────────────────────────────────────── */
 html { font-size: 16px; scroll-behavior: smooth; }

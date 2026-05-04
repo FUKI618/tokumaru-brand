@@ -531,23 +531,36 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative z-10">
       <div class="text-center mb-14 reveal">
         <div class="chapter-num mb-4 text-[var(--color-champagne)]">Ⅶ. 即日対応・夜21時まで</div>
-        <h2 class="display-md heading-rule center inline-block font-display">業界平均より3時間長く、<br class="hidden sm:block" />お待たせしない買取</h2>
+        <h2 class="font-bold tracking-tight leading-[1.25] text-white heading-rule center inline-block" style="font-size: clamp(1.7rem, 4vw, 3rem);">
+          業界平均より<span class="numeric-jp text-[var(--color-champagne-light)]">3</span>時間長く、<br class="hidden sm:block" />お待たせしない買取
+        </h2>
         <p class="mt-7 text-[15px] text-white/75 max-w-3xl mx-auto leading-loose">
           競合10社で「即日」「最短15分」「夜21時まで」「年中無休」を h2/h3 で訴求している事業者は<strong class="text-[var(--color-champagne-light)]">0社</strong>。
           徳丸商会は<strong class="text-[var(--color-champagne-light)]">9-21時×年中無休（実営業12時間）</strong>を、業界で唯一お約束します。
         </p>
       </div>
 
-      <!-- 3つの数値カード（業界比較付き・大きく見やすく） -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 stagger-children">
-        {speedData.map((s) => (
-          <div class="reveal frame-champagne text-[var(--color-text)] rounded-2xl p-8 text-center">
-            <div class="text-[11px] tracking-[0.4em] text-[var(--color-champagne-dark)] uppercase mb-3">{s.context}</div>
-            <div class="flex items-baseline justify-center gap-1 mb-3">
-              <span class="numeric-bodoni text-7xl text-[var(--color-bordeaux)] leading-none" data-counter={s.value}>0</span>
-              <span class="text-xl text-[var(--color-text)] font-bold ml-1">{s.unit}</span>
+      <!-- 3つの数値カード（業界比較付き・大きく力強く） -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-7 stagger-children">
+        {speedData.map((s, i) => (
+          <div class="reveal frame-champagne text-[var(--color-text)] rounded-2xl p-8 sm:p-10 text-center relative overflow-hidden">
+            <!-- 装飾番号 -->
+            <div class="absolute top-3 left-4 text-[10px] tracking-[0.4em] text-[var(--color-champagne-dark)]/50 uppercase">0{i + 1}</div>
+
+            <!-- ラベル -->
+            <div class="text-[11px] tracking-[0.4em] text-[var(--color-champagne-dark)] uppercase mb-4 font-bold">{s.context}</div>
+
+            <!-- 巨大数値（Bodoni Moda Bold） -->
+            <div class="flex items-baseline justify-center gap-2 mb-2">
+              <span class="numeric-bodoni text-[var(--color-bordeaux)] leading-[0.9]" style="font-size: clamp(4.5rem, 10vw, 7.5rem);" data-counter={s.value}>0</span>
+              <span class="text-2xl sm:text-3xl text-[var(--color-text)] font-black tracking-tight">{s.unit}</span>
             </div>
-            <div class="text-base font-bold text-[var(--color-navy)] mt-3 mb-2">{s.metric}</div>
+
+            <!-- divider -->
+            <div class="hairline mt-3 mb-4 mx-auto w-16"></div>
+
+            <!-- 説明 -->
+            <div class="text-sm sm:text-base font-bold text-[var(--color-navy)] mb-2 leading-tight">{s.metric}</div>
             <div class="text-xs text-[var(--color-text-light)] leading-relaxed">{s.industry}</div>
           </div>
         ))}
