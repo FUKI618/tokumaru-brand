@@ -327,38 +327,51 @@ const midToMan = (label: string): string => {
         { id: "bag", label: "バッグ", items: bagRates },
         { id: "watch", label: "時計", items: watchRates },
         { id: "jewelry", label: "ジュエリー", items: jewelryRates },
-      ].map((cat) => (
-        <div class="mb-12 reveal">
-          <div class="flex items-end justify-between mb-6 pb-3 border-b border-[var(--color-border)]">
+      ].map((cat, idx) => (
+        <div class="mb-10 lg:mb-12 reveal" x-data={`{ open: ${idx === 0 ? "true" : "false"} }`}>
+          <button
+            type="button"
+            @click="open = !open"
+            class="w-full flex items-end justify-between mb-6 pb-3 border-b border-[var(--color-border)] lg:cursor-default lg:pointer-events-none"
+            :aria-expanded="open"
+            aria-controls={`rates-${cat.id}`}
+          >
             <h3 class="font-serif text-xl text-[var(--color-text)]">{cat.label}</h3>
-            <div class="text-xs text-[var(--color-text-sub)] numeric tracking-wider">{cat.items.length} models</div>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
-            {cat.items.map((r) => (
-              <article class="py-6 border-t border-[var(--color-border)]">
-                <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-3">
-                  <div class="md:flex-1">
-                    <div class="flex items-baseline gap-3 mb-1">
-                      <span class="font-serif text-base text-[var(--color-text)] tracking-wide">{r.brand}</span>
-                      <span class="text-[10px] text-[var(--color-text-sub)] tracking-widest">×{r.sources}社調査</span>
+            <div class="flex items-center gap-3">
+              <div class="text-xs text-[var(--color-text-sub)] numeric tracking-wider">{cat.items.length} models</div>
+              <svg class="lg:hidden w-3.5 h-3.5 text-[var(--color-text-sub)] transition-transform duration-200" :class="open && 'rotate-180'" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M2 4l4 4 4-4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </button>
+          <div id={`rates-${cat.id}`} class="lg:!block" :class="!open && 'hidden'">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
+              {cat.items.map((r) => (
+                <article class="py-6 border-t border-[var(--color-border)]">
+                  <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-3">
+                    <div class="md:flex-1">
+                      <div class="flex items-baseline gap-3 mb-1">
+                        <span class="font-serif text-base text-[var(--color-text)] tracking-wide">{r.brand}</span>
+                        <span class="text-[10px] text-[var(--color-text-sub)] tracking-widest">×{r.sources}社調査</span>
+                      </div>
+                      <div class="text-[15px] text-[var(--color-text)] font-medium">{r.model}</div>
+                      {r.variant && <div class="text-[11px] text-[var(--color-text-sub)] mt-0.5">{r.variant}</div>}
                     </div>
-                    <div class="text-[15px] text-[var(--color-text)] font-medium">{r.model}</div>
-                    {r.variant && <div class="text-[11px] text-[var(--color-text-sub)] mt-0.5">{r.variant}</div>}
+                    <div class="md:text-right whitespace-nowrap">
+                      <div class="font-sans tabular-nums font-normal text-[26px] md:text-[30px] leading-none text-[var(--color-text)] tracking-tight">
+                        {formatMan(r.min)}<span class="text-[var(--color-text-sub)] text-[20px] mx-2 font-light">〜</span>{formatMan(r.max)}
+                      </div>
+                      <div class="font-sans tabular-nums text-[11px] text-[var(--color-text-sub)] mt-2 tracking-tight">
+                        中心帯 <span style="color: var(--color-accent-soft);">{midToMan(r.midLabel)}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="md:text-right whitespace-nowrap">
-                    <div class="font-sans tabular-nums font-normal text-[26px] md:text-[30px] leading-none text-[var(--color-text)] tracking-tight">
-                      {formatMan(r.min)}<span class="text-[var(--color-text-sub)] text-[20px] mx-2 font-light">〜</span>{formatMan(r.max)}
-                    </div>
-                    <div class="font-sans tabular-nums text-[11px] text-[var(--color-text-sub)] mt-2 tracking-tight">
-                      中心帯 <span style="color: var(--color-accent-soft);">{midToMan(r.midLabel)}</span>
-                    </div>
-                  </div>
-                </div>
-                {r.note && (
-                  <p class="text-[10px] text-[var(--color-text-sub)] mt-3 leading-relaxed">※ {r.note}</p>
-                )}
-              </article>
-            ))}
+                  {r.note && (
+                    <p class="text-[10px] text-[var(--color-text-sub)] mt-3 leading-relaxed">※ {r.note}</p>
+                  )}
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       ))}
@@ -912,8 +925,13 @@ const midToMan = (label: string): string => {
 
   <!-- ============== Mobile Sticky CTA ============== -->
   <div class="mobile-cta no-print">
-    <div class="grid grid-cols-2 gap-2 p-2">
-      <a href={phoneTel} class="btn btn-outline btn-sm w-full">いますぐ電話</a>
+    <div class="grid grid-cols-2 gap-2 p-2.5">
+      <a href={phoneTel} class="btn btn-primary btn-sm w-full" aria-label="電話で問い合わせ">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+        いますぐ電話
+      </a>
       <a href={lineUrl} target="_blank" rel="noopener" class="btn btn-line btn-sm w-full">LINEで査定</a>
     </div>
   </div>
