@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { company } from "../data/company";
 import { flagshipBrands, popularBrands, buybackGuarantees } from "../data/brands";
 import { faqs } from "../data/faq";
+import { staff } from "../data/staff";
 import { assetPath, sectionPath } from "../lib/site";
 
 const title = "名古屋ブランド買取｜出張・LINE査定・宅配の徳丸商会";
@@ -610,11 +611,56 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     </div>
   </section>
 
-  <!-- ============== X. お客様の声 ============== -->
+  <!-- ============== X. 査定員紹介 ============== -->
+  <section id="staff" class="py-24 sm:py-32 bg-white relative overflow-hidden">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+      <div class="text-center mb-14 reveal">
+        <div class="chapter-num mb-4">Ⅹ. Our Appraisers</div>
+        <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">査定員のご紹介</h2>
+        <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
+          ご来店・ご訪問時に実際に査定を担当する2名の専門スタッフをご紹介します。<br class="hidden sm:block" />
+          それぞれが得意分野を持ち、根拠に基づいた適正査定をお約束します。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto stagger-children">
+        {staff.map((s) => (
+          <article class="reveal card-luxury bg-gradient-to-br from-[var(--color-ivory)] to-white rounded-2xl border border-[var(--color-champagne)]/30 overflow-hidden">
+            <div class="px-7 py-7 bg-[var(--color-navy)] text-white relative overflow-hidden">
+              <div class="flex items-center gap-5">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[var(--color-champagne)] to-[var(--color-champagne-dark)] text-[var(--color-navy)] flex items-center justify-center font-display text-3xl sm:text-4xl shrink-0 shadow-lg">
+                  {s.initial}
+                </div>
+                <div>
+                  <div class="chapter-num text-[var(--color-champagne)]">{s.surnameKana}</div>
+                  <div class="font-display text-2xl tracking-wider text-white">{s.surname}</div>
+                  <div class="text-xs text-[var(--color-champagne-light)] tracking-wider mt-0.5">{s.role}</div>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-1.5 mt-5">
+                {s.specialty.map((sp) => (
+                  <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-[var(--color-champagne)]/15 border border-[var(--color-champagne)]/35 text-[var(--color-champagne-light)]">{sp}</span>
+                ))}
+              </div>
+            </div>
+            <div class="px-7 py-6">
+              <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne-dark)] mb-2">Approach</div>
+              <p class="text-sm text-[var(--color-text)] leading-loose mb-5">{s.message}</p>
+              <div class="hairline mb-4"></div>
+              <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne-dark)] mb-2">Policy</div>
+              <p class="text-sm text-[var(--color-text)] leading-loose font-bold">{s.policy}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== XI. お客様の声 ============== -->
   <section id="testimonials" class="py-24 sm:py-32 bg-[var(--color-bg)] relative overflow-hidden">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4">Ⅹ. Customer Voices</div>
+        <div class="chapter-num mb-4">Ⅺ. Customer Voices</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">お客様の声</h2>
         <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
           名古屋エリアの実顧客からいただいた、徳丸商会のブランド買取についてのお声です。
@@ -643,7 +689,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="faq" class="py-24 sm:py-32 bg-white relative overflow-hidden">
     <div class="max-w-4xl mx-auto px-5 sm:px-8">
       <div class="text-center mb-14 reveal">
-        <div class="chapter-num mb-4">Ⅺ. FAQ</div>
+        <div class="chapter-num mb-4">Ⅻ. FAQ</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">よくあるご質問</h2>
       </div>
 
@@ -671,7 +717,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
 
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative">
       <div class="text-center mb-14 reveal">
-        <div class="chapter-num mb-4">Ⅻ. Contact</div>
+        <div class="chapter-num mb-4">ⅩⅢ. Contact</div>
         <h2 class="display-md heading-rule center inline-block">お見積もり・お問い合わせ</h2>
         <p class="mt-7 text-base text-[var(--color-champagne-light)] font-display tracking-wider">9:00〜21:00 ／ Open Year-round</p>
       </div>
