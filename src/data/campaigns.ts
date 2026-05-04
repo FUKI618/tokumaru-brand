@@ -37,7 +37,7 @@ export const campaigns: Campaign[] = [
       "他キャンペーンとの併用は1点につき1つまで",
     ],
     ctaLabel: "対象ブランドで査定を依頼する",
-    ctaTarget: "line",
+    ctaTarget: "form",
     period: "2026年5月1日〜31日",
     note: "在庫状況・市況により対象ブランド・上乗せ率は予告なく変更となる場合があります。",
   },
