@@ -66,7 +66,8 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
     <script is:inline>
       (function(){
         var l=document.createElement('link');l.rel='stylesheet';
-        l.href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap';
+        // Variable Fonts: Bodoni Moda（ハイブランド級セリフ）+ Cormorant Garamond + Noto Sans JP
+        l.href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500&family=Italiana&display=swap';
         document.head.appendChild(l);
       })();
     </script>
@@ -347,9 +348,10 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
       Alpine.start();
     </script>
 
-    <!-- 数千万LP級マイクロインタラクション: GSAP + Lenis + カスタムカーソル等 -->
+    <!-- 数千万LP級マイクロインタラクション: GSAP + カスタムカーソル等 -->
     <script>
       import "../scripts/luxury-effects.ts";
+      import "../scripts/luxury-particles.ts";
     </script>
   </body>
 </html>
