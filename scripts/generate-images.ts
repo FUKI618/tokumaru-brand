@@ -119,6 +119,44 @@ Composition: subject in the lower-right, ~60% empty space at the top and left fo
 Negative prompt: ${NEGATIVE}, decorations, holiday, christmas, sparkle, glitter, gold ribbon, red ribbon`,
   },
 
+  /* ============== Visit buyback hero (出張買取明示用 - 開いた革のケース) ============== */
+  {
+    name: "hero-visit",
+    outputDir: "public/images/hero",
+    width: 1920,
+    height: 1080,
+    quality: 80,
+    aspectRatio: "16:9",
+    prompt: `${STYLE_BASE}
+
+An open dark cognac-brown leather attaché case (vintage doctor's bag style or briefcase) resting on a wooden floor inside a sunlit room. The case is opened, revealing neatly folded white cotton inspection gloves and a small empty cream-colored velvet tray (the tray is completely empty, no items, no jewelry). A small antique brass magnifying loupe with patina sits beside the case on the floor.
+A corner of a linen-draped chair or table leg visible at the right edge of frame.
+Warm afternoon light streaming from an unseen window on the left, casting long gentle shadows on a vintage wooden floor.
+Composition: subject in the lower-center to right, ~50% empty wall/space in the upper-left for h1 text overlay.
+Mood: calm, refined, the quiet moment of a professional appraiser having just arrived at a home.
+
+Negative prompt: ${NEGATIVE}, jewelry on tray, items on tray, watches, rings, papers, documents, multiple cases`,
+  },
+  {
+    name: "hero-visit-portrait",
+    outputDir: "public/images/hero",
+    width: 1200,
+    height: 1600,
+    quality: 80,
+    aspectRatio: "3:4",
+    prompt: `${STYLE_BASE.replace("Aspect ratio 16:9 cinematic, horizontal landscape orientation.", "Aspect ratio 3:4 portrait orientation for mobile.")}
+
+An open dark cognac-brown leather attaché case (vintage doctor's bag style) on a vintage wooden floor in a sunlit room.
+The case is opened revealing folded white cotton inspection gloves and an empty cream-colored velvet tray (completely empty, no jewelry).
+An antique brass magnifying loupe with patina sits beside the case on the floor.
+Corner of a linen-draped chair leg visible at the edge of frame.
+Warm afternoon window light from above-left casting long gentle shadows.
+Composition: subject placed in the lower-third of the frame, ~55-60% empty wall/space at the top — meant for text overlay below.
+Mood: the quiet moment of a professional appraiser arriving at someone's home.
+
+Negative prompt: ${NEGATIVE}, jewelry on tray, items on tray, watches, rings, papers, documents, multiple cases`,
+  },
+
   /* ============== Portrait variants for mobile (3:4) ============== */
   {
     name: "luxury-bg-portrait",
