@@ -259,24 +259,6 @@ const midToMan = (label: string): string => {
             <p class="text-xs text-[var(--color-text-sub)] mt-4">いずれの状態でも、まずは一度ご相談ください。</p>
           </div>
 
-          <hr class="divider reveal" />
-
-          <!-- 主要ブランド5強の保証額 -->
-          <div class="reveal reveal-delay-3">
-            <div class="eyebrow mb-3">主要ブランドの最低買取保証額</div>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
-              {buybackGuarantees.map((g) => (
-                <div class="text-center md:text-left">
-                  <div class="font-serif text-[var(--color-text)]">{g.brand}</div>
-                  <div class="text-[10px] text-[var(--color-text-sub)] mb-2">{g.jpName}</div>
-                  <div class="font-serif text-lg italic numeric" style="color: var(--color-accent-soft);">¥{g.minPrice.toLocaleString()}〜</div>
-                </div>
-              ))}
-            </div>
-            <p class="text-[11px] text-[var(--color-text-sub)] mt-4 leading-relaxed">
-              ※ 正規品確認後、状態問わず最低買取保証額をお約束します。詳細条件はお問い合わせください。
-            </p>
-          </div>
         </div>
       </div>
 
@@ -315,6 +297,28 @@ const midToMan = (label: string): string => {
           <p class="text-[15px] text-[var(--color-text-sub)] leading-loose">
             主要ブランドの公開買取実績から3社以上の実数値をクロスチェックして算出した、エルメス・シャネル・ロレックス等を含む12モデルの参考相場です。
             <span class="text-xs block mt-2">集計期間：{rateMetadata.collectionPeriod} ／ 更新：{rateMetadata.updatedAt}</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- 主要ブランド最低買取保証額（Story から移動） -->
+      <div class="mb-14 reveal">
+        <div class="border border-[var(--color-border)] bg-[var(--color-bg)] p-6 md:p-8">
+          <div class="flex items-baseline justify-between mb-5 pb-3 border-b border-[var(--color-border)]">
+            <div class="eyebrow">主要ブランドの最低買取保証額</div>
+            <div class="text-[10px] text-[var(--color-text-sub)] tracking-widest hidden sm:block">Minimum Guaranteed Buyback</div>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-5 gap-x-4">
+            {buybackGuarantees.map((g) => (
+              <div class="text-center sm:text-left">
+                <div class="font-serif text-[var(--color-text)]">{g.brand}</div>
+                <div class="text-[10px] text-[var(--color-text-sub)] mb-2">{g.jpName}</div>
+                <div class="font-sans tabular-nums text-lg text-[var(--color-text)]" style="color: var(--color-accent-soft);">¥{g.minPrice.toLocaleString()}〜</div>
+              </div>
+            ))}
+          </div>
+          <p class="text-[11px] text-[var(--color-text-sub)] mt-5 leading-relaxed">
+            ※ 正規品確認後、状態問わず最低買取保証額をお約束します。詳細条件はお問い合わせください。
           </p>
         </div>
       </div>
@@ -470,6 +474,12 @@ const midToMan = (label: string): string => {
           ご利用いただきやすい、<br /><span class="italic" style="color: var(--color-accent-soft);">3つの</span>キャンペーン。
         </h2>
       </div>
+
+      <!-- セクション編集画像（贈答風のリネンリボン箱・ブランクカード） -->
+      <picture class="block aspect-[21/9] w-full overflow-hidden mb-14 reveal">
+        <source srcset={assetPath("images/sections/campaigns-ribbon.webp")} type="image/webp" />
+        <img src={assetPath("images/sections/campaigns-ribbon.jpg")} alt="木のテーブルに置かれたリネンリボンの小箱と便箋・押し花" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
+      </picture>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {campaigns.map((c, i) => (

@@ -101,6 +101,22 @@ Composition: subject in the lower-left, ~60% empty space at the top and right.
 
 Negative prompt: ${NEGATIVE}, written text on paper, calligraphy, ink visible`,
   },
+  {
+    name: "campaigns-ribbon",
+    outputDir: "public/images/sections",
+    width: 1920,
+    height: 1080,
+    quality: 78,
+    prompt: `${STYLE_BASE}
+
+A small cream-colored gift box wrapped with natural unbleached linen ribbon (no logos, no labels, no text).
+Beside it: a folded ivory paper card (blank, no writing) and a single pressed dried sprig.
+Soft warm late-afternoon window light casting gentle long shadows on a wooden table.
+Background: warm ivory wall, softly out of focus.
+Composition: subject in the lower-right, ~60% empty space at the top and left for text overlay.
+
+Negative prompt: ${NEGATIVE}, decorations, holiday, christmas, sparkle, glitter, gold ribbon, red ribbon`,
+  },
 ];
 
 async function generateOne(job: Job): Promise<void> {
@@ -156,10 +172,13 @@ async function generateOne(job: Job): Promise<void> {
   console.log(`  ✓ ${jpgPath}`);
 }
 
-console.log(`Model: ${model}`);
-console.log(`Jobs: ${jobs.map((j) => j.name).join(", ")}\n`);
+const onlyNames = process.env.ONLY?.split(",").map((s) => s.trim()).filter(Boolean) ?? [];
+const filteredJobs = onlyNames.length > 0 ? jobs.filter((j) => onlyNames.includes(j.name)) : jobs;
 
-for (const job of jobs) {
+console.log(`Model: ${model}`);
+console.log(`Jobs: ${filteredJobs.map((j) => j.name).join(", ")}\n`);
+
+for (const job of filteredJobs) {
   try {
     await generateOne(job);
   } catch (err) {

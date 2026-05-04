@@ -141,11 +141,11 @@ section[id] { scroll-margin-top: 4rem; }
 }
 
 .section-pad {
-  padding-block: clamp(3rem, 8vw, 8rem); /* 48-128px Toteme値 */
+  padding-block: clamp(4.5rem, 9vw, 8rem); /* 72-128px Aesop風の余白 */
 }
 
 .section-pad-sm {
-  padding-block: clamp(2rem, 5vw, 4.5rem);
+  padding-block: clamp(2.75rem, 6vw, 4.5rem); /* 44-72px */
 }
 
 /* ───────────────────────────────────────────────
