@@ -540,28 +540,28 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
         </p>
       </div>
 
-      <!-- 3つの数値カード（業界比較付き・大きく力強く） -->
+      <!-- 3つの数値カード（ダーク背景 × 明色文字でコントラスト確保） -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-7 stagger-children">
         {speedData.map((s, i) => (
-          <div class="reveal frame-champagne text-[var(--color-text)] rounded-2xl p-8 sm:p-10 text-center relative overflow-hidden">
+          <div class="reveal rounded-2xl p-8 sm:p-10 text-center relative overflow-hidden border border-[var(--color-champagne)]/40 bg-white/[0.04] backdrop-blur-sm hover:bg-white/[0.08] hover:border-[var(--color-champagne)] transition">
             <!-- 装飾番号 -->
-            <div class="absolute top-3 left-4 text-[10px] tracking-[0.4em] text-[var(--color-champagne-dark)]/50 uppercase">0{i + 1}</div>
+            <div class="absolute top-4 left-5 font-display italic text-sm text-[var(--color-champagne)]/60 tracking-widest">0{i + 1}</div>
 
             <!-- ラベル -->
-            <div class="text-[11px] tracking-[0.4em] text-[var(--color-champagne-dark)] uppercase mb-4 font-bold">{s.context}</div>
+            <div class="text-[11px] tracking-[0.4em] text-[var(--color-champagne-light)] uppercase mb-5 font-bold">{s.context}</div>
 
-            <!-- 巨大数値（Bodoni Moda Bold） -->
+            <!-- 巨大数値（Bodoni Moda Bold・シャンパンゴールド） -->
             <div class="flex items-baseline justify-center gap-2 mb-2">
-              <span class="numeric-bodoni text-[var(--color-bordeaux)] leading-[0.9]" style="font-size: clamp(4.5rem, 10vw, 7.5rem);" data-counter={s.value}>0</span>
-              <span class="text-2xl sm:text-3xl text-[var(--color-text)] font-black tracking-tight">{s.unit}</span>
+              <span class="numeric-bodoni text-[var(--color-champagne-glow)] leading-[0.9]" style="font-size: clamp(4.5rem, 10vw, 7.5rem); text-shadow: 0 4px 20px rgba(243, 220, 165, 0.3);" data-counter={s.value}>0</span>
+              <span class="text-2xl sm:text-3xl text-white font-black tracking-tight">{s.unit}</span>
             </div>
 
-            <!-- divider -->
-            <div class="hairline mt-3 mb-4 mx-auto w-16"></div>
+            <!-- 装飾divider -->
+            <div class="mt-4 mb-5 mx-auto w-16 h-px" style="background: linear-gradient(90deg, transparent, #c5a572 50%, transparent);"></div>
 
             <!-- 説明 -->
-            <div class="text-sm sm:text-base font-bold text-[var(--color-navy)] mb-2 leading-tight">{s.metric}</div>
-            <div class="text-xs text-[var(--color-text-light)] leading-relaxed">{s.industry}</div>
+            <div class="text-sm sm:text-base font-bold text-white mb-2 leading-tight">{s.metric}</div>
+            <div class="text-xs text-white/60 leading-relaxed">{s.industry}</div>
           </div>
         ))}
       </div>
