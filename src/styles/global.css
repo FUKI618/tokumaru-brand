@@ -29,17 +29,22 @@
 
   --color-line: #06c755;
 
-  /* タイポグラフィ */
+  /* タイポグラフィ
+   * 重要: Bodoni Moda は英数字専用（日本語グリフ無し）
+   * 日本語が含まれる h1/h2/h3 では Noto Serif JP を主役に。
+   * Bodoni Moda は数値・英文ラベル・章番号にのみ使用（.font-bodoni-en クラス）
+   */
   --font-sans: "Noto Sans JP", system-ui, sans-serif;
-  --font-display: "Bodoni Moda", "Cormorant Garamond", "Noto Serif JP", serif;
-  --font-display-alt: "Cormorant Garamond", "Bodoni Moda", "Noto Serif JP", serif;
-  --font-italiana: "Italiana", "Bodoni Moda", "Cormorant Garamond", serif;
+  --font-display: "Noto Serif JP", "Cormorant Garamond", serif;
+  --font-display-en: "Bodoni Moda", "Cormorant Garamond", serif;
+  --font-italiana: "Italiana", "Cormorant Garamond", serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-/* Variable font 用クラス */
-.font-bodoni { font-family: "Bodoni Moda", "Cormorant Garamond", serif; font-feature-settings: "liga", "dlig"; }
+/* 英数字専用フォントクラス（日本語が混ざる文字列には使わない） */
+.font-bodoni-en { font-family: "Bodoni Moda", "Cormorant Garamond", serif; font-feature-settings: "liga", "dlig"; }
 .font-italiana { font-family: var(--font-italiana); font-weight: 400; letter-spacing: 0.05em; }
+.numeric-bodoni { font-family: "Bodoni Moda", "Cormorant Garamond", serif; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
 
 /* ── Base ───────────────────────────────────────────── */
 html { font-size: 16px; scroll-behavior: smooth; }

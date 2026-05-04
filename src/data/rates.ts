@@ -241,38 +241,24 @@ export interface SpeedItem {
 
 export const speedData: SpeedItem[] = [
   {
-    metric: "LINE査定の参考額提示",
+    metric: "LINE査定の参考買取額",
     value: "15",
     unit: "分",
     context: "最短",
-    industry: "業界h2/h3採用 0/10社",
-  },
-  {
-    metric: "出張買取の訪問",
-    value: "当",
-    unit: "日",
-    context: "最短",
-    industry: "業界h2/h3採用 0/10社",
-  },
-  {
-    metric: "宅配買取の振込",
-    value: "当",
-    unit: "日",
-    context: "査定後最短",
-    industry: "業界h2/h3採用 0/10社",
+    industry: "業界h2/h3 採用 0%",
   },
   {
     metric: "営業時間",
     value: "12",
     unit: "時間",
-    context: "9:00-21:00",
-    industry: "業界平均9時間（+3時間）",
+    context: "9-21時",
+    industry: "業界平均より3時間長い",
   },
   {
-    metric: "営業日",
+    metric: "年中無休営業",
     value: "365",
     unit: "日",
-    context: "年中無休",
-    industry: "9-21時×無休は10社で唯一",
+    context: "年間",
+    industry: "12時間×無休は業界唯一",
   },
 ];

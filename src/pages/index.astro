@@ -420,7 +420,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
       <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
         <div class="lg:col-span-5">
           <div class="chapter-num mb-4">Ⅴ. 買取方法を比較</div>
-          <h2 class="display-md text-[var(--color-navy)] heading-rule font-bodoni">あなたに合う<br />買取方法は？</h2>
+          <h2 class="display-md text-[var(--color-navy)] heading-rule font-display">あなたに合う<br />買取方法は？</h2>
         </div>
         <div class="lg:col-span-7 lg:pt-10">
           <p class="text-[15px] text-[var(--color-text-light)] leading-loose max-w-2xl">
@@ -435,7 +435,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
           <article class="reveal card-luxury bg-white rounded-2xl border border-[var(--color-border)] overflow-hidden flex flex-col">
             <header class="px-7 py-7 bg-[var(--color-navy)] text-white relative">
               <div class="text-[10px] tracking-[0.4em] text-[var(--color-champagne)] uppercase mb-1">{ch.nameEn}</div>
-              <div class="font-bodoni text-3xl">{ch.name}</div>
+              <div class="font-display text-3xl">{ch.name}</div>
               <div class="hairline mt-4 opacity-60"></div>
               <div class="text-[11px] tracking-wider text-[var(--color-champagne-light)] mt-3 italic">{ch.recommended}</div>
             </header>
@@ -531,23 +531,24 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative z-10">
       <div class="text-center mb-14 reveal">
         <div class="chapter-num mb-4 text-[var(--color-champagne)]">Ⅶ. 即日対応・夜21時まで</div>
-        <h2 class="display-md heading-rule center inline-block font-bodoni">業界平均より3時間長く、<br class="hidden sm:block" />お待たせしない買取</h2>
+        <h2 class="display-md heading-rule center inline-block font-display">業界平均より3時間長く、<br class="hidden sm:block" />お待たせしない買取</h2>
         <p class="mt-7 text-[15px] text-white/75 max-w-3xl mx-auto leading-loose">
           競合10社で「即日」「最短15分」「夜21時まで」「年中無休」を h2/h3 で訴求している事業者は<strong class="text-[var(--color-champagne-light)]">0社</strong>。
           徳丸商会は<strong class="text-[var(--color-champagne-light)]">9-21時×年中無休（実営業12時間）</strong>を、業界で唯一お約束します。
         </p>
       </div>
 
-      <!-- 5つの数値カード（業界比較付き） -->
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4 stagger-children">
+      <!-- 3つの数値カード（業界比較付き・大きく見やすく） -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 stagger-children">
         {speedData.map((s) => (
-          <div class="reveal frame-champagne text-[var(--color-text)] rounded-xl p-5 text-center">
-            <div class="text-[10px] tracking-[0.3em] text-[var(--color-champagne-dark)] uppercase mb-2">{s.context}</div>
-            <div class="font-bodoni text-5xl text-[var(--color-bordeaux)] leading-none mb-1">
-              <span data-counter={isNaN(Number(s.value)) ? undefined : s.value}>{isNaN(Number(s.value)) ? s.value : "0"}</span><span class="text-base ml-1 text-[var(--color-text)]">{s.unit}</span>
+          <div class="reveal frame-champagne text-[var(--color-text)] rounded-2xl p-8 text-center">
+            <div class="text-[11px] tracking-[0.4em] text-[var(--color-champagne-dark)] uppercase mb-3">{s.context}</div>
+            <div class="flex items-baseline justify-center gap-1 mb-3">
+              <span class="numeric-bodoni text-7xl text-[var(--color-bordeaux)] leading-none" data-counter={s.value}>0</span>
+              <span class="text-xl text-[var(--color-text)] font-bold ml-1">{s.unit}</span>
             </div>
-            <div class="text-xs font-bold text-[var(--color-navy)] mt-2 leading-tight">{s.metric}</div>
-            <div class="text-[10px] text-[var(--color-text-light)] mt-2 leading-relaxed">{s.industry}</div>
+            <div class="text-base font-bold text-[var(--color-navy)] mt-3 mb-2">{s.metric}</div>
+            <div class="text-xs text-[var(--color-text-light)] leading-relaxed">{s.industry}</div>
           </div>
         ))}
       </div>
@@ -556,7 +557,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
       <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-5 stagger-children">
         <article class="reveal bg-white/5 backdrop-blur border border-[var(--color-champagne)]/30 rounded-2xl p-7">
           <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne)] mb-2">Same Day</div>
-          <h3 class="font-bodoni text-2xl mb-3">即日訪問・最短当日入金</h3>
+          <h3 class="font-display text-2xl mb-3">即日訪問・最短当日入金</h3>
           <p class="text-sm text-white/70 leading-loose">
             出張買取は名古屋市内最短当日訪問。お電話・LINEから即手配します。
             宅配買取も商品到着後最短当日に銀行振込でお支払いします。
@@ -564,7 +565,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
         </article>
         <article class="reveal bg-white/5 backdrop-blur border border-[var(--color-champagne)]/30 rounded-2xl p-7">
           <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne)] mb-2">Quick Quote</div>
-          <h3 class="font-bodoni text-2xl mb-3">最短15分でLINE参考買取額</h3>
+          <h3 class="font-display text-2xl mb-3">最短15分でLINE参考買取額</h3>
           <p class="text-sm text-white/70 leading-loose">
             写真と型番を公式LINEに送るだけ。営業時間内（9:00〜21:00）であれば、
             最短15分で参考買取額を返信します。来店・出張前の事前見積もりに最適。
@@ -572,7 +573,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
         </article>
         <article class="reveal bg-white/5 backdrop-blur border border-[var(--color-champagne)]/30 rounded-2xl p-7">
           <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne)] mb-2">Open Year-round</div>
-          <h3 class="font-bodoni text-2xl mb-3">夜21時まで／年中無休</h3>
+          <h3 class="font-display text-2xl mb-3">夜21時まで／年中無休</h3>
           <p class="text-sm text-white/70 leading-loose">
             業界平均の営業時間9時間に対し、徳丸商会は<strong class="text-[var(--color-champagne-light)]">12時間営業×年中無休</strong>。
             お仕事帰りの19-21時の相談にも対応します。
@@ -634,7 +635,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
       <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
         <div class="lg:col-span-5">
           <div class="chapter-num mb-4">Ⅸ. ブランド別買取相場</div>
-          <h2 class="display-md text-[var(--color-navy)] heading-rule font-bodoni">主要12モデルの<br />参考買取相場</h2>
+          <h2 class="display-md text-[var(--color-navy)] heading-rule font-display">主要12モデルの<br />参考買取相場</h2>
         </div>
         <div class="lg:col-span-7 lg:pt-10">
           <p class="text-[15px] text-[var(--color-text-light)] leading-loose max-w-2xl">
@@ -655,7 +656,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
           <div class="flex items-end justify-between gap-3 mb-5 pb-4 border-b border-[var(--color-border)]">
             <div>
               <div class="chapter-num">{cat.labelEn}</div>
-              <h3 class="font-bodoni text-2xl text-[var(--color-navy)] mt-1">{cat.label}</h3>
+              <h3 class="font-display text-2xl text-[var(--color-navy)] mt-1">{cat.label}</h3>
             </div>
             <div class="text-xs text-[var(--color-text-lighter)] numeric">
               {rateData.filter((r) => r.category === cat.id).length} モデル
@@ -667,7 +668,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
             {rateData.filter((r) => r.category === cat.id).map((r) => (
               <article class="card-luxury bg-white rounded-xl border border-[var(--color-border)] overflow-hidden">
                 <div class="px-5 py-3 bg-[var(--color-navy)] text-white flex items-center justify-between">
-                  <span class="font-bodoni text-base tracking-[0.18em]">{r.brand}</span>
+                  <span class="font-display text-base tracking-[0.18em]">{r.brand}</span>
                   <span class="text-[10px] text-[var(--color-champagne-light)] tracking-widest">×{r.sources}社調査</span>
                 </div>
                 <div class="px-5 py-5">
@@ -683,7 +684,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
                     <div class="hairline"></div>
                     <div class="flex items-baseline justify-between bg-[var(--color-bg-cream)] -mx-2 px-2 py-1.5 rounded">
                       <span class="text-[10px] tracking-widest uppercase text-[var(--color-bordeaux)] font-bold">中央値</span>
-                      <span class="font-bodoni text-lg text-[var(--color-bordeaux)] numeric">{r.midLabel}</span>
+                      <span class="font-display text-lg text-[var(--color-bordeaux)] numeric">{r.midLabel}</span>
                     </div>
                     <div class="hairline"></div>
                     <div class="flex items-baseline justify-between text-sm">
