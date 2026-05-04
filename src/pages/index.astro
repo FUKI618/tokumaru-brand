@@ -4,6 +4,7 @@ import { company } from "../data/company";
 import { flagshipBrands, popularBrands, buybackGuarantees } from "../data/brands";
 import { faqs } from "../data/faq";
 import { staff } from "../data/staff";
+import { rateData, rateMetadata, channelData, speedData } from "../data/rates";
 import { assetPath, sectionPath } from "../lib/site";
 
 const title = "名古屋ブランド買取｜出張・LINE査定・宅配の徳丸商会";
@@ -413,7 +414,75 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     </div>
   </section>
 
-  <!-- ============== V. 買取の流れ ============== -->
+  <!-- ============== V. 買取方法を比較する（業界初の自社内4チャネル比較） ============== -->
+  <section id="channels" class="py-24 sm:py-32 bg-[var(--color-bg-cream)] relative overflow-hidden pattern-dots">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative">
+      <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
+        <div class="lg:col-span-5">
+          <div class="chapter-num mb-4">Ⅴ. 買取方法を比較</div>
+          <h2 class="display-md text-[var(--color-navy)] heading-rule font-bodoni">あなたに合う<br />買取方法は？</h2>
+        </div>
+        <div class="lg:col-span-7 lg:pt-10">
+          <p class="text-[15px] text-[var(--color-text-light)] leading-loose max-w-2xl">
+            出張・LINE査定・宅配の3チャネルを「査定スピード／対応時間／必要な手間／向いているお客様」の5軸で比較。<strong class="text-[var(--color-bordeaux)]">業界10社で比較表を載せている事業者は0社</strong>。徳丸商会が業界初の自社内比較を提供します。
+          </p>
+        </div>
+      </div>
+
+      <!-- デザイン重視の比較表（カードベース、PCで横並び、モバイルで縦積み） -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 stagger-children">
+        {channelData.map((ch, idx) => (
+          <article class="reveal card-luxury bg-white rounded-2xl border border-[var(--color-border)] overflow-hidden flex flex-col">
+            <header class="px-7 py-7 bg-[var(--color-navy)] text-white relative">
+              <div class="text-[10px] tracking-[0.4em] text-[var(--color-champagne)] uppercase mb-1">{ch.nameEn}</div>
+              <div class="font-bodoni text-3xl">{ch.name}</div>
+              <div class="hairline mt-4 opacity-60"></div>
+              <div class="text-[11px] tracking-wider text-[var(--color-champagne-light)] mt-3 italic">{ch.recommended}</div>
+            </header>
+            <div class="px-7 py-6 flex-1 space-y-4">
+              <dl class="space-y-3 text-sm">
+                <div class="grid grid-cols-[6.5rem_1fr] gap-3">
+                  <dt class="text-[10px] tracking-widest uppercase text-[var(--color-champagne-dark)] font-semibold">Speed</dt>
+                  <dd class="text-[var(--color-text)] font-bold">{ch.speed}</dd>
+                </div>
+                <div class="grid grid-cols-[6.5rem_1fr] gap-3 pt-3 border-t border-[var(--color-border)]">
+                  <dt class="text-[10px] tracking-widest uppercase text-[var(--color-champagne-dark)] font-semibold">Hours</dt>
+                  <dd class="text-[var(--color-text)]">{ch.hours}</dd>
+                </div>
+                <div class="grid grid-cols-[6.5rem_1fr] gap-3 pt-3 border-t border-[var(--color-border)]">
+                  <dt class="text-[10px] tracking-widest uppercase text-[var(--color-champagne-dark)] font-semibold">Area</dt>
+                  <dd class="text-[var(--color-text)]">{ch.area}</dd>
+                </div>
+                <div class="grid grid-cols-[6.5rem_1fr] gap-3 pt-3 border-t border-[var(--color-border)]">
+                  <dt class="text-[10px] tracking-widest uppercase text-[var(--color-champagne-dark)] font-semibold">Effort</dt>
+                  <dd class="text-[var(--color-text)]">{ch.effort}</dd>
+                </div>
+                <div class="grid grid-cols-[6.5rem_1fr] gap-3 pt-3 border-t border-[var(--color-border)]">
+                  <dt class="text-[10px] tracking-widest uppercase text-[var(--color-champagne-dark)] font-semibold">Payment</dt>
+                  <dd class="text-[var(--color-text)]">{ch.payment}</dd>
+                </div>
+                <div class="grid grid-cols-[6.5rem_1fr] gap-3 pt-3 border-t border-[var(--color-border)]">
+                  <dt class="text-[10px] tracking-widest uppercase text-[var(--color-champagne-dark)] font-semibold">Cooling</dt>
+                  <dd class="text-[var(--color-text-light)] text-xs">{ch.cooling}</dd>
+                </div>
+              </dl>
+            </div>
+            <footer class="px-7 pb-6">
+              {ch.id === "line" && (<a href={lineUrl} target="_blank" rel="noopener" class="block text-center text-sm font-bold py-3 rounded-lg bg-[var(--color-line)] text-white hover:bg-[#05a648] transition">公式LINEで査定 →</a>)}
+              {ch.id === "visit" && (<a href={phoneTel} class="block text-center text-sm font-bold py-3 rounded-lg bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy-soft)] transition">出張買取を予約 →</a>)}
+              {ch.id === "mail" && (<a href={phoneTel} class="block text-center text-sm font-bold py-3 rounded-lg bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy-soft)] transition">宅配キットを申込 →</a>)}
+            </footer>
+          </article>
+        ))}
+      </div>
+
+      <p class="text-center text-xs text-[var(--color-text-lighter)] mt-10 max-w-2xl mx-auto leading-loose">
+        ※ 出典: <code class="font-mono bg-white px-1.5 py-0.5 rounded text-[10px]">competitor-reports/2026-05-04_brand_buyback/</code> 競合10社のdata.json集計、業界比較表掲載率0/10。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== Ⅵ. 買取の流れ ============== -->
   <section id="flow" class="py-24 sm:py-32 bg-[var(--color-navy-mid)] text-white relative overflow-hidden grain">
     <!-- 背景: 査定ルーム（AI生成） -->
     <picture class="absolute inset-0 w-full h-full block" aria-hidden="true">
@@ -424,7 +493,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
 
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative z-10">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4 text-[var(--color-champagne)]">Ⅴ. 買取の流れ</div>
+        <div class="chapter-num mb-4 text-[var(--color-champagne)]">Ⅵ. 買取の流れ</div>
         <h2 class="display-md heading-rule center inline-block">買取の流れ</h2>
         <p class="mt-7 text-[15px] text-white/75 max-w-3xl mx-auto leading-loose">
           お電話・LINEのお問い合わせから現金または振込でのお支払いまで、最短当日で完了します。
@@ -450,12 +519,79 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     </div>
   </section>
 
-  <!-- ============== VI. 買取実績 ============== -->
+  <!-- ============== VII. 即日対応・夜21時まで（業界唯一のh2訴求枠） ============== -->
+  <section id="speed" class="py-24 sm:py-32 bg-luxury-radial text-white relative overflow-hidden grain">
+    <!-- 装飾 -->
+    <svg class="absolute right-0 top-12 w-[480px] opacity-10 pointer-events-none" viewBox="0 0 480 480" aria-hidden="true">
+      <circle cx="240" cy="240" r="220" fill="none" stroke="#c5a572" stroke-width="0.5"/>
+      <circle cx="240" cy="240" r="170" fill="none" stroke="#c5a572" stroke-width="0.5"/>
+      <circle cx="240" cy="240" r="120" fill="none" stroke="#c5a572" stroke-width="0.5"/>
+    </svg>
+
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative z-10">
+      <div class="text-center mb-14 reveal">
+        <div class="chapter-num mb-4 text-[var(--color-champagne)]">Ⅶ. 即日対応・夜21時まで</div>
+        <h2 class="display-md heading-rule center inline-block font-bodoni">業界平均より3時間長く、<br class="hidden sm:block" />お待たせしない買取</h2>
+        <p class="mt-7 text-[15px] text-white/75 max-w-3xl mx-auto leading-loose">
+          競合10社で「即日」「最短15分」「夜21時まで」「年中無休」を h2/h3 で訴求している事業者は<strong class="text-[var(--color-champagne-light)]">0社</strong>。
+          徳丸商会は<strong class="text-[var(--color-champagne-light)]">9-21時×年中無休（実営業12時間）</strong>を、業界で唯一お約束します。
+        </p>
+      </div>
+
+      <!-- 5つの数値カード（業界比較付き） -->
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4 stagger-children">
+        {speedData.map((s) => (
+          <div class="reveal frame-champagne text-[var(--color-text)] rounded-xl p-5 text-center">
+            <div class="text-[10px] tracking-[0.3em] text-[var(--color-champagne-dark)] uppercase mb-2">{s.context}</div>
+            <div class="font-bodoni text-5xl text-[var(--color-bordeaux)] leading-none mb-1">
+              <span data-counter={isNaN(Number(s.value)) ? undefined : s.value}>{isNaN(Number(s.value)) ? s.value : "0"}</span><span class="text-base ml-1 text-[var(--color-text)]">{s.unit}</span>
+            </div>
+            <div class="text-xs font-bold text-[var(--color-navy)] mt-2 leading-tight">{s.metric}</div>
+            <div class="text-[10px] text-[var(--color-text-light)] mt-2 leading-relaxed">{s.industry}</div>
+          </div>
+        ))}
+      </div>
+
+      <!-- h3 の3レイヤー速度訴求 -->
+      <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-5 stagger-children">
+        <article class="reveal bg-white/5 backdrop-blur border border-[var(--color-champagne)]/30 rounded-2xl p-7">
+          <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne)] mb-2">Same Day</div>
+          <h3 class="font-bodoni text-2xl mb-3">即日訪問・最短当日入金</h3>
+          <p class="text-sm text-white/70 leading-loose">
+            出張買取は名古屋市内最短当日訪問。お電話・LINEから即手配します。
+            宅配買取も商品到着後最短当日に銀行振込でお支払いします。
+          </p>
+        </article>
+        <article class="reveal bg-white/5 backdrop-blur border border-[var(--color-champagne)]/30 rounded-2xl p-7">
+          <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne)] mb-2">Quick Quote</div>
+          <h3 class="font-bodoni text-2xl mb-3">最短15分でLINE参考買取額</h3>
+          <p class="text-sm text-white/70 leading-loose">
+            写真と型番を公式LINEに送るだけ。営業時間内（9:00〜21:00）であれば、
+            最短15分で参考買取額を返信します。来店・出張前の事前見積もりに最適。
+          </p>
+        </article>
+        <article class="reveal bg-white/5 backdrop-blur border border-[var(--color-champagne)]/30 rounded-2xl p-7">
+          <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne)] mb-2">Open Year-round</div>
+          <h3 class="font-bodoni text-2xl mb-3">夜21時まで／年中無休</h3>
+          <p class="text-sm text-white/70 leading-loose">
+            業界平均の営業時間9時間に対し、徳丸商会は<strong class="text-[var(--color-champagne-light)]">12時間営業×年中無休</strong>。
+            お仕事帰りの19-21時の相談にも対応します。
+          </p>
+        </article>
+      </div>
+
+      <p class="text-center text-xs text-white/55 mt-10 max-w-3xl mx-auto leading-loose">
+        ※ 出典: <code class="font-mono bg-white/10 px-1.5 py-0.5 rounded text-[10px] text-[var(--color-champagne-light)]">competitor-reports/2026-05-04_brand_buyback/_research-rates-speed-comparison.md 軸B</code>。競合10社のdata.json集計、上記5項目の h2/h3 採用率はすべて 0%。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== Ⅷ. 買取実績 ============== -->
   <section id="examples" class="py-24 sm:py-32 bg-white relative overflow-hidden">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
         <div class="lg:col-span-5">
-          <div class="chapter-num mb-4">Ⅵ. 買取実績</div>
+          <div class="chapter-num mb-4">Ⅷ. 買取実績</div>
           <h2 class="display-md text-[var(--color-navy)] heading-rule">買取実績</h2>
         </div>
         <div class="lg:col-span-7 lg:pt-10">
@@ -489,11 +625,105 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     </div>
   </section>
 
-  <!-- ============== VII. 状態不問 ============== -->
+  <!-- ============== Ⅸ. ブランド別買取相場（事実ベース・3社以上クロスチェック） ============== -->
+  <section id="rates" class="py-24 sm:py-32 bg-[var(--color-bg-cream)] relative overflow-hidden">
+    <!-- 装飾 -->
+    <div class="absolute inset-0 pattern-dots opacity-40 pointer-events-none" aria-hidden="true"></div>
+
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative">
+      <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
+        <div class="lg:col-span-5">
+          <div class="chapter-num mb-4">Ⅸ. ブランド別買取相場</div>
+          <h2 class="display-md text-[var(--color-navy)] heading-rule font-bodoni">主要12モデルの<br />参考買取相場</h2>
+        </div>
+        <div class="lg:col-span-7 lg:pt-10">
+          <p class="text-[15px] text-[var(--color-text-light)] leading-loose max-w-2xl">
+            <strong class="text-[var(--color-bordeaux)]">12モデル × 各3社以上のクロスチェック</strong>で算出した、業界の参考買取相場レンジ。<br />
+            集計期間: <strong>{rateMetadata.collectionPeriod}</strong>／更新: {rateMetadata.updatedAt}<br />
+            <span class="text-xs text-[var(--color-text-lighter)]">{rateMetadata.disclaimer}</span>
+          </p>
+        </div>
+      </div>
+
+      {/* カテゴリ別グルーピング */}
+      {[
+        { id: "bag", label: "ブランドバッグ", labelEn: "Bags" },
+        { id: "watch", label: "ブランド時計", labelEn: "Timepieces" },
+        { id: "jewelry", label: "ブランドジュエリー", labelEn: "Jewelry" },
+      ].map((cat) => (
+        <div class="mb-12 reveal">
+          <div class="flex items-end justify-between gap-3 mb-5 pb-4 border-b border-[var(--color-border)]">
+            <div>
+              <div class="chapter-num">{cat.labelEn}</div>
+              <h3 class="font-bodoni text-2xl text-[var(--color-navy)] mt-1">{cat.label}</h3>
+            </div>
+            <div class="text-xs text-[var(--color-text-lighter)] numeric">
+              {rateData.filter((r) => r.category === cat.id).length} モデル
+            </div>
+          </div>
+
+          <!-- エディトリアル風相場テーブル -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {rateData.filter((r) => r.category === cat.id).map((r) => (
+              <article class="card-luxury bg-white rounded-xl border border-[var(--color-border)] overflow-hidden">
+                <div class="px-5 py-3 bg-[var(--color-navy)] text-white flex items-center justify-between">
+                  <span class="font-bodoni text-base tracking-[0.18em]">{r.brand}</span>
+                  <span class="text-[10px] text-[var(--color-champagne-light)] tracking-widest">×{r.sources}社調査</span>
+                </div>
+                <div class="px-5 py-5">
+                  <div class="font-bold text-[var(--color-text)] mb-1 leading-tight">{r.model}</div>
+                  {r.variant && <div class="text-[11px] text-[var(--color-text-lighter)] mb-4">{r.variant}</div>}
+
+                  <!-- 3段階レンジ表示 -->
+                  <div class="space-y-2.5">
+                    <div class="flex items-baseline justify-between text-sm">
+                      <span class="text-[10px] tracking-widest uppercase text-[var(--color-text-lighter)]">最低相場</span>
+                      <span class="font-display text-base text-[var(--color-text-light)] numeric">¥{r.min.toLocaleString()}〜</span>
+                    </div>
+                    <div class="hairline"></div>
+                    <div class="flex items-baseline justify-between bg-[var(--color-bg-cream)] -mx-2 px-2 py-1.5 rounded">
+                      <span class="text-[10px] tracking-widest uppercase text-[var(--color-bordeaux)] font-bold">中央値</span>
+                      <span class="font-bodoni text-lg text-[var(--color-bordeaux)] numeric">{r.midLabel}</span>
+                    </div>
+                    <div class="hairline"></div>
+                    <div class="flex items-baseline justify-between text-sm">
+                      <span class="text-[10px] tracking-widest uppercase text-[var(--color-text-lighter)]">最高相場</span>
+                      <span class="font-display text-base text-[var(--color-text-light)] numeric">〜¥{r.max.toLocaleString()}</span>
+                    </div>
+                  </div>
+
+                  {r.note && (
+                    <p class="text-[10px] text-[var(--color-text-lighter)] mt-4 leading-relaxed bg-[var(--color-bg)] -mx-2 px-3 py-2 rounded">
+                      ※ {r.note}
+                    </p>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <!-- 注釈・出典 -->
+      <div class="mt-12 p-6 bg-white rounded-xl border border-[var(--color-border)] reveal">
+        <div class="text-[10px] tracking-[0.3em] text-[var(--color-champagne-dark)] uppercase mb-3">Methodology &amp; Sources</div>
+        <ul class="text-xs text-[var(--color-text-light)] space-y-2 leading-relaxed">
+          <li>・「最低相場」=中古B〜AB状態・付属品なしや使用感ありを含む最低帯</li>
+          <li>・「中央値」=出現データの中位帯（範囲表記、推定の単一数値ではありません）</li>
+          <li>・「最高相場」=新品・未使用品・人気色・付属品完備のプレミアム上限</li>
+          <li>・推論は使用していません。すべて公開公式相場・買取実績ページから3社以上の実数値を取得しクロスチェックしています</li>
+          <li>・出典詳細: <code class="font-mono bg-[var(--color-bg-cream)] px-1.5 py-0.5 rounded text-[10px]">competitor-reports/2026-05-04_brand_buyback/_research-rates-speed-comparison.md 軸A</code> に12モデル各5社の出典URLを掲載</li>
+          <li>・実際の買取金額は商品個別の状態・付属品・市場相場・為替により変動します。正確な査定は無料でご提供しますのでLINE・電話・出張のいずれかでご相談ください</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Ⅹ. 状態不問 ============== -->
   <section id="condition" class="py-24 sm:py-32 bg-[var(--color-bg)] relative overflow-hidden pattern-dots">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4">Ⅶ. 状態不問</div>
+        <div class="chapter-num mb-4">Ⅹ. 状態不問</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">状態不問でも買取OK</h2>
         <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
           保証書なし・箱なし・使用感あり・破損あり…他店で断られたお品も、まずは一度ご相談ください。
@@ -529,7 +759,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="areas" class="py-24 sm:py-32 bg-white relative overflow-hidden">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4">Ⅷ. 対応エリア</div>
+        <div class="chapter-num mb-4">Ⅺ. 対応エリア</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">名古屋・愛知の対応エリア</h2>
         <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
           名古屋市中村区横井に本社を置く地元の古物商として、名古屋市16区および尾張・知多・西三河エリアまで出張買取に対応します。
@@ -573,7 +803,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="trust" class="py-24 sm:py-32 bg-luxury-radial text-white relative overflow-hidden grain">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4">Ⅸ. 選ばれる理由</div>
+        <div class="chapter-num mb-4">Ⅻ. 選ばれる理由</div>
         <h2 class="display-md heading-rule center inline-block">徳丸商会が選ばれる3つの理由</h2>
         <p class="mt-7 text-[15px] text-white/70 max-w-3xl mx-auto leading-loose">
           査定の<strong class="text-[var(--color-champagne-light)]">透明性</strong>、業界平均を上回る<strong class="text-[var(--color-champagne-light)]">対応時間</strong>、買取後の<strong class="text-[var(--color-champagne-light)]">柔軟な対応</strong>。
@@ -622,7 +852,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="staff" class="py-24 sm:py-32 bg-white relative overflow-hidden">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-14 reveal">
-        <div class="chapter-num mb-4">Ⅹ. 査定員紹介</div>
+        <div class="chapter-num mb-4">ⅩⅢ. 査定員紹介</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">査定員のご紹介</h2>
         <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
           ご来店・ご訪問時に実際に査定を担当する2名の専門スタッフをご紹介します。<br class="hidden sm:block" />
@@ -667,7 +897,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="testimonials" class="py-24 sm:py-32 bg-[var(--color-bg)] relative overflow-hidden">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4">Ⅺ. お客様の声</div>
+        <div class="chapter-num mb-4">ⅩⅣ. お客様の声</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">お客様の声</h2>
         <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
           名古屋エリアの実顧客からいただいた、徳丸商会のブランド買取についてのお声です。
@@ -696,7 +926,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="faq" class="py-24 sm:py-32 bg-white relative overflow-hidden">
     <div class="max-w-4xl mx-auto px-5 sm:px-8">
       <div class="text-center mb-14 reveal">
-        <div class="chapter-num mb-4">Ⅻ. よくある質問</div>
+        <div class="chapter-num mb-4">ⅩⅤ. よくある質問</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">よくあるご質問</h2>
       </div>
 
@@ -724,7 +954,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
 
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative">
       <div class="text-center mb-14 reveal">
-        <div class="chapter-num mb-4">ⅩⅢ. お問い合わせ</div>
+        <div class="chapter-num mb-4">ⅩⅥ. お問い合わせ</div>
         <h2 class="display-md heading-rule center inline-block">お見積もり・お問い合わせ</h2>
         <p class="mt-7 text-base text-[var(--color-champagne-light)] font-display tracking-wider">9:00〜21:00 ／ Open Year-round</p>
       </div>
