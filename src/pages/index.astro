@@ -89,10 +89,20 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   </header>
 
   <!-- ============== Hero（フルスクリーン） ============== -->
-  <section id="hero" class="relative min-h-[100svh] flex items-center bg-luxury-radial text-[var(--color-text-on-dark)] overflow-hidden grain">
+  <section id="hero" class="relative min-h-[100svh] flex items-center bg-[var(--color-navy)] text-[var(--color-text-on-dark)] overflow-hidden grain">
+
+    <!-- 背景写真：高級ジュエリー店ブティック（AI生成・テキスト/ロゴなし） -->
+    <picture class="absolute inset-0 w-full h-full block" aria-hidden="true">
+      <source srcset={assetPath("images/hero/luxury-bg.webp")} type="image/webp" />
+      <img src={assetPath("images/hero/luxury-bg.jpg")} alt="" class="absolute inset-0 w-full h-full object-cover object-center" loading="eager" fetchpriority="high" width="1920" height="1080" />
+    </picture>
+
+    <!-- ダークオーバーレイ（読みやすさ確保） -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: linear-gradient(110deg, rgba(10, 14, 31, 0.93) 0%, rgba(10, 14, 31, 0.78) 35%, rgba(10, 14, 31, 0.55) 100%);"></div>
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: radial-gradient(ellipse at top left, rgba(197, 165, 114, 0.18) 0%, transparent 45%), radial-gradient(ellipse at bottom right, rgba(107, 18, 48, 0.25) 0%, transparent 50%);"></div>
 
     <!-- 装飾SVG: 大型サークル -->
-    <svg class="absolute -right-32 -top-24 w-[640px] h-[640px] opacity-25 pointer-events-none" viewBox="0 0 600 600" aria-hidden="true">
+    <svg class="absolute -right-32 -top-24 w-[640px] h-[640px] opacity-20 pointer-events-none" viewBox="0 0 600 600" aria-hidden="true">
       <defs>
         <radialGradient id="g1" cx="50%" cy="50%">
           <stop offset="0%" stop-color="#c5a572" stop-opacity="0.55"/>
@@ -105,7 +115,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     </svg>
 
     <!-- 装飾: グリッドライン -->
-    <div class="absolute inset-0 pointer-events-none opacity-[0.04]" aria-hidden="true" style="background-image: linear-gradient(90deg, white 1px, transparent 1px), linear-gradient(180deg, white 1px, transparent 1px); background-size: 80px 80px;"></div>
+    <div class="absolute inset-0 pointer-events-none opacity-[0.03]" aria-hidden="true" style="background-image: linear-gradient(90deg, white 1px, transparent 1px), linear-gradient(180deg, white 1px, transparent 1px); background-size: 80px 80px;"></div>
 
     <div class="relative max-w-[1600px] mx-auto px-5 sm:px-8 py-24 sm:py-32 w-full z-10">
       <!-- 上段：エイエンタイトル + バッジ -->
@@ -120,22 +130,26 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
         <div class="lg:col-span-8">
           <div class="text-[11px] tracking-[0.5em] text-[var(--color-champagne)] mb-5 reveal">LUXURY BUYBACK · ESTABLISHED IN AICHI</div>
 
-          <h1 class="display-hero mb-6 reveal" aria-label="名古屋市中村区のブランド買取・徳丸商会｜エルメス・シャネル・ヴィトン・ロレックスを高価買取">
-            <span class="block text-white/95">Sell your luxury,</span>
-            <span class="block text-gradient-champagne">at its true value.</span>
-            <span class="sr-only">名古屋市中村区のブランド買取・徳丸商会｜エルメス・シャネル・ヴィトン・ロレックスを高価買取</span>
+          <h1 class="mb-6 reveal" aria-label="名古屋でブランド品の買取なら徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを高価買取">
+            <!-- 英語ディスプレイキャッチ（ハイブランド感） -->
+            <span class="display-hero block">
+              <span class="block text-white/95">Sell your luxury,</span>
+              <span class="block text-gradient-champagne">at its true value.</span>
+            </span>
+            <!-- 日本語メインキャッチ（SEO・UX：ファーストビューで「ブランド買取」を視認） -->
+            <span class="block mt-6 text-2xl sm:text-3xl lg:text-[2.4rem] font-black tracking-tight text-white leading-tight">
+              名古屋で<span class="text-[var(--color-champagne-light)]">ブランド品の買取</span>なら<br class="sm:hidden" />
+              徳丸商会
+            </span>
           </h1>
 
-          <div class="flex flex-wrap gap-2.5 mb-7 reveal">
+          <div class="flex flex-wrap gap-2.5 mb-6 reveal">
             <span class="px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold bg-[var(--color-champagne)]/15 border border-[var(--color-champagne)]/35 text-[var(--color-champagne-light)]">名古屋市中村区 本社</span>
             <span class="px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold bg-white/5 border border-white/15">愛知県公安委員会許可</span>
             <span class="px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold bg-[var(--color-bordeaux)]/30 border border-[var(--color-bordeaux-light)]/40 text-[var(--color-champagne-light)]">夜21時まで／年中無休</span>
           </div>
 
-          <div class="text-base sm:text-lg max-w-2xl text-white/80 leading-loose reveal mb-2">
-            名古屋でブランド品の買取なら徳丸商会
-          </div>
-          <p class="text-xs sm:text-sm max-w-2xl text-white/55 leading-loose reveal">
+          <p class="text-sm sm:text-base max-w-2xl text-white/75 leading-loose reveal">
             出張・LINE査定・宅配対応。エルメス・シャネル・ヴィトン・ロレックス・カルティエなど主要ブランドを地元・名古屋市中村区の古物商が高価買取。<br class="hidden sm:block" />
             <strong class="text-[var(--color-champagne-light)]">業界唯一、5ブランドで最低買取保証額を明示。</strong>
           </p>
