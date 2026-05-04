@@ -10,6 +10,7 @@ import { assetPath, homePath } from "../lib/site";
 import { faqsToJsonLd } from "../data/faq";
 import { company } from "../data/company";
 import { flagshipBrands } from "../data/brands";
+import { staff } from "../data/staff";
 
 const { title, description, extraJsonLd = [] } = Astro.props;
 const canonicalUrl = Astro.url.href;
@@ -195,6 +196,63 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
       "sameAs": [company.line]
     })} />
 
+    <!-- JSON-LD #2.5: WebSite + SearchAction（検索ボックス表示の可能性） -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${homeUrl}#website`,
+      "name": "徳丸商会 ブランド買取",
+      "alternateName": "Tokumaru Shokai Brand Buyback",
+      "url": homeUrl,
+      "publisher": { "@id": `${homeUrl}#localbusiness` },
+      "inLanguage": "ja-JP",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${homeUrl}?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    })} />
+
+    <!-- JSON-LD #2.6: Service（独立した買取サービス3種） -->
+    <script type="application/ld+json" set:html={JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": `${homeUrl}#service-visit`,
+        "serviceType": "出張買取",
+        "name": "ブランド品の出張買取",
+        "description": "名古屋市16区および尾張・知多・西三河エリアへ最短当日訪問。査定員がご自宅に伺い、その場で査定・現金支払い。出張料・査定料・キャンセル料すべて無料。クーリングオフ8日間対応。",
+        "provider": { "@id": `${homeUrl}#localbusiness` },
+        "areaServed": company.areas.map((a) => ({ "@type": "AdministrativeArea", "name": `名古屋市${a}` })),
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "description": "出張料・査定料・キャンセル料すべて無料" }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": `${homeUrl}#service-line`,
+        "serviceType": "オンライン査定",
+        "name": "LINE査定（写真送信で参考買取額をご提示）",
+        "description": "公式LINEに写真と型番を送るだけ。最短15分で参考買取額をご提示します。営業時間内 9:00〜21:00 年中無休で受付。",
+        "provider": { "@id": `${homeUrl}#localbusiness` },
+        "areaServed": "JP",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": `${homeUrl}#service-mail`,
+        "serviceType": "宅配買取",
+        "name": "ブランド品の宅配買取",
+        "description": "全国対応の宅配買取。専用ダンボールを無料お届け、送料・返送料すべて無料。最大5,000万円までの運送保険付き。査定後最短当日に銀行振込でお支払い。",
+        "provider": { "@id": `${homeUrl}#localbusiness` },
+        "areaServed": "JP",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "description": "送料・キット代・返送料すべて無料" }
+      }
+    ])} />
+
     <!-- JSON-LD #3: FAQPage（src/data/faq.ts より自動生成） -->
     <script type="application/ld+json" set:html={JSON.stringify(faqsToJsonLd())} />
 
@@ -234,6 +292,20 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
         }
       ]
     })} />
+
+    <!-- JSON-LD #4.5: Person（査定員2名のE-E-A-T強化） -->
+    <script type="application/ld+json" set:html={JSON.stringify(
+      staff.map((s) => ({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": `${homeUrl}#staff-${s.surnameKana.toLowerCase()}`,
+        "name": s.surname,
+        "jobTitle": s.role,
+        "worksFor": { "@id": `${homeUrl}#localbusiness` },
+        "knowsAbout": s.specialty,
+        "description": s.message,
+      }))
+    )} />
 
     <!-- JSON-LD #5: BreadcrumbList -->
     <script type="application/ld+json" set:html={JSON.stringify({
