@@ -21,7 +21,7 @@
   --color-bg: #fdfbf9;          /* Lemaire `--bg-color` */
   --color-bg-2: #f6f5e8;        /* Aesop secondary */
   --color-bg-3: #efedeb;        /* COS neutral-300 */
-  --color-bg-dark: #100a0d;     /* Lemaire 主要文字 → 反転背景用 */
+  --color-bg-dark: #0f0b0a;     /* Lemaire 主要文字 → 反転背景用 */
 
   --color-text: #100a0d;        /* Lemaire 主要文字 */
   --color-text-sub: #6b6b60;    /* Aesop sub */
@@ -30,6 +30,8 @@
   --color-accent: #000000;      /* CTA基本（Khaite/Lemaire） */
   --color-accent-soft: #4a6e78; /* Toteme dusty teal（控えめ強調） */
   --color-accent-warm: #b0623a; /* Lemaireベージュゴールド派生（限定アクセント） */
+  --color-ink: #0f0b0a;
+  --color-smoke: #d9d2c7;
 
   --color-border: rgba(16, 10, 13, 0.12);
   --color-border-strong: rgba(16, 10, 13, 0.32);
@@ -129,7 +131,7 @@ section[id] { scroll-margin-top: 4rem; }
  * ─────────────────────────────────────────────── */
 
 .container-content {
-  max-width: 1200px; /* Aesop 75rem */
+  max-width: 1320px;
   margin-inline: auto;
   padding-inline: clamp(1.5rem, 4vw, 4rem); /* Khaite 段階値 */
 }
@@ -246,15 +248,275 @@ section[id] { scroll-margin-top: 4rem; }
   background-color: var(--color-bg);
   border: 1px solid var(--color-border);
   padding: clamp(1.5rem, 3vw, 2.5rem);
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
 }
 .card-min:hover {
   border-color: var(--color-border-strong);
+  transform: translateY(-3px);
 }
 
 .card-warm {
   background-color: var(--color-bg-2);
   padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* ───────────────────────────────────────────────
+ * Editorial image integration
+ * ─────────────────────────────────────────────── */
+
+.editorial-figure {
+  margin: 0;
+}
+
+.editorial-media {
+  display: block;
+  overflow: hidden;
+  background-color: var(--color-bg-3);
+}
+
+.editorial-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.editorial-caption {
+  max-width: 28rem;
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--color-text-sub);
+}
+
+.editorial-caption::before {
+  content: "— ";
+  color: var(--color-accent-soft);
+}
+
+/* ───────────────────────────────────────────────
+ * Appraisal Dossier redesign
+ * ─────────────────────────────────────────────── */
+
+.dossier-section {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(5rem, 10vw, 10rem);
+}
+
+.dossier-section-dark {
+  background:
+    linear-gradient(135deg, rgba(74, 110, 120, 0.16) 0%, transparent 34%),
+    radial-gradient(circle at 82% 12%, rgba(176, 98, 58, 0.18), transparent 28%),
+    var(--color-ink);
+  color: var(--color-bg);
+}
+
+.dossier-section-dark [class*="text-[var(--color-text-sub)]"],
+.dossier-section-dark [class*="text-[var(--color-text)]"],
+.dossier-section-dark .display-2,
+.dossier-section-dark .display-3 {
+  color: rgba(253, 251, 249, 0.82);
+}
+
+.dossier-section-dark .display-2,
+.dossier-section-dark .font-serif {
+  color: var(--color-bg);
+}
+
+.dossier-section-dark .eyebrow,
+.dossier-section-dark .numero {
+  color: rgba(217, 210, 199, 0.74);
+}
+
+.dossier-section-dark .divider,
+.dossier-section-dark .editorial-caption,
+.dossier-section-dark .border-\[var\(--color-border\)\],
+.dossier-section-dark [class*="border-[var(--color-border)]"] {
+  border-color: rgba(253, 251, 249, 0.16);
+}
+
+.dossier-spread {
+  display: grid;
+  grid-template-columns: minmax(26rem, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.dossier-intro {
+  position: sticky;
+  top: 7rem;
+}
+
+.dossier-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 4.6vw, 4.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+}
+
+.dossier-copy {
+  max-width: 30rem;
+  font-size: 0.98rem;
+  line-height: 2;
+}
+
+.dossier-stack {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+}
+
+.dossier-inner-grid {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.88fr) minmax(18rem, 1.12fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: end;
+}
+
+.dossier-photo-card {
+  position: relative;
+  padding: 0.75rem;
+  background: rgba(253, 251, 249, 0.08);
+  border: 1px solid rgba(253, 251, 249, 0.14);
+}
+
+.dossier-photo-card .editorial-media {
+  background: var(--color-smoke);
+}
+
+.dossier-photo-card .editorial-caption {
+  color: rgba(253, 251, 249, 0.74);
+  border-color: rgba(253, 251, 249, 0.18);
+}
+
+.dossier-quote-card {
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: rgba(253, 251, 249, 0.07);
+  border: 1px solid rgba(253, 251, 249, 0.14);
+  backdrop-filter: blur(18px);
+}
+
+.dossier-condition-grid {
+  padding: clamp(1rem, 3vw, 1.5rem);
+  background: rgba(253, 251, 249, 0.055);
+  border: 1px solid rgba(253, 251, 249, 0.12);
+}
+
+.chapter-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: end;
+}
+
+.chapter-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.chapter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 3.8vw, 3.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.014em;
+}
+
+.photo-slab {
+  position: relative;
+}
+
+.photo-slab::before {
+  content: "";
+  position: absolute;
+  inset: -1rem 1rem 1rem -1rem;
+  border: 1px solid var(--color-border);
+  pointer-events: none;
+}
+
+.photo-slab .editorial-media {
+  position: relative;
+  z-index: 1;
+}
+
+.route-grid .card-min {
+  min-height: 100%;
+  background:
+    linear-gradient(180deg, rgba(253, 251, 249, 0.96), rgba(253, 251, 249, 0.88));
+}
+
+.route-grid .card-min:nth-child(2) {
+  background: var(--color-ink);
+  color: var(--color-bg);
+  transform: translateY(-1.25rem);
+}
+
+.route-grid .card-min:nth-child(2) [class*="text-[var(--color-text-sub)]"],
+.route-grid .card-min:nth-child(2) [class*="text-[var(--color-text)]"],
+.route-grid .card-min:nth-child(2) .display-3 {
+  color: rgba(253, 251, 249, 0.82);
+}
+
+.campaign-stage {
+  background:
+    linear-gradient(90deg, var(--color-bg-3) 0%, rgba(239, 237, 235, 0.88) 46%, transparent 100%);
+}
+
+.campaign-stage .card-min {
+  box-shadow: 0 2rem 5rem rgba(16, 10, 13, 0.08);
+}
+
+.staff-ledger .chip {
+  background: rgba(253, 251, 249, 0.75);
+}
+
+.voices-section {
+  background:
+    linear-gradient(180deg, var(--color-bg-2) 0%, #f2f0df 100%);
+}
+
+.voice-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.75rem, 4vw, 3.25rem);
+  align-items: start;
+}
+
+.voice-ledger article {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 1023px) {
+  .dossier-spread,
+  .dossier-inner-grid,
+  .chapter-row,
+  .voice-ledger {
+    grid-template-columns: 1fr;
+  }
+
+  .dossier-intro {
+    position: relative;
+    top: auto;
+  }
+
+  .dossier-title,
+  .chapter-title {
+    font-size: clamp(2.35rem, 10vw, 3.35rem);
+    line-height: 1.12;
+  }
+
+  .route-grid .card-min:nth-child(2) {
+    transform: none;
+  }
+
+  .photo-slab::before {
+    inset: -0.75rem 0.75rem 0.75rem -0.75rem;
+  }
 }
 
 /* ───────────────────────────────────────────────
@@ -388,7 +650,7 @@ section[id] { scroll-margin-top: 4rem; }
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  padding: clamp(2rem, 5vw, 4rem) 0;
+  padding: clamp(1rem, 3vw, 2.5rem) 0;
 }
 .section-divider::before,
 .section-divider::after {
@@ -401,7 +663,7 @@ section[id] { scroll-margin-top: 4rem; }
 .section-divider-motif {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 0;
   color: var(--color-accent-soft);
   letter-spacing: 0.5em;
 }
@@ -425,25 +687,17 @@ section[id] { scroll-margin-top: 4rem; }
 
 /* 引用符（大きく・装飾的に） */
 .quote-large::before {
-  content: "❝";
+  content: "";
   display: block;
   font-family: var(--font-serif);
-  font-size: clamp(3.5rem, 6vw, 5rem);
-  line-height: 0.8;
-  color: var(--color-accent-soft);
-  margin-bottom: 0.4em;
-  opacity: 0.6;
+  width: 3.5rem;
+  height: 1px;
+  background: currentColor;
+  margin-bottom: 1.25rem;
+  opacity: 0.28;
 }
 .quote-large::after {
-  content: "❞";
-  display: block;
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 0.8;
-  color: var(--color-accent-soft);
-  text-align: right;
-  margin-top: 0.4em;
-  opacity: 0.5;
+  content: none;
 }
 
 /* 紙質感のテクスチャ背景 */
@@ -461,6 +715,11 @@ section[id] { scroll-margin-top: 4rem; }
   z-index: 0;
 }
 .paper-bg > * { position: relative; z-index: 1; }
+
+.paper-bg > .campaign-bg-image {
+  position: absolute;
+  z-index: 0;
+}
 
 /* 装飾フレーム（細いline border + 中央装飾） */
 .deco-frame {
@@ -533,7 +792,7 @@ section[id] { scroll-margin-top: 4rem; }
   font-size: clamp(8rem, 18vw, 16rem);
   line-height: 1;
   color: var(--color-text);
-  opacity: 0.04;
+  opacity: 0;
   pointer-events: none;
   user-select: none;
   z-index: 0;
