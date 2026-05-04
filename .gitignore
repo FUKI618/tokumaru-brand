@@ -12,3 +12,6 @@ screenshots/
 # Claude Code セッション管理（実装に無関係な自動更新ファイル）
 .claude/
 .harness-mem/
+
+# ローカルのみのバックアップ（本番デプロイ不要）
+public/images/hero/*-old.*

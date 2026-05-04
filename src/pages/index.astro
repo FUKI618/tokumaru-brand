@@ -32,6 +32,23 @@ const apparelBrands = popularBrands.filter((b) => b.category === "apparel");
 const bagRates = rateData.filter((r) => r.category === "bag");
 const watchRates = rateData.filter((r) => r.category === "watch");
 const jewelryRates = rateData.filter((r) => r.category === "jewelry");
+
+// 万単位フォーマッタ（206万 / 13万 / 5.9万）
+const formatMan = (yen: number): string => {
+  const man = yen / 10000;
+  if (man >= 10) return `¥${Math.round(man)}万`;
+  return `¥${man.toFixed(1)}万`;
+};
+
+// midLabel "¥2,500,000 〜 ¥2,800,000" → "¥250〜280万"
+const midToMan = (label: string): string => {
+  const nums = label.match(/[\d,]+/g)?.map((n) => parseInt(n.replace(/,/g, ""), 10)) ?? [];
+  if (nums.length !== 2) return label;
+  const a = nums[0] / 10000;
+  const b = nums[1] / 10000;
+  if (a >= 10 && b >= 10) return `¥${Math.round(a)}〜${Math.round(b)}万`;
+  return `¥${a.toFixed(1)}〜${b.toFixed(1)}万`;
+};
 ---
 
 <Layout title={title} description={description}>
@@ -42,8 +59,8 @@ const jewelryRates = rateData.filter((r) => r.category === "jewelry");
       <a href={sectionPath("hero")} class="flex items-center gap-2.5" aria-label="徳丸商会 トップへ">
         <img src={assetPath("logo.svg")} alt="徳丸商会" class="h-8 w-auto" width="36" height="36" />
         <div class="leading-tight">
-          <div class="text-[10px] tracking-[0.25em] text-[var(--color-text-sub)] uppercase">Tokumaru Shokai</div>
-          <div class="text-sm font-serif text-[var(--color-text)]">名古屋ブランド買取</div>
+          <div class="text-[11px] tracking-[0.25em] text-[var(--color-text)] uppercase font-medium">Tokumaru Shokai</div>
+          <div class="text-[9px] tracking-[0.3em] text-[var(--color-text-sub)] uppercase mt-0.5">Nagoya</div>
         </div>
       </a>
       <nav class="hidden lg:flex items-center gap-7 text-[13px]" aria-label="セクションナビ">
@@ -64,71 +81,151 @@ const jewelryRates = rateData.filter((r) => r.category === "jewelry");
   </header>
 
   <!-- ============== 1. Hero ============== -->
-  <section id="hero" class="relative min-h-[80svh] md:min-h-[90vh] flex items-end overflow-hidden bg-[var(--color-bg-2)] grain-soft">
+  <section id="hero" class="relative min-h-[80svh] md:min-h-[90vh] flex items-end overflow-hidden bg-[var(--color-bg-2)]">
 
-    <!-- 背景画像（既存をフィルター付きで使用、暖色オフホワイトに馴染ませる） -->
-    <picture class="absolute inset-0 w-full h-full block" aria-hidden="true">
+    <!-- 背景：暖色オフホワイト + 薄いペーパーテクスチャ（画像削除） -->
+    <div class="absolute inset-0" aria-hidden="true" style="background: linear-gradient(180deg, var(--color-bg-2) 0%, var(--color-bg) 100%);"></div>
+    <div class="absolute inset-0 grain-soft" aria-hidden="true"></div>
+
+    <!-- PC: 右側にサイドアクセントとして画像（mask 10% で世界観をしっかり見せる） -->
+    <picture class="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:block opacity-95" aria-hidden="true" style="mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 100%);">
       <source srcset={assetPath("images/hero/luxury-bg.webp")} type="image/webp" />
-      <img src={assetPath("images/hero/luxury-bg.jpg")} alt="" class="absolute inset-0 w-full h-full object-cover object-center opacity-60" loading="eager" fetchpriority="high" width="1920" height="1080" style="filter: brightness(1.1) saturate(0.6) hue-rotate(-10deg);" />
+      <img src={assetPath("images/hero/luxury-bg.jpg")} alt="窓際の白いリネンに置かれた淡い色のシルクスカーフ" class="w-full h-full object-cover" loading="eager" fetchpriority="high" width="1920" height="1080" />
     </picture>
-    <div class="absolute inset-0 hero-overlay" aria-hidden="true"></div>
 
-    <div class="container-content relative w-full pt-24 pb-16 md:pt-32 md:pb-20">
+    <!-- モバイル: 下端 28vh の横長画像帯（Aesop 世界観をモバイルにも） -->
+    <picture class="absolute inset-x-0 bottom-0 h-[28vh] lg:hidden opacity-50" aria-hidden="true" style="mask-image: linear-gradient(180deg, transparent 0%, black 70%, black 100%); -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 70%, black 100%);">
+      <source srcset={assetPath("images/hero/luxury-bg.webp")} type="image/webp" />
+      <img src={assetPath("images/hero/luxury-bg.jpg")} alt="" class="w-full h-full object-cover" loading="eager" width="1920" height="1080" />
+    </picture>
+
+    <!-- 装飾SVG: 右上の細い円弧（Khaite風） -->
+    <svg class="deco-svg w-[240px] h-[240px] hidden md:block" style="top: 14%; right: 8%; opacity: 0.35;" viewBox="0 0 280 280" fill="none" aria-hidden="true">
+      <circle cx="140" cy="140" r="138" stroke="currentColor" stroke-width="0.6" stroke-dasharray="2 4" />
+      <circle cx="140" cy="140" r="100" stroke="currentColor" stroke-width="0.5" />
+      <line x1="140" y1="40" x2="140" y2="240" stroke="currentColor" stroke-width="0.3" />
+      <line x1="40" y1="140" x2="240" y2="140" stroke="currentColor" stroke-width="0.3" />
+    </svg>
+
+    <!-- 装飾SVG: 左下のシンプルなバッグアウトライン -->
+    <svg class="deco-svg deco-svg-warm w-[110px] h-[130px] hidden md:block" style="bottom: 22%; left: 5%; opacity: 0.3;" viewBox="0 0 120 140" fill="none" stroke="currentColor" stroke-width="0.8" aria-hidden="true">
+      <path d="M20,60 L100,60 L92,130 L28,130 Z" />
+      <path d="M40,60 Q40,30 60,30 Q80,30 80,60" />
+      <line x1="40" y1="80" x2="40" y2="100" />
+      <line x1="80" y1="80" x2="80" y2="100" />
+    </svg>
+
+    <!-- 大きな装飾文字（背景・ぼんやり） -->
+    <div class="bg-letter" style="bottom: 4%; left: -2%; opacity: 0.06;" aria-hidden="true">T</div>
+
+    <div class="container-content relative w-full pt-24 pb-16 md:pt-32 md:pb-20 z-10">
       <div class="grid lg:grid-cols-12 gap-8 items-end">
         <div class="lg:col-span-8 reveal">
-          <div class="eyebrow mb-6">— Nagoya, since 1992</div>
+          <!-- 装飾的なエイヤキャッチ（eyebrow 1個に絞り視覚静寂を保つ） -->
+          <div class="flex items-center gap-3 mb-6">
+            <span class="block w-12 h-px bg-[var(--color-accent-soft)]"></span>
+            <div class="eyebrow">Nagoya, since 1992</div>
+          </div>
+
           <h1 class="display-1 mb-6 max-w-3xl" aria-label="名古屋でブランド品の買取なら徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを高価買取">
             <span class="block">価値が分かる店で、</span>
-            <span class="block italic font-serif" style="color: var(--color-accent-soft);">手放す。</span>
+            <span class="block italic font-serif" style="color: var(--color-accent-soft);">手放す<span class="text-[var(--color-text)] not-italic">。</span></span>
           </h1>
-          <p class="text-base md:text-lg text-[var(--color-text-sub)] leading-loose max-w-xl mb-8">
-            名古屋でブランド品の買取なら徳丸商会へ。<br />
-            エルメス・シャネル・ヴィトン・ロレックス・カルティエ。<br />
-            親から受け継いだ品も、長く眠っていた品も、<wbr />一点ずつ丁寧に拝見します。
-          </p>
+
+          <!-- 装飾線 + コピー -->
+          <div class="line-vertical pl-6 max-w-xl mb-8">
+            <p class="text-base md:text-lg text-[var(--color-text-sub)] leading-loose">
+              名古屋でブランド品の買取なら徳丸商会へ。<br />
+              エルメス・シャネル・ヴィトン・ロレックス・カルティエ。<br />
+              <span class="text-[var(--color-text)]">親から受け継いだ品も、長く眠っていた品も、<wbr />一点ずつ丁寧に拝見します。</span>
+            </p>
+          </div>
+
+          <!-- 取扱ブランド ストリップ -->
+          <div class="hidden md:flex items-center gap-4 mt-8 flex-wrap" aria-label="取扱主要ブランド">
+            {flagshipBrands.map((b, i) => (
+              <>
+                {i > 0 && <span class="text-[var(--color-text)] opacity-30">·</span>}
+                <span class="font-serif italic text-[var(--color-text)] text-base tracking-wider">{b.name}</span>
+              </>
+            ))}
+          </div>
         </div>
 
         <div class="lg:col-span-4 reveal reveal-delay-1">
-          <div class="flex flex-col gap-3">
-            <a href={lineUrl} target="_blank" rel="noopener" class="btn btn-line btn-lg w-full">
-              LINEで無料査定
-            </a>
-            <a href={phoneTel} class="btn btn-primary btn-lg w-full">
-              <span class="numeric tracking-wider">{company.phone}</span>
-            </a>
-            <a href={sectionPath("contact")} class="btn btn-outline w-full">
-              フォームから相談
-            </a>
-            <p class="text-xs text-[var(--color-text-sub)] text-center mt-2 leading-relaxed">
-              出張料・査定料・キャンセル料 すべて0円<br />
-              9:00-21:00 年中無休
-            </p>
+          <div class="bg-[var(--color-bg)] border border-[var(--color-border)] p-6 deco-corners">
+            <div class="numero mb-5">N° 01</div>
+            <div class="flex flex-col gap-3">
+              <a href={lineUrl} target="_blank" rel="noopener" class="btn btn-line btn-lg w-full">
+                LINEで無料査定
+              </a>
+              <a href={phoneTel} class="btn btn-outline w-full numeric tracking-wider">
+                {company.phone}
+              </a>
+              <a href={sectionPath("contact")} class="text-center text-[13px] text-[var(--color-text-sub)] hover:text-[var(--color-text)] transition pt-2 underline-offset-4 hover:underline">
+                フォームから相談する
+              </a>
+            </div>
           </div>
         </div>
+      </div>
+
+      <!-- ヒーロー下端の装飾ストリップ（3チャネルのみ、過剰 eyebrow を撤去） -->
+      <div class="hidden md:flex items-center justify-center gap-6 mt-16 pt-8 border-t border-[var(--color-border)]">
+        <span class="eyebrow text-[var(--color-text)]">出張買取</span>
+        <span class="text-[var(--color-accent-soft)]">·</span>
+        <span class="eyebrow text-[var(--color-text)]">LINE査定</span>
+        <span class="text-[var(--color-accent-soft)]">·</span>
+        <span class="eyebrow text-[var(--color-text)]">宅配買取</span>
       </div>
     </div>
 
   </section>
 
-  <!-- ============== 2. Story（コア訴求） ============== -->
-  <section id="story" class="section-pad bg-[var(--color-bg)]">
+  <!-- セクション間装飾divider -->
+  <div class="bg-[var(--color-bg)]">
     <div class="container-content">
+      <div class="section-divider">
+        <span class="section-divider-motif">i</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== 2. Story（コア訴求） ============== -->
+  <section id="story" class="section-pad bg-[var(--color-bg)] relative overflow-hidden">
+    <!-- 装飾的な大きな背景文字 -->
+    <div class="bg-letter" style="top: 5%; right: -3%;" aria-hidden="true">II</div>
+
+    <div class="container-content relative">
       <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
         <div class="lg:col-span-5 reveal">
-          <div class="eyebrow mb-4">私たちの姿勢</div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="numero">N° 02</span>
+            <span class="block w-8 h-px bg-[var(--color-border)]"></span>
+            <span class="eyebrow">私たちの姿勢</span>
+          </div>
           <h2 class="display-2 mb-8">
-            他店で値が付かなかった品も、<br />丁寧に拝見します。
+            他店で値が付かなかった<br />品も、<span class="italic" style="color: var(--color-accent-soft);">丁寧に</span>拝見します。
           </h2>
           <p class="text-base text-[var(--color-text-sub)] leading-loose">
             「もう古いから」「使用感があるから」「保証書がないから」——<br />
             そんな理由で諦めたお品を、もう一度お持ちいただきたいのです。
           </p>
+
+          <!-- 装飾的シルエット（査定員の手＝小さなSVG） -->
+          <svg class="mt-12 w-32 h-auto opacity-30" viewBox="0 0 200 80" fill="none" stroke="currentColor" stroke-width="0.8" style="color: var(--color-accent-soft);" aria-hidden="true">
+            <line x1="10" y1="40" x2="60" y2="40" />
+            <circle cx="80" cy="40" r="14" />
+            <circle cx="80" cy="40" r="8" stroke-dasharray="2 2" />
+            <line x1="100" y1="40" x2="190" y2="40" />
+            <text x="120" y="35" font-family="serif" font-style="italic" font-size="9" fill="currentColor" stroke="none" opacity="0.7">— 一点ずつ、丁寧に</text>
+          </svg>
         </div>
 
-        <div class="lg:col-span-7 space-y-8">
+        <div class="lg:col-span-7 space-y-8 lg:pl-8 lg:border-l lg:border-[var(--color-border)]">
           <div class="reveal reveal-delay-1">
-            <div class="quote-mark text-base text-[var(--color-text)] leading-loose font-serif italic">
-              <p class="not-italic font-sans text-[var(--color-text-sub)] mb-4">{staff[1].surname}（{staff[1].role}）</p>
+            <div class="quote-large text-base text-[var(--color-text)] leading-loose font-serif italic">
+              <p class="not-italic font-sans text-[var(--color-text-sub)] mb-4 text-sm tracking-wider">{staff[1].surname}（{staff[1].role}）</p>
               <p>{staff[1].message}</p>
               <p class="mt-6 not-italic text-sm font-medium text-[var(--color-text)]">— {staff[1].policy}</p>
             </div>
@@ -180,13 +277,28 @@ const jewelryRates = rateData.filter((r) => r.category === "jewelry");
     </div>
   </section>
 
-  <!-- ============== 3. Rates（参考買取相場） ============== -->
-  <section id="rates" class="section-pad bg-[var(--color-bg-2)]">
+  <!-- セクション間装飾 -->
+  <div class="bg-[var(--color-bg)]">
     <div class="container-content">
+      <div class="section-divider">
+        <span class="section-divider-motif">ii</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== 3. Rates（参考買取相場） ============== -->
+  <section id="rates" class="section-pad bg-[var(--color-bg-2)] relative overflow-hidden">
+    <div class="bg-letter" style="bottom: -8%; left: -2%;" aria-hidden="true">III</div>
+
+    <div class="container-content relative">
       <div class="grid lg:grid-cols-12 gap-8 mb-12 reveal">
         <div class="lg:col-span-5">
-          <div class="eyebrow mb-4">主要ブランドの参考買取相場</div>
-          <h2 class="display-2">12モデルの<br />買取目安レンジ</h2>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="numero">N° 03</span>
+            <span class="block w-8 h-px bg-[var(--color-border)]"></span>
+            <span class="eyebrow">主要ブランドの参考買取相場</span>
+          </div>
+          <h2 class="display-2">12モデルの<br />買取目安<span class="italic" style="color: var(--color-accent-soft);">レンジ</span></h2>
         </div>
         <div class="lg:col-span-7 lg:pt-6">
           <p class="text-[15px] text-[var(--color-text-sub)] leading-loose">
@@ -206,31 +318,29 @@ const jewelryRates = rateData.filter((r) => r.category === "jewelry");
             <h3 class="font-serif text-xl text-[var(--color-text)]">{cat.label}</h3>
             <div class="text-xs text-[var(--color-text-sub)] numeric tracking-wider">{cat.items.length} models</div>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
             {cat.items.map((r) => (
-              <article class="py-1">
-                <div class="flex items-baseline justify-between mb-1.5">
-                  <div class="font-serif text-[var(--color-text)] tracking-wide">{r.brand}</div>
-                  <div class="text-[10px] text-[var(--color-text-sub)] tracking-widest">×{r.sources}社調査</div>
-                </div>
-                <div class="text-sm text-[var(--color-text)] mb-3 font-medium">{r.model}</div>
-                {r.variant && <div class="text-[11px] text-[var(--color-text-sub)] mb-3">{r.variant}</div>}
-                <div class="space-y-1.5 pt-2 border-t border-[var(--color-border)]">
-                  <div class="flex items-baseline justify-between text-sm">
-                    <span class="text-[10px] text-[var(--color-text-sub)] uppercase tracking-wider">最低</span>
-                    <span class="numeric text-[var(--color-text-sub)]">¥{r.min.toLocaleString()}〜</span>
+              <article class="py-6 border-t border-[var(--color-border)]">
+                <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-3">
+                  <div class="md:flex-1">
+                    <div class="flex items-baseline gap-3 mb-1">
+                      <span class="font-serif text-base text-[var(--color-text)] tracking-wide">{r.brand}</span>
+                      <span class="text-[10px] text-[var(--color-text-sub)] tracking-widest">×{r.sources}社調査</span>
+                    </div>
+                    <div class="text-[15px] text-[var(--color-text)] font-medium">{r.model}</div>
+                    {r.variant && <div class="text-[11px] text-[var(--color-text-sub)] mt-0.5">{r.variant}</div>}
                   </div>
-                  <div class="flex items-baseline justify-between text-sm">
-                    <span class="text-[10px] text-[var(--color-accent-soft)] uppercase tracking-wider font-medium">中央値</span>
-                    <span class="font-serif text-base numeric" style="color: var(--color-accent-soft);">{r.midLabel}</span>
-                  </div>
-                  <div class="flex items-baseline justify-between text-sm">
-                    <span class="text-[10px] text-[var(--color-text-sub)] uppercase tracking-wider">最高</span>
-                    <span class="numeric text-[var(--color-text-sub)]">〜¥{r.max.toLocaleString()}</span>
+                  <div class="md:text-right whitespace-nowrap">
+                    <div class="numeric font-serif text-[26px] md:text-[30px] leading-none text-[var(--color-text)]">
+                      {formatMan(r.min)}<span class="text-[var(--color-text-sub)] text-[18px] mx-1.5 font-sans">〜</span>{formatMan(r.max)}
+                    </div>
+                    <div class="text-[11px] text-[var(--color-text-sub)] mt-2">
+                      中心帯 <span class="numeric" style="color: var(--color-accent-soft);">{midToMan(r.midLabel)}</span>
+                    </div>
                   </div>
                 </div>
                 {r.note && (
-                  <p class="text-[10px] text-[var(--color-text-sub)] mt-3 leading-relaxed">{r.note}</p>
+                  <p class="text-[10px] text-[var(--color-text-sub)] mt-3 leading-relaxed">※ {r.note}</p>
                 )}
               </article>
             ))}
@@ -238,20 +348,37 @@ const jewelryRates = rateData.filter((r) => r.category === "jewelry");
         </div>
       ))}
 
-      <p class="text-xs text-[var(--color-text-sub)] mt-8 max-w-3xl leading-relaxed">
-        ※ {rateMetadata.disclaimer}<br />
-        ※ 「最低相場」=中古状態・付属品なしを含む最低帯／「中央値」=出現データの中位帯（推定の単一数値ではありません）／「最高相場」=新品・未使用品・人気色のプレミアム上限。
+      <p class="text-xs text-[var(--color-text-sub)] mt-10 max-w-3xl leading-relaxed">
+        ※ 表示金額の幅は「使用感あり・付属品なしの最低帯」から「未使用品・人気色のプレミアム上限」までを示します。<br />
+        ※ 「中心帯」は集計データの中位レンジで、最も多く取引されている価格帯です。<br />
+        ※ {rateMetadata.disclaimer}
       </p>
     </div>
   </section>
 
-  <!-- ============== 4. Methods（3つのご利用方法） ============== -->
-  <section id="methods" class="section-pad bg-[var(--color-bg)]">
+  <!-- セクション間装飾 -->
+  <div class="bg-[var(--color-bg)]">
     <div class="container-content">
+      <div class="section-divider">
+        <span class="section-divider-motif">iii</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== 4. Methods（3つのご利用方法） ============== -->
+  <section id="methods" class="section-pad bg-[var(--color-bg)] relative overflow-hidden">
+    <div class="bg-letter" style="top: 5%; right: -3%;" aria-hidden="true">IV</div>
+
+    <div class="container-content relative">
       <div class="text-center mb-14 reveal">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <span class="block w-8 h-px bg-[var(--color-border)]"></span>
+          <span class="numero">N° 04</span>
+          <span class="block w-8 h-px bg-[var(--color-border)]"></span>
+        </div>
         <div class="eyebrow mb-4">3つのご利用方法</div>
         <h2 class="display-2 max-w-2xl mx-auto">
-          ご都合の良い方法を、お選びください。
+          ご都合の良い方法を、<span class="italic" style="color: var(--color-accent-soft);">お選びください。</span>
         </h2>
       </div>
 
@@ -301,13 +428,29 @@ const jewelryRates = rateData.filter((r) => r.category === "jewelry");
     </div>
   </section>
 
-  <!-- ============== 5. Campaigns（新規） ============== -->
-  <section id="campaigns" class="section-pad bg-[var(--color-bg-3)]">
+  <!-- セクション間装飾 -->
+  <div class="bg-[var(--color-bg)]">
     <div class="container-content">
+      <div class="section-divider">
+        <span class="section-divider-motif">iv</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== 5. Campaigns（新規） ============== -->
+  <section id="campaigns" class="section-pad bg-[var(--color-bg-3)] relative overflow-hidden paper-bg">
+    <div class="bg-letter" style="bottom: -10%; right: -3%;" aria-hidden="true">V</div>
+
+    <div class="container-content relative">
       <div class="text-center mb-14 reveal">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <span class="block w-8 h-px bg-[var(--color-accent-soft)]"></span>
+          <span class="numero">N° 05</span>
+          <span class="block w-8 h-px bg-[var(--color-accent-soft)]"></span>
+        </div>
         <div class="eyebrow eyebrow-accent mb-4">期間限定 ＋ 常設特典</div>
         <h2 class="display-2 max-w-2xl mx-auto">
-          ご利用いただきやすい、3つのキャンペーン。
+          ご利用いただきやすい、<br /><span class="italic" style="color: var(--color-accent-soft);">3つの</span>キャンペーン。
         </h2>
       </div>
 
@@ -340,13 +483,29 @@ const jewelryRates = rateData.filter((r) => r.category === "jewelry");
     </div>
   </section>
 
-  <!-- ============== 6. Staff（査定員紹介） ============== -->
-  <section id="staff" class="section-pad bg-[var(--color-bg)]">
+  <!-- セクション間装飾 -->
+  <div class="bg-[var(--color-bg)]">
     <div class="container-content">
+      <div class="section-divider">
+        <span class="section-divider-motif">v</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== 6. Staff（査定員紹介） ============== -->
+  <section id="staff" class="section-pad bg-[var(--color-bg)] relative overflow-hidden">
+    <div class="bg-letter" style="top: 8%; left: -3%;" aria-hidden="true">VI</div>
+
+    <div class="container-content relative">
       <div class="text-center mb-14 reveal">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <span class="block w-8 h-px bg-[var(--color-border)]"></span>
+          <span class="numero">N° 06</span>
+          <span class="block w-8 h-px bg-[var(--color-border)]"></span>
+        </div>
         <div class="eyebrow mb-4">査定を担当する2人</div>
         <h2 class="display-2 max-w-2xl mx-auto">
-          顔の見える、査定。
+          顔の<span class="italic" style="color: var(--color-accent-soft);">見える、</span>査定。
         </h2>
         <p class="text-[15px] text-[var(--color-text-sub)] mt-6 max-w-2xl mx-auto leading-loose">
           ご来店・ご訪問時に実際に査定を担当する2名の専門スタッフです。<br />

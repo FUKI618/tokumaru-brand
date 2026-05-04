@@ -1,5 +1,5 @@
-// Gemini API で高級ジュエリー店を連想させる抽象背景を生成
-// ヒーローの背景に使用する。テキスト・ロゴなし、実在ブランド品なし。
+// Aesop / Lemaire 系のモダンミニマル静物（窓際リネン+シルクスカーフ）を生成
+// ヒーロー背景。no text/no logos/no human face/no real branded products
 
 import { writeFile, mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -20,15 +20,18 @@ async function readEnvKey(): Promise<string> {
   throw new Error("GEMINI_API_KEY not found");
 }
 
-const prompt = `A dark, luxurious, atmospheric photograph of an upscale jewelry boutique interior at night.
-Deep navy and dark velvet textures with subtle champagne gold accents, soft warm bokeh lights from chandeliers and display cabinets reflecting on glass surfaces.
-Empty, minimal composition with negative space at the top-left for text overlay (no actual text in the image).
-Cinematic, editorial, sophisticated, high-end magazine aesthetic, similar to a luxury Hermès or Cartier flagship store ambiance but generic and abstract.
-No visible brand names, no visible logos, no visible text, no visible characters or letters, no real branded products, no people, no faces.
-Mostly dark navy and ink-black with golden warm light accents, subtle red wine undertones, like an editorial luxury photography. Shot on Hasselblad with shallow depth of field, ISO 100, f/2.8.
-Aspect ratio 16:9 cinematic.`;
+const prompt = `An editorial still-life photograph in the style of Aesop, Lemaire, and Le Labo brand campaigns.
+A quiet interior scene by a window in the late afternoon: natural soft warm sunlight gently filtering through sheer linen curtains, casting subtle long shadows.
+Foreground: a smooth white linen tablecloth or unstarched fabric draped over a wooden surface, with one folded pale silk scarf in muted natural tones (cream, soft beige, dusty rose, no pattern).
+Background: very softly out-of-focus warm ivory wall, no objects, lots of negative space.
+Color palette: warm off-white (#fdfbf9), cream, beige, dusty rose, with subtle wood-grain accents — entirely warm and earthy, no cool tones, no navy, no black.
+Composition: about 60% empty space (right and top) for text overlay, the silk scarf is positioned in the lower-left third.
+Mood: calm, contemplative, refined, timeless, nothing flashy.
+Style references: Kinfolk magazine still-life, Aesop campaign photography, mid-day natural window light.
+Shot on a medium-format film camera with shallow depth of field.
+Aspect ratio 16:9 cinematic, horizontal landscape orientation.`;
 
-const negative = "text, letters, words, characters, logos, brand names, watermark, signature, visible products, faces, people";
+const negative = "text, letters, words, characters, logos, brand names, watermark, signature, visible products with brand logos, jewelry, watches, handbags, faces, people, dark mood, dramatic lighting, navy, black background, gold metallic, sparkle, glitter, vintage, retro";
 
 await mkdir(resolve("public/images/hero"), { recursive: true });
 

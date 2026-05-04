@@ -84,10 +84,10 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
       },3000);
     </script>
 
-    <!-- JSON-LD #1: LocalBusiness（@id 参照型・OfferCatalog 内蔵） -->
+    <!-- JSON-LD #1: LocalBusiness + PawnShop（@id 参照型・OfferCatalog 内蔵） -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "PawnShop"],
       "@id": `${homeUrl}#localbusiness`,
       "name": "徳丸商会",
       "alternateName": "徳丸商会 ブランド買取",
@@ -95,8 +95,30 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
       "telephone": company.phone,
       "url": homeUrl,
       "image": ogImage,
-      "logo": logoUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "@id": `${homeUrl}#logo`,
+        "url": logoUrl,
+        "width": 360,
+        "height": 360,
+        "caption": "徳丸商会 ロゴ"
+      },
       "priceRange": "¥¥¥",
+      "knowsAbout": [
+        "エルメス買取", "シャネル買取", "ルイ・ヴィトン買取",
+        "ロレックス買取", "カルティエ買取", "ティファニー買取",
+        "ブランドバッグ査定", "ブランド時計査定", "ブランドジュエリー査定",
+        "古物商業界", "リユース買取"
+      ],
+      "makesOffer": [
+        { "@type": "Offer", "name": "ブランドバッグ買取（エルメス・シャネル・ヴィトン）", "category": "Brand bag buyback" },
+        { "@type": "Offer", "name": "ブランド時計買取（ロレックス・カルティエ・オメガ）", "category": "Brand watch buyback" },
+        { "@type": "Offer", "name": "ブランドジュエリー買取（カルティエ・ティファニー・ブルガリ）", "category": "Brand jewelry buyback" },
+        { "@type": "Offer", "name": "ブランドアパレル買取", "category": "Brand apparel buyback" },
+        { "@type": "Offer", "name": "出張買取（名古屋市16区＋尾張・知多・西三河）", "category": "On-site buyback" },
+        { "@type": "Offer", "name": "LINE査定（写真送信で参考買取額をご提示）", "category": "Online assessment" },
+        { "@type": "Offer", "name": "宅配買取（送料・キット・返送料すべて無料）", "category": "Mail-in buyback" }
+      ],
       "openingHoursSpecification": [{
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
@@ -177,7 +199,19 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
       "@type": "Organization",
       "name": "徳丸商会",
       "url": homeUrl,
-      "logo": logoUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "@id": `${homeUrl}#logo`,
+        "url": logoUrl,
+        "width": 360,
+        "height": 360,
+        "caption": "徳丸商会 ロゴ"
+      },
+      "knowsAbout": [
+        "エルメス買取", "シャネル買取", "ルイ・ヴィトン買取",
+        "ロレックス買取", "カルティエ買取", "ティファニー買取",
+        "古物商業界", "リユース買取"
+      ],
       "telephone": company.phone,
       "address": {
         "@type": "PostalAddress",
@@ -312,6 +346,7 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
+      "@id": `${homeUrl}#breadcrumb`,
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -326,6 +361,33 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
           "item": homeUrl
         }
       ]
+    })} />
+
+    <!-- JSON-LD #6: WebPage（datePublished/dateModified + speakable + 参照ハブ） -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${homeUrl}#webpage`,
+      "url": homeUrl,
+      "name": title,
+      "description": description,
+      "inLanguage": "ja-JP",
+      "isPartOf": { "@id": `${homeUrl}#website` },
+      "breadcrumb": { "@id": `${homeUrl}#breadcrumb` },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": ogImage,
+        "width": 1200,
+        "height": 630
+      },
+      "about": { "@id": `${homeUrl}#localbusiness` },
+      "mainEntity": { "@id": `${homeUrl}#localbusiness` },
+      "datePublished": "2026-05-04",
+      "dateModified": new Date().toISOString().slice(0, 10),
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2", "[data-speakable]"]
+      }
     })} />
 
     {extraJsonLd.map((entry) => (
