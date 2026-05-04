@@ -27,7 +27,5 @@ export const company = {
   // 既存LP（クロスリンク用）
   relatedLps: {
     estate: "https://fuki618.github.io/tokumaru-estate/",
-    instruments: "https://fuki618.github.io/tokumaru-shokai/",
-    gold: "https://fuki618.github.io/tokumaru-gold/",
   },
 } as const;
