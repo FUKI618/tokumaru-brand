@@ -27,74 +27,79 @@ interface Job {
   quality?: number;
 }
 
-const NEGATIVE = "text, letters, words, characters, logos, brand names, watermark, signature, visible products with brand logos, faces, people, written language";
+const NEGATIVE = "text, letters, words, characters, logos, brand names, watermark, signature, visible products with brand logos, jewelry, watches, handbags, faces, people, dark mood, dramatic lighting, navy, black background, gold metallic, sparkle, glitter, vintage retro filter";
+
+const STYLE_BASE = `An editorial still-life photograph in the style of Aesop, Lemaire, and Le Labo brand campaigns.
+Soft warm natural light from a window in late afternoon, gentle shadows.
+Color palette: warm off-white (#fdfbf9), cream, soft beige, dusty rose, with subtle wood-grain accents — entirely warm and earthy, no cool tones.
+Mood: calm, contemplative, refined, timeless, nothing flashy.
+Style references: Kinfolk magazine still-life, Aesop campaign photography, mid-day natural window light.
+Shot on a medium-format film camera with shallow depth of field.
+Aspect ratio 16:9 cinematic, horizontal landscape orientation.`;
 
 const jobs: Job[] = [
   {
-    name: "flagship-velvet",
+    name: "story-notebook",
     outputDir: "public/images/sections",
     width: 1920,
     height: 1080,
     quality: 78,
-    prompt: `A cinematic top-down view of an upscale jewelry boutique's display table.
-Multiple deep navy and black velvet display trays arranged in an elegant composition, each with subtle empty pillows.
-Glowing under warm directional spotlight from above, creating soft shadows on the velvet texture.
-Champagne gold accents on the tray edges, subtle golden bokeh in the dark background.
-Editorial luxury magazine photography, Hasselblad-quality detail.
-Mostly dark navy and black palette with warm champagne gold highlights, sophisticated and intimate.
-Composition has clear negative space for text overlay.
-Aspect ratio 16:9 cinematic.
+    prompt: `${STYLE_BASE}
+
+A wooden table edge in late afternoon light from a window.
+Foreground: a closed leather-bound notebook (plain natural tan, no embossing, no logo) with a slim brass-finished fountain pen resting on top.
+A corner of unbleached linen cloth visible, gently draped.
+Background: warm ivory wall, softly out of focus.
+Composition: the notebook + pen positioned in the lower-left third, ~60% empty space at the top and right for text overlay.
 
 Negative prompt: ${NEGATIVE}`,
   },
   {
-    name: "guarantee-vault",
+    name: "methods-parcel",
     outputDir: "public/images/sections",
     width: 1920,
     height: 1080,
     quality: 78,
-    prompt: `A dramatic close-up of an ornate antique luxury vault door, slightly ajar.
-Brass and burnished gold detailing, intricate art deco patterns on the heavy door.
-Warm golden light spilling out from the slightly open vault interior, illuminating the dust particles in the air.
-Dark navy and black surroundings, deep shadows.
-Cinematic editorial photography, dramatic chiaroscuro lighting, sense of mystery and value.
-No visible contents inside (just the warm light glow).
-Mostly dark with a focal point of warm golden light from the vault opening.
-Aspect ratio 16:9 cinematic.
+    prompt: `${STYLE_BASE}
 
-Negative prompt: ${NEGATIVE}`,
+A clean white kraft paper parcel sitting on a wooden table, gently opened with unbleached linen cloth peeking out from inside.
+Beside it: a roll of natural twine and a small empty tag (no writing, no text).
+Soft warm afternoon light from a window casting subtle shadows.
+Composition: subject in the lower-center, ~50% empty space at the top.
+
+Negative prompt: ${NEGATIVE}, postage stamps, address labels`,
   },
   {
-    name: "flow-appraisal",
+    name: "staff-tools",
     outputDir: "public/images/sections",
     width: 1920,
     height: 1080,
     quality: 78,
-    prompt: `A sophisticated jewelry appraisal workspace interior. Polished dark walnut wood desk with an empty soft leather mat at its center.
-On the desk: an antique brass jeweler's loupe, vintage brass weighing scale, soft cotton white gloves, a small velvet cloth.
-Warm desk lamp creating focused pool of light, dark navy walls in background, hint of bookshelves softly out of focus.
-Professional yet intimate atmosphere, editorial photography style with shallow depth of field.
-Empty workspace ready for an appraisal session, no products yet on the mat.
-Dark navy palette with warm wood, brass, and amber lamp tones.
-Aspect ratio 16:9 cinematic.
+    prompt: `${STYLE_BASE}
 
-Negative prompt: ${NEGATIVE}, modern computer, screen, monitor`,
+A small antique brass weighing scale (vintage simple geometric form) and an antique brass magnifying loupe sitting on a wooden surface.
+Beside them: white cotton inspection gloves folded neatly, and a small empty cream-colored velvet tray (completely empty, no jewelry visible).
+Soft warm directional light from a window, gentle shadows, focused composition.
+Background: warm ivory wall.
+Composition: tools arranged in the lower-third in a refined editorial layout, ~40% empty space at the top.
+
+Negative prompt: ${NEGATIVE}, jewelry on tray, watches, rings, necklaces`,
   },
   {
-    name: "og-image-v2",
-    outputDir: "public",
-    width: 1200,
-    height: 630,
-    quality: 88,
-    prompt: `A magazine cover quality flat-lay editorial composition for a high-end luxury jewelry buyback service.
-Center: an elegant deep navy velvet display surface with subtle texture and folds.
-Surrounding elements: a brass jeweler's loupe with rich patina, antique brass weighing scale with delicate chain, an open vintage leather notebook, scattered champagne gold rose petals or sparkles, hint of dark blue silk ribbon, soft chandelier bokeh in upper corners.
-Composition has clear negative space at the top-left third for text overlay.
-Editorial magazine cover aesthetic, Vogue/Condé Nast Traveler quality, deep navy and champagne gold palette with subtle bordeaux undertones.
-Cinematic lighting, sophisticated, dramatic. No actual jewelry shown.
-Aspect ratio 16:9 cinematic.
+    name: "voices-letter",
+    outputDir: "public/images/sections",
+    width: 1920,
+    height: 1080,
+    quality: 78,
+    prompt: `${STYLE_BASE}
 
-Negative prompt: ${NEGATIVE}, jewelry, ring, necklace, bracelet, watch, bag, purse`,
+A folded cream-colored letter paper sitting on a wooden table next to a small empty inkwell (clear or amber glass, no liquid visible).
+A pressed dried flower or single small dried sprig laid casually beside the paper.
+Soft afternoon natural light casting long gentle shadows.
+Background: warm ivory wall.
+Composition: subject in the lower-left, ~60% empty space at the top and right.
+
+Negative prompt: ${NEGATIVE}, written text on paper, calligraphy, ink visible`,
   },
 ];
 

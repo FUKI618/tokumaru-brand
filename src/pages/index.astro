@@ -266,6 +266,12 @@ const midToMan = (label: string): string => {
           </div>
         </div>
       </div>
+
+      <!-- セクション編集画像（査定の手仕事を想起） -->
+      <picture class="block aspect-[21/9] w-full overflow-hidden mt-16 lg:mt-20 reveal">
+        <source srcset={assetPath("images/sections/story-notebook.webp")} type="image/webp" />
+        <img src={assetPath("images/sections/story-notebook.jpg")} alt="窓際の木のテーブルに置かれた革のノートと真鍮の万年筆" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
+      </picture>
     </div>
   </section>
 
@@ -373,6 +379,12 @@ const midToMan = (label: string): string => {
           ご都合の良い方法を、<span class="italic" style="color: var(--color-accent-soft);">お選びください。</span>
         </h2>
       </div>
+
+      <!-- セクション編集画像（宅配買取の丁寧な梱包を想起） -->
+      <picture class="block aspect-[21/9] w-full overflow-hidden mb-14 reveal">
+        <source srcset={assetPath("images/sections/methods-parcel.webp")} type="image/webp" />
+        <img src={assetPath("images/sections/methods-parcel.jpg")} alt="木のテーブルの上に置かれた白い小包とリネン布、麻紐" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
+      </picture>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <article class="card-min reveal">
@@ -505,6 +517,12 @@ const midToMan = (label: string): string => {
         </p>
       </div>
 
+      <!-- セクション編集画像（査定道具：天秤・ルーペ・白手袋） -->
+      <picture class="block aspect-[21/9] w-full overflow-hidden mb-14 max-w-5xl mx-auto reveal">
+        <source srcset={assetPath("images/sections/staff-tools.webp")} type="image/webp" />
+        <img src={assetPath("images/sections/staff-tools.jpg")} alt="木のテーブルに並ぶ真鍮の天秤・ルーペ・白手袋・空の査定トレイ" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
+      </picture>
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         {staff.map((s, i) => (
           <article class={`reveal reveal-delay-${i + 1}`}>
@@ -540,6 +558,12 @@ const midToMan = (label: string): string => {
           相続・形見整理、<br />断捨離のご利用から。
         </h2>
       </div>
+
+      <!-- セクション編集画像（手紙＝お客様の声を想起） -->
+      <picture class="block aspect-[21/9] w-full overflow-hidden mb-14 reveal">
+        <source srcset={assetPath("images/sections/voices-letter.webp")} type="image/webp" />
+        <img src={assetPath("images/sections/voices-letter.jpg")} alt="木のテーブルに置かれた便箋とアンバー色のガラス瓶、押し花" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
+      </picture>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {voices.map((v, i) => (
