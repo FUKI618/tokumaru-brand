@@ -1,0 +1,20 @@
+{
+  "name": "tokumaru-brand",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "alpinejs": "^3.15.11",
+    "astro": "^6.1.5",
+    "@astrojs/sitemap": "^3.7.2",
+    "tailwindcss": "^4.2.2",
+    "@tailwindcss/vite": "^4.2.2"
+  },
+  "devDependencies": {
+    "playwright": "^1.59.1",
+    "sharp": "^0.34.5"
+  }
+}

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>OG Image</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    font-family: "Noto Sans JP", sans-serif;
+    color: #f0ead6;
+    background:
+      radial-gradient(ellipse at top left, rgba(197, 165, 114, 0.25) 0%, transparent 45%),
+      radial-gradient(ellipse at bottom right, rgba(107, 18, 48, 0.35) 0%, transparent 50%),
+      linear-gradient(180deg, #0a0e1f 0%, #14182e 100%);
+  }
+
+  /* Grain */
+  body::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* Grid lines */
+  body::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  /* 装飾SVG circles */
+  .deco {
+    position: absolute;
+    right: -120px;
+    top: -120px;
+    width: 600px;
+    height: 600px;
+    pointer-events: none;
+  }
+  .deco-bottom {
+    position: absolute;
+    left: -180px;
+    bottom: -180px;
+    width: 500px;
+    height: 500px;
+    pointer-events: none;
+  }
+
+  /* Container */
+  .wrap {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 64px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Top */
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .top-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #c5a572 0%, transparent 80%);
+  }
+  .top-en {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 18px;
+    letter-spacing: 0.4em;
+    color: #c5a572;
+    text-transform: uppercase;
+  }
+  .top-jp {
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    color: rgba(240, 234, 214, 0.55);
+  }
+
+  /* Main */
+  .main h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 96px;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 4px;
+  }
+  .main h1 .gold {
+    background: linear-gradient(135deg, #e0c896 0%, #c5a572 40%, #f3dca5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .main .jp {
+    margin-top: 28px;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(240, 234, 214, 0.92);
+  }
+  .main .jp small {
+    display: block;
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #e0c896;
+  }
+
+  /* Brand strip */
+  .brand-strip {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  .brand-strip span {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+    letter-spacing: 0.18em;
+    color: rgba(197, 165, 114, 0.65);
+    border: 1px solid rgba(197, 165, 114, 0.3);
+    padding: 6px 14px;
+    border-radius: 4px;
+  }
+
+  /* Bottom */
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .bottom-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .badge.gold {
+    background: rgba(197, 165, 114, 0.15);
+    border: 1px solid rgba(197, 165, 114, 0.4);
+    color: #e0c896;
+  }
+  .badge.bordeaux {
+    background: rgba(107, 18, 48, 0.45);
+    border: 1px solid rgba(139, 21, 56, 0.5);
+    color: #f0ead6;
+  }
+  .badges-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .bottom-right {
+    text-align: right;
+    font-family: "Cormorant Garamond", serif;
+  }
+  .bottom-right .label {
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    color: rgba(240, 234, 214, 0.55);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .bottom-right .name {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #e0c896;
+  }
+  .bottom-right .url {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: rgba(240, 234, 214, 0.6);
+    margin-top: 2px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-style: normal;
+  }
+</style>
+</head>
+<body>
+
+  <!-- 装飾SVG: 大型サークル -->
+  <svg class="deco" viewBox="0 0 600 600" aria-hidden="true">
+    <defs>
+      <radialGradient id="g1" cx="50%" cy="50%">
+        <stop offset="0%" stop-color="#c5a572" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#c5a572" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="300" cy="300" r="290" fill="none" stroke="#c5a572" stroke-opacity="0.25" stroke-width="1"/>
+    <circle cx="300" cy="300" r="240" fill="none" stroke="#c5a572" stroke-opacity="0.18" stroke-width="1"/>
+    <circle cx="300" cy="300" r="190" fill="url(#g1)"/>
+  </svg>
+  <svg class="deco-bottom" viewBox="0 0 500 500" aria-hidden="true">
+    <circle cx="250" cy="250" r="240" fill="none" stroke="#c5a572" stroke-opacity="0.1" stroke-width="1"/>
+    <circle cx="250" cy="250" r="180" fill="none" stroke="#c5a572" stroke-opacity="0.08" stroke-width="1"/>
+  </svg>
+
+  <div class="wrap">
+    <!-- Top: chapter strip -->
+    <div class="top">
+      <span class="top-en">— TOKUMARU SHOKAI</span>
+      <span class="top-line"></span>
+      <span class="top-jp">NAGOYA, AICHI · LUXURY BUYBACK</span>
+    </div>
+
+    <!-- Main copy -->
+    <div class="main">
+      <h1>
+        Sell your luxury,<br/>
+        <span class="gold">at its true value.</span>
+      </h1>
+      <p class="jp">
+        名古屋でブランド品の買取なら徳丸商会
+        <small>出張・LINE査定・宅配対応／夜21時まで年中無休</small>
+      </p>
+      <div class="brand-strip">
+        <span>HERMÈS</span>
+        <span>CHANEL</span>
+        <span>LOUIS VUITTON</span>
+        <span>ROLEX</span>
+        <span>CARTIER</span>
+      </div>
+    </div>
+
+    <!-- Bottom: badges + brand mark -->
+    <div class="bottom">
+      <div class="bottom-left">
+        <div class="badges-row">
+          <span class="badge gold">愛知県公安委員会許可 第541042309800号</span>
+          <span class="badge bordeaux">9:00〜21:00 年中無休</span>
+        </div>
+      </div>
+      <div class="bottom-right">
+        <div class="label">Brand Buyback</div>
+        <div class="name">徳丸商会</div>
+        <div class="url">tokumarushokai.com</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+{
+  "rank": 7,
+  "name": "ブランズウエダ（ブランド品買取ページ）",
+  "url": "https://branz-ueda.com/wp/kaitorihinmoku/kaitori_brand/",
+  "domain": "branz-ueda.com",
+  "scraped_at": "2026-05-04",
+  "analysis_method": "scrapling stealthy_fetch / markdown",
+  "type": "名古屋市中区の地元店（買取＋販売）",
+  "meta": {
+    "title": "未確認（main_content_only=trueのためmeta未取得）",
+    "title_kw_lead": "未確認",
+    "h1": "名古屋市中区のブランド買取＆販売ブランズウエダ。店頭買取・宅配買取・出張買取、メールやLINEの無料査定を行っています。"
+  },
+  "headings": {
+    "h2": [
+      "高価買取商品",
+      "大人気ブランド",
+      "人気のヒミツ",
+      "高額査定のポイント",
+      "よくある質問"
+    ],
+    "h3": []
+  },
+  "ctas": {
+    "phone": "052-770-9887（店舗直通／10:00-18:00／水曜定休）",
+    "phone_toll_free": null,
+    "line": "あり（lin.ee/zjggCBz LINE公式 / LINE査定ページあり）",
+    "form": "あり（/contact 24時間受付）／メール査定 branz_ueda@mediacat.ne.jp",
+    "buyback_methods": ["店頭買取", "宅配買取", "出張買取", "LINE査定", "メール査定"],
+    "channel_count": 5,
+    "all_free": "未確認（明示なし／無料査定の文言はあり）"
+  },
+  "trust_elements": {
+    "license": "愛知県公安委員会許可 第541162209600号（K-trend japan株式会社）",
+    "experience": "未確認",
+    "reviews": "未確認（このページ上にお客様の声セクションなし）",
+    "ratings": "未確認",
+    "media": "未確認",
+    "examples_high_value": [],
+    "social": ["Facebook", "Instagram", "LINE"],
+    "vip_program": "VIP会員様ログイン導線あり"
+  },
+  "pricing": {
+    "displayed_prices": false,
+    "min_buyback_guarantee": false,
+    "comparison_table": false,
+    "free_appraisal": true,
+    "examples_with_amount": false
+  },
+  "categories_handled": [
+    "ブランド品（バッグ・財布・アパレル・小物・アクセサリー）",
+    "遺品・骨董品・生前整理", "ダイヤモンド・宝石", "金・貴金属・プラチナ",
+    "腕時計", "ブランドジュエリー", "切手・金券・商品券", "化粧品・香水"
+  ],
+  "brands_listed": [
+    "ルイ・ヴィトン", "シャネル", "エルメス", "グッチ", "プラダ", "ブルガリ",
+    "カルティエ", "ディオール", "フェンディ", "セリーヌ", "ボッテガ・ヴェネタ",
+    "ロエベ", "イヴ・サンローラン", "ゴヤール", "フェラガモ", "ヴァレンティノ",
+    "バレンシアガ", "クロエ", "ミュウミュウ", "アルマーニ", "モンブラン",
+    "クリスチャン・ルブタン", "ドルチェ＆ガッバーナ", "マーク・ジェイコブス",
+    "ヴェルサーチ", "ヴィヴィアン・ウエストウッド", "オロビアンコ",
+    "マイケル・コース", "キットソン", "ポーター"
+  ],
+  "store_info": {
+    "address": "買取＆販売店：名古屋市中区千代田3-4-5 1F／本部：名古屋市中区千代田2-19-7 1F",
+    "hours": "10:00～18:00",
+    "closed": "水曜日",
+    "access": "未確認（最寄駅明示なし）",
+    "kobutsu_no": "愛知県公安委員会許可 第541162209600号"
+  },
+  "structured_data": {
+    "json_ld_count": "未確認（markdown抽出のため未検出）",
+    "json_ld_types": []
+  },
+  "campaigns": [
+    "破れていてもOK",
+    "刻印や刺繍があってもOK",
+    "まとめてお持ち込みで買取金額UP"
+  ],
+  "strengths": [
+    "5チャネル対応（店頭/宅配/出張/LINE/メール）— ローカル店として導線が広い",
+    "状態不問訴求が明快（破れOK・刻印OK・古い年代OK・ボロボロOK）",
+    "30ブランド以上の取扱明示でカバレッジが広い",
+    "愛知県公安委員会許可の地元密着信頼性",
+    "VIP会員ページ・SNS（FB/IG/LINE）でリピート顧客育成"
+  ],
+  "weaknesses": [
+    "買取実績の金額表示が皆無（具体例の説得力が弱い）",
+    "お客様の声セクションがこのページに存在せず、ソーシャルプルーフが薄い",
+    "営業時間10:00-18:00と短く水曜定休 — 接触機会が制限的"
+  ],
+  "scrape_notes": "ページ軽量で1回で全文取得成功。デザインはやや古めの地元店スタイル。買取実績の金額や口コミなど数値・第三者証拠が弱い反面、状態不問の訴求と多チャネル対応がローカル強みになっている。"
+}

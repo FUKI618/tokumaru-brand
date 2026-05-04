@@ -1,0 +1,123 @@
+{
+  "research_date": "2026-05-04",
+  "scope": "ブランド買取 名古屋＋近郊（出張・LINE・宅配）",
+  "selection_criteria": {
+    "channel_focus": ["出張買取", "LINE査定", "宅配買取"],
+    "excluded": ["比較ポータル", "店頭中心の旗艦店", "広告枠"],
+    "total_target": 10
+  },
+  "competitors": {
+    "local_focused": [
+      {
+        "rank": 1,
+        "name": "こちら買取本舗 名古屋大須店",
+        "url": "https://www.carbon-gold.com/lp-brand-nagoya",
+        "domain": "carbon-gold.com",
+        "type": "ブランド買取専用LP",
+        "channels": ["店頭", "出張"],
+        "notes": "ブランド買取専用LP。エルメス/シャネル/ヴィトン/カルティエ/ロレックス強化。料金キャッシュバック等の独自施策"
+      },
+      {
+        "rank": 2,
+        "name": "ブランドオフ 名古屋大須店",
+        "url": "https://kaitori.brandoff.co.jp/shop/tokai/aichi/12510",
+        "domain": "kaitori.brandoff.co.jp",
+        "type": "全国チェーン店舗ページ",
+        "channels": ["店頭", "出張", "宅配", "LINE", "質入れ"],
+        "notes": "コメ兵HDグループ。4つの買取方法明示。LINE査定/出張買取/宅配買取の3チャネル完備"
+      },
+      {
+        "rank": 3,
+        "name": "なんぼや 名古屋サンロード店",
+        "url": "https://nanboya.com/shop/nagoya-brandshop/",
+        "domain": "nanboya.com",
+        "type": "全国チェーン店舗ページ",
+        "channels": ["店頭", "出張", "宅配", "オンライン"],
+        "notes": "全国143店舗。バリューデザイナーによる査定。買取実績指数ランキング掲載"
+      },
+      {
+        "rank": 4,
+        "name": "ブラリバ 名古屋栄店",
+        "url": "https://brandrevalue.com/nagoya",
+        "domain": "brandrevalue.com",
+        "type": "全国チェーン店舗ページ",
+        "channels": ["店頭", "出張", "宅配", "LINE"],
+        "notes": "栄駅徒歩3分。LINE査定の専用ページあり。買取実績173件以上ヴィトンのみで掲載"
+      },
+      {
+        "rank": 5,
+        "name": "かんてい局 名古屋栄錦三丁目店",
+        "url": "https://kanteikyoku.jp/store/nagoyanishiki/",
+        "domain": "kanteikyoku.jp",
+        "type": "質屋系・地域密着",
+        "channels": ["店頭", "宅配", "質預かり"],
+        "notes": "深夜22時まで営業（最終受付21:30）。年間50000点の買取実績。ヴィトン型番ごとの詳細価格表が強み"
+      },
+      {
+        "rank": 6,
+        "name": "OURO 名古屋店",
+        "url": "https://brandouro.com/shop/shop-340/",
+        "domain": "brandouro.com",
+        "type": "ブランド時計専門",
+        "channels": ["店舗", "宅配", "出張"],
+        "notes": "完全プライベート個室空間。古物商番号541162312700号。LINE対応。お客様の声に110万円実例"
+      },
+      {
+        "rank": 7,
+        "name": "ブランズウエダ",
+        "url": "https://branz-ueda.com/wp/kaitorihinmoku/kaitori_brand/",
+        "domain": "branz-ueda.com",
+        "type": "名古屋市中区の地元店",
+        "channels": ["店頭"],
+        "notes": "名古屋市中区。ブランド一覧30以上。FAQ充実。ボロボロのバッグでも買取訴求"
+      }
+    ],
+    "national_reference": [
+      {
+        "rank": 8,
+        "name": "バイセル ブランド買取",
+        "url": "https://buysell-kaitori.com/brand/",
+        "domain": "buysell-kaitori.com",
+        "type": "東証上場ナショナル",
+        "channels": ["出張", "店頭", "宅配", "LINE"],
+        "notes": "東証グロース上場。累計4300万点の買取実績。出張・宅配・LINE全対応。豊富なメディア露出"
+      },
+      {
+        "rank": 9,
+        "name": "福ちゃん ブランド買取",
+        "url": "https://www.fuku-chan.info/brand/",
+        "domain": "fuku-chan.info",
+        "type": "ナショナル",
+        "channels": ["出張", "店頭", "宅配"],
+        "notes": "BuySell Technologiesグループ。3つの買取方法。1点からでも対応"
+      },
+      {
+        "rank": 10,
+        "name": "KOMEHYO 宅配買取",
+        "url": "https://komehyo.jp/kaitori/takuhai/index.jsp",
+        "domain": "komehyo.jp",
+        "type": "東証/名証上場",
+        "channels": ["宅配", "店頭", "出張"],
+        "notes": "創業70年以上。ブランドリユースNo.1。最大5000万円の運送保険。ジュエリー/時計/バッグ網羅"
+      }
+    ]
+  },
+  "search_queries_used": [
+    "名古屋市でブランド品買取を行う店舗・業者の公式LP",
+    "名古屋ブランドバッグ買取（エルメス/シャネル/ヴィトン）",
+    "名古屋ブランド時計買取（ロレックス/オメガ/カルティエ）",
+    "名古屋ブランドジュエリー買取（ティファニー/カルティエ/ブルガリ）",
+    "名古屋エルメスバッグ・小物買取",
+    "名古屋シャネル・ルイヴィトン買取",
+    "名古屋市内・愛知県出張ブランド買取",
+    "2025年宅配ブランド買取（バイセル/福ちゃん/なんぼや）",
+    "LINE査定ブランド買取"
+  ],
+  "excluded_examples": [
+    "ヒカカク（比較ポータル）",
+    "買取比較.com（比較ポータル）",
+    "リユース相談本舗（大阪本社・愛知エリアSEOページ）",
+    "ゴールドプラザ（東京本社・宅配のみ・愛知に拠点なし）",
+    "リユース相談本舗エリアページ（実態不明確）"
+  ]
+}

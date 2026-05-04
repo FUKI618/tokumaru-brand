@@ -1,0 +1,96 @@
+{
+  "rank": 2,
+  "name": "ブランドオフ 名古屋大須店",
+  "url": "https://kaitori.brandoff.co.jp/shop/tokai/aichi/12510",
+  "domain": "kaitori.brandoff.co.jp",
+  "scraped_at": "2026-05-04",
+  "analysis_method": "scrapling stealthy_fetch / markdown",
+  "type": "全国チェーン店舗ページ（コメ兵HDグループ）",
+  "meta": {
+    "h1": "名古屋大須店",
+    "title_pattern": "店舗名｜ブランド品の買取・査定なら【ブランドオフ】"
+  },
+  "headings": {
+    "h2": [
+      "名古屋大須店の店舗案内",
+      "名古屋大須店スタッフコメント",
+      "名古屋大須店のお客様の声",
+      "名古屋大須店の近隣店舗",
+      "ブランドオフが選ばれる理由",
+      "名古屋大須店の買取実績"
+    ],
+    "h3": [
+      "幅広い販路による高価買取の実現",
+      "あなたに寄り添う、心通う接客",
+      "選べる4つの買取方法"
+    ]
+  },
+  "ctas": {
+    "phone_global": "0120-604-117（買取センター 9:00-18:00）",
+    "phone_store": "052-252-5666",
+    "line": "公式LINE（liff.line.me経由）+ 店舗LINE（lin.ee/dFMgB1g）",
+    "buyback_methods": ["店頭買取", "出張買取", "宅配買取", "質入れ", "LINE査定（オプション）"],
+    "channel_count": 5,
+    "all_free": "出張料・送料・キャンセル料 全て無料"
+  },
+  "trust_elements": {
+    "license": "東京都公安委員会許可 第301061906960号",
+    "parent_company": "コメ兵HDグループ・東証スタンダード",
+    "stores_nationwide": "全国50店舗以上",
+    "reviews_section": "お客様の声 セクションあり（具体内容なし）",
+    "examples_high_value": [
+      "Van Cleef & Arpels ラッキースプリング ブレスレット 280,000円",
+      "HERMES ポシェットケリーナ 3,020,000円",
+      "HERMES ケリー25 2,550,000円",
+      "ROLEX デイトジャスト10P 2,000,000円"
+    ]
+  },
+  "pricing": {
+    "displayed_prices": false,
+    "high_value_examples": true,
+    "free_appraisal": true,
+    "min_buyback_guarantee": false,
+    "comparison_table": false
+  },
+  "categories_handled": [
+    "バッグ", "財布・小物", "ジュエリー（貴金属/ノーブランド含む）",
+    "時計", "ファッション・衣類", "その他ブランド品"
+  ],
+  "store_info": {
+    "address": "〒460-0011 愛知県名古屋市中区大須3丁目24番44号 大須セントラルスクウェア B1F/1F",
+    "hours": "10:30-19:30",
+    "closed": "なし",
+    "access": "地下鉄「大須観音駅」徒歩5分",
+    "parking": "近隣Dパーク・Mayパーク（駐車サービス券あり）",
+    "buy_booth": "3席",
+    "kobutsu_no": "第301061906960号"
+  },
+  "structured_data": {
+    "json_ld_count": "未確認（main_content_only=trueで取得）",
+    "json_ld_types": []
+  },
+  "design": {
+    "primary_color": "ブランド系ベージュ/ブラウン（コメ兵系統）",
+    "key_visual": "店舗写真スライドショー10枚程度",
+    "vip_room": "VIP対応ブースあり"
+  },
+  "strengths": [
+    "選べる4つの買取方法を明示（店頭・出張・宅配・質入れ）",
+    "LINE査定の独立導線（公式LINE+店舗LINE）",
+    "コメ兵HDグループ・東証上場の信頼性",
+    "VIP対応の買取ブース（高単価訴求）",
+    "高単価買取実績を4件具体額入りで掲載（最高302万円）",
+    "出張料・送料・キャンセル料 全て無料の明示",
+    "古物営業法に基づく表示・プライバシー・利用規約のリンク完備"
+  ],
+  "weaknesses": [
+    "店舗ページとしてはh1〜h3が浅い（テンプレ）",
+    "FAQ専用セクションがない（買取流れ説明なし）",
+    "料金表・買取相場表なし（実績のみ）",
+    "店舗ページに地域SEO要素が弱い（名古屋市16区の網羅なし）",
+    "古物商許可が東京都本社のみ表示（愛知県の表記なし）",
+    "営業時間の遅め（10:30開始）",
+    "アイテムカテゴリ別の買取相場ページに導線が浅い"
+  ],
+  "scrape_notes": "コメ兵HDグループ（K-BrandOff）。ヘッダーCTAに「LINE査定」「フリーダイヤル」「お問い合わせ」を配置。店舗ページは画像スライダーが大量、本体テキストは比較的少ない"
+}

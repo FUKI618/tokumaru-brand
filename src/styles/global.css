@@ -1,0 +1,405 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── ハイブランドLPの色彩設計 ─────────────────────────── */
+  /* 深ネイビー＝信頼／シャンパンゴールド＝高級／ボルドー＝情熱 */
+  --color-navy: #0a0e1f;
+  --color-navy-mid: #14182e;
+  --color-navy-soft: #1c2240;
+
+  --color-champagne: #c5a572;
+  --color-champagne-light: #e0c896;
+  --color-champagne-dark: #8d7549;
+  --color-champagne-glow: #f3dca5;
+
+  --color-bordeaux: #6b1230;
+  --color-bordeaux-light: #8b1538;
+
+  --color-ivory: #f5f1e8;
+  --color-cream: #efe8d8;
+  --color-bg: #fafaf7;
+  --color-bg-white: #ffffff;
+  --color-border: #e6e1d4;
+  --color-border-dark: #2a2f4d;
+
+  --color-text: #1a1a1a;
+  --color-text-light: #555550;
+  --color-text-lighter: #8a8a85;
+  --color-text-on-dark: #f0ead6;
+
+  --color-line: #06c755;
+
+  /* タイポグラフィ */
+  --font-sans: "Noto Sans JP", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", "Noto Serif JP", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* ── Base ───────────────────────────────────────────── */
+html { font-size: 16px; scroll-behavior: smooth; }
+@media (min-width: 768px) { html { font-size: 17px; } }
+section[id] { scroll-margin-top: 4rem; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background-color: var(--color-bg-white);
+  line-height: 1.8;
+  word-break: auto-phrase;
+  overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background: rgba(197, 165, 114, 0.3); color: var(--color-navy); }
+
+/* スクロールバー（高級感） */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-champagne-dark); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-champagne); }
+
+/* ── タイポグラフィ ─────────────────────────────────── */
+.font-display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; }
+.font-mono { font-family: var(--font-mono); }
+.font-black { font-weight: 700 !important; letter-spacing: -0.015em; }
+
+/* セクション章番号スタイル（Ⅰ. Ⅱ. ...） */
+.chapter-num {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-style: italic;
+  letter-spacing: 0.4em;
+  color: var(--color-champagne-dark);
+  text-transform: uppercase;
+}
+
+/* 超大型ディスプレイタイポ（ヒーロー用） */
+.display-hero {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 7.5vw, 6.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+.display-md {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4.6vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+/* テキストグラデーション */
+.text-gradient-champagne {
+  background: linear-gradient(135deg, #e0c896 0%, #c5a572 40%, #f3dca5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.text-gradient-bordeaux {
+  background: linear-gradient(135deg, #c5a572 0%, #8b1538 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 章タイトル下線 */
+.heading-rule::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-champagne), transparent);
+  margin-top: 1.5rem;
+}
+.heading-rule.center::after { margin-left: auto; margin-right: auto; background: linear-gradient(90deg, transparent, var(--color-champagne), transparent); }
+
+/* ── 装飾レイヤー ──────────────────────────────────── */
+/* グレイン質感（high-end magazine風） */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  opacity: 0.7;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+.grain-light::before { opacity: 0.25; }
+
+/* 装飾線分（hairline） */
+.hairline { height: 1px; background: linear-gradient(90deg, transparent, var(--color-champagne) 30%, var(--color-champagne) 70%, transparent); }
+.hairline-vertical { width: 1px; background: linear-gradient(180deg, transparent, var(--color-champagne) 30%, var(--color-champagne) 70%, transparent); }
+
+/* 円形SVGパターン（Hermès風） */
+.bg-luxury-radial {
+  background:
+    radial-gradient(ellipse at top left, rgba(197, 165, 114, 0.18) 0%, transparent 45%),
+    radial-gradient(ellipse at bottom right, rgba(107, 18, 48, 0.22) 0%, transparent 50%),
+    linear-gradient(180deg, var(--color-navy) 0%, var(--color-navy-mid) 100%);
+}
+
+.bg-luxury-soft {
+  background:
+    radial-gradient(circle at 90% 10%, rgba(197, 165, 114, 0.08) 0%, transparent 40%),
+    linear-gradient(180deg, var(--color-bg-white) 0%, var(--color-cream) 100%);
+}
+
+/* ── マイクロインタラクション ──────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+.reveal-up { transform: translateY(40px); }
+.reveal-left { transform: translateX(40px); }
+.reveal-zoom { transform: scale(0.96); transition-property: opacity, transform; }
+.reveal-zoom.is-visible { transform: scale(1); }
+
+.stagger-children > .reveal:nth-child(1) { transition-delay: 0ms; }
+.stagger-children > .reveal:nth-child(2) { transition-delay: 100ms; }
+.stagger-children > .reveal:nth-child(3) { transition-delay: 200ms; }
+.stagger-children > .reveal:nth-child(4) { transition-delay: 300ms; }
+.stagger-children > .reveal:nth-child(5) { transition-delay: 400ms; }
+.stagger-children > .reveal:nth-child(6) { transition-delay: 500ms; }
+.stagger-children > .reveal:nth-child(7) { transition-delay: 600ms; }
+.stagger-children > .reveal:nth-child(8) { transition-delay: 700ms; }
+
+/* カードホバー（高級感のあるリフト） */
+.card-luxury {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s, border-color 0.5s;
+  will-change: transform;
+}
+.card-luxury:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px -10px rgba(10, 14, 31, 0.18), 0 0 0 1px rgba(197, 165, 114, 0.5);
+}
+
+/* CTA グロウ */
+@keyframes pulse-champagne {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(197, 165, 114, 0.55), 0 8px 24px rgba(10, 14, 31, 0.25); }
+  50% { box-shadow: 0 0 0 14px rgba(197, 165, 114, 0), 0 8px 24px rgba(10, 14, 31, 0.25); }
+}
+.cta-glow-tel { animation: pulse-champagne 2.4s ease-in-out infinite; }
+
+@keyframes pulse-line {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(6, 199, 85, 0.5), 0 8px 24px rgba(6, 80, 30, 0.2); }
+  50% { box-shadow: 0 0 0 14px rgba(6, 199, 85, 0), 0 8px 24px rgba(6, 80, 30, 0.2); }
+}
+.cta-glow-line { animation: pulse-line 2.4s ease-in-out infinite; }
+
+/* ─── ヒーロー Marquee（流れるブランドロゴ） ─── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+
+/* ─── ブランドチップ ─── */
+.chip-luxury {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  background: white;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.chip-luxury:hover {
+  border-color: var(--color-champagne);
+  background: linear-gradient(180deg, white, var(--color-cream));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -4px rgba(10, 14, 31, 0.14);
+}
+.chip-luxury .chip-en { font-family: var(--font-display); font-style: italic; color: var(--color-navy); font-weight: 600; }
+.chip-luxury .chip-jp { color: var(--color-text-lighter); font-size: 0.7rem; }
+
+/* ─── 数値カウンター ─── */
+.numeric { font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+
+/* ─── 価格コミットメントカード ─── */
+.guarantee-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, rgba(245, 241, 232, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+  border: 1px solid rgba(197, 165, 114, 0.4);
+  transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+.guarantee-card::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 100px; height: 100px;
+  background: radial-gradient(circle, rgba(197, 165, 114, 0.3) 0%, transparent 70%);
+  opacity: 0.4;
+  transition: opacity 0.4s;
+}
+.guarantee-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(197, 165, 114, 0.85);
+  box-shadow: 0 24px 60px -12px rgba(10, 14, 31, 0.2);
+}
+.guarantee-card:hover::before { opacity: 1; }
+
+/* ─── FAQ アコーディオン ─── */
+[x-cloak] { display: none !important; }
+.faq-item details > summary { list-style: none; cursor: pointer; }
+.faq-item details > summary::-webkit-details-marker { display: none; }
+.faq-item details[open] .faq-icon { transform: rotate(45deg); }
+.faq-icon { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* ─── フォーム ─── */
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--color-champagne);
+  box-shadow: 0 0 0 3px rgba(197, 165, 114, 0.15);
+}
+.form-input:invalid:not(:placeholder-shown):not(:focus),
+.form-textarea:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: var(--color-bordeaux-light);
+}
+.form-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+}
+.form-label-required::after {
+  content: "必須";
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.4rem;
+  font-size: 0.6rem;
+  background: var(--color-bordeaux);
+  color: white;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+}
+.form-radio-card {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+.form-radio-card input { margin-top: 0.18rem; }
+.form-radio-card:hover { background: var(--color-cream); }
+.form-radio-card:has(input:checked) {
+  border-color: var(--color-champagne);
+  background: linear-gradient(180deg, var(--color-ivory), white);
+  box-shadow: 0 0 0 1px var(--color-champagne) inset;
+}
+
+/* ─── マーキー（ブランドロゴ ストリップ） ─── */
+.marquee-mask {
+  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+/* ─── パターン背景 ─── */
+.pattern-dots {
+  background-image: radial-gradient(circle, var(--color-border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ─── divider ─── */
+.divider-champagne {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-champagne) 20%, var(--color-champagne) 80%, transparent);
+}
+
+/* ─── モバイル底CTA ─── */
+@media (max-width: 767px) {
+  body { padding-bottom: 5.5rem; }
+}
+.floating-cta-shadow { box-shadow: 0 -10px 30px rgba(10, 14, 31, 0.2); }
+
+/* ─── 印刷 ─── */
+@media print {
+  .no-print { display: none !important; }
+}
+
+/* ─── アクセシビリティ：動きを減らす設定への配慮 ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cta-glow-tel,
+  .cta-glow-line {
+    animation: none !important;
+  }
+}
+
+/* ─── 装飾用：番号アイコン ─── */
+.numeral-large {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1;
+  color: var(--color-champagne);
+  opacity: 0.92;
+}
+
+/* ─── divider chapter ─── */
+.chapter-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  letter-spacing: 0.4em;
+  color: var(--color-champagne-dark);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+.chapter-divider::before,
+.chapter-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-champagne) 50%, transparent);
+}

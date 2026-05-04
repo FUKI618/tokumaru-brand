@@ -1,0 +1,101 @@
+{
+  "rank": 5,
+  "name": "質屋 かんてい局 名古屋栄錦三丁目店",
+  "url": "https://kanteikyoku.jp/store/nagoyanishiki/",
+  "domain": "kanteikyoku.jp",
+  "scraped_at": "2026-05-04",
+  "analysis_method": "scrapling stealthy_fetch / markdown",
+  "type": "質屋系・地域密着（買取＋質預かり）",
+  "meta": {
+    "title": "未確認（main_content_only=trueのためmeta未取得）",
+    "title_kw_lead": "未確認",
+    "h1": "質屋 かんてい局名古屋栄錦三丁目店"
+  },
+  "headings": {
+    "h2": [],
+    "h3": [
+      "質屋 かんてい局名古屋栄錦三丁目店",
+      "最新買取実績",
+      "質屋 かんてい局名古屋栄錦三丁目店からのお知らせ",
+      "ギャラリー",
+      "オンラインショップ＆SNS",
+      "質預かりについて"
+    ],
+    "h4": [
+      "質料（利息）について",
+      "かんてい局の質料（利息）について",
+      "利上げ･･･質料（利息）支払いによる期限の延長",
+      "質屋 かんてい局名古屋栄錦三丁目店 直通"
+    ]
+  },
+  "ctas": {
+    "phone": "052-253-5650（店舗直通／受付13:00-22:00）",
+    "phone_toll_free": null,
+    "line": "あり（page.line.me/ihf2039j 友だち追加）",
+    "form": "あり（/store/nagoyanishiki/contact/）",
+    "buyback_methods": ["店頭買取", "質預かり（質入れ）"],
+    "channel_count": 2,
+    "all_free": "未確認（査定無料の明示は取得範囲内になし）"
+  },
+  "trust_elements": {
+    "license": "古物商許可番号 第542520A52400号（愛知県公安委員会／株式会社ティーバイティー）",
+    "shichiya_license": "質屋許可番号 第54116140010A号",
+    "experience": "未確認（運営は株式会社ティーバイティー）",
+    "reviews": "未確認（店舗ページ上にお客様の声セクションなし）",
+    "ratings": "未確認",
+    "media": "未確認",
+    "examples_high_value": [
+      "OMEGA スピードマスター 39mm 3513.50 ¥150,000（2026/05/01）",
+      "Dior グランヴィル カナージュ 2WAY ¥75,000（2026/05/03）",
+      "GUCCI 120837 GGキャンバス トートバッグ ¥22,000（2026/05/02）",
+      "miumiu 5ML002 マテラッセレザー ¥11,000（2026/05/04）"
+    ],
+    "online_channels": ["Yahoo!オークション", "楽天市場", "Instagram", "LINE"]
+  },
+  "pricing": {
+    "displayed_prices": true,
+    "min_buyback_guarantee": false,
+    "comparison_table": false,
+    "free_appraisal": "未確認",
+    "examples_with_amount": true,
+    "interest_rate_table": "1ヶ月利息: 1k-50k円→8%／51k-100k円→7％／101k-500k円→6%／501k-999k円→5％／1M円〜→4％"
+  },
+  "categories_handled": [
+    "ブランド品（バッグ／時計）", "ROLEX", "ヴィトン", "貴金属"
+  ],
+  "brands_listed": [
+    "ROLEX", "ルイ・ヴィトン", "エルメス", "プラダ", "シャネル", "グッチ",
+    "Dior", "OMEGA", "miumiu"
+  ],
+  "store_info": {
+    "address": "愛知県名古屋市中区錦3丁目8番8号-2",
+    "hours": "13:00 - 22:00",
+    "closed": "日曜定休",
+    "access": "未確認（最寄駅明示なし）",
+    "kobutsu_no": "愛知県公安委員会 第542520A52400号"
+  },
+  "structured_data": {
+    "json_ld_count": "未確認（markdown抽出のため未検出）",
+    "json_ld_types": []
+  },
+  "campaigns": [
+    "エルメス 2月定価改定後の最高値提示訴求（30年前の古いバッグも対応）",
+    "プラダ買取 名古屋栄・錦で最高値挑戦",
+    "ヴィトン買取 高価買取No.1を目指す",
+    "シャネル査定無料",
+    "グッチバッグ買取 名古屋で一番の買取価格挑戦"
+  ],
+  "strengths": [
+    "古物商＋質屋の二重許可（愛知県公安委員会）— 地元密着の信頼性",
+    "店舗直通052番号＋営業時間が13:00-22:00と夜間遅くまで対応",
+    "最新買取実績を日付＋金額付きで4件即時掲載（更新が前日／当日）",
+    "Yahoo!オークション・楽天・Instagram・LINEで販路多角化",
+    "質料（利息）テーブルを完全公開 — 質屋業の透明性"
+  ],
+  "weaknesses": [
+    "宅配買取・出張買取・LINE査定など買取チャネルの多様性が乏しい（店頭中心）",
+    "FAQ専用セクションが店舗ページ上に未配置（本部FAQへの導線のみ）",
+    "お客様の声・評価スコアなどソーシャルプルーフの掲示がない"
+  ],
+  "scrape_notes": "ページが軽量で、main_content_onlyでも最初の取得で全文取得成功（69KB制限内）。質屋業界らしく利息表を全面公開している点が特徴的。買取単独LPではなく、質入れ・買取・販売の総合店舗ページ。"
+}

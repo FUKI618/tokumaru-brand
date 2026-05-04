@@ -1,0 +1,924 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { company } from "../data/company";
+import { flagshipBrands, popularBrands, buybackGuarantees } from "../data/brands";
+import { faqs } from "../data/faq";
+import { assetPath, sectionPath } from "../lib/site";
+
+const title = "名古屋ブランド買取｜出張・LINE査定・宅配の徳丸商会";
+const description = "名古屋市中村区の徳丸商会。エルメス・シャネル・ヴィトン・ロレックス・カルティエなど主要ブランドを高価買取。出張・LINE査定・宅配買取に対応、9:00〜21:00年中無休。電話052-990-3968で最短当日訪問。古物商許可第541042309800号。";
+
+const phoneTel = `tel:${company.phoneTel}`;
+const lineUrl = company.line;
+const contactEmail = "kaitori@tokumarushokai.com";
+
+// Formspree URL（Formspreeアカウント作成後、フォームIDをここに設定）
+// 未設定時は mailto: にフォールバック
+const FORMSPREE_FORM_ID = ""; // 例: "xrgjzpqv"
+const formAction = FORMSPREE_FORM_ID
+  ? `https://formspree.io/f/${FORMSPREE_FORM_ID}`
+  : `mailto:${contactEmail}`;
+const formMethod = FORMSPREE_FORM_ID ? "POST" : "POST"; // mailtoはGET/POSTどちらも動作
+const formEnctype = FORMSPREE_FORM_ID ? "application/x-www-form-urlencoded" : "text/plain";
+
+const bagsBrands = popularBrands.filter((b) => b.category === "bag");
+const watchesBrands = popularBrands.filter((b) => b.category === "watch");
+const jewelryBrands = popularBrands.filter((b) => b.category === "jewelry");
+const apparelBrands = popularBrands.filter((b) => b.category === "apparel");
+
+const buybackExamples = [
+  { brand: "HERMES", item: "バーキン25 トゴ ヴェールヴェロン", price: 1950000, rank: "A", date: "2026.04" },
+  { brand: "HERMES", item: "ケリー28 ブラック ゴールド金具", price: 2800000, rank: "AB", date: "2026.04" },
+  { brand: "CHANEL", item: "マトラッセ ラージ チェーンショルダー", price: 320000, rank: "A", date: "2026.04" },
+  { brand: "CHANEL", item: "ミニマトラッセ ピンク", price: 420000, rank: "S", date: "2026.04" },
+  { brand: "LOUIS VUITTON", item: "オンザゴーPM モノグラム", price: 380000, rank: "A", date: "2026.04" },
+  { brand: "LOUIS VUITTON", item: "ネヴァーフルMM ダミエ", price: 110000, rank: "B", date: "2026.04" },
+  { brand: "ROLEX", item: "デイトナ 116500LN ホワイト", price: 5500000, rank: "S", date: "2026.04" },
+  { brand: "ROLEX", item: "サブマリーナ 124060", price: 1850000, rank: "A", date: "2026.03" },
+  { brand: "Cartier", item: "ラブリング K18WG #50", price: 180000, rank: "B", date: "2026.04" },
+  { brand: "Cartier", item: "サントス ガルベMM W20012C4", price: 720000, rank: "A", date: "2026.03" },
+  { brand: "VAN CLEEF & ARPELS", item: "ヴィンテージアルハンブラ ペンダント YG", price: 280000, rank: "AB", date: "2026.04" },
+  { brand: "TIFFANY", item: "ソリティア ダイヤ Pt950 0.26ct", price: 145000, rank: "AB", date: "2026.04" },
+];
+
+const nagoyaAreas = company.areas;
+const nearbyAreas = company.nearby;
+
+const testimonials = [
+  { initial: "M", name: "M様", area: "名古屋市中区", age: "60代女性", brand: "エルメス・シャネル", text: "母から相続したブランドバッグを処分するつもりが、エルメス バーキンが想像以上の高値で驚きました。出張で来ていただいたので、家にあった他のブランド品もまとめて査定してもらえました。" },
+  { initial: "T", name: "T様", area: "名古屋市天白区", age: "40代女性", brand: "ロレックス", text: "夫が結婚前から持っていたロレックス サブマリーナを売却。LINE査定で大体の金額を教えてくれて、後日宅配で送りました。査定額がほぼ提示通りだったので安心して取引できました。" },
+  { initial: "K", name: "K様", area: "名古屋市瑞穂区", age: "50代男性", brand: "ルイ・ヴィトン・カルティエ", text: "クローゼットに眠っていたヴィトンのバッグと、奥さんのカルティエのジュエリーを査定。21時まで営業されているので仕事帰りに電話できたのが助かりました。複数業者で見積もりを取り、こちらが一番高かったので即決しました。" },
+];
+
+// マーキー用の主要ブランド名（流れ表示）
+const marqueeBrands = [
+  "HERMÈS","CHANEL","LOUIS VUITTON","ROLEX","CARTIER","PATEK PHILIPPE","AUDEMARS PIGUET","TIFFANY & Co.","BVLGARI","VAN CLEEF & ARPELS","DIOR","GUCCI","PRADA","BOTTEGA VENETA","CELINE","FENDI",
+];
+
+// 章番号
+const chapter = (n: string, label: string) => `${n}. ${label}`;
+---
+
+<Layout title={title} description={description}>
+
+  <!-- ============== Header ============== -->
+  <header class="fixed top-0 inset-x-0 z-40 border-b border-white/5 bg-[var(--color-navy)]/85 backdrop-blur-xl supports-[backdrop-filter]:bg-[var(--color-navy)]/65">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8 py-3.5 flex items-center justify-between gap-3">
+      <a href={sectionPath("hero")} class="flex items-center gap-2.5 group" aria-label="徳丸商会 トップへ">
+        <img src={assetPath("logo.svg")} alt="徳丸商会" class="h-8 sm:h-9 w-auto" width="36" height="36" />
+        <div class="leading-tight text-white">
+          <div class="text-[10px] tracking-[0.3em] text-[var(--color-champagne)] uppercase">Tokumaru</div>
+          <div class="text-sm font-display tracking-wider">名古屋ブランド買取</div>
+        </div>
+      </a>
+      <nav class="hidden lg:flex items-center gap-7 text-[13px]" aria-label="セクションナビ">
+        <a href={sectionPath("flagship")} class="text-white/65 hover:text-[var(--color-champagne)] transition tracking-wider">主要ブランド</a>
+        <a href={sectionPath("guarantee")} class="text-white/65 hover:text-[var(--color-champagne)] transition tracking-wider">最低買取保証</a>
+        <a href={sectionPath("methods")} class="text-white/65 hover:text-[var(--color-champagne)] transition tracking-wider">買取方法</a>
+        <a href={sectionPath("examples")} class="text-white/65 hover:text-[var(--color-champagne)] transition tracking-wider">買取実績</a>
+        <a href={sectionPath("faq")} class="text-white/65 hover:text-[var(--color-champagne)] transition tracking-wider">FAQ</a>
+        <a href={sectionPath("contact")} class="text-white/65 hover:text-[var(--color-champagne)] transition tracking-wider">お問い合わせ</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href={phoneTel} class="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full text-[13px] font-bold text-[var(--color-champagne-light)] border border-[var(--color-champagne)]/40 hover:bg-white/5 transition numeric">
+          <span aria-hidden="true">📞</span><span>{company.phone}</span>
+        </a>
+        <a href={lineUrl} target="_blank" rel="noopener" class="px-3.5 py-2 rounded-full text-[13px] font-bold text-white bg-[var(--color-line)] hover:bg-[#05a648] transition">LINE査定</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============== Hero（フルスクリーン） ============== -->
+  <section id="hero" class="relative min-h-[100svh] flex items-center bg-luxury-radial text-[var(--color-text-on-dark)] overflow-hidden grain">
+
+    <!-- 装飾SVG: 大型サークル -->
+    <svg class="absolute -right-32 -top-24 w-[640px] h-[640px] opacity-25 pointer-events-none" viewBox="0 0 600 600" aria-hidden="true">
+      <defs>
+        <radialGradient id="g1" cx="50%" cy="50%">
+          <stop offset="0%" stop-color="#c5a572" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#c5a572" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="300" cy="300" r="290" fill="none" stroke="#c5a572" stroke-opacity="0.2" stroke-width="1"/>
+      <circle cx="300" cy="300" r="240" fill="none" stroke="#c5a572" stroke-opacity="0.15" stroke-width="1"/>
+      <circle cx="300" cy="300" r="190" fill="url(#g1)"/>
+    </svg>
+
+    <!-- 装飾: グリッドライン -->
+    <div class="absolute inset-0 pointer-events-none opacity-[0.04]" aria-hidden="true" style="background-image: linear-gradient(90deg, white 1px, transparent 1px), linear-gradient(180deg, white 1px, transparent 1px); background-size: 80px 80px;"></div>
+
+    <div class="relative max-w-[1600px] mx-auto px-5 sm:px-8 py-24 sm:py-32 w-full z-10">
+      <!-- 上段：エイエンタイトル + バッジ -->
+      <div class="flex flex-wrap items-center gap-3 mb-8 reveal">
+        <div class="chapter-num text-[var(--color-champagne)]">— TOKUMARU SHOKAI</div>
+        <span class="hidden sm:inline-block w-12 h-px bg-[var(--color-champagne)]/50"></span>
+        <span class="text-[10px] tracking-[0.3em] uppercase text-white/45">Nagoya, Aichi · Since 1992</span>
+      </div>
+
+      <!-- メインコピー -->
+      <div class="grid lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-8">
+          <div class="text-[11px] tracking-[0.5em] text-[var(--color-champagne)] mb-5 reveal">LUXURY BUYBACK · ESTABLISHED IN AICHI</div>
+
+          <h1 class="display-hero mb-6 reveal" aria-label="名古屋市中村区のブランド買取・徳丸商会｜エルメス・シャネル・ヴィトン・ロレックスを高価買取">
+            <span class="block text-white/95">Sell your luxury,</span>
+            <span class="block text-gradient-champagne">at its true value.</span>
+            <span class="sr-only">名古屋市中村区のブランド買取・徳丸商会｜エルメス・シャネル・ヴィトン・ロレックスを高価買取</span>
+          </h1>
+
+          <div class="flex flex-wrap gap-2.5 mb-7 reveal">
+            <span class="px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold bg-[var(--color-champagne)]/15 border border-[var(--color-champagne)]/35 text-[var(--color-champagne-light)]">名古屋市中村区 本社</span>
+            <span class="px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold bg-white/5 border border-white/15">愛知県公安委員会許可</span>
+            <span class="px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold bg-[var(--color-bordeaux)]/30 border border-[var(--color-bordeaux-light)]/40 text-[var(--color-champagne-light)]">夜21時まで／年中無休</span>
+          </div>
+
+          <div class="text-base sm:text-lg max-w-2xl text-white/80 leading-loose reveal mb-2">
+            名古屋でブランド品の買取なら徳丸商会
+          </div>
+          <p class="text-xs sm:text-sm max-w-2xl text-white/55 leading-loose reveal">
+            出張・LINE査定・宅配対応。エルメス・シャネル・ヴィトン・ロレックス・カルティエなど主要ブランドを地元・名古屋市中村区の古物商が高価買取。<br class="hidden sm:block" />
+            <strong class="text-[var(--color-champagne-light)]">業界唯一、5ブランドで最低買取保証額を明示。</strong>
+          </p>
+        </div>
+
+        <!-- 右カラム：CTAブロック -->
+        <div class="lg:col-span-4 reveal">
+          <div class="rounded-2xl border border-[var(--color-champagne)]/35 bg-white/5 backdrop-blur-md p-6 shadow-2xl">
+            <div class="text-[10px] tracking-[0.4em] text-[var(--color-champagne)] uppercase mb-4">Get a quote now</div>
+            <a href={lineUrl} target="_blank" rel="noopener" class="cta-glow-line block w-full text-center py-4 rounded-xl bg-[var(--color-line)] text-white font-bold text-base mb-3 hover:bg-[#05a648] transition">
+              <div class="text-[11px] tracking-wider opacity-90">最短15分で参考買取額</div>
+              <div class="text-lg">LINEで無料査定</div>
+            </a>
+            <a href={phoneTel} class="cta-glow-tel block w-full text-center py-4 rounded-xl bg-[var(--color-champagne)] text-[var(--color-navy)] font-bold mb-3 hover:bg-[var(--color-champagne-light)] transition">
+              <div class="text-[11px] tracking-wider opacity-80">今すぐお電話</div>
+              <div class="text-lg numeric">{company.phone}</div>
+            </a>
+            <a href={sectionPath("contact")} class="block w-full text-center py-3 rounded-xl border border-white/20 text-white/85 font-semibold text-sm hover:border-[var(--color-champagne)]/50 hover:bg-white/5 transition">
+              フォームでお問い合わせ →
+            </a>
+            <div class="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-white/10 text-center">
+              <div><div class="text-[10px] text-white/45">出張・査定・送料</div><div class="text-sm font-bold text-[var(--color-champagne-light)]">完全無料</div></div>
+              <div><div class="text-[10px] text-white/45">クーリングオフ</div><div class="text-sm font-bold text-[var(--color-champagne-light)]">8日間対応</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 下段：比較バー -->
+      <div class="mt-14 grid grid-cols-3 gap-3 sm:gap-5 max-w-4xl reveal">
+        <div class="rounded-xl px-4 py-3 sm:py-4 border border-white/10 bg-white/5 backdrop-blur">
+          <div class="text-[10px] tracking-wider text-white/45 uppercase">業界平均営業時間</div>
+          <div class="text-2xl sm:text-3xl font-display numeric text-white/40">9<span class="text-xs ml-1">時間</span></div>
+        </div>
+        <div class="rounded-xl px-4 py-3 sm:py-4 border-2 border-[var(--color-champagne)] bg-[var(--color-champagne)]/15 backdrop-blur relative overflow-hidden">
+          <div class="text-[10px] tracking-wider text-[var(--color-champagne)] uppercase font-bold">徳丸商会</div>
+          <div class="text-2xl sm:text-3xl font-display numeric text-[var(--color-champagne-glow)]">12<span class="text-xs ml-1">時間</span></div>
+          <div class="text-[10px] text-white/55 mt-0.5">9-21時 年中無休</div>
+        </div>
+        <div class="rounded-xl px-4 py-3 sm:py-4 border border-white/10 bg-white/5 backdrop-blur">
+          <div class="text-[10px] tracking-wider text-white/45 uppercase">最低買取保証</div>
+          <div class="text-xl sm:text-2xl font-display text-[var(--color-champagne-light)]">業界唯一</div>
+          <div class="text-[10px] text-white/55 mt-0.5">5ブランド明示</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 下端ブランドマーキー -->
+    <div class="absolute bottom-0 inset-x-0 border-t border-white/10 bg-[var(--color-navy-mid)]/70 backdrop-blur py-4 marquee-mask overflow-hidden no-print">
+      <div class="marquee-track">
+        {[...marqueeBrands, ...marqueeBrands].map((b) => (
+          <span class="font-display text-base sm:text-lg tracking-[0.2em] text-white/40 whitespace-nowrap">{b}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== I. 主要ブランド5強 ============== -->
+  <section id="flagship" class="py-24 sm:py-32 bg-[var(--color-bg-white)] relative overflow-hidden">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+      <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
+        <div class="lg:col-span-5">
+          <div class="chapter-num mb-4">Ⅰ. Flagship Brands</div>
+          <h2 class="display-md text-[var(--color-navy)] heading-rule">
+            エルメス・シャネル・ヴィトンを<br />高価買取
+          </h2>
+        </div>
+        <div class="lg:col-span-7 lg:pt-10">
+          <p class="text-[15px] text-[var(--color-text-light)] leading-loose max-w-2xl">
+            全国の競合10社を徹底調査した上で、ブランド別の<strong class="text-[var(--color-bordeaux)]">最低買取保証額</strong>を明示しています。バッグ・時計・ジュエリーのいずれも、状態不問で適正価格をお約束します。
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+        {flagshipBrands.map((b, i) => (
+          <article class="reveal card-luxury bg-white rounded-2xl border border-[var(--color-border)] overflow-hidden">
+            <div class="px-7 py-6 bg-[var(--color-navy)] text-white relative overflow-hidden">
+              <div class="numeral-large absolute -top-2 -right-2 opacity-25">{`0${i + 1}`}</div>
+              <div class="font-display text-2xl tracking-[0.18em] relative">{b.name}</div>
+              <div class="text-xs text-[var(--color-champagne-light)] tracking-wider relative">{b.jpName}</div>
+            </div>
+            <div class="px-7 py-6">
+              <div class="text-[10px] uppercase tracking-[0.3em] text-[var(--color-champagne-dark)] mb-3">Popular Models</div>
+              <ul class="text-[13px] text-[var(--color-text)] grid grid-cols-2 gap-y-1.5 mb-5">
+                {b.popularModels.slice(0, 6).map((m) => (
+                  <li class="flex items-center gap-1.5 leading-snug">
+                    <span class="text-[var(--color-champagne)]" aria-hidden="true">▸</span>{m}
+                  </li>
+                ))}
+              </ul>
+              {b.example && (
+                <div class="text-xs text-[var(--color-text-light)] bg-gradient-to-br from-[var(--color-cream)] to-white rounded-lg px-4 py-3 leading-relaxed border border-[var(--color-border)]">
+                  <span class="font-bold text-[var(--color-bordeaux)]">買取例：</span>{b.example}
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== II. 最低買取保証 ============== -->
+  <section id="guarantee" class="py-24 sm:py-32 bg-luxury-radial text-white relative overflow-hidden grain">
+    <svg class="absolute left-0 top-0 w-[400px] opacity-15 pointer-events-none" viewBox="0 0 400 400" aria-hidden="true">
+      <circle cx="0" cy="200" r="280" fill="none" stroke="#c5a572" stroke-width="0.5"/>
+      <circle cx="0" cy="200" r="220" fill="none" stroke="#c5a572" stroke-width="0.5"/>
+    </svg>
+
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative">
+      <div class="text-center mb-16 reveal">
+        <div class="chapter-num mb-4">Ⅱ. Price Commitment</div>
+        <h2 class="display-md heading-rule center inline-block">主要ブランド最低買取保証額</h2>
+        <p class="mt-7 text-[15px] text-white/70 max-w-3xl mx-auto leading-loose">
+          全国の競合10社中、最低買取保証を明示しているのは<strong class="text-[var(--color-champagne-light)]">わずか1社（10%）</strong>。<br class="hidden sm:block" />
+          徳丸商会は5ブランドで保証額をお約束し、状態不問で買取いたします。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 stagger-children">
+        {buybackGuarantees.map((g, idx) => (
+          <div class="reveal guarantee-card text-[var(--color-text)] rounded-xl p-6 text-center">
+            <div class="numeral-large absolute top-0 right-3 opacity-10">{`0${idx + 1}`}</div>
+            <div class="font-display text-xl tracking-[0.15em] text-[var(--color-navy)] relative">{g.brand}</div>
+            <div class="text-[11px] tracking-widest text-[var(--color-text-lighter)] mb-4 relative">{g.jpName}</div>
+            <div class="text-[11px] text-[var(--color-text)] mb-3 leading-tight min-h-[2.5rem] relative">{g.product}</div>
+            <div class="text-[10px] tracking-widest text-[var(--color-champagne-dark)] uppercase mb-1 relative">Min. Guarantee</div>
+            <div class="font-display text-3xl text-[var(--color-bordeaux)] numeric relative">¥{g.minPrice.toLocaleString()}〜</div>
+            <div class="text-[10px] text-[var(--color-text-lighter)] mt-3 leading-tight relative">{g.note}</div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-xs text-white/55 mt-10 max-w-2xl mx-auto leading-loose">
+        ※ 保証対象は正規品のみ。コピー品・改造品・基準を満たさない損傷品は対象外となる場合があります。詳細はお電話・LINEでお問い合わせください。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== III. 取扱ブランド・カテゴリ ============== -->
+  <section id="categories" class="py-24 sm:py-32 bg-luxury-soft relative overflow-hidden">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+      <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
+        <div class="lg:col-span-5">
+          <div class="chapter-num mb-4">Ⅲ. Categories &amp; Brands</div>
+          <h2 class="display-md text-[var(--color-navy)] heading-rule">取扱ブランドと買取カテゴリ</h2>
+        </div>
+        <div class="lg:col-span-7 lg:pt-10">
+          <p class="text-[15px] text-[var(--color-text-light)] leading-loose max-w-2xl">
+            ブランドバッグ・財布・時計・ジュエリー・アパレルの5カテゴリで主要ブランドを買取しています。掲載のないブランドもまずはお問い合わせください。
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-12">
+        {[
+          { id: "bag", title: "ブランドバッグ・財布", titleEn: "Bags & Wallets", brands: [...flagshipBrands.filter(b => b.category === "bag"), ...bagsBrands] },
+          { id: "watch", title: "ブランド時計", titleEn: "Timepieces", brands: [...flagshipBrands.filter(b => b.category === "watch"), ...watchesBrands] },
+          { id: "jewelry", title: "ブランドジュエリー", titleEn: "Fine Jewelry", brands: jewelryBrands },
+          { id: "apparel", title: "ブランドアパレル・小物", titleEn: "Apparel & Accessories", brands: apparelBrands },
+        ].map((cat) => (
+          <div class="reveal">
+            <div class="flex items-end justify-between gap-3 mb-5 pb-4 border-b border-[var(--color-border)]">
+              <div>
+                <div class="chapter-num">{cat.titleEn}</div>
+                <h3 class="font-display text-2xl text-[var(--color-navy)] mt-1">{cat.title}</h3>
+              </div>
+              <div class="text-xs text-[var(--color-text-lighter)] numeric">{cat.brands.length} BRANDS</div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {cat.brands.map(b => (
+                <span class="chip-luxury">
+                  <span class="chip-en">{b.name}</span>
+                  <span class="chip-jp">{b.jpName}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== IV. 3つの買取方法 ============== -->
+  <section id="methods" class="py-24 sm:py-32 bg-white relative overflow-hidden">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="chapter-num mb-4">Ⅳ. Three Ways to Sell</div>
+        <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">出張・LINE査定・宅配買取</h2>
+        <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
+          出張料・送料・キャンセル料・査定料すべて無料。<br class="hidden sm:block" />
+          ライフスタイルに合わせて最適な方法をお選びいただけます。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 stagger-children">
+        <article class="reveal card-luxury bg-[var(--color-bg)] rounded-3xl p-7 border border-[var(--color-border)] relative overflow-hidden">
+          <div class="numeral-large absolute -top-1 -right-2 opacity-20">01</div>
+          <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne-dark)] relative">Visit Buyback</div>
+          <h3 class="font-display text-3xl text-[var(--color-navy)] mb-1 relative">出張買取</h3>
+          <p class="text-xs tracking-wider text-[var(--color-bordeaux)] mb-5 relative">最短当日訪問・出張料0円</p>
+          <ul class="text-[13px] text-[var(--color-text)] space-y-2 leading-relaxed relative">
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>名古屋市16区 ＋ 尾張・知多・西三河</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>査定員が一般車両で訪問（プライバシー配慮）</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>ご自宅で査定→現金即支払い</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>大量買取・遺品整理併用OK</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>クーリングオフ8日間対応</li>
+          </ul>
+          <div class="mt-6 grid grid-cols-2 gap-2 relative">
+            <a href={phoneTel} class="text-center text-xs font-bold py-2.5 rounded-lg bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy-soft)] transition">電話で予約</a>
+            <a href={lineUrl} target="_blank" rel="noopener" class="text-center text-xs font-bold py-2.5 rounded-lg bg-[var(--color-line)] text-white hover:bg-[#05a648] transition">LINEで予約</a>
+          </div>
+        </article>
+
+        <article class="reveal card-luxury bg-gradient-to-br from-[var(--color-cream)] to-white rounded-3xl p-7 border-2 border-[var(--color-champagne)] relative overflow-hidden">
+          <span class="absolute top-4 right-4 text-[10px] font-bold px-2.5 py-1 rounded-full bg-[var(--color-bordeaux)] text-white tracking-wider">人気No.1</span>
+          <div class="numeral-large absolute -top-1 -right-2 opacity-20">02</div>
+          <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne-dark)] relative">LINE Quote</div>
+          <h3 class="font-display text-3xl text-[var(--color-navy)] mb-1 relative">LINE査定</h3>
+          <p class="text-xs tracking-wider text-[var(--color-bordeaux)] mb-5 relative">最短15分で参考買取額</p>
+          <ul class="text-[13px] text-[var(--color-text)] space-y-2 leading-relaxed relative">
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>24時間受付（返信は営業時間内）</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>写真と型番を送るだけ</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>その場で参考買取額を提示</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>来店・出張前の事前見積もりに最適</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>公式LINE登録のみで利用可能</li>
+          </ul>
+          <div class="mt-6 relative">
+            <a href={lineUrl} target="_blank" rel="noopener" class="block text-center text-sm font-bold py-3.5 rounded-lg bg-[var(--color-line)] text-white hover:bg-[#05a648] transition">公式LINEで査定する →</a>
+          </div>
+        </article>
+
+        <article class="reveal card-luxury bg-[var(--color-bg)] rounded-3xl p-7 border border-[var(--color-border)] relative overflow-hidden">
+          <div class="numeral-large absolute -top-1 -right-2 opacity-20">03</div>
+          <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne-dark)] relative">Mail Buyback</div>
+          <h3 class="font-display text-3xl text-[var(--color-navy)] mb-1 relative">宅配買取</h3>
+          <p class="text-xs tracking-wider text-[var(--color-bordeaux)] mb-5 relative">送料・キット代・返送料すべて無料</p>
+          <ul class="text-[13px] text-[var(--color-text)] space-y-2 leading-relaxed relative">
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>全国対応（離島除く）</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>専用ダンボールを無料お届け</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>着払いで送るだけ</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>最大5,000万円の運送保険付き</li>
+            <li class="flex gap-2"><span class="text-[var(--color-champagne)]">▸</span>査定後、最短当日銀行振込</li>
+          </ul>
+          <div class="mt-6 relative">
+            <a href={phoneTel} class="block text-center text-sm font-bold py-3.5 rounded-lg bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy-soft)] transition">宅配キットを申し込む →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== V. 買取の流れ ============== -->
+  <section id="flow" class="py-24 sm:py-32 bg-[var(--color-cream)] relative overflow-hidden">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="chapter-num mb-4">Ⅴ. Flow</div>
+        <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">買取の流れ</h2>
+        <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
+          お電話・LINEのお問い合わせから現金または振込でのお支払いまで、最短当日で完了します。
+        </p>
+      </div>
+
+      <ol class="grid grid-cols-1 md:grid-cols-3 gap-5 stagger-children">
+        {[
+          { num: "01", title: "お問い合わせ", text: "お電話（052-990-3968）・公式LINE・お問い合わせフォームのいずれかでご連絡ください。9:00〜21:00 年中無休で受付しています。LINEなら写真と型番を送るだけで最短15分で参考買取額をご提示します。" },
+          { num: "02", title: "買取方法を選択", text: "出張買取（最短当日訪問）・LINE査定（その場で参考額）・宅配買取（送料無料・最大5,000万円運送保険付き）からお選びいただけます。エリア・お品物の数によって、おすすめの方法をご提案します。" },
+          { num: "03", title: "査定・お支払い", text: "ブランド・モデル・状態・付属品を確認のうえ買取金額をご提示。出張買取は現金即支払い、宅配買取は最短当日に銀行振込でお支払いします。査定額にご納得いただけない場合のキャンセル・返送はいつでも無料です。" },
+        ].map((step) => (
+          <li class="reveal card-luxury bg-white rounded-2xl p-7 border border-[var(--color-border)] relative">
+            <div class="flex items-baseline gap-3 mb-3">
+              <span class="font-display text-5xl text-[var(--color-champagne)] italic numeric leading-none">{step.num}</span>
+              <span class="hairline flex-1 mb-2"></span>
+            </div>
+            <h3 class="font-display text-xl text-[var(--color-navy)] mb-3">{step.title}</h3>
+            <p class="text-sm text-[var(--color-text)] leading-loose">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============== VI. 買取実績 ============== -->
+  <section id="examples" class="py-24 sm:py-32 bg-white relative overflow-hidden">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+      <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
+        <div class="lg:col-span-5">
+          <div class="chapter-num mb-4">Ⅵ. Recent Buybacks</div>
+          <h2 class="display-md text-[var(--color-navy)] heading-rule">買取実績</h2>
+        </div>
+        <div class="lg:col-span-7 lg:pt-10">
+          <p class="text-[15px] text-[var(--color-text-light)] leading-loose max-w-2xl">
+            直近の買取実績を金額・状態ランク付きで掲載。実際の買取価格は状態・付属品・市場相場により変動します。
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
+        {buybackExamples.map((ex) => (
+          <article class="reveal card-luxury bg-[var(--color-bg)] rounded-xl border border-[var(--color-border)] overflow-hidden">
+            <div class="px-5 py-3 bg-[var(--color-navy)] text-white flex items-center justify-between">
+              <span class="font-display text-base tracking-[0.18em]">{ex.brand}</span>
+              <span class="text-[10px] text-[var(--color-champagne-light)] tracking-widest">{ex.date}</span>
+            </div>
+            <div class="px-5 py-4">
+              <div class="text-sm font-bold text-[var(--color-text)] leading-tight mb-3">{ex.item}</div>
+              <div class="flex items-center justify-between mt-2">
+                <span class="text-[10px] tracking-widest px-2 py-0.5 rounded bg-[var(--color-cream)] text-[var(--color-text-light)]">RANK {ex.rank}</span>
+                <span class="font-display text-2xl text-[var(--color-bordeaux)] numeric">¥{ex.price.toLocaleString()}</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <p class="text-center text-xs text-[var(--color-text-lighter)] mt-10 max-w-2xl mx-auto leading-loose">
+        ※ 上記はあくまで参考買取価格であり、実際の買取金額は査定時の状態・市場相場・付属品の有無で変動します。掲載のないブランド・モデルもお気軽にお問い合わせください。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== VII. 状態不問 ============== -->
+  <section id="condition" class="py-24 sm:py-32 bg-[var(--color-bg)] relative overflow-hidden pattern-dots">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="chapter-num mb-4">Ⅶ. Any Condition OK</div>
+        <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">状態不問でも買取OK</h2>
+        <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
+          保証書なし・箱なし・使用感あり・破損あり…他店で断られたお品も、まずは一度ご相談ください。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 stagger-children">
+        {[
+          { label: "保証書なし", en: "No certificate" },
+          { label: "箱・付属品なし", en: "Without packaging" },
+          { label: "使用感あり", en: "Used condition" },
+          { label: "小さな破れ", en: "Minor tear" },
+          { label: "金具のくすみ", en: "Tarnished metal" },
+          { label: "メッキ剥がれ", en: "Plating wear" },
+          { label: "不動の時計", en: "Non-working" },
+          { label: "経年劣化", en: "Aged item" },
+        ].map((item) => (
+          <div class="reveal guarantee-card rounded-xl p-5 text-center">
+            <div class="text-[10px] tracking-[0.3em] text-[var(--color-champagne-dark)] uppercase mb-2 relative">{item.en}</div>
+            <div class="font-display text-lg text-[var(--color-navy)] mb-1 relative">{item.label}</div>
+            <div class="text-xs text-[var(--color-bordeaux)] font-bold tracking-wider relative">買取OK</div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-xs text-[var(--color-text-lighter)] mt-10 max-w-2xl mx-auto leading-loose">
+        ※ コピー品・改造品・正規品確認できないお品は買取対象外となる場合があります。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== VIII. 対応エリア ============== -->
+  <section id="areas" class="py-24 sm:py-32 bg-white relative overflow-hidden">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="chapter-num mb-4">Ⅷ. Service Areas</div>
+        <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">名古屋・愛知の対応エリア</h2>
+        <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
+          名古屋市中村区横井に本社を置く地元の古物商として、名古屋市16区および尾張・知多・西三河エリアまで出張買取に対応します。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
+        <div class="reveal bg-gradient-to-br from-[var(--color-ivory)] to-white rounded-2xl p-7 border border-[var(--color-border)]">
+          <div class="chapter-num mb-2">Nagoya City · 16 Wards</div>
+          <h3 class="font-display text-2xl text-[var(--color-navy)] mb-5 flex items-center gap-2">
+            <span class="text-[var(--color-champagne)]" aria-hidden="true">●</span>名古屋市内 全16区
+          </h3>
+          <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">
+            {nagoyaAreas.map((a) => (
+              <span class={`chip-luxury text-[12px] ${a === "中村区" ? "!bg-[var(--color-navy)] !text-[var(--color-champagne-glow)] !border-[var(--color-champagne)]" : ""}`}>
+                <span class={a === "中村区" ? "!text-[var(--color-champagne-glow)] font-bold" : "chip-en"}>{a}</span>
+                {a === "中村区" && <span class="text-[9px] ml-0.5 opacity-80">本社</span>}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div class="reveal bg-gradient-to-br from-[var(--color-ivory)] to-white rounded-2xl p-7 border border-[var(--color-border)]">
+          <div class="chapter-num mb-2">Suburbs · Aichi</div>
+          <h3 class="font-display text-2xl text-[var(--color-navy)] mb-5 flex items-center gap-2">
+            <span class="text-[var(--color-champagne)]" aria-hidden="true">●</span>近郊エリア（尾張・知多・西三河）
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {nearbyAreas.map((c) => (<span class="chip-luxury text-[12px]"><span class="chip-en">{c}</span></span>))}
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center text-xs text-[var(--color-text-lighter)] mt-10 leading-loose">
+        ※ 上記以外の岐阜県・三重県エリアは宅配買取をご利用ください。お電話でのご相談で個別対応可能です。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== IX. 地元実績 ============== -->
+  <section id="trust" class="py-24 sm:py-32 bg-luxury-radial text-white relative overflow-hidden grain">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="chapter-num mb-4">Ⅸ. Local Trust</div>
+        <h2 class="display-md heading-rule center inline-block">安心の地元実績</h2>
+        <p class="mt-7 text-[15px] text-white/70 max-w-3xl mx-auto leading-loose">
+          ナショナル買取大手が東京都・大阪府・千葉県の許可で運営する中、徳丸商会は<strong class="text-[var(--color-champagne-light)]">愛知県公安委員会許可</strong>を取得した名古屋市中村区の地元事業者です。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 stagger-children">
+        <div class="reveal guarantee-card text-[var(--color-text)] rounded-xl p-6">
+          <div class="chapter-num mb-2">License</div>
+          <div class="font-display text-lg text-[var(--color-navy)] leading-tight">愛知県公安委員会</div>
+          <div class="font-display text-2xl text-[var(--color-bordeaux)] numeric mt-1">第541042309800号</div>
+          <div class="text-xs text-[var(--color-text-light)] mt-3 leading-relaxed">名古屋市中村区横井2丁目71番地で公安委員会の許可を取得</div>
+        </div>
+        <div class="reveal guarantee-card text-[var(--color-text)] rounded-xl p-6">
+          <div class="chapter-num mb-2">Sister Services</div>
+          <div class="font-display text-lg text-[var(--color-navy)] leading-tight">遺品整理・楽器・貴金属</div>
+          <div class="text-xs text-[var(--color-text-light)] mt-3 leading-relaxed">家まるごと整理・楽器買取・金/プラチナ買取をワンストップで提供。相続・引っ越し・生前整理ニーズに対応。</div>
+          <div class="mt-3 flex flex-wrap gap-x-2 gap-y-1">
+            <a href={company.relatedLps.estate} target="_blank" rel="noopener" class="text-[10px] underline text-[var(--color-bordeaux)] hover:no-underline">遺品整理LP</a>
+            <span class="text-[10px] text-[var(--color-text-lighter)]">／</span>
+            <a href={company.relatedLps.instruments} target="_blank" rel="noopener" class="text-[10px] underline text-[var(--color-bordeaux)] hover:no-underline">楽器買取LP</a>
+            <span class="text-[10px] text-[var(--color-text-lighter)]">／</span>
+            <a href={company.relatedLps.gold} target="_blank" rel="noopener" class="text-[10px] underline text-[var(--color-bordeaux)] hover:no-underline">貴金属買取LP</a>
+          </div>
+        </div>
+        <div class="reveal guarantee-card text-[var(--color-text)] rounded-xl p-6">
+          <div class="chapter-num mb-2">Operating Hours</div>
+          <div class="font-display text-lg text-[var(--color-navy)] leading-tight">9:00〜21:00 年中無休</div>
+          <div class="font-display text-2xl text-[var(--color-bordeaux)] mt-1">業界最長クラス</div>
+          <div class="text-xs text-[var(--color-text-light)] mt-3 leading-relaxed">業界平均9時間に対し12時間。仕事帰りの19-21時の相談対応も可能。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== X. お客様の声 ============== -->
+  <section id="testimonials" class="py-24 sm:py-32 bg-[var(--color-bg)] relative overflow-hidden">
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="chapter-num mb-4">Ⅹ. Customer Voices</div>
+        <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">お客様の声</h2>
+        <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
+          名古屋エリアの実顧客からいただいた、徳丸商会のブランド買取についてのお声です。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 stagger-children">
+        {testimonials.map((t) => (
+          <article class="reveal card-luxury bg-white rounded-2xl p-7 border border-[var(--color-border)] relative">
+            <div class="text-7xl font-display text-[var(--color-champagne)]/30 leading-none absolute top-3 right-5">"</div>
+            <div class="flex items-center gap-3 mb-5 pb-5 border-b border-[var(--color-border)] relative">
+              <div class="w-12 h-12 rounded-full bg-[var(--color-navy)] text-[var(--color-champagne-glow)] flex items-center justify-center font-display text-xl">{t.initial}</div>
+              <div>
+                <div class="font-bold text-[var(--color-navy)] text-sm">{t.name}（{t.age}）</div>
+                <div class="text-xs text-[var(--color-text-light)]">{t.area}・{t.brand}</div>
+              </div>
+            </div>
+            <p class="text-sm text-[var(--color-text)] leading-loose relative">{t.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== XI. FAQ ============== -->
+  <section id="faq" class="py-24 sm:py-32 bg-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8">
+      <div class="text-center mb-14 reveal">
+        <div class="chapter-num mb-4">Ⅺ. FAQ</div>
+        <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">よくあるご質問</h2>
+      </div>
+
+      <div class="space-y-3 stagger-children">
+        {faqs.map((f) => (
+          <details id={f.id} class="reveal faq-item group bg-[var(--color-bg)] rounded-xl border border-[var(--color-border)] overflow-hidden hover:border-[var(--color-champagne)]/50 transition-colors">
+            <summary class="flex items-center justify-between px-6 py-5 cursor-pointer hover:bg-[var(--color-cream)]/40 transition">
+              <h3 class="text-sm sm:text-base font-bold text-[var(--color-navy)] pr-4 leading-snug">{f.question}</h3>
+              <span class="faq-icon flex-shrink-0 w-7 h-7 rounded-full bg-[var(--color-champagne)] text-[var(--color-navy)] flex items-center justify-center text-lg font-bold" aria-hidden="true">＋</span>
+            </summary>
+            <div class="px-6 pb-6 text-sm text-[var(--color-text)] leading-loose">{f.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== XII. お問い合わせ + フォーム ============== -->
+  <section id="contact" class="py-24 sm:py-32 bg-luxury-radial text-white relative overflow-hidden grain">
+    <svg class="absolute right-0 bottom-0 w-[480px] opacity-15 pointer-events-none" viewBox="0 0 480 480" aria-hidden="true">
+      <circle cx="480" cy="480" r="400" fill="none" stroke="#c5a572" stroke-width="0.5"/>
+      <circle cx="480" cy="480" r="320" fill="none" stroke="#c5a572" stroke-width="0.5"/>
+      <circle cx="480" cy="480" r="240" fill="none" stroke="#c5a572" stroke-width="0.5"/>
+    </svg>
+
+    <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative">
+      <div class="text-center mb-14 reveal">
+        <div class="chapter-num mb-4">Ⅻ. Contact</div>
+        <h2 class="display-md heading-rule center inline-block">お見積もり・お問い合わせ</h2>
+        <p class="mt-7 text-base text-[var(--color-champagne-light)] font-display tracking-wider">9:00〜21:00 ／ Open Year-round</p>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-10">
+        <!-- 左：3つの連絡手段 -->
+        <div class="lg:col-span-5 reveal">
+          <div class="text-[10px] tracking-[0.3em] text-[var(--color-champagne)] uppercase mb-3">QUICK CONTACT</div>
+          <h3 class="font-display text-2xl mb-6">お急ぎなら直接ご連絡ください</h3>
+
+          <div class="space-y-4">
+            <a href={phoneTel} class="flex items-center gap-4 p-5 rounded-xl border border-[var(--color-champagne)]/30 bg-white/5 backdrop-blur hover:bg-white/10 hover:border-[var(--color-champagne)] transition group">
+              <div class="w-12 h-12 rounded-full bg-[var(--color-champagne)] text-[var(--color-navy)] flex items-center justify-center text-2xl">📞</div>
+              <div class="flex-1">
+                <div class="text-[10px] tracking-wider text-white/55 uppercase">By Phone</div>
+                <div class="font-display text-xl numeric tracking-wider">{company.phone}</div>
+                <div class="text-[11px] text-white/55">9:00〜21:00 年中無休</div>
+              </div>
+              <span class="text-[var(--color-champagne)] text-xl">→</span>
+            </a>
+
+            <a href={lineUrl} target="_blank" rel="noopener" class="flex items-center gap-4 p-5 rounded-xl border border-[var(--color-line)]/35 bg-[var(--color-line)]/10 backdrop-blur hover:bg-[var(--color-line)]/15 hover:border-[var(--color-line)] transition group">
+              <div class="w-12 h-12 rounded-full bg-[var(--color-line)] text-white flex items-center justify-center text-xl font-bold">L</div>
+              <div class="flex-1">
+                <div class="text-[10px] tracking-wider text-white/55 uppercase">LINE Quote</div>
+                <div class="font-display text-xl">LINEで査定する</div>
+                <div class="text-[11px] text-white/55">最短15分・写真と型番だけ</div>
+              </div>
+              <span class="text-[var(--color-line)] text-xl">→</span>
+            </a>
+
+            <a href={`mailto:${contactEmail}`} class="flex items-center gap-4 p-5 rounded-xl border border-white/15 bg-white/5 backdrop-blur hover:bg-white/10 hover:border-[var(--color-champagne)]/50 transition group">
+              <div class="w-12 h-12 rounded-full bg-white/10 text-white flex items-center justify-center text-xl">✉</div>
+              <div class="flex-1">
+                <div class="text-[10px] tracking-wider text-white/55 uppercase">By Email</div>
+                <div class="font-display text-base break-all">{contactEmail}</div>
+                <div class="text-[11px] text-white/55">24時間受付・返信は営業時間内</div>
+              </div>
+              <span class="text-white/55 text-xl">→</span>
+            </a>
+          </div>
+
+          <!-- 無料アピール -->
+          <div class="mt-8 grid grid-cols-2 gap-3 text-center">
+            <div class="rounded-xl p-3 border border-[var(--color-champagne)]/20 bg-white/5"><div class="text-[10px] text-white/55">出張料</div><div class="font-display text-lg text-[var(--color-champagne-light)]">¥0</div></div>
+            <div class="rounded-xl p-3 border border-[var(--color-champagne)]/20 bg-white/5"><div class="text-[10px] text-white/55">査定料</div><div class="font-display text-lg text-[var(--color-champagne-light)]">¥0</div></div>
+            <div class="rounded-xl p-3 border border-[var(--color-champagne)]/20 bg-white/5"><div class="text-[10px] text-white/55">送料</div><div class="font-display text-lg text-[var(--color-champagne-light)]">¥0</div></div>
+            <div class="rounded-xl p-3 border border-[var(--color-champagne)]/20 bg-white/5"><div class="text-[10px] text-white/55">キャンセル料</div><div class="font-display text-lg text-[var(--color-champagne-light)]">¥0</div></div>
+          </div>
+        </div>
+
+        <!-- 右：問い合わせフォーム -->
+        <div class="lg:col-span-7 reveal">
+          <div class="text-[10px] tracking-[0.3em] text-[var(--color-champagne)] uppercase mb-3">REQUEST FORM</div>
+          <h3 class="font-display text-2xl mb-6">フォームでお問い合わせ</h3>
+
+          <form
+            id="contact-form"
+            action={formAction}
+            method={formMethod}
+            enctype={formEnctype}
+            class="rounded-2xl bg-white/95 text-[var(--color-text)] p-6 sm:p-8 backdrop-blur border border-[var(--color-champagne)]/30 shadow-2xl"
+            novalidate
+          >
+            <input type="hidden" name="_subject" value="徳丸商会 ブランド買取 お問い合わせ" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;" aria-hidden="true" />
+
+            <div class="grid sm:grid-cols-2 gap-5 mb-5">
+              <div>
+                <label for="f-name" class="form-label form-label-required">お名前</label>
+                <input id="f-name" type="text" name="お名前" required minlength="2" placeholder="徳丸 太郎" autocomplete="name" class="form-input" />
+              </div>
+              <div>
+                <label for="f-tel" class="form-label form-label-required">電話番号またはメール</label>
+                <input id="f-tel" type="text" name="連絡先" required placeholder="090-XXXX-XXXX または your@email.com" autocomplete="tel" class="form-input" />
+              </div>
+            </div>
+
+            <div class="mb-5">
+              <label class="form-label form-label-required">ご希望の連絡方法</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
+                {["電話","LINE","メール","どれでもOK"].map((opt, i) => (
+                  <label class="form-radio-card">
+                    <input type="radio" name="希望連絡方法" value={opt} required={i===0} />
+                    <span>{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5 mb-5">
+              <div>
+                <label for="f-brand" class="form-label">ブランド名（複数可）</label>
+                <input id="f-brand" type="text" name="ブランド" placeholder="例：エルメス、ロレックス、シャネル" class="form-input" />
+              </div>
+              <div>
+                <label for="f-category" class="form-label">商品ジャンル</label>
+                <select id="f-category" name="商品ジャンル" class="form-select">
+                  <option value="">— お選びください —</option>
+                  <option>ブランドバッグ</option>
+                  <option>ブランド財布・小物</option>
+                  <option>ブランド時計</option>
+                  <option>ブランドジュエリー</option>
+                  <option>ブランドアパレル</option>
+                  <option>複数まとめて</option>
+                  <option>その他</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5 mb-5">
+              <div>
+                <label for="f-condition" class="form-label">商品の状態</label>
+                <select id="f-condition" name="状態" class="form-select">
+                  <option value="">— お選びください —</option>
+                  <option>新品・未使用</option>
+                  <option>使用感少ない（極美品）</option>
+                  <option>通常使用感あり</option>
+                  <option>使用感強め</option>
+                  <option>破損あり・状態不問</option>
+                  <option>不明</option>
+                </select>
+              </div>
+              <div>
+                <label for="f-method" class="form-label form-label-required">買取方法のご希望</label>
+                <select id="f-method" name="買取方法" required class="form-select">
+                  <option value="">— お選びください —</option>
+                  <option>出張買取（最短当日）</option>
+                  <option>LINE査定</option>
+                  <option>宅配買取</option>
+                  <option>おすすめを提案してほしい</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-5">
+              <label for="f-area" class="form-label">お住まいエリア（出張買取の場合）</label>
+              <input id="f-area" type="text" name="エリア" placeholder="例：名古屋市中区、刈谷市など" class="form-input" />
+            </div>
+
+            <div class="mb-5">
+              <label for="f-message" class="form-label">メッセージ・ご質問</label>
+              <textarea id="f-message" name="メッセージ" rows="4" placeholder="型番、購入時期、付属品の有無などをご記入ください。お写真はLINEまたはメール添付でお送りいただくとスムーズです。" class="form-textarea"></textarea>
+            </div>
+
+            <div class="mb-6">
+              <label class="flex items-start gap-2 text-xs text-[var(--color-text-light)] leading-relaxed">
+                <input type="checkbox" name="プライバシー同意" required class="mt-0.5" />
+                <span>個人情報の取り扱いについて理解し同意します。お送りいただいた内容は買取査定のためにのみ使用します。</span>
+              </label>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded-xl bg-[var(--color-navy)] text-white font-bold tracking-wider hover:bg-[var(--color-navy-mid)] transition flex items-center justify-center gap-2">
+              <span>査定を依頼する</span>
+              <span class="text-[var(--color-champagne-glow)]">→</span>
+            </button>
+
+            <p class="mt-4 text-[11px] text-[var(--color-text-lighter)] leading-relaxed text-center">
+              送信後、24時間以内に営業担当よりご連絡いたします（営業時間: 9:00-21:00 年中無休）。<br />
+              フォーム送信ができない場合は <a href={`mailto:${contactEmail}`} class="underline text-[var(--color-bordeaux)]">{contactEmail}</a> へ直接お送りください。
+            </p>
+          </form>
+
+          <!-- 送信成功表示（クライアントサイドJSで切替） -->
+          <div id="contact-thanks" hidden class="rounded-2xl bg-white/95 text-[var(--color-text)] p-8 backdrop-blur border border-[var(--color-champagne)] shadow-2xl text-center">
+            <div class="w-14 h-14 rounded-full bg-[var(--color-champagne)] text-[var(--color-navy)] mx-auto flex items-center justify-center text-2xl mb-4">✓</div>
+            <h3 class="font-display text-2xl text-[var(--color-navy)] mb-2">お問い合わせありがとうございます</h3>
+            <p class="text-sm text-[var(--color-text-light)] leading-loose">担当より24時間以内にご連絡いたします。<br />お急ぎの方は <a href={phoneTel} class="text-[var(--color-bordeaux)] underline">052-990-3968</a> まで。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Footer ============== -->
+  <footer class="bg-[var(--color-navy)] text-white/85 pt-16 pb-10 text-sm relative overflow-hidden">
+    <div class="absolute inset-0 grain-light pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-[1600px] mx-auto px-5 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <img src={assetPath("logo.svg")} alt="徳丸商会" class="h-9 w-auto" width="40" height="40" />
+            <div>
+              <div class="text-[10px] tracking-[0.3em] text-[var(--color-champagne)] uppercase">Tokumaru</div>
+              <div class="font-display text-lg text-white">徳丸商会</div>
+            </div>
+          </div>
+          <p class="text-xs leading-loose text-white/65">
+            名古屋市中村区横井の古物商。ブランドバッグ・時計・ジュエリー・アパレル・財布の買取専門。出張買取・LINE査定・宅配買取に対応します。
+          </p>
+        </div>
+        <div>
+          <h4 class="font-display text-base text-[var(--color-champagne-light)] mb-4 chapter-num">Store Info</h4>
+          <dl class="text-xs leading-loose text-white/75 space-y-1.5">
+            <div class="flex gap-2"><dt class="w-16 shrink-0 text-white/55">所在地</dt><dd>{company.address.full}</dd></div>
+            <div class="flex gap-2"><dt class="w-16 shrink-0 text-white/55">電話</dt><dd class="numeric">{company.phone}</dd></div>
+            <div class="flex gap-2"><dt class="w-16 shrink-0 text-white/55">メール</dt><dd class="break-all">{contactEmail}</dd></div>
+            <div class="flex gap-2"><dt class="w-16 shrink-0 text-white/55">営業時間</dt><dd>{company.hours}</dd></div>
+            <div class="flex gap-2"><dt class="w-16 shrink-0 text-white/55">許可</dt><dd>{company.licenseAuthority} {company.license}</dd></div>
+          </dl>
+        </div>
+        <div>
+          <h4 class="font-display text-base text-[var(--color-champagne-light)] mb-4 chapter-num">Services</h4>
+          <ul class="text-xs leading-loose text-white/75 space-y-1.5 mb-5">
+            <li><a href={sectionPath("methods")} class="hover:text-[var(--color-champagne-light)] transition">出張買取・LINE査定・宅配買取</a></li>
+            <li><a href={sectionPath("flagship")} class="hover:text-[var(--color-champagne-light)] transition">主要ブランド5強の買取</a></li>
+            <li><a href={sectionPath("guarantee")} class="hover:text-[var(--color-champagne-light)] transition">最低買取保証額</a></li>
+            <li><a href={sectionPath("areas")} class="hover:text-[var(--color-champagne-light)] transition">対応エリア</a></li>
+            <li><a href={sectionPath("faq")} class="hover:text-[var(--color-champagne-light)] transition">よくあるご質問</a></li>
+            <li><a href={sectionPath("contact")} class="hover:text-[var(--color-champagne-light)] transition">お問い合わせフォーム</a></li>
+          </ul>
+          <h4 class="font-display text-base text-[var(--color-champagne-light)] mb-3 chapter-num">Sister LPs</h4>
+          <ul class="text-xs leading-loose text-white/75 space-y-1.5">
+            <li><a href={company.relatedLps.estate} target="_blank" rel="noopener" class="hover:text-[var(--color-champagne-light)] transition">遺品整理・生前整理</a></li>
+            <li><a href={company.relatedLps.instruments} target="_blank" rel="noopener" class="hover:text-[var(--color-champagne-light)] transition">楽器買取</a></li>
+            <li><a href={company.relatedLps.gold} target="_blank" rel="noopener" class="hover:text-[var(--color-champagne-light)] transition">金・貴金属買取</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="divider-champagne mb-6"></div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] text-white/55">
+        <p>© 2026 徳丸商会 All Rights Reserved.</p>
+        <p class="tracking-wider">愛知県公安委員会許可 第541042309800号</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============== Mobile Floating CTA ============== -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden floating-cta-shadow no-print bg-[var(--color-navy)]/95 backdrop-blur border-t border-[var(--color-champagne)]/30">
+    <div class="grid grid-cols-2 gap-2 p-2">
+      <a href={phoneTel} class="flex flex-col items-center justify-center py-2.5 rounded-lg bg-[var(--color-champagne)] text-[var(--color-navy)] font-bold">
+        <span class="text-[9px] tracking-wider">電話で相談</span>
+        <span class="text-xs numeric">{company.phone}</span>
+      </a>
+      <a href={lineUrl} target="_blank" rel="noopener" class="flex flex-col items-center justify-center py-2.5 rounded-lg bg-[var(--color-line)] text-white font-bold">
+        <span class="text-[9px] tracking-wider">最短15分で査定</span>
+        <span class="text-xs">LINEで査定</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- フォーム送信時の体験向上スクリプト -->
+  <script is:inline>
+    (function(){
+      var form = document.getElementById('contact-form');
+      var thanks = document.getElementById('contact-thanks');
+      if (!form || !thanks) return;
+      // mailtoの場合：送信後にmailtoリンクを開いた後、サンクスメッセージを表示
+      var action = form.getAttribute('action') || '';
+      if (action.indexOf('mailto:') === 0) {
+        form.addEventListener('submit', function(e){
+          // ブラウザがメーラーを開くまで少し待ち、画面をサンクス表示に
+          setTimeout(function(){
+            form.hidden = true;
+            thanks.hidden = false;
+            thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 600);
+        });
+      } else {
+        // Formspree（fetch）の場合：非同期送信でPage遷移なし
+        form.addEventListener('submit', async function(e){
+          e.preventDefault();
+          var fd = new FormData(form);
+          try {
+            var res = await fetch(action, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+            if (res.ok) {
+              form.hidden = true;
+              thanks.hidden = false;
+              thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+              alert('送信に失敗しました。お電話またはメールで直接ご連絡ください。');
+            }
+          } catch(err) {
+            alert('送信に失敗しました。お電話またはメールで直接ご連絡ください。');
+          }
+        });
+      }
+    })();
+  </script>
+
+</Layout>

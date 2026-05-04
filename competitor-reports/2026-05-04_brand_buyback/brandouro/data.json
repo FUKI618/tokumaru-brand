@@ -1,0 +1,96 @@
+{
+  "rank": 6,
+  "name": "OURO 名古屋店",
+  "url": "https://brandouro.com/shop/shop-340/",
+  "domain": "brandouro.com",
+  "scraped_at": "2026-05-04",
+  "analysis_method": "scrapling stealthy_fetch / markdown",
+  "type": "ブランド時計専門（高級時計特化）",
+  "meta": {
+    "title": "未確認（main_content_only=trueのためmeta未取得）",
+    "title_kw_lead": "未確認",
+    "h1": "OURO（ブランド買取専門店）"
+  },
+  "headings": {
+    "h2": [
+      "OURO 名古屋店",
+      "OURO 名古屋店｜基本情報",
+      "選べる買取方法",
+      "お客様の声",
+      "査定額アップのポイント"
+    ],
+    "h3": [
+      "営業時間", "定休日", "住所", "古物商 許可番号",
+      "店舗買取", "宅配買取", "出張買取",
+      "不具合ありでも最高額で買い取って下さいました。",
+      "付属品はお持ちでしょうか？",
+      "汚れはとって綺麗にする",
+      "事前に修理などを行っている場合"
+    ]
+  },
+  "ctas": {
+    "phone": "052-684-7375（店舗直通／年中無休10:30-19:30）",
+    "phone_toll_free": "0120-676-657（本部／平日10:00-17:00）",
+    "line": "あり（OURO 名古屋店公式LINE / liff.line.me経由）",
+    "form": "未確認（直接フォームの記載なし／LINE・電話中心）",
+    "buyback_methods": ["店舗買取", "宅配買取", "出張買取", "LINE査定"],
+    "channel_count": 4,
+    "all_free": "未確認（出張料・キャンセル料の明示は取得範囲内になし）"
+  },
+  "trust_elements": {
+    "license": "愛知県公安委員会 541162312700号（店舗）／東京都公安委員会 第303292007415号（本部）",
+    "experience": "未確認",
+    "reviews": "お客様の声1件掲載（40代男性 ロレックス サブマリーナ 14060 ¥1,000,000・即日入金）",
+    "ratings": "★5評価（個別レビューに付与）",
+    "media": "未確認",
+    "examples_high_value": [
+      "ロレックス サブマリーナ 14060 ¥1,000,000（不具合あり/即日入金）"
+    ],
+    "store_manager_named": "岡田 茉樹（顔出し・ストーリー文付き）",
+    "private_room": "完全プライベート個室空間"
+  },
+  "pricing": {
+    "displayed_prices": false,
+    "min_buyback_guarantee": false,
+    "comparison_table": false,
+    "free_appraisal": "未確認",
+    "examples_with_amount": true
+  },
+  "categories_handled": [
+    "ブランド時計（高級時計専門）"
+  ],
+  "brands_listed": [
+    "ROLEX", "PATEK PHILIPPE", "AUDEMARS PIGUET", "RICHARD MILLE",
+    "F.P. Journe"
+  ],
+  "store_info": {
+    "address": "〒460-0003 愛知県名古屋市中区錦1-20-8 カーニープレイス名古屋伏見ビル 802号",
+    "hours": "10:30〜19:30",
+    "closed": "年中無休",
+    "access": "地下鉄東山線 伏見駅 徒歩1分",
+    "kobutsu_no": "愛知県公安委員会 541162312700号"
+  },
+  "structured_data": {
+    "json_ld_count": "未確認（markdown抽出のため未検出）",
+    "json_ld_types": []
+  },
+  "campaigns": [
+    "TOPページリニューアルのお知らせ（2026/04/10）",
+    "国内No,1の高額査定訴求",
+    "完全プライベート個室空間",
+    "Instagram運用（@ouro.nagoya）"
+  ],
+  "strengths": [
+    "高級時計5ブランド（ROLEX/PATEK/AP/Richard Mille/F.P.Journe）に特化 — 専門性訴求",
+    "店長の顔写真＋ストーリー文＋実名で人物軸の信頼構築",
+    "完全プライベート個室・年中無休10:30-19:30と接客品質を訴求",
+    "LINE査定とインスタグラム運用の両立 — SNSでの認知獲得",
+    "実例レビュー（不具合あり時計を100万円で買取、即日入金）が具体的"
+  ],
+  "weaknesses": [
+    "取扱カテゴリが時計のみで、バッグ・ジュエリー・アパレルなどの掲載なし（バッグ買取顧客の取りこぼし）",
+    "FAQ専用セクションが店舗ページ上に未配置（本部FAQへリンクのみ）",
+    "お客様の声が1件のみ（複数顧客の証拠が薄い）"
+  ],
+  "scrape_notes": "ページ軽量で1回で全文取得成功。デザインは時計特化のラグジュアリー系。本部の0120と店舗直通052の二段構え。古物商許可は愛知県（店舗）と東京都（本部）の併記で運営実体が明確。"
+}
