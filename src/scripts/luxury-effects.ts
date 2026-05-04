@@ -1,31 +1,26 @@
 // 数千万LPレベルのマイクロインタラクション集
-// GSAP + Lenis + カスタムカーソル + マグネティックボタン + テキストSplit + 数値カウンター
+// GSAP + カスタムカーソル + マグネティックボタン + テキストSplit + 数値カウンター
+// ※ Lenis Smooth Scroll は挙動の副作用（アンカーリンク不動等）で除去。
+//    ブラウザ標準スクロール + CSS scroll-behavior: smooth で代替。
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ───────────────────────────────────────────────
-// 1. Lenis Smooth Scroll
-// ───────────────────────────────────────────────
-const lenis = new Lenis({
-  duration: 1.4,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  smoothWheel: true,
-  smoothTouch: false,
-  touchMultiplier: 2,
+// アンカーリンクのスムーススクロール（ブラウザ標準で動作）
+document.addEventListener("click", (e) => {
+  const target = e.target as HTMLElement;
+  const link = target.closest('a[href^="#"]') as HTMLAnchorElement | null;
+  if (!link) return;
+  const href = link.getAttribute("href");
+  if (!href || href === "#") return;
+  const dest = document.querySelector(href);
+  if (!dest) return;
+  e.preventDefault();
+  const headerOffset = 72;
+  const top = (dest as HTMLElement).getBoundingClientRect().top + window.scrollY - headerOffset;
+  window.scrollTo({ top, behavior: "smooth" });
 });
-
-function raf(time: number) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-
-lenis.on("scroll", ScrollTrigger.update);
-gsap.ticker.add((time) => lenis.raf(time * 1000));
-gsap.ticker.lagSmoothing(0);
 
 // ───────────────────────────────────────────────
 // 2. Custom Cursor（カスタムカーソル）
