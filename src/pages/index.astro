@@ -131,22 +131,22 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
         <div class="lg:col-span-8">
           <div class="text-[11px] tracking-[0.5em] text-[var(--color-champagne)] mb-5 reveal">LUXURY BUYBACK · ESTABLISHED IN AICHI</div>
 
-          <h1 class="mb-6 reveal" aria-label="名古屋でブランド品の買取なら徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを高価買取">
-            <!-- 英語ディスプレイキャッチ（ハイブランド感） -->
+          <h1 class="mb-6" aria-label="名古屋でブランド品の買取なら徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを高価買取">
+            <!-- 英語ディスプレイキャッチ（文字単位で reveal） -->
             <span class="display-hero block">
-              <span class="block text-white/95">Sell your luxury,</span>
-              <span class="block text-gradient-champagne">at its true value.</span>
+              <span class="block text-white/95" data-text-reveal>Sell your luxury,</span>
+              <span class="block text-gradient-champagne" data-text-reveal>at its true value.</span>
             </span>
-            <!-- 日本語メインキャッチ（SEO・UX：ファーストビューで「ブランド買取」を視認） -->
-            <span class="block mt-6 text-2xl sm:text-3xl lg:text-[2.4rem] font-black tracking-tight text-white leading-tight">
+            <!-- 日本語メインキャッチ -->
+            <span class="block mt-6 text-2xl sm:text-3xl lg:text-[2.4rem] font-black tracking-tight text-white leading-tight reveal">
               名古屋で<span class="text-[var(--color-champagne-light)]">ブランド品の買取</span>なら<br class="sm:hidden" />
               徳丸商会
             </span>
           </h1>
 
           <div class="flex flex-wrap gap-2.5 mb-6 reveal">
-            <span class="px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold bg-[var(--color-champagne)]/15 border border-[var(--color-champagne)]/35 text-[var(--color-champagne-light)]">名古屋市中村区 本社</span>
-            <span class="px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold bg-white/5 border border-white/15">愛知県公安委員会許可</span>
+            <span class="px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold bg-[var(--color-champagne)]/15 border border-[var(--color-champagne)]/35 text-[var(--color-champagne-light)]">5ブランド最低買取保証</span>
+            <span class="px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold bg-white/5 border border-white/15">出張・LINE・宅配 完全無料</span>
             <span class="px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold bg-[var(--color-bordeaux)]/30 border border-[var(--color-bordeaux-light)]/40 text-[var(--color-champagne-light)]">夜21時まで／年中無休</span>
           </div>
 
@@ -160,11 +160,11 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
         <div class="lg:col-span-4 reveal">
           <div class="rounded-2xl border border-[var(--color-champagne)]/35 bg-white/5 backdrop-blur-md p-6 shadow-2xl">
             <div class="text-[10px] tracking-[0.4em] text-[var(--color-champagne)] uppercase mb-4">Get a quote now</div>
-            <a href={lineUrl} target="_blank" rel="noopener" class="cta-glow-line block w-full text-center py-4 rounded-xl bg-[var(--color-line)] text-white font-bold text-base mb-3 hover:bg-[#05a648] transition">
+            <a href={lineUrl} target="_blank" rel="noopener" data-magnetic="0.25" class="cta-glow-line block w-full text-center py-4 rounded-xl bg-[var(--color-line)] text-white font-bold text-base mb-3 hover:bg-[#05a648] transition">
               <div class="text-[11px] tracking-wider opacity-90">最短15分で参考買取額</div>
               <div class="text-lg">LINEで無料査定</div>
             </a>
-            <a href={phoneTel} class="cta-glow-tel block w-full text-center py-4 rounded-xl bg-[var(--color-champagne)] text-[var(--color-navy)] font-bold mb-3 hover:bg-[var(--color-champagne-light)] transition">
+            <a href={phoneTel} data-magnetic="0.25" class="cta-glow-tel block w-full text-center py-4 rounded-xl bg-[var(--color-champagne)] text-[var(--color-navy)] font-bold mb-3 hover:bg-[var(--color-champagne-light)] transition">
               <div class="text-[11px] tracking-wider opacity-80">今すぐお電話</div>
               <div class="text-lg numeric">{company.phone}</div>
             </a>
@@ -179,15 +179,15 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
         </div>
       </div>
 
-      <!-- 下段：比較バー -->
+      <!-- 下段：比較バー（カウントアップアニメ付き） -->
       <div class="mt-14 grid grid-cols-3 gap-3 sm:gap-5 max-w-4xl reveal">
         <div class="rounded-xl px-4 py-3 sm:py-4 border border-white/10 bg-white/5 backdrop-blur">
           <div class="text-[10px] tracking-wider text-white/45 uppercase">業界平均営業時間</div>
-          <div class="text-2xl sm:text-3xl font-display numeric text-white/40">9<span class="text-xs ml-1">時間</span></div>
+          <div class="text-2xl sm:text-3xl font-display numeric text-white/40"><span data-counter="9">0</span><span class="text-xs ml-1">時間</span></div>
         </div>
         <div class="rounded-xl px-4 py-3 sm:py-4 border-2 border-[var(--color-champagne)] bg-[var(--color-champagne)]/15 backdrop-blur relative overflow-hidden">
           <div class="text-[10px] tracking-wider text-[var(--color-champagne)] uppercase font-bold">徳丸商会</div>
-          <div class="text-2xl sm:text-3xl font-display numeric text-[var(--color-champagne-glow)]">12<span class="text-xs ml-1">時間</span></div>
+          <div class="text-2xl sm:text-3xl font-display numeric text-[var(--color-champagne-glow)]"><span data-counter="12">0</span><span class="text-xs ml-1">時間</span></div>
           <div class="text-[10px] text-white/55 mt-0.5">9-21時 年中無休</div>
         </div>
         <div class="rounded-xl px-4 py-3 sm:py-4 border border-white/10 bg-white/5 backdrop-blur">
@@ -234,7 +234,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
         {flagshipBrands.map((b, i) => (
-          <article class="reveal card-luxury bg-white rounded-2xl border border-[var(--color-border)] overflow-hidden">
+          <article class="reveal card-luxury bg-white rounded-2xl border border-[var(--color-border)] overflow-hidden" data-tilt>
             <div class="px-7 py-6 bg-[var(--color-navy)] text-white relative overflow-hidden">
               <div class="font-display text-2xl tracking-[0.18em] relative">{b.name}</div>
               <div class="text-xs text-[var(--color-champagne-light)] tracking-wider relative">{b.jpName}</div>
@@ -439,7 +439,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
           { num: "02", title: "買取方法を選択", text: "出張買取（最短当日訪問）・LINE査定（その場で参考額）・宅配買取（送料無料・最大5,000万円運送保険付き）からお選びいただけます。エリア・お品物の数によって、おすすめの方法をご提案します。" },
           { num: "03", title: "査定・お支払い", text: "ブランド・モデル・状態・付属品を確認のうえ買取金額をご提示。出張買取は現金即支払い、宅配買取は最短当日に銀行振込でお支払いします。査定額にご納得いただけない場合のキャンセル・返送はいつでも無料です。" },
         ].map((step) => (
-          <li class="reveal card-luxury bg-white rounded-2xl p-7 border border-[var(--color-border)] relative">
+          <li class="reveal card-luxury bg-white rounded-2xl p-7 border border-[var(--color-border)] relative" data-tilt>
             <div class="flex items-baseline gap-3 mb-3">
               <span class="font-display text-5xl text-[var(--color-champagne)] italic numeric leading-none">{step.num}</span>
               <span class="hairline flex-1 mb-2"></span>

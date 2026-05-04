@@ -275,24 +275,9 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
       Alpine.start();
     </script>
 
-    <!-- IntersectionObserver で reveal クラスを制御 -->
-    <script is:inline>
-      (function(){
-        document.documentElement.classList.add('scroll-ready');
-        if (!('IntersectionObserver' in window)) {
-          document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
-          return;
-        }
-        var io = new IntersectionObserver(function(entries){
-          entries.forEach(function(e){
-            if (e.isIntersecting) {
-              e.target.classList.add('is-visible');
-              io.unobserve(e.target);
-            }
-          });
-        }, { threshold: 0.12 });
-        document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-      })();
+    <!-- 数千万LP級マイクロインタラクション: GSAP + Lenis + カスタムカーソル等 -->
+    <script>
+      import "../scripts/luxury-effects.ts";
     </script>
   </body>
 </html>
