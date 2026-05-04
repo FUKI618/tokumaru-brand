@@ -132,16 +132,14 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
           <div class="text-[11px] tracking-[0.5em] text-[var(--color-champagne)] mb-5 reveal">LUXURY BUYBACK · ESTABLISHED IN AICHI</div>
 
           <h1 class="mb-6" aria-label="名古屋でブランド品の買取なら徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを高価買取">
-            <!-- 英語ディスプレイキャッチ（文字単位で reveal） -->
-            <span class="display-hero block">
-              <span class="block text-white/95" data-text-reveal>Sell your luxury,</span>
-              <span class="block text-gradient-champagne" data-text-reveal>at its true value.</span>
+            <!-- 日本語メインキャッチ（display-hero級・3秒で何の店か即理解） -->
+            <span class="font-display font-medium block tracking-tight leading-[1.1] text-white" style="font-size: clamp(2.2rem, 6.4vw, 5.4rem);">
+              <span class="block">名古屋で</span>
+              <span class="block text-gradient-champagne" data-text-reveal>ブランド品の買取</span>
+              <span class="block">なら徳丸商会</span>
             </span>
-            <!-- 日本語メインキャッチ -->
-            <span class="block mt-6 text-2xl sm:text-3xl lg:text-[2.4rem] font-black tracking-tight text-white leading-tight reveal">
-              名古屋で<span class="text-[var(--color-champagne-light)]">ブランド品の買取</span>なら<br class="sm:hidden" />
-              徳丸商会
-            </span>
+            <!-- 英語サブキャッチ（副題として上品に） -->
+            <span class="block mt-5 text-[11px] sm:text-xs tracking-[0.4em] uppercase text-[var(--color-champagne)]/85 italic font-display">— Sell your luxury, at its true value.</span>
           </h1>
 
           <div class="flex flex-wrap gap-2.5 mb-6 reveal">
@@ -221,7 +219,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative z-10">
       <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
         <div class="lg:col-span-5">
-          <div class="chapter-num mb-4">Ⅰ. Flagship Brands</div>
+          <div class="chapter-num mb-4">Ⅰ. 主要ブランド</div>
           <h2 class="display-md text-[var(--color-navy)] heading-rule">
             エルメス・シャネル・ヴィトンを<br />高価買取
           </h2>
@@ -278,7 +276,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
 
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4">Ⅱ. Price Commitment</div>
+        <div class="chapter-num mb-4">Ⅱ. 価格保証</div>
         <h2 class="display-md heading-rule center inline-block">主要ブランド最低買取保証額</h2>
         <p class="mt-7 text-[15px] text-white/70 max-w-3xl mx-auto leading-loose">
           全国の競合10社中、最低買取保証を明示しているのは<strong class="text-[var(--color-champagne-light)]">わずか1社（10%）</strong>。<br class="hidden sm:block" />
@@ -310,7 +308,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
         <div class="lg:col-span-5">
-          <div class="chapter-num mb-4">Ⅲ. Categories &amp; Brands</div>
+          <div class="chapter-num mb-4">Ⅲ. 取扱カテゴリ</div>
           <h2 class="display-md text-[var(--color-navy)] heading-rule">取扱ブランドと買取カテゴリ</h2>
         </div>
         <div class="lg:col-span-7 lg:pt-10">
@@ -353,7 +351,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="methods" class="py-24 sm:py-32 bg-white relative overflow-hidden">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4">Ⅳ. Three Ways to Sell</div>
+        <div class="chapter-num mb-4">Ⅳ. 3つの買取方法</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">出張・LINE査定・宅配買取</h2>
         <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
           出張料・送料・キャンセル料・査定料すべて無料。<br class="hidden sm:block" />
@@ -426,7 +424,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
 
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative z-10">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4 text-[var(--color-champagne)]">Ⅴ. Flow</div>
+        <div class="chapter-num mb-4 text-[var(--color-champagne)]">Ⅴ. 買取の流れ</div>
         <h2 class="display-md heading-rule center inline-block">買取の流れ</h2>
         <p class="mt-7 text-[15px] text-white/75 max-w-3xl mx-auto leading-loose">
           お電話・LINEのお問い合わせから現金または振込でのお支払いまで、最短当日で完了します。
@@ -457,7 +455,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
         <div class="lg:col-span-5">
-          <div class="chapter-num mb-4">Ⅵ. Recent Buybacks</div>
+          <div class="chapter-num mb-4">Ⅵ. 買取実績</div>
           <h2 class="display-md text-[var(--color-navy)] heading-rule">買取実績</h2>
         </div>
         <div class="lg:col-span-7 lg:pt-10">
@@ -495,7 +493,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="condition" class="py-24 sm:py-32 bg-[var(--color-bg)] relative overflow-hidden pattern-dots">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4">Ⅶ. Any Condition OK</div>
+        <div class="chapter-num mb-4">Ⅶ. 状態不問</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">状態不問でも買取OK</h2>
         <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
           保証書なし・箱なし・使用感あり・破損あり…他店で断られたお品も、まずは一度ご相談ください。
@@ -531,7 +529,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="areas" class="py-24 sm:py-32 bg-white relative overflow-hidden">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4">Ⅷ. Service Areas</div>
+        <div class="chapter-num mb-4">Ⅷ. 対応エリア</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">名古屋・愛知の対応エリア</h2>
         <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
           名古屋市中村区横井に本社を置く地元の古物商として、名古屋市16区および尾張・知多・西三河エリアまで出張買取に対応します。
@@ -575,7 +573,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="trust" class="py-24 sm:py-32 bg-luxury-radial text-white relative overflow-hidden grain">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4">Ⅸ. Why Choose Us</div>
+        <div class="chapter-num mb-4">Ⅸ. 選ばれる理由</div>
         <h2 class="display-md heading-rule center inline-block">徳丸商会が選ばれる3つの理由</h2>
         <p class="mt-7 text-[15px] text-white/70 max-w-3xl mx-auto leading-loose">
           査定の<strong class="text-[var(--color-champagne-light)]">透明性</strong>、業界平均を上回る<strong class="text-[var(--color-champagne-light)]">対応時間</strong>、買取後の<strong class="text-[var(--color-champagne-light)]">柔軟な対応</strong>。
@@ -624,7 +622,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="staff" class="py-24 sm:py-32 bg-white relative overflow-hidden">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-14 reveal">
-        <div class="chapter-num mb-4">Ⅹ. Our Appraisers</div>
+        <div class="chapter-num mb-4">Ⅹ. 査定員紹介</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">査定員のご紹介</h2>
         <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
           ご来店・ご訪問時に実際に査定を担当する2名の専門スタッフをご紹介します。<br class="hidden sm:block" />
@@ -669,7 +667,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="testimonials" class="py-24 sm:py-32 bg-[var(--color-bg)] relative overflow-hidden">
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8">
       <div class="text-center mb-16 reveal">
-        <div class="chapter-num mb-4">Ⅺ. Customer Voices</div>
+        <div class="chapter-num mb-4">Ⅺ. お客様の声</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">お客様の声</h2>
         <p class="mt-7 text-[15px] text-[var(--color-text-light)] max-w-3xl mx-auto leading-loose">
           名古屋エリアの実顧客からいただいた、徳丸商会のブランド買取についてのお声です。
@@ -698,7 +696,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
   <section id="faq" class="py-24 sm:py-32 bg-white relative overflow-hidden">
     <div class="max-w-4xl mx-auto px-5 sm:px-8">
       <div class="text-center mb-14 reveal">
-        <div class="chapter-num mb-4">Ⅻ. FAQ</div>
+        <div class="chapter-num mb-4">Ⅻ. よくある質問</div>
         <h2 class="display-md text-[var(--color-navy)] heading-rule center inline-block">よくあるご質問</h2>
       </div>
 
@@ -726,7 +724,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
 
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative">
       <div class="text-center mb-14 reveal">
-        <div class="chapter-num mb-4">ⅩⅢ. Contact</div>
+        <div class="chapter-num mb-4">ⅩⅢ. お問い合わせ</div>
         <h2 class="display-md heading-rule center inline-block">お見積もり・お問い合わせ</h2>
         <p class="mt-7 text-base text-[var(--color-champagne-light)] font-display tracking-wider">9:00〜21:00 ／ Open Year-round</p>
       </div>
@@ -795,16 +793,22 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
             <input type="hidden" name="_template" value="table" />
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;" aria-hidden="true" />
 
-            <div class="grid sm:grid-cols-2 gap-5 mb-5">
+            <div class="mb-5">
+              <label for="f-name" class="form-label form-label-required">お名前</label>
+              <input id="f-name" type="text" name="お名前" required minlength="2" placeholder="徳丸 太郎" autocomplete="name" class="form-input" />
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5 mb-2">
               <div>
-                <label for="f-name" class="form-label form-label-required">お名前</label>
-                <input id="f-name" type="text" name="お名前" required minlength="2" placeholder="徳丸 太郎" autocomplete="name" class="form-input" />
+                <label for="f-phone" class="form-label">電話番号</label>
+                <input id="f-phone" type="tel" name="電話番号" inputmode="tel" pattern="[0-9\-]+" placeholder="090-XXXX-XXXX" autocomplete="tel" class="form-input" />
               </div>
               <div>
-                <label for="f-tel" class="form-label form-label-required">電話番号またはメール</label>
-                <input id="f-tel" type="text" name="連絡先" required placeholder="090-XXXX-XXXX または your@email.com" autocomplete="tel" class="form-input" />
+                <label for="f-email" class="form-label">メールアドレス</label>
+                <input id="f-email" type="email" name="メールアドレス" placeholder="your@email.com" autocomplete="email" class="form-input" />
               </div>
             </div>
+            <p class="text-[11px] text-[var(--color-text-light)] mb-5">※ 電話番号またはメールアドレスのいずれかをご記入ください</p>
 
             <div class="mb-5">
               <label class="form-label form-label-required">ご希望の連絡方法</label>
@@ -973,11 +977,23 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
       var form = document.getElementById('contact-form');
       var thanks = document.getElementById('contact-thanks');
       if (!form || !thanks) return;
-      // mailtoの場合：送信後にmailtoリンクを開いた後、サンクスメッセージを表示
+
+      // 電話・メールのどちらか必須を検証
+      function validateContact() {
+        var phone = (form.querySelector('input[name="電話番号"]') || {}).value || '';
+        var email = (form.querySelector('input[name="メールアドレス"]') || {}).value || '';
+        if (!phone.trim() && !email.trim()) {
+          alert('電話番号またはメールアドレスのいずれかをご記入ください。');
+          return false;
+        }
+        return true;
+      }
+
       var action = form.getAttribute('action') || '';
       if (action.indexOf('mailto:') === 0) {
+        // mailto モード
         form.addEventListener('submit', function(e){
-          // ブラウザがメーラーを開くまで少し待ち、画面をサンクス表示に
+          if (!validateContact()) { e.preventDefault(); return; }
           setTimeout(function(){
             form.hidden = true;
             thanks.hidden = false;
@@ -985,9 +1001,10 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
           }, 600);
         });
       } else {
-        // Formspree（fetch）の場合：非同期送信でPage遷移なし
+        // Formspree モード（非同期送信）
         form.addEventListener('submit', async function(e){
           e.preventDefault();
+          if (!validateContact()) return;
           var fd = new FormData(form);
           try {
             var res = await fetch(action, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
