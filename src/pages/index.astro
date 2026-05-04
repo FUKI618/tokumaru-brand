@@ -228,7 +228,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
         {flagshipBrands.map((b, i) => (
           <article class="reveal card-luxury bg-white rounded-2xl border border-[var(--color-border)] overflow-hidden">
             <div class="px-7 py-6 bg-[var(--color-navy)] text-white relative overflow-hidden">
-              <div class="numeral-large absolute -top-2 -right-2 opacity-25">{`0${i + 1}`}</div>
+              <div class="numeral-large absolute top-0 right-4 opacity-25 leading-none">{`0${i + 1}`}</div>
               <div class="font-display text-2xl tracking-[0.18em] relative">{b.name}</div>
               <div class="text-xs text-[var(--color-champagne-light)] tracking-wider relative">{b.jpName}</div>
             </div>
@@ -273,7 +273,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 stagger-children">
         {buybackGuarantees.map((g, idx) => (
           <div class="reveal guarantee-card text-[var(--color-text)] rounded-xl p-6 text-center">
-            <div class="numeral-large absolute top-0 right-3 opacity-10">{`0${idx + 1}`}</div>
+            <div class="numeral-large absolute top-1 right-4 opacity-10 leading-none">{`0${idx + 1}`}</div>
             <div class="font-display text-xl tracking-[0.15em] text-[var(--color-navy)] relative">{g.brand}</div>
             <div class="text-[11px] tracking-widest text-[var(--color-text-lighter)] mb-4 relative">{g.jpName}</div>
             <div class="text-[11px] text-[var(--color-text)] mb-3 leading-tight min-h-[2.5rem] relative">{g.product}</div>
@@ -348,7 +348,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 stagger-children">
         <article class="reveal card-luxury bg-[var(--color-bg)] rounded-3xl p-7 border border-[var(--color-border)] relative overflow-hidden">
-          <div class="numeral-large absolute -top-1 -right-2 opacity-20">01</div>
+          <div class="numeral-large absolute top-2 right-5 opacity-20 leading-none">01</div>
           <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne-dark)] relative">Visit Buyback</div>
           <h3 class="font-display text-3xl text-[var(--color-navy)] mb-1 relative">出張買取</h3>
           <p class="text-xs tracking-wider text-[var(--color-bordeaux)] mb-5 relative">最短当日訪問・出張料0円</p>
@@ -367,7 +367,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
 
         <article class="reveal card-luxury bg-gradient-to-br from-[var(--color-cream)] to-white rounded-3xl p-7 border-2 border-[var(--color-champagne)] relative overflow-hidden">
           <span class="absolute top-4 right-4 text-[10px] font-bold px-2.5 py-1 rounded-full bg-[var(--color-bordeaux)] text-white tracking-wider">人気No.1</span>
-          <div class="numeral-large absolute -top-1 -right-2 opacity-20">02</div>
+          <div class="numeral-large absolute top-2 right-5 opacity-20 leading-none">02</div>
           <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne-dark)] relative">LINE Quote</div>
           <h3 class="font-display text-3xl text-[var(--color-navy)] mb-1 relative">LINE査定</h3>
           <p class="text-xs tracking-wider text-[var(--color-bordeaux)] mb-5 relative">最短15分で参考買取額</p>
@@ -384,7 +384,7 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
         </article>
 
         <article class="reveal card-luxury bg-[var(--color-bg)] rounded-3xl p-7 border border-[var(--color-border)] relative overflow-hidden">
-          <div class="numeral-large absolute -top-1 -right-2 opacity-20">03</div>
+          <div class="numeral-large absolute top-2 right-5 opacity-20 leading-none">03</div>
           <div class="text-[10px] tracking-[0.3em] uppercase text-[var(--color-champagne-dark)] relative">Mail Buyback</div>
           <h3 class="font-display text-3xl text-[var(--color-navy)] mb-1 relative">宅配買取</h3>
           <p class="text-xs tracking-wider text-[var(--color-bordeaux)] mb-5 relative">送料・キット代・返送料すべて無料</p>
