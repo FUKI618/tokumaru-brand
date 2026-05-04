@@ -81,9 +81,9 @@ const midToMan = (label: string): string => {
   </header>
 
   <!-- ============== 1. Hero ============== -->
-  <section id="hero" class="relative min-h-[80svh] md:min-h-[90vh] flex items-end overflow-hidden bg-[var(--color-bg-2)]">
+  <section id="hero" class="relative overflow-hidden bg-[var(--color-bg-2)] lg:min-h-[90vh]">
 
-    <!-- 背景：暖色オフホワイト + 薄いペーパーテクスチャ（画像削除） -->
+    <!-- 背景：暖色オフホワイト + 薄いペーパーテクスチャ -->
     <div class="absolute inset-0" aria-hidden="true" style="background: linear-gradient(180deg, var(--color-bg-2) 0%, var(--color-bg) 100%);"></div>
     <div class="absolute inset-0 grain-soft" aria-hidden="true"></div>
 
@@ -93,13 +93,24 @@ const midToMan = (label: string): string => {
       <img src={assetPath("images/hero/luxury-bg.jpg")} alt="窓際の白いリネンに置かれた淡い色のシルクスカーフ" class="w-full h-full object-cover" loading="eager" fetchpriority="high" width="1920" height="1080" />
     </picture>
 
-    <!-- モバイル: 下端 28vh の横長画像帯（Aesop 世界観をモバイルにも） -->
-    <picture class="absolute inset-x-0 bottom-0 h-[28vh] lg:hidden opacity-50" aria-hidden="true" style="mask-image: linear-gradient(180deg, transparent 0%, black 70%, black 100%); -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 70%, black 100%);">
-      <source srcset={assetPath("images/hero/luxury-bg.webp")} type="image/webp" />
-      <img src={assetPath("images/hero/luxury-bg.jpg")} alt="" class="w-full h-full object-cover" loading="eager" width="1920" height="1080" />
-    </picture>
+    <!-- モバイル: 上部に大きな画像ヘッダー（Aesop 風 editorial）。h-[58svh] で視認性確保 -->
+    <div class="relative lg:hidden h-[58svh] overflow-hidden">
+      <picture class="absolute inset-0" aria-hidden="true">
+        <source srcset={assetPath("images/hero/luxury-bg.webp")} type="image/webp" />
+        <img src={assetPath("images/hero/luxury-bg.jpg")} alt="窓際の白いリネンに置かれた淡い色のシルクスカーフ" class="w-full h-full object-cover" loading="eager" fetchpriority="high" width="1920" height="1080" />
+      </picture>
+      <!-- 下端へのグラデフェード（コンテンツへ繋ぐ） -->
+      <div class="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none" style="background: linear-gradient(180deg, transparent 0%, var(--color-bg-2) 100%);"></div>
+      <!-- モバイル：画像下部に Numero 装飾を浮かせる -->
+      <div class="absolute left-6 bottom-6 z-10">
+        <div class="flex items-center gap-3">
+          <span class="block w-10 h-px bg-[var(--color-accent-soft)]"></span>
+          <div class="eyebrow text-[var(--color-text)]">Nagoya, since 1992</div>
+        </div>
+      </div>
+    </div>
 
-    <!-- 装飾SVG: 右上の細い円弧（Khaite風） -->
+    <!-- 装飾SVG: 右上の細い円弧（Khaite風 / PCのみ） -->
     <svg class="deco-svg w-[240px] h-[240px] hidden md:block" style="top: 14%; right: 8%; opacity: 0.35;" viewBox="0 0 280 280" fill="none" aria-hidden="true">
       <circle cx="140" cy="140" r="138" stroke="currentColor" stroke-width="0.6" stroke-dasharray="2 4" />
       <circle cx="140" cy="140" r="100" stroke="currentColor" stroke-width="0.5" />
@@ -107,7 +118,7 @@ const midToMan = (label: string): string => {
       <line x1="40" y1="140" x2="240" y2="140" stroke="currentColor" stroke-width="0.3" />
     </svg>
 
-    <!-- 装飾SVG: 左下のシンプルなバッグアウトライン -->
+    <!-- 装飾SVG: 左下のシンプルなバッグアウトライン（PCのみ） -->
     <svg class="deco-svg deco-svg-warm w-[110px] h-[130px] hidden md:block" style="bottom: 22%; left: 5%; opacity: 0.3;" viewBox="0 0 120 140" fill="none" stroke="currentColor" stroke-width="0.8" aria-hidden="true">
       <path d="M20,60 L100,60 L92,130 L28,130 Z" />
       <path d="M40,60 Q40,30 60,30 Q80,30 80,60" />
@@ -115,61 +126,63 @@ const midToMan = (label: string): string => {
       <line x1="80" y1="80" x2="80" y2="100" />
     </svg>
 
-    <!-- 大きな装飾文字（背景・ぼんやり） -->
-    <div class="bg-letter" style="bottom: 4%; left: -2%; opacity: 0.06;" aria-hidden="true">T</div>
+    <!-- 大きな装飾文字（PCのみ） -->
+    <div class="bg-letter hidden md:block" style="bottom: 4%; left: -2%; opacity: 0.06;" aria-hidden="true">T</div>
 
-    <div class="container-content relative w-full pt-24 pb-16 md:pt-32 md:pb-20 z-10">
-      <div class="grid lg:grid-cols-12 gap-8 items-end">
-        <div class="lg:col-span-8 reveal">
-          <!-- 装飾的なエイヤキャッチ（eyebrow 1個に絞り視覚静寂を保つ） -->
-          <div class="flex items-center gap-3 mb-6">
-            <span class="block w-12 h-px bg-[var(--color-accent-soft)]"></span>
-            <div class="eyebrow">Nagoya, since 1992</div>
+    <!-- コンテンツ: モバイル=画像下にスタック、PC=絶対配置で底に揃える -->
+    <div class="relative lg:absolute lg:inset-0 lg:flex lg:items-end z-10">
+      <div class="container-content w-full pt-8 pb-12 lg:pt-32 lg:pb-20">
+        <div class="grid lg:grid-cols-12 gap-8 items-end">
+          <div class="lg:col-span-8 reveal">
+            <!-- eyebrow（PCのみ・モバイルは画像オーバーレイ側で表示） -->
+            <div class="hidden lg:flex items-center gap-3 mb-6">
+              <span class="block w-12 h-px bg-[var(--color-accent-soft)]"></span>
+              <div class="eyebrow">Nagoya, since 1992</div>
+            </div>
+
+            <h1 class="display-1 mb-6 max-w-3xl" aria-label="名古屋でブランド品の買取なら徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを高価買取">
+              <span class="block">価値が分かる店で、</span>
+              <span class="block italic font-serif" style="color: var(--color-accent-soft);">手放す<span class="text-[var(--color-text)] not-italic">。</span></span>
+            </h1>
+
+            <!-- 装飾線 + コピー -->
+            <div class="line-vertical pl-6 max-w-xl mb-8">
+              <p class="text-base md:text-lg text-[var(--color-text-sub)] leading-loose">
+                名古屋でブランド品の買取なら徳丸商会へ。<br />
+                ご自宅までお伺いする出張買取・LINE査定・宅配買取に対応。<br />
+                <span class="text-[var(--color-text)]">親から受け継いだ品も、長く眠っていた品も、<wbr />一点ずつ丁寧に拝見します。</span>
+              </p>
+            </div>
+
+            <!-- 取扱ブランド ストリップ -->
+            <div class="hidden md:flex items-center gap-4 mt-8 flex-wrap" aria-label="取扱主要ブランド">
+              {flagshipBrands.map((b, i) => (
+                <>
+                  {i > 0 && <span class="text-[var(--color-text)] opacity-30">·</span>}
+                  <span class="font-serif italic text-[var(--color-text)] text-base tracking-wider">{b.name}</span>
+                </>
+              ))}
+            </div>
           </div>
 
-          <h1 class="display-1 mb-6 max-w-3xl" aria-label="名古屋でブランド品の買取なら徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを高価買取">
-            <span class="block">価値が分かる店で、</span>
-            <span class="block italic font-serif" style="color: var(--color-accent-soft);">手放す<span class="text-[var(--color-text)] not-italic">。</span></span>
-          </h1>
-
-          <!-- 装飾線 + コピー -->
-          <div class="line-vertical pl-6 max-w-xl mb-8">
-            <p class="text-base md:text-lg text-[var(--color-text-sub)] leading-loose">
-              名古屋でブランド品の買取なら徳丸商会へ。<br />
-              ご自宅までお伺いする出張買取・LINE査定・宅配買取に対応。<br />
-              <span class="text-[var(--color-text)]">親から受け継いだ品も、長く眠っていた品も、<wbr />一点ずつ丁寧に拝見します。</span>
-            </p>
-          </div>
-
-          <!-- 取扱ブランド ストリップ -->
-          <div class="hidden md:flex items-center gap-4 mt-8 flex-wrap" aria-label="取扱主要ブランド">
-            {flagshipBrands.map((b, i) => (
-              <>
-                {i > 0 && <span class="text-[var(--color-text)] opacity-30">·</span>}
-                <span class="font-serif italic text-[var(--color-text)] text-base tracking-wider">{b.name}</span>
-              </>
-            ))}
-          </div>
-        </div>
-
-        <div class="lg:col-span-4 reveal reveal-delay-1">
-          <div class="bg-[var(--color-bg)] border border-[var(--color-border)] p-6 deco-corners">
-            <div class="numero mb-5">N° 01</div>
-            <div class="flex flex-col gap-3">
-              <a href={lineUrl} target="_blank" rel="noopener" class="btn btn-line btn-lg w-full">
-                LINEで無料査定
-              </a>
-              <a href={phoneTel} class="btn btn-outline w-full">
-                いますぐ電話する
-              </a>
-              <a href={sectionPath("contact")} class="text-center text-[13px] text-[var(--color-text-sub)] hover:text-[var(--color-text)] transition pt-2 underline-offset-4 hover:underline">
-                フォームから相談する
-              </a>
+          <div class="lg:col-span-4 reveal reveal-delay-1">
+            <div class="bg-[var(--color-bg)] border border-[var(--color-border)] p-6 deco-corners">
+              <div class="numero mb-5">N° 01</div>
+              <div class="flex flex-col gap-3">
+                <a href={lineUrl} target="_blank" rel="noopener" class="btn btn-line btn-lg w-full">
+                  LINEで無料査定
+                </a>
+                <a href={phoneTel} class="btn btn-outline w-full">
+                  いますぐ電話する
+                </a>
+                <a href={sectionPath("contact")} class="text-center text-[13px] text-[var(--color-text-sub)] hover:text-[var(--color-text)] transition pt-2 underline-offset-4 hover:underline">
+                  フォームから相談する
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
 
   </section>
@@ -700,10 +713,10 @@ const midToMan = (label: string): string => {
 
           <div class="mt-8 grid grid-cols-2 gap-3">
             {[
-              { label: "出張料", value: "¥0" },
-              { label: "査定料", value: "¥0" },
-              { label: "送料", value: "¥0" },
-              { label: "キャンセル料", value: "¥0" },
+              { label: "出張料", value: "無料" },
+              { label: "査定料", value: "無料" },
+              { label: "送料", value: "無料" },
+              { label: "キャンセル料", value: "無料" },
             ].map((f) => (
               <div class="text-center p-4 bg-[var(--color-bg-2)]">
                 <div class="text-[10px] tracking-widest uppercase text-[var(--color-text-sub)]">{f.label}</div>
