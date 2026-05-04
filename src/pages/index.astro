@@ -331,11 +331,11 @@ const midToMan = (label: string): string => {
                     {r.variant && <div class="text-[11px] text-[var(--color-text-sub)] mt-0.5">{r.variant}</div>}
                   </div>
                   <div class="md:text-right whitespace-nowrap">
-                    <div class="numeric font-serif text-[26px] md:text-[30px] leading-none text-[var(--color-text)]">
-                      {formatMan(r.min)}<span class="text-[var(--color-text-sub)] text-[18px] mx-1.5 font-sans">〜</span>{formatMan(r.max)}
+                    <div class="font-sans tabular-nums font-normal text-[26px] md:text-[30px] leading-none text-[var(--color-text)] tracking-tight">
+                      {formatMan(r.min)}<span class="text-[var(--color-text-sub)] text-[20px] mx-2 font-light">〜</span>{formatMan(r.max)}
                     </div>
-                    <div class="text-[11px] text-[var(--color-text-sub)] mt-2">
-                      中心帯 <span class="numeric" style="color: var(--color-accent-soft);">{midToMan(r.midLabel)}</span>
+                    <div class="font-sans tabular-nums text-[11px] text-[var(--color-text-sub)] mt-2 tracking-tight">
+                      中心帯 <span style="color: var(--color-accent-soft);">{midToMan(r.midLabel)}</span>
                     </div>
                   </div>
                 </div>
