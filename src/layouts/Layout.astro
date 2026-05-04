@@ -29,7 +29,7 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="keywords" content="ブランド買取,名古屋,ブランドバッグ買取,ブランド時計買取,ブランドジュエリー買取,エルメス買取,シャネル買取,ルイヴィトン買取,ロレックス買取,カルティエ買取,出張買取,LINE査定,宅配買取,愛知県古物商,名古屋市中村区" />
-    <meta name="theme-color" content="#1a1f3a" />
+    <meta name="theme-color" content="#fdfbf9" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.com https://www.google-analytics.com https://www.googleadservices.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google-analytics.com https://www.google.co.jp; connect-src 'self' https://www.google-analytics.com https://www.google.com https://googleads.g.doubleclick.net https://analytics.google.com https://fonts.googleapis.com https://fonts.gstatic.com https://region1.google-analytics.com; frame-src https://www.googletagmanager.com https://googleads.g.doubleclick.net" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
@@ -66,8 +66,8 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
     <script is:inline>
       (function(){
         var l=document.createElement('link');l.rel='stylesheet';
-        // Variable Fonts: Bodoni Moda（ハイブランド級セリフ）+ Cormorant Garamond + Noto Sans JP
-        l.href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500&family=Italiana&display=swap';
+        // モダンミニマル: Inter（Aesop/COS の SuisseIntl 無料代替）+ Cormorant Garamond（Lemaire の Garamond 系セリフ無料代替）+ Noto Sans JP
+        l.href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;600&display=swap';
         document.head.appendChild(l);
       })();
     </script>
@@ -348,10 +348,9 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
       Alpine.start();
     </script>
 
-    <!-- 数千万LP級マイクロインタラクション: GSAP + カスタムカーソル等 -->
+    <!-- 軽量 Reveal animation のみ（過剰装飾は撤去済） -->
     <script>
       import "../scripts/luxury-effects.ts";
-      import "../scripts/luxury-particles.ts";
     </script>
   </body>
 </html>
