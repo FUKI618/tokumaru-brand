@@ -25,6 +25,7 @@ interface Job {
   width?: number;
   height?: number;
   quality?: number;
+  aspectRatio?: "16:9" | "3:4" | "4:3" | "1:1" | "9:16";
 }
 
 const NEGATIVE = "text, letters, words, characters, logos, brand names, watermark, signature, visible products with brand logos, jewelry, watches, handbags, faces, people, dark mood, dramatic lighting, navy, black background, gold metallic, sparkle, glitter, vintage retro filter";
@@ -117,6 +118,109 @@ Composition: subject in the lower-right, ~60% empty space at the top and left fo
 
 Negative prompt: ${NEGATIVE}, decorations, holiday, christmas, sparkle, glitter, gold ribbon, red ribbon`,
   },
+
+  /* ============== Portrait variants for mobile (3:4) ============== */
+  {
+    name: "luxury-bg-portrait",
+    outputDir: "public/images/hero",
+    width: 1200,
+    height: 1600,
+    quality: 80,
+    aspectRatio: "3:4",
+    prompt: `${STYLE_BASE.replace("Aspect ratio 16:9 cinematic, horizontal landscape orientation.", "Aspect ratio 3:4 portrait orientation for mobile.")}
+
+A wooden table by a sunlit window in late afternoon. On the table: a corner of unbleached white linen cloth gently draped, with a faint suggestion of a soft cream-colored silk scarf folded loosely (no logos, no patterns).
+A delicate ceramic vase with a single dried branch in the background.
+Soft warm directional light streaming from upper-right window casting long shadows.
+Background: warm ivory wall, softly out of focus.
+Composition: subject placed in the lower-third, ~60% empty space at the top — meant for h1 text overlay below.
+
+Negative prompt: ${NEGATIVE}`,
+  },
+  {
+    name: "story-notebook-portrait",
+    outputDir: "public/images/sections",
+    width: 1200,
+    height: 1600,
+    quality: 80,
+    aspectRatio: "3:4",
+    prompt: `${STYLE_BASE.replace("Aspect ratio 16:9 cinematic, horizontal landscape orientation.", "Aspect ratio 3:4 portrait orientation for mobile.")}
+
+A wooden table edge with late afternoon light from a window above.
+A closed leather-bound notebook (plain natural tan, no embossing, no logo) viewed from a slight downward angle, with a slim brass-finished fountain pen resting diagonally on top.
+A corner of unbleached linen cloth visible.
+Background: warm ivory wall, soft focus.
+Composition: subject centered with breathing space above and below.
+
+Negative prompt: ${NEGATIVE}`,
+  },
+  {
+    name: "methods-parcel-portrait",
+    outputDir: "public/images/sections",
+    width: 1200,
+    height: 1600,
+    quality: 80,
+    aspectRatio: "3:4",
+    prompt: `${STYLE_BASE.replace("Aspect ratio 16:9 cinematic, horizontal landscape orientation.", "Aspect ratio 3:4 portrait orientation for mobile.")}
+
+A clean white kraft paper parcel sitting on a wooden table, gently opened with unbleached linen cloth peeking out.
+Beside it: a roll of natural twine and a small empty tag (no writing).
+Soft warm afternoon window light casting subtle shadows.
+Composition: subject centered, generous breathing space top and bottom for portrait framing.
+
+Negative prompt: ${NEGATIVE}, postage stamps, address labels`,
+  },
+  {
+    name: "staff-tools-portrait",
+    outputDir: "public/images/sections",
+    width: 1200,
+    height: 1600,
+    quality: 80,
+    aspectRatio: "3:4",
+    prompt: `${STYLE_BASE.replace("Aspect ratio 16:9 cinematic, horizontal landscape orientation.", "Aspect ratio 3:4 portrait orientation for mobile.")}
+
+A small antique brass weighing scale with a delicate chain, standing upright on a wooden table.
+Behind it: an antique brass magnifying loupe and folded white cotton inspection gloves, with a small empty cream-colored velvet tray nearby.
+Soft warm directional light from a side window, gentle shadows.
+Background: warm ivory wall.
+Composition: subjects vertically arranged, ~30% breathing space top and bottom.
+
+Negative prompt: ${NEGATIVE}, jewelry on tray, watches, rings, necklaces`,
+  },
+  {
+    name: "voices-letter-portrait",
+    outputDir: "public/images/sections",
+    width: 1200,
+    height: 1600,
+    quality: 80,
+    aspectRatio: "3:4",
+    prompt: `${STYLE_BASE.replace("Aspect ratio 16:9 cinematic, horizontal landscape orientation.", "Aspect ratio 3:4 portrait orientation for mobile.")}
+
+A folded cream-colored letter paper sitting on a wooden table, with a small empty inkwell (clear or amber glass, no liquid) beside it.
+A pressed dried flower sprig laid casually next to the paper.
+Soft afternoon natural light casting long gentle shadows.
+Background: warm ivory wall, blurred.
+Composition: subject in the center, generous space above and below.
+
+Negative prompt: ${NEGATIVE}, written text on paper, calligraphy, ink visible`,
+  },
+  {
+    name: "campaigns-ribbon-portrait",
+    outputDir: "public/images/sections",
+    width: 1200,
+    height: 1600,
+    quality: 80,
+    aspectRatio: "3:4",
+    prompt: `${STYLE_BASE.replace("Aspect ratio 16:9 cinematic, horizontal landscape orientation.", "Aspect ratio 3:4 portrait orientation for mobile.")}
+
+A small cream-colored gift box wrapped with natural unbleached linen ribbon (no logos, no labels).
+Beside it: a folded ivory paper card (blank) and a single pressed dried sprig.
+Soft warm late-afternoon window light casting long shadows on a wooden table.
+Background: warm ivory wall, softly out of focus.
+Composition: subject centered or slightly off-center, ample top/bottom breathing space.
+
+Negative prompt: ${NEGATIVE}, decorations, holiday, christmas, sparkle, glitter, gold ribbon, red ribbon`,
+  },
 ];
 
 async function generateOne(job: Job): Promise<void> {
@@ -127,7 +231,7 @@ async function generateOne(job: Job): Promise<void> {
     generationConfig: {
       temperature: 0.85,
       responseModalities: ["IMAGE"],
-      imageConfig: { aspectRatio: "16:9" },
+      imageConfig: { aspectRatio: job.aspectRatio ?? "16:9" },
     },
   };
 

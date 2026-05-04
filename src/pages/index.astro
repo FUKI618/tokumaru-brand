@@ -93,11 +93,11 @@ const midToMan = (label: string): string => {
       <img src={assetPath("images/hero/luxury-bg.jpg")} alt="窓際の白いリネンに置かれた淡い色のシルクスカーフ" class="w-full h-full object-cover" loading="eager" fetchpriority="high" width="1920" height="1080" />
     </picture>
 
-    <!-- モバイル: 上部に大きな画像ヘッダー（Aesop 風 editorial）。h-[58svh] で視認性確保 -->
+    <!-- モバイル: 上部に大きな画像ヘッダー（Aesop 風 editorial）。h-[58svh] で視認性確保 / portrait 3:4 で縦構図 -->
     <div class="relative lg:hidden h-[58svh] overflow-hidden">
       <picture class="absolute inset-0" aria-hidden="true">
-        <source srcset={assetPath("images/hero/luxury-bg.webp")} type="image/webp" />
-        <img src={assetPath("images/hero/luxury-bg.jpg")} alt="窓際の白いリネンに置かれた淡い色のシルクスカーフ" class="w-full h-full object-cover" loading="eager" fetchpriority="high" width="1920" height="1080" />
+        <source srcset={assetPath("images/hero/luxury-bg-portrait.webp")} type="image/webp" />
+        <img src={assetPath("images/hero/luxury-bg-portrait.jpg")} alt="窓際の白いリネンに置かれた小さな陶器の花瓶と一輪の枯れ枝" class="w-full h-full object-cover" loading="eager" fetchpriority="high" width="1200" height="1600" />
       </picture>
       <!-- 下端へのグラデフェード（コンテンツへ繋ぐ） -->
       <div class="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none" style="background: linear-gradient(180deg, transparent 0%, var(--color-bg-2) 100%);"></div>
@@ -262,10 +262,12 @@ const midToMan = (label: string): string => {
         </div>
       </div>
 
-      <!-- セクション編集画像（査定の手仕事を想起） -->
-      <picture class="block aspect-[21/9] w-full overflow-hidden mt-16 lg:mt-20 reveal">
-        <source srcset={assetPath("images/sections/story-notebook.webp")} type="image/webp" />
-        <img src={assetPath("images/sections/story-notebook.jpg")} alt="窓際の木のテーブルに置かれた革のノートと真鍮の万年筆" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
+      <!-- セクション編集画像（査定の手仕事を想起 / mobile portrait + PC landscape） -->
+      <picture class="block aspect-[3/4] lg:aspect-[21/9] w-full overflow-hidden mt-12 lg:mt-20 reveal">
+        <source media="(min-width: 1024px)" srcset={assetPath("images/sections/story-notebook.webp")} type="image/webp" />
+        <source media="(min-width: 1024px)" srcset={assetPath("images/sections/story-notebook.jpg")} type="image/jpeg" />
+        <source srcset={assetPath("images/sections/story-notebook-portrait.webp")} type="image/webp" />
+        <img src={assetPath("images/sections/story-notebook-portrait.jpg")} alt="木のテーブルに置かれた革のノートブックと真鍮の万年筆、窓からの斜光" class="w-full h-full object-cover" loading="lazy" width="1200" height="1600" />
       </picture>
     </div>
   </section>
@@ -410,10 +412,12 @@ const midToMan = (label: string): string => {
         </h2>
       </div>
 
-      <!-- セクション編集画像（宅配買取の丁寧な梱包を想起） -->
-      <picture class="block aspect-[21/9] w-full overflow-hidden mb-14 reveal">
-        <source srcset={assetPath("images/sections/methods-parcel.webp")} type="image/webp" />
-        <img src={assetPath("images/sections/methods-parcel.jpg")} alt="木のテーブルの上に置かれた白い小包とリネン布、麻紐" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
+      <!-- セクション編集画像（宅配買取の丁寧な梱包を想起 / mobile portrait + PC landscape） -->
+      <picture class="block aspect-[3/4] lg:aspect-[21/9] w-full overflow-hidden mb-12 lg:mb-14 reveal">
+        <source media="(min-width: 1024px)" srcset={assetPath("images/sections/methods-parcel.webp")} type="image/webp" />
+        <source media="(min-width: 1024px)" srcset={assetPath("images/sections/methods-parcel.jpg")} type="image/jpeg" />
+        <source srcset={assetPath("images/sections/methods-parcel-portrait.webp")} type="image/webp" />
+        <img src={assetPath("images/sections/methods-parcel-portrait.jpg")} alt="木のテーブルに置かれた白い小包と麻紐、リネン布" class="w-full h-full object-cover" loading="lazy" width="1200" height="1600" />
       </picture>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -488,10 +492,12 @@ const midToMan = (label: string): string => {
         </h2>
       </div>
 
-      <!-- セクション編集画像（贈答風のリネンリボン箱・ブランクカード） -->
-      <picture class="block aspect-[21/9] w-full overflow-hidden mb-14 reveal">
-        <source srcset={assetPath("images/sections/campaigns-ribbon.webp")} type="image/webp" />
-        <img src={assetPath("images/sections/campaigns-ribbon.jpg")} alt="木のテーブルに置かれたリネンリボンの小箱と便箋・押し花" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
+      <!-- セクション編集画像（贈答風のリネンリボン箱・ブランクカード / mobile portrait + PC landscape） -->
+      <picture class="block aspect-[3/4] lg:aspect-[21/9] w-full overflow-hidden mb-12 lg:mb-14 reveal">
+        <source media="(min-width: 1024px)" srcset={assetPath("images/sections/campaigns-ribbon.webp")} type="image/webp" />
+        <source media="(min-width: 1024px)" srcset={assetPath("images/sections/campaigns-ribbon.jpg")} type="image/jpeg" />
+        <source srcset={assetPath("images/sections/campaigns-ribbon-portrait.webp")} type="image/webp" />
+        <img src={assetPath("images/sections/campaigns-ribbon-portrait.jpg")} alt="木のテーブルに置かれたリネンリボンの小箱と便箋・押し花" class="w-full h-full object-cover" loading="lazy" width="1200" height="1600" />
       </picture>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -553,10 +559,12 @@ const midToMan = (label: string): string => {
         </p>
       </div>
 
-      <!-- セクション編集画像（査定道具：天秤・ルーペ・白手袋） -->
-      <picture class="block aspect-[21/9] w-full overflow-hidden mb-14 max-w-5xl mx-auto reveal">
-        <source srcset={assetPath("images/sections/staff-tools.webp")} type="image/webp" />
-        <img src={assetPath("images/sections/staff-tools.jpg")} alt="木のテーブルに並ぶ真鍮の天秤・ルーペ・白手袋・空の査定トレイ" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
+      <!-- セクション編集画像（査定道具：天秤・ルーペ・白手袋 / mobile portrait + PC landscape） -->
+      <picture class="block aspect-[3/4] lg:aspect-[21/9] w-full overflow-hidden mb-12 lg:mb-14 max-w-5xl mx-auto reveal">
+        <source media="(min-width: 1024px)" srcset={assetPath("images/sections/staff-tools.webp")} type="image/webp" />
+        <source media="(min-width: 1024px)" srcset={assetPath("images/sections/staff-tools.jpg")} type="image/jpeg" />
+        <source srcset={assetPath("images/sections/staff-tools-portrait.webp")} type="image/webp" />
+        <img src={assetPath("images/sections/staff-tools-portrait.jpg")} alt="木のテーブルに並ぶ真鍮の天秤・ルーペ・白手袋" class="w-full h-full object-cover" loading="lazy" width="1200" height="1600" />
       </picture>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -595,10 +603,12 @@ const midToMan = (label: string): string => {
         </h2>
       </div>
 
-      <!-- セクション編集画像（手紙＝お客様の声を想起） -->
-      <picture class="block aspect-[21/9] w-full overflow-hidden mb-14 reveal">
-        <source srcset={assetPath("images/sections/voices-letter.webp")} type="image/webp" />
-        <img src={assetPath("images/sections/voices-letter.jpg")} alt="木のテーブルに置かれた便箋とアンバー色のガラス瓶、押し花" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
+      <!-- セクション編集画像（手紙＝お客様の声を想起 / mobile portrait + PC landscape） -->
+      <picture class="block aspect-[3/4] lg:aspect-[21/9] w-full overflow-hidden mb-12 lg:mb-14 reveal">
+        <source media="(min-width: 1024px)" srcset={assetPath("images/sections/voices-letter.webp")} type="image/webp" />
+        <source media="(min-width: 1024px)" srcset={assetPath("images/sections/voices-letter.jpg")} type="image/jpeg" />
+        <source srcset={assetPath("images/sections/voices-letter-portrait.webp")} type="image/webp" />
+        <img src={assetPath("images/sections/voices-letter-portrait.jpg")} alt="木のテーブルに置かれた便箋と小さなインク瓶、押し花" class="w-full h-full object-cover" loading="lazy" width="1200" height="1600" />
       </picture>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

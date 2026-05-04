@@ -14,7 +14,15 @@ await page.goto(url, { waitUntil: "networkidle" });
 await page.evaluate(() =>
   document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"))
 );
-await page.waitForTimeout(1500);
+// Wait for hero image to actually load
+await page.waitForFunction(
+  () => {
+    const imgs = Array.from(document.querySelectorAll("section#hero img")) as HTMLImageElement[];
+    return imgs.length > 0 && imgs.every((img) => img.complete && img.naturalWidth > 0);
+  },
+  { timeout: 10000 }
+);
+await page.waitForTimeout(800);
 await page.screenshot({ path: "screenshots/mobile/_firstview.png" });
 console.log("✓ firstview");
 await ctx.close();
