@@ -72,8 +72,8 @@ const midToMan = (label: string): string => {
         <a href={sectionPath("contact")} class="text-[var(--color-text-sub)] hover:text-[var(--color-text)] transition">お問い合わせ</a>
       </nav>
       <div class="hidden md:flex items-center gap-2">
-        <a href={phoneTel} class="btn btn-outline btn-sm tabular-nums tracking-wider">
-          {company.phone}
+        <a href={phoneTel} class="btn btn-outline btn-sm">
+          いますぐ電話
         </a>
         <a href={lineUrl} target="_blank" rel="noopener" class="btn btn-line btn-sm">LINEで査定</a>
       </div>
@@ -159,8 +159,8 @@ const midToMan = (label: string): string => {
               <a href={lineUrl} target="_blank" rel="noopener" class="btn btn-line btn-lg w-full">
                 LINEで無料査定
               </a>
-              <a href={phoneTel} class="btn btn-outline w-full numeric tracking-wider">
-                {company.phone}
+              <a href={phoneTel} class="btn btn-outline w-full">
+                いますぐ電話する
               </a>
               <a href={sectionPath("contact")} class="text-center text-[13px] text-[var(--color-text-sub)] hover:text-[var(--color-text)] transition pt-2 underline-offset-4 hover:underline">
                 フォームから相談する
@@ -170,14 +170,6 @@ const midToMan = (label: string): string => {
         </div>
       </div>
 
-      <!-- ヒーロー下端の装飾ストリップ（3チャネルのみ、過剰 eyebrow を撤去） -->
-      <div class="hidden md:flex items-center justify-center gap-6 mt-16 pt-8 border-t border-[var(--color-border)]">
-        <span class="eyebrow text-[var(--color-text)]">出張買取</span>
-        <span class="text-[var(--color-accent-soft)]">·</span>
-        <span class="eyebrow text-[var(--color-text)]">LINE査定</span>
-        <span class="text-[var(--color-accent-soft)]">·</span>
-        <span class="eyebrow text-[var(--color-text)]">宅配買取</span>
-      </div>
     </div>
 
   </section>
@@ -874,9 +866,7 @@ const midToMan = (label: string): string => {
   <!-- ============== Mobile Sticky CTA ============== -->
   <div class="mobile-cta no-print">
     <div class="grid grid-cols-2 gap-2 p-2">
-      <a href={phoneTel} class="btn btn-outline btn-sm w-full">
-        <span class="numeric text-xs">{company.phone}</span>
-      </a>
+      <a href={phoneTel} class="btn btn-outline btn-sm w-full">いますぐ電話</a>
       <a href={lineUrl} target="_blank" rel="noopener" class="btn btn-line btn-sm w-full">LINEで査定</a>
     </div>
   </div>
