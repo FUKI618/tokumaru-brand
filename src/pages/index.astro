@@ -210,12 +210,13 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
 
   <!-- ============== I. 主要ブランド5強 ============== -->
   <section id="flagship" class="py-24 sm:py-32 bg-[var(--color-bg-white)] relative overflow-hidden">
-    <!-- 装飾背景: ベルベット&ジュエリー（AI生成・低不透明度で素材感UP） -->
+    <!-- 背景: ベルベット&ジュエリー（AI生成） -->
     <picture class="absolute inset-0 w-full h-full block pointer-events-none" aria-hidden="true">
       <source srcset={assetPath("images/sections/flagship-velvet.webp")} type="image/webp" />
-      <img src={assetPath("images/sections/flagship-velvet.jpg")} alt="" class="absolute inset-0 w-full h-full object-cover object-center opacity-[0.08]" loading="lazy" width="1920" height="1080" />
+      <img src={assetPath("images/sections/flagship-velvet.jpg")} alt="" class="absolute inset-0 w-full h-full object-cover object-center opacity-100" loading="lazy" width="1920" height="1080" />
     </picture>
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(250,250,247,0.96) 100%);"></div>
+    <!-- 透過オーバーレイ（読みやすさ確保しつつ画像はしっかり見える） -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(250,250,247,0.78) 100%);"></div>
 
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative z-10">
       <div class="grid lg:grid-cols-12 gap-10 mb-14 reveal">
@@ -265,11 +266,10 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     <!-- 背景: 金庫の扉（AI生成） -->
     <picture class="absolute inset-0 w-full h-full block" aria-hidden="true">
       <source srcset={assetPath("images/sections/guarantee-vault.webp")} type="image/webp" />
-      <img src={assetPath("images/sections/guarantee-vault.jpg")} alt="" class="absolute inset-0 w-full h-full object-cover object-center opacity-30" loading="lazy" width="1920" height="1080" />
+      <img src={assetPath("images/sections/guarantee-vault.jpg")} alt="" class="absolute inset-0 w-full h-full object-cover object-center opacity-90" loading="lazy" width="1920" height="1080" />
     </picture>
-    <!-- ダブルオーバーレイで読みやすさ確保 -->
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: linear-gradient(180deg, rgba(10,14,31,0.78) 0%, rgba(10,14,31,0.92) 100%);"></div>
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: radial-gradient(ellipse at center, transparent 30%, rgba(10,14,31,0.5) 100%);"></div>
+    <!-- 軽めのダークオーバーレイで読みやすさ確保しつつ画像をしっかり見せる -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: linear-gradient(180deg, rgba(10,14,31,0.55) 0%, rgba(10,14,31,0.75) 100%);"></div>
 
     <svg class="absolute left-0 top-0 w-[400px] opacity-15 pointer-events-none z-[1]" viewBox="0 0 400 400" aria-hidden="true">
       <circle cx="0" cy="200" r="280" fill="none" stroke="#c5a572" stroke-width="0.5"/>
@@ -420,9 +420,9 @@ const chapter = (n: string, label: string) => `${n}. ${label}`;
     <!-- 背景: 査定ルーム（AI生成） -->
     <picture class="absolute inset-0 w-full h-full block" aria-hidden="true">
       <source srcset={assetPath("images/sections/flow-appraisal.webp")} type="image/webp" />
-      <img src={assetPath("images/sections/flow-appraisal.jpg")} alt="" class="absolute inset-0 w-full h-full object-cover object-center opacity-25" loading="lazy" width="1920" height="1080" />
+      <img src={assetPath("images/sections/flow-appraisal.jpg")} alt="" class="absolute inset-0 w-full h-full object-cover object-center opacity-90" loading="lazy" width="1920" height="1080" />
     </picture>
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: linear-gradient(180deg, rgba(20,24,46,0.85) 0%, rgba(10,14,31,0.95) 100%);"></div>
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: linear-gradient(180deg, rgba(20,24,46,0.55) 0%, rgba(10,14,31,0.78) 100%);"></div>
 
     <div class="max-w-[1600px] mx-auto px-5 sm:px-8 relative z-10">
       <div class="text-center mb-16 reveal">
