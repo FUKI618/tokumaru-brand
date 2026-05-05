@@ -60,13 +60,20 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content="徳丸商会｜名古屋のブランド買取。" />
 
-    <!-- スクロール復元を無効化＆ハッシュ無し時はトップに戻す（モバイル「途中表示」防止） -->
+    <!-- 初期表示はヒーローから（hash付きURL・bfcache・scroll restoration 全部を強制リセット） -->
     <script is:inline>
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      if (!window.location.hash) window.scrollTo(0, 0);
-      window.addEventListener('pageshow', function(e) {
-        if (e.persisted && !window.location.hash) window.scrollTo(0, 0);
-      });
+      (function(){
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        // 初期ロード: hash があってもクリアしてトップへ（単一ページLP仕様）
+        if (window.location.hash) {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+        var toTop = function(){ window.scrollTo(0, 0); };
+        toTop();
+        document.addEventListener('DOMContentLoaded', toTop);
+        window.addEventListener('load', toTop);
+        window.addEventListener('pageshow', function(e){ if (e.persisted) toTop(); });
+      })();
     </script>
 
     <!-- Fonts: 非同期読み込み（FOUT回避: display=swap） -->
