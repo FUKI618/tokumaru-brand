@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # 月次自動リビルド: 毎月1日と15日 00:01 JST (= 15:01 UTC 前日)
+    # キャンペーン月表記・rateMetadata.updatedAt を当月に切り替え
+    - cron: '1 15 1,15 * *'
+  workflow_dispatch:
 
 permissions:
   contents: read

@@ -170,9 +170,16 @@ export const rateData: RateModel[] = [
 ];
 
 // セクション情報
+import { yearMonthJP, currentYear, currentMonth } from "../lib/calendar";
+
+// 集計期間: 「12ヶ月前 〜 先月」を自動算出
+const periodStart = new Date(currentYear, currentMonth - 13, 1);
+const periodEnd = new Date(currentYear, currentMonth - 1, 1);
+const collectionPeriod = `${periodStart.getFullYear()}年${periodStart.getMonth() + 1}月 〜 ${periodEnd.getFullYear()}年${periodEnd.getMonth() + 1}月`;
+
 export const rateMetadata = {
-  collectionPeriod: "2025年1月 〜 2026年4月",
-  updatedAt: "2026年5月",
+  collectionPeriod,
+  updatedAt: yearMonthJP,
   sourceCount: "12モデル × 3社以上クロスチェック",
   disclaimer: "相場は店舗の在庫状況・状態・付属品・色・刻印年・市況・為替で大きく変動します。掲載値はあくまで業界の参考レンジであり、実際の買取金額を保証するものではありません。",
 };

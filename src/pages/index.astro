@@ -8,6 +8,7 @@ import { rateData, rateMetadata } from "../data/rates";
 import { campaigns } from "../data/campaigns";
 import { voices } from "../data/voices";
 import { assetPath, sectionPath } from "../lib/site";
+import { yearDotMonth, monthJP } from "../lib/calendar";
 
 const title = "名古屋ブランド買取｜出張・LINE査定・宅配の徳丸商会【夜21時まで】";
 const description = "名古屋市中村区の徳丸商会。エルメス・シャネル・ヴィトン・ロレックス・カルティエなど主要ブランドを高価買取。相続・形見整理に丁寧に対応。出張・LINE・宅配対応、9-21時年中無休。電話052-990-3968。古物商許可第541042309800号。";
@@ -109,7 +110,7 @@ const midToMan = (label: string): string => {
     <div class="relative lg:hidden h-[58svh] overflow-hidden">
       <picture class="absolute inset-0" aria-hidden="true">
         <source srcset={assetPath("images/hero/hero-brandbuyback-portrait.webp")} type="image/webp" />
-        <img src={assetPath("images/hero/hero-brandbuyback-portrait.jpg")} alt="ブランド品査定の現場。木のテーブルにコニャック色の革のハンドバッグと腕時計、真鍮の拡大鏡、白手袋。" class="w-full h-full object-cover" loading="eager" fetchpriority="high" width="1200" height="1600" />
+        <img src={assetPath("images/hero/hero-brandbuyback-portrait.jpg")} alt="ブランド品査定の現場。木のテーブルにコニャック色の革のハンドバッグと腕時計、真鍮の拡大鏡、白手袋。" class="w-full h-full object-cover object-bottom" loading="eager" fetchpriority="high" width="1200" height="1600" />
       </picture>
       <!-- 下端へのグラデフェード（コンテンツへ繋ぐ） -->
       <div class="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none" style="background: linear-gradient(180deg, transparent 0%, var(--color-bg-2) 100%);"></div>
@@ -190,7 +191,7 @@ const midToMan = (label: string): string => {
             <a href={sectionPath("campaigns")} class="block mb-3 border border-[var(--color-accent-soft)] bg-[var(--color-bg)] px-4 py-3 hover:bg-[var(--color-bg-2)] transition group">
               <div class="flex items-center gap-2 mb-1">
                 <span class="bg-[var(--color-text)] text-[var(--color-bg)] text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 font-medium">期間限定</span>
-                <span class="text-[10px] text-[var(--color-text-sub)] tracking-wider">2026.5</span>
+                <span class="text-[10px] text-[var(--color-text-sub)] tracking-wider">{yearDotMonth}</span>
               </div>
               <p class="text-[13px] text-[var(--color-text)] leading-snug">
                 エルメス・シャネル・ロレックス <span class="font-serif italic" style="color: var(--color-accent-soft);">買取UP +5〜10%</span><br />
@@ -224,7 +225,7 @@ const midToMan = (label: string): string => {
     <div class="container-content">
       <div class="hero-rate-header">
         <span class="hero-rate-eyebrow">主要モデルの買取相場</span>
-        <span class="hero-rate-meta">3社以上クロスチェック ／ 2026.5 更新</span>
+        <span class="hero-rate-meta">3社以上クロスチェック ／ {yearDotMonth} 更新</span>
       </div>
       <div class="hero-rate-grid">
         <a href={sectionPath("rates")} class="hero-rate-card hero-rate-card-bag">
