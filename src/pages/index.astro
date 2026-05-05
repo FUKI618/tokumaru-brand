@@ -1024,18 +1024,64 @@ const midToMan = (label: string): string => {
     </div>
   </footer>
 
-  <!-- ============== Mobile Sticky CTA ============== -->
+  <!-- ============== Mobile Sticky CTA（拡張: 信頼ストリップ + 3CTA） ============== -->
   <div class="mobile-cta no-print">
-    <div class="grid grid-cols-2 gap-2 p-2.5">
-      <a href={phoneTel} class="btn btn-primary btn-sm w-full" aria-label="電話で問い合わせ">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5" aria-hidden="true">
+    <div class="mobile-cta-eyebrow">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      <span>出張料・査定料すべて無料／最短当日訪問</span>
+    </div>
+    <div class="mobile-cta-buttons">
+      <a href={phoneTel} class="mobile-cta-btn mobile-cta-btn-phone" aria-label="電話で問い合わせ">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
         </svg>
-        いますぐ電話
+        <span>電話する</span>
       </a>
-      <a href={lineUrl} target="_blank" rel="noopener" class="btn btn-line btn-sm w-full">LINEで査定</a>
+      <a href={lineUrl} target="_blank" rel="noopener" class="mobile-cta-btn mobile-cta-btn-line">
+        <span>LINEで査定</span>
+        <span class="mobile-cta-btn-bonus">+3% UP</span>
+      </a>
+      <a href={sectionPath("contact")} class="mobile-cta-btn mobile-cta-btn-form" aria-label="フォームから相談">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span>フォーム</span>
+      </a>
     </div>
   </div>
+
+  <!-- ============== PC Floating CTA（lg+ で常時右下表示） ============== -->
+  <aside class="pc-floating-cta no-print" aria-label="お問い合わせフローティング">
+    <div class="pc-floating-banner">
+      <span class="pc-floating-badge">期間限定</span>
+      <span class="pc-floating-banner-text">買取UP <span class="pc-floating-banner-num">+5〜10%</span></span>
+    </div>
+    <div class="pc-floating-body">
+      <a href={phoneTel} class="pc-floating-phone">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+        <div class="pc-floating-phone-text">
+          <div class="pc-floating-phone-num">{company.phone}</div>
+          <div class="pc-floating-phone-hours">9:00〜21:00 年中無休</div>
+        </div>
+      </a>
+      <a href={lineUrl} target="_blank" rel="noopener" class="pc-floating-line">
+        <span>LINEで無料査定</span>
+        <span class="pc-floating-line-bonus">+3% UP</span>
+      </a>
+      <a href={sectionPath("contact")} class="pc-floating-form">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span>フォームから相談 →</span>
+      </a>
+    </div>
+  </aside>
 
   <!-- フォーム送信制御 -->
   <script is:inline>
