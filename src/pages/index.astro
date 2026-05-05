@@ -146,10 +146,20 @@ const midToMan = (label: string): string => {
       <div class="container-content w-full pt-8 pb-12 lg:pt-32 lg:pb-20">
         <div class="grid lg:grid-cols-12 gap-8 items-end">
           <div class="lg:col-span-8 reveal">
-            <!-- eyebrow（PCのみ・モバイルは画像オーバーレイ側で表示） -->
-            <div class="hidden lg:flex items-center gap-3 mb-6">
-              <span class="block w-12 h-px bg-[var(--color-accent-soft)]"></span>
-              <div class="eyebrow">出張買取 — 名古屋市中村区</div>
+            <!-- 業種明示ラベル（h1 前に大判で「ブランド買取」を視認させる） -->
+            <div class="hero-purpose">
+              <div class="hero-purpose-en">BRAND BUYBACK</div>
+              <div class="hero-purpose-jp">名古屋 出張ブランド買取<span class="hero-purpose-jp-sep">／</span><span class="hero-purpose-jp-sub">バッグ・時計・ジュエリー</span></div>
+            </div>
+
+            <!-- 取扱ブランド ストリップ（モバイルでも常時表示・大型化） -->
+            <div class="hero-brand-strip" aria-label="取扱主要ブランド">
+              {flagshipBrands.map((b, i) => (
+                <>
+                  {i > 0 && <span class="hero-brand-sep">·</span>}
+                  <span class="hero-brand-name">{b.name}</span>
+                </>
+              ))}
             </div>
 
             <h1 class="display-1 mb-6 max-w-3xl" aria-label="名古屋ブランド出張買取の徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを一点ずつご自宅で丁寧に拝見">
@@ -162,19 +172,8 @@ const midToMan = (label: string): string => {
               <p class="text-base md:text-lg text-[var(--color-text-sub)] leading-loose">
                 <span class="text-[var(--color-text)]">親から受け継いだ品も、<wbr />長くしまわれた品も。</span><br />
                 名古屋市内最短当日訪問。<wbr />出張料・査定料・キャンセル料は頂戴いたしません。<br />
-                エルメス・シャネル・ヴィトン・ロレックス・カルティエ、<wbr />一点ずつ。<br />
                 <span class="text-[13px]">LINE査定・宅配買取にも対応。</span>
               </p>
-            </div>
-
-            <!-- 取扱ブランド ストリップ -->
-            <div class="hidden md:flex items-center gap-4 mt-8 flex-wrap" aria-label="取扱主要ブランド">
-              {flagshipBrands.map((b, i) => (
-                <>
-                  {i > 0 && <span class="text-[var(--color-text)] opacity-30">·</span>}
-                  <span class="font-serif italic text-[var(--color-text)] text-base tracking-wider">{b.name}</span>
-                </>
-              ))}
             </div>
           </div>
 
