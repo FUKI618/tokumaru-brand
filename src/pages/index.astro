@@ -149,17 +149,25 @@ const midToMan = (label: string): string => {
             <!-- 業種明示ラベル（h1 前に大判で「ブランド買取」を視認させる） -->
             <div class="hero-purpose">
               <div class="hero-purpose-en">BRAND BUYBACK</div>
-              <div class="hero-purpose-jp">名古屋 出張ブランド買取<span class="hero-purpose-jp-sep">／</span><span class="hero-purpose-jp-sub">バッグ・時計・ジュエリー</span></div>
+              <div class="hero-purpose-jp">
+                <span>名古屋 出張ブランド買取</span>
+                <span class="hero-purpose-jp-sep">／</span>
+                <span class="hero-purpose-jp-sub">バッグ・時計・ジュエリー</span>
+              </div>
             </div>
 
-            <!-- 取扱ブランド ストリップ（モバイルでも常時表示・大型化） -->
+            <!-- 取扱ブランド ストリップ（モバイル: 3+2 / PC: 1行） -->
             <div class="hero-brand-strip" aria-label="取扱主要ブランド">
-              {flagshipBrands.map((b, i) => (
-                <>
-                  {i > 0 && <span class="hero-brand-sep">·</span>}
-                  <span class="hero-brand-name">{b.name}</span>
-                </>
-              ))}
+              <span class="hero-brand-name">HERMES</span>
+              <span class="hero-brand-sep">·</span>
+              <span class="hero-brand-name">CHANEL</span>
+              <span class="hero-brand-sep">·</span>
+              <span class="hero-brand-name">LOUIS VUITTON</span>
+              <span class="hero-brand-sep hero-brand-sep-md">·</span>
+              <span class="hero-brand-row-break" aria-hidden="true"></span>
+              <span class="hero-brand-name">ROLEX</span>
+              <span class="hero-brand-sep">·</span>
+              <span class="hero-brand-name">Cartier</span>
             </div>
 
             <h1 class="display-1 mb-6 max-w-3xl" aria-label="名古屋ブランド出張買取の徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを一点ずつご自宅で丁寧に拝見">
@@ -398,8 +406,8 @@ const midToMan = (label: string): string => {
             <div class="text-[10px] text-[var(--color-text-sub)] tracking-widest hidden sm:block">Minimum Guaranteed Buyback</div>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-5 gap-x-4">
-            {buybackGuarantees.map((g) => (
-              <div class="text-center sm:text-left">
+            {buybackGuarantees.map((g, i) => (
+              <div class={`text-center sm:text-left ${i === buybackGuarantees.length - 1 ? "col-span-2 sm:col-span-1 border-t border-[var(--color-border)] pt-4 sm:border-0 sm:pt-0" : ""}`}>
                 <div class="font-serif text-[var(--color-text)]">{g.brand}</div>
                 <div class="text-[10px] text-[var(--color-text-sub)] mb-2">{g.jpName}</div>
                 <div class="font-sans tabular-nums text-lg text-[var(--color-text)]" style="color: var(--color-accent-soft);">¥{g.minPrice.toLocaleString()}〜</div>
@@ -495,7 +503,7 @@ const midToMan = (label: string): string => {
             <span class="eyebrow">出張買取・LINE査定・宅配買取</span>
           </div>
           <h2 class="chapter-title max-w-xl" aria-label="ブランド買取の3つの方法｜出張買取・LINE査定・宅配買取からご都合の良い方法をお選びください">
-            ご都合の良い方法を、<span class="italic" style="color: var(--color-accent-soft);">お選びください。</span>
+            ご都合に合わせて、<br /><span class="italic" style="color: var(--color-accent-soft);">お選びください。</span>
           </h2>
           <p class="text-[15px] text-[var(--color-text-sub)] mt-6 max-w-md leading-loose">
             出張・LINE・宅配のどれを選んでも、査定料やキャンセル料はかかりません。
@@ -587,7 +595,7 @@ const midToMan = (label: string): string => {
             <span class="eyebrow eyebrow-accent">ブランド買取キャンペーン</span>
           </div>
           <h2 class="chapter-title max-w-xl" aria-label="ブランド買取キャンペーン｜期間限定特典と常設特典の3つ">
-            ご利用いただきやすい、<br /><span class="italic" style="color: var(--color-accent-soft);">3つの</span>キャンペーン。
+            選べる<span class="italic" style="color: var(--color-accent-soft);">3つの</span><br />キャンペーン。
           </h2>
           <p class="text-[15px] text-[var(--color-text-sub)] mt-6 max-w-md leading-loose">
             はじめての方にも使いやすい特典を、受付方法に合わせて選べるようにしています。
@@ -798,7 +806,7 @@ const midToMan = (label: string): string => {
           </div>
           <div class="grid grid-cols-[8rem_1fr] gap-4 pb-3 border-b border-[var(--color-border)]">
             <dt class="text-[10px] uppercase tracking-widest text-[var(--color-text-sub)] mt-1">メール</dt>
-            <dd class="break-all">{contactEmail}</dd>
+            <dd class="text-[12px] sm:text-sm tracking-tight">{contactEmail}</dd>
           </div>
           <div class="grid grid-cols-[8rem_1fr] gap-4 pb-3 border-b border-[var(--color-border)]">
             <dt class="text-[10px] uppercase tracking-widest text-[var(--color-text-sub)] mt-1">営業時間</dt>
@@ -884,7 +892,7 @@ const midToMan = (label: string): string => {
             <a href={`mailto:${contactEmail}`} class="card-min flex items-center gap-5 hover:border-[var(--color-text)] transition group">
               <div class="text-[10px] tracking-widest uppercase text-[var(--color-text-sub)] shrink-0">By Email</div>
               <div class="flex-1">
-                <div class="font-serif text-base text-[var(--color-text)] break-all">{contactEmail}</div>
+                <div class="font-serif text-[15px] sm:text-base text-[var(--color-text)] tracking-tight">{contactEmail}</div>
                 <div class="text-[11px] text-[var(--color-text-sub)] mt-1">24時間受付・営業時間内に返信</div>
               </div>
               <span class="text-[var(--color-text)] text-lg">→</span>
@@ -1047,7 +1055,7 @@ const midToMan = (label: string): string => {
           <dl class="text-xs leading-relaxed space-y-1.5">
             <div><dt class="inline opacity-50 mr-2">所在地</dt><dd class="inline">{company.address.full}</dd></div>
             <div><dt class="inline opacity-50 mr-2">電話</dt><dd class="inline numeric">{company.phone}</dd></div>
-            <div><dt class="inline opacity-50 mr-2">メール</dt><dd class="inline break-all">{contactEmail}</dd></div>
+            <div><dt class="inline opacity-50 mr-2">メール</dt><dd class="inline">{contactEmail}</dd></div>
             <div><dt class="inline opacity-50 mr-2">営業時間</dt><dd class="inline">{company.hours}</dd></div>
             <div><dt class="inline opacity-50 mr-2">許可</dt><dd class="inline">{company.licenseAuthority} {company.license}</dd></div>
           </dl>

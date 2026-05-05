@@ -507,8 +507,8 @@ section[id] { scroll-margin-top: 4rem; }
 
   .dossier-title,
   .chapter-title {
-    font-size: clamp(2.35rem, 10vw, 3.35rem);
-    line-height: 1.12;
+    font-size: clamp(1.9rem, 7.5vw, 3.35rem);
+    line-height: 1.18;
   }
 
   .route-grid .card-min:nth-child(2) {
@@ -969,6 +969,27 @@ section[id] { scroll-margin-top: 4rem; }
   opacity: 0.3;
   font-family: var(--font-serif);
   font-size: clamp(13px, 1.6vw, 18px);
+}
+/* PC でのみ表示する separator（モバイルでは行が分かれるため不要） */
+.hero-brand-sep-md { display: none; }
+@media (min-width: 768px) {
+  .hero-brand-sep-md { display: inline-block; }
+}
+/* モバイルで強制改行する flex-break 要素（PCでは非表示） */
+.hero-brand-row-break {
+  flex-basis: 100%;
+  height: 0;
+  display: block;
+}
+@media (min-width: 768px) {
+  .hero-brand-row-break { display: none; }
+}
+
+/* hero-purpose-jp のモバイル改行（区切り文字を非表示にしてサブを次行へ） */
+@media (max-width: 639px) {
+  .hero-purpose-jp { line-height: 1.5; }
+  .hero-purpose-jp-sep { display: none; }
+  .hero-purpose-jp-sub { display: block; margin-top: 0.2rem; }
 }
 
 /* ───────────────────────────────────────────────
