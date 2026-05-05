@@ -229,25 +229,25 @@ const midToMan = (label: string): string => {
         </div>
 
         <div class="dossier-stack lg:pl-8 lg:border-l lg:border-[var(--color-border)]">
-          <div class="dossier-inner-grid">
-            <figure class="editorial-figure dossier-photo-card reveal reveal-delay-1">
-              <picture class="editorial-media aspect-[4/5] md:aspect-[5/6]">
-                <source media="(min-width: 1024px)" srcset={assetPath("images/sections/story-notebook.webp")} type="image/webp" />
-                <source media="(min-width: 1024px)" srcset={assetPath("images/sections/story-notebook.jpg")} type="image/jpeg" />
-                <source srcset={assetPath("images/sections/story-notebook-portrait.webp")} type="image/webp" />
-                <img src={assetPath("images/sections/story-notebook-portrait.jpg")} alt="木のテーブルに置かれた革のノートブックと真鍮の万年筆、窓からの斜光" loading="lazy" width="1200" height="1600" />
-              </picture>
-              <figcaption class="editorial-caption">
-                査定の記録は、一点ごとの状態と背景を残すところから始まります。
-              </figcaption>
-            </figure>
+          <!-- 主役画像（全幅・大判）を最上段に -->
+          <figure class="editorial-figure dossier-photo-card reveal reveal-delay-1">
+            <picture class="editorial-media aspect-[3/4] lg:aspect-[4/3]">
+              <source media="(min-width: 1024px)" srcset={assetPath("images/sections/story-notebook.webp")} type="image/webp" />
+              <source media="(min-width: 1024px)" srcset={assetPath("images/sections/story-notebook.jpg")} type="image/jpeg" />
+              <source srcset={assetPath("images/sections/story-notebook-portrait.webp")} type="image/webp" />
+              <img src={assetPath("images/sections/story-notebook-portrait.jpg")} alt="木のテーブルに置かれた革のノートブックと真鍮の万年筆、窓からの斜光" loading="lazy" width="1200" height="1600" />
+            </picture>
+            <figcaption class="editorial-caption">
+              査定の記録は、一点ごとの状態と背景を残すところから始まります。
+            </figcaption>
+          </figure>
 
-            <div class="dossier-quote-card reveal reveal-delay-2">
-              <div class="quote-large text-base text-[var(--color-text)] leading-loose font-serif italic">
-                <p class="not-italic font-sans text-[var(--color-text-sub)] mb-4 text-sm tracking-wider">{staff[1].surname}（{staff[1].role}）</p>
-                <p>{staff[1].message}</p>
-                <p class="mt-6 not-italic text-sm font-medium text-[var(--color-text)]">— {staff[1].policy}</p>
-              </div>
+          <!-- 査定員の声（画像の下に配置） -->
+          <div class="dossier-quote-card reveal reveal-delay-2">
+            <div class="quote-large text-base text-[var(--color-text)] leading-loose font-serif italic">
+              <p class="not-italic font-sans text-[var(--color-text-sub)] mb-4 text-sm tracking-wider">{staff[1].surname}（{staff[1].role}）</p>
+              <p>{staff[1].message}</p>
+              <p class="mt-6 not-italic text-sm font-medium text-[var(--color-text)]">— {staff[1].policy}</p>
             </div>
           </div>
 
