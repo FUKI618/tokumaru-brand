@@ -60,6 +60,15 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content="徳丸商会｜名古屋のブランド買取。" />
 
+    <!-- スクロール復元を無効化＆ハッシュ無し時はトップに戻す（モバイル「途中表示」防止） -->
+    <script is:inline>
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      if (!window.location.hash) window.scrollTo(0, 0);
+      window.addEventListener('pageshow', function(e) {
+        if (e.persisted && !window.location.hash) window.scrollTo(0, 0);
+      });
+    </script>
+
     <!-- Fonts: 非同期読み込み（FOUT回避: display=swap） -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
