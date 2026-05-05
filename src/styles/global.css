@@ -913,33 +913,103 @@ section[id] { scroll-margin-top: 4rem; }
 
 .hero-lot {
   display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: clamp(1rem, 1.8vw, 1.5rem);
+  align-items: flex-end;
+  gap: clamp(0.9rem, 1.6vw, 1.4rem);
+  margin-bottom: clamp(1.25rem, 2vw, 1.75rem);
+  padding-bottom: clamp(0.85rem, 1.5vw, 1.2rem);
+  border-bottom: 1px solid var(--color-border-strong);
 }
 .hero-lot-num {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(13px, 1.35vw, 16px);
-  letter-spacing: 0.01em;
-  color: var(--color-accent-soft);
+  font-size: clamp(2.2rem, 5vw, 4rem); /* dramatic display scale */
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  color: var(--color-accent-warm);
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums lining-nums;
+  white-space: nowrap;
+}
+.hero-lot-num-prefix {
+  font-style: italic;
+  font-size: 0.45em;
+  margin-right: 0.18em;
+  color: var(--color-text-sub);
+  letter-spacing: 0.01em;
 }
 .hero-lot-rule {
-  flex: 0 0 clamp(28px, 4vw, 56px);
-  height: 1px;
-  background: var(--color-border-strong);
+  display: none; /* removed: now using border-bottom instead */
 }
 .hero-lot-meta {
+  flex: 1;
   font-family: var(--font-sans);
-  font-size: clamp(10px, 0.85vw, 11.5px);
+  font-size: clamp(10.5px, 0.95vw, 12.5px);
   letter-spacing: 0.32em;
   text-transform: uppercase;
   font-weight: 600;
   color: var(--color-text);
-  white-space: nowrap;
+  line-height: 1.4;
+  align-self: flex-end;
+  padding-bottom: 0.4rem;
+}
+.hero-lot-meta-sub {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15em;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 400;
+  color: var(--color-text-sub);
+  margin-top: 0.25rem;
+}
+
+/* 封蝋風 seal stamp（PC のみ・装飾的）— content 上、image との境界付近に配置 */
+.hero-seal {
+  position: absolute;
+  pointer-events: none;
+  width: clamp(140px, 14vw, 220px);
+  height: auto;
+  top: clamp(7rem, 12vw, 11rem);
+  left: 48%;
+  transform: translateX(-30%);
+  opacity: 0.92;
+  z-index: 15;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.06));
+}
+.hero-seal-circle {
+  fill: none;
+  stroke: var(--color-accent-warm);
+  stroke-width: 0.5;
+}
+.hero-seal-text {
+  font-family: var(--font-serif);
+  font-size: 8.5px;
+  letter-spacing: 0.4em;
+  fill: var(--color-accent-warm);
+  text-transform: uppercase;
+  font-style: italic;
+}
+.hero-seal-center {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 22px;
+  fill: var(--color-accent-warm);
+  text-anchor: middle;
+  letter-spacing: -0.01em;
+}
+.hero-seal-center-sub {
+  font-family: var(--font-sans);
+  font-size: 6px;
+  letter-spacing: 0.3em;
+  fill: var(--color-accent-warm);
+  text-anchor: middle;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+@media (max-width: 1023px) {
+  .hero-seal { display: none; }
 }
 
 .hero-display {

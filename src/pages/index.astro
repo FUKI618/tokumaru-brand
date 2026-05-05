@@ -142,16 +142,42 @@ const midToMan = (label: string): string => {
     <!-- 大きな装飾文字（PCのみ） -->
     <div class="bg-letter hidden md:block" style="bottom: 4%; left: -2%; opacity: 0.06;" aria-hidden="true">T</div>
 
+    <!-- 【Signature】徳丸商会 封蝋風 seal stamp（PC のみ装飾的に） -->
+    <svg class="hero-seal" viewBox="0 0 200 200" aria-hidden="true">
+      <defs>
+        <path id="hero-seal-circle-path" d="M 100,100 m -82,0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0" />
+      </defs>
+      <!-- 外周二重円 -->
+      <circle class="hero-seal-circle" cx="100" cy="100" r="92" stroke-dasharray="1.5 1.5" />
+      <circle class="hero-seal-circle" cx="100" cy="100" r="80" />
+      <circle class="hero-seal-circle" cx="100" cy="100" r="62" />
+      <!-- 円周テキスト 上 -->
+      <text class="hero-seal-text">
+        <textPath href="#hero-seal-circle-path" startOffset="50%" text-anchor="middle">
+          ★ TOKUMARU SHOKAI ★ NAGOYA APPRAISAL ★
+        </textPath>
+      </text>
+      <!-- 中央 -->
+      <text class="hero-seal-center" x="100" y="98">徳丸</text>
+      <text class="hero-seal-center" x="100" y="124" style="font-size:14px;">商會</text>
+      <text class="hero-seal-center-sub" x="100" y="148">EST. NAGOYA</text>
+      <!-- 細い装飾線 -->
+      <line x1="42" y1="100" x2="58" y2="100" stroke="var(--color-accent-warm)" stroke-width="0.5" opacity="0.6" />
+      <line x1="142" y1="100" x2="158" y2="100" stroke="var(--color-accent-warm)" stroke-width="0.5" opacity="0.6" />
+    </svg>
+
     <!-- コンテンツ: モバイル=画像下にスタック、PC=絶対配置で底に揃える -->
     <div class="relative lg:absolute lg:inset-0 lg:flex lg:items-end z-10">
       <div class="container-content w-full pt-8 pb-12 lg:pt-32 lg:pb-20">
         <div class="grid lg:grid-cols-12 gap-8 items-end">
           <div class="lg:col-span-8 reveal">
-            <!-- 【Signature】オークションハウス記法: Lot ナンバー + 分類線 -->
+            <!-- 【Signature】オークションハウス記法: 大判 Lot ナンバー + メタ -->
             <div class="hero-lot">
-              <span class="hero-lot-num">Lot 001</span>
-              <span class="hero-lot-rule" aria-hidden="true"></span>
-              <span class="hero-lot-meta">Brand Buyback ／ Nagoya</span>
+              <span class="hero-lot-num"><span class="hero-lot-num-prefix">Lot</span>001</span>
+              <span class="hero-lot-meta">
+                Brand Buyback
+                <span class="hero-lot-meta-sub">名古屋・出張ブランド買取</span>
+              </span>
             </div>
 
             <!-- 大判 display 見出し -->
