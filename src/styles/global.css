@@ -906,7 +906,321 @@ section[id] { scroll-margin-top: 4rem; }
 }
 
 /* ───────────────────────────────────────────────
- * 【Signature】Hero auction-house typography
+ * 【Hero v2】Christie's-style catalog cover split layout
+ * Left: editorial content panel on warm sandy bg
+ * Right: full-bleed editorial image with caption
+ * Mobile: stacked (image top, content below on warm panel)
+ * ─────────────────────────────────────────────── */
+
+.hero-v2 {
+  position: relative;
+  background: var(--color-bg-3);
+  overflow: hidden;
+}
+
+.hero-v2-mobile-image {
+  position: relative;
+  height: 56svh;
+  overflow: hidden;
+}
+@media (min-width: 1024px) {
+  .hero-v2-mobile-image { display: none; }
+}
+
+.hero-v2-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: auto;
+}
+@media (min-width: 1024px) {
+  .hero-v2-grid {
+    grid-template-columns: minmax(420px, 1fr) 1.1fr;
+    min-height: 100svh;
+  }
+}
+
+.hero-v2-panel {
+  background: var(--color-bg-3);
+  display: flex;
+  align-items: center;
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(1.5rem, 4vw, 4.5rem);
+}
+@media (min-width: 1024px) {
+  .hero-v2-panel {
+    padding: clamp(4rem, 7vw, 7rem) clamp(3rem, 5.5vw, 5.5rem);
+  }
+}
+
+.hero-v2-panel-inner {
+  width: 100%;
+  max-width: 38rem;
+}
+
+/* eyebrow */
+.hero-v2-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+  padding-bottom: clamp(1rem, 1.6vw, 1.25rem);
+  border-bottom: 1px solid var(--color-border-strong);
+}
+.hero-v2-eyebrow-num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.4vw, 18px);
+  color: var(--color-accent-warm);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: -0.01em;
+}
+.hero-v2-eyebrow-label {
+  font-family: var(--font-sans);
+  font-size: clamp(10.5px, 0.95vw, 12px);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* title — large editorial display */
+.hero-v2-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 5.6vw, 4.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: clamp(1.25rem, 2vw, 1.75rem);
+}
+.hero-v2-title-en {
+  display: block;
+  font-style: normal;
+  font-weight: 500;
+}
+.hero-v2-title-jp {
+  display: block;
+  margin-top: 0.1em;
+}
+.hero-v2-title-jp em {
+  font-style: italic;
+  color: var(--color-accent-warm);
+}
+
+/* lead text */
+.hero-v2-lead {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.25vw, 18.5px);
+  line-height: 1.65;
+  color: var(--color-text);
+  margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+  max-width: 28rem;
+}
+
+/* metadata table (auction catalog rows) */
+.hero-v2-meta {
+  margin: 0 0 clamp(1.75rem, 3vw, 2.25rem);
+  padding: clamp(1rem, 1.6vw, 1.4rem) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.hero-v2-meta-row {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 0.8rem;
+  padding: 0.45rem 0;
+  font-size: clamp(11.5px, 1vw, 13.5px);
+  line-height: 1.5;
+}
+.hero-v2-meta-row dt {
+  font-family: var(--font-sans);
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-sub);
+  padding-top: 0.15em;
+}
+.hero-v2-meta-row dd {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+}
+
+/* CTA — primary LINE bar + secondary phone + tertiary form */
+.hero-v2-cta {
+  margin-bottom: clamp(1.25rem, 2vw, 1.75rem);
+}
+.hero-v2-cta-primary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  background: var(--color-line);
+  color: #fff;
+  padding: clamp(0.95rem, 1.6vw, 1.3rem) 1rem;
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  transition: background-color 0.25s ease;
+}
+.hero-v2-cta-primary:hover {
+  background: #05a648;
+}
+.hero-v2-cta-primary-label {
+  font-family: var(--font-sans);
+  font-size: clamp(15px, 1.3vw, 17px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.hero-v2-cta-primary-meta {
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.hero-v2-cta-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0.5rem;
+}
+.hero-v2-cta-secondary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+  padding: 0.7rem 0.5rem;
+  text-decoration: none;
+  text-align: center;
+  transition: opacity 0.25s ease;
+}
+.hero-v2-cta-secondary:hover { opacity: 0.85; }
+.hero-v2-cta-secondary-label {
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.7;
+}
+.hero-v2-cta-secondary-num {
+  font-family: var(--font-serif);
+  font-size: clamp(15px, 1.35vw, 19px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.hero-v2-cta-tertiary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border-strong);
+  padding: 0.7rem 0.5rem;
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.hero-v2-cta-tertiary:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+/* campaign tag */
+.hero-v2-campaign {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  font-size: 11.5px;
+  color: var(--color-text-sub);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  border-top: 1px solid var(--color-border);
+  padding-top: clamp(0.85rem, 1.4vw, 1.1rem);
+}
+.hero-v2-campaign-tag {
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-bg);
+  background: var(--color-accent-warm);
+  padding: 3px 7px;
+  white-space: nowrap;
+}
+.hero-v2-campaign em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-accent-warm);
+  font-weight: 500;
+}
+
+/* right image (PC) */
+.hero-v2-image {
+  position: relative;
+  display: none;
+}
+@media (min-width: 1024px) {
+  .hero-v2-image { display: block; }
+}
+.hero-v2-image picture,
+.hero-v2-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-v2-image-caption {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: rgba(253, 251, 249, 0.92);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  max-width: 320px;
+}
+.hero-v2-image-caption-label {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-accent-warm);
+}
+.hero-v2-image-caption-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+}
+.hero-v2-image-caption-est {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ───────────────────────────────────────────────
+ * 【Signature】Hero auction-house typography (LEGACY - kept for reference)
  * Lot番号・分類線・大判display・provenance metadata
  * 古物商 × 編集デザイン × ad-LP の三立
  * ─────────────────────────────────────────────── */

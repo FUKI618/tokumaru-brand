@@ -93,155 +93,102 @@ const midToMan = (label: string): string => {
     </div>
   </header>
 
-  <!-- ============== 1. Hero ============== -->
-  <section id="hero" class="relative overflow-hidden bg-[var(--color-bg-2)] lg:min-h-[90vh]">
+  <!-- ============== 1. Hero — Christie's-style split (catalog cover) ============== -->
+  <section id="hero" class="hero-v2">
 
-    <!-- 背景：暖色オフホワイト + 薄いペーパーテクスチャ -->
-    <div class="absolute inset-0" aria-hidden="true" style="background: linear-gradient(180deg, var(--color-bg-2) 0%, var(--color-bg) 100%);"></div>
-    <div class="absolute inset-0 grain-soft" aria-hidden="true"></div>
-
-    <!-- PC: 右側にブランド買取の編集画像（無地の革ハンドバッグ + 腕時計 + 査定道具） -->
-    <picture class="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:block opacity-95" aria-hidden="true" style="mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 100%);">
-      <source srcset={assetPath("images/hero/hero-brandbuyback.webp")} type="image/webp" />
-      <img src={assetPath("images/hero/hero-brandbuyback.jpg")} alt="ブランド品査定の現場。コニャック色の革のハンドバッグ、腕時計、白手袋、真鍮の拡大鏡、空のベルベットトレイが木のテーブルに整然と並ぶ。" class="w-full h-full object-cover" loading="eager" fetchpriority="high" width="1920" height="1080" />
-    </picture>
-
-    <!-- モバイル: 上部に大きな画像ヘッダー（ブランド買取の世界観）。h-[58svh] / portrait 3:4 -->
-    <div class="relative lg:hidden h-[58svh] overflow-hidden">
+    <!-- モバイル: 既存の上部画像ヘッダー -->
+    <div class="hero-v2-mobile-image">
       <picture class="absolute inset-0" aria-hidden="true">
         <source srcset={assetPath("images/hero/hero-brandbuyback-portrait.webp")} type="image/webp" />
         <img src={assetPath("images/hero/hero-brandbuyback-portrait.jpg")} alt="ブランド品査定の現場。木のテーブルにコニャック色の革のハンドバッグと腕時計、真鍮の拡大鏡、白手袋。" class="w-full h-full object-cover object-bottom" loading="eager" fetchpriority="high" width="1200" height="1600" />
       </picture>
-      <!-- 下端へのグラデフェード（コンテンツへ繋ぐ） -->
-      <div class="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none" style="background: linear-gradient(180deg, transparent 0%, var(--color-bg-2) 100%);"></div>
-      <!-- モバイル：画像下部に「出張買取」を浮かせる -->
+      <div class="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none" style="background: linear-gradient(180deg, transparent 0%, var(--color-bg-3) 100%);"></div>
       <div class="absolute left-6 bottom-6 z-10">
         <div class="flex items-center gap-3">
-          <span class="block w-10 h-px bg-[var(--color-accent-soft)]"></span>
+          <span class="block w-10 h-px bg-[var(--color-accent-warm)]"></span>
           <div class="eyebrow text-[var(--color-text)]">出張買取 — 名古屋市中村区</div>
         </div>
       </div>
     </div>
 
-    <!-- 装飾SVG: 右上の細い円弧（Khaite風 / PCのみ） -->
-    <svg class="deco-svg w-[240px] h-[240px] hidden md:block" style="top: 14%; right: 8%; opacity: 0.35;" viewBox="0 0 280 280" fill="none" aria-hidden="true">
-      <circle cx="140" cy="140" r="138" stroke="currentColor" stroke-width="0.6" stroke-dasharray="2 4" />
-      <circle cx="140" cy="140" r="100" stroke="currentColor" stroke-width="0.5" />
-      <line x1="140" y1="40" x2="140" y2="240" stroke="currentColor" stroke-width="0.3" />
-      <line x1="40" y1="140" x2="240" y2="140" stroke="currentColor" stroke-width="0.3" />
-    </svg>
-
-    <!-- 装飾SVG: 左下のシンプルなバッグアウトライン（PCのみ） -->
-    <svg class="deco-svg deco-svg-warm w-[110px] h-[130px] hidden md:block" style="bottom: 22%; left: 5%; opacity: 0.3;" viewBox="0 0 120 140" fill="none" stroke="currentColor" stroke-width="0.8" aria-hidden="true">
-      <path d="M20,60 L100,60 L92,130 L28,130 Z" />
-      <path d="M40,60 Q40,30 60,30 Q80,30 80,60" />
-      <line x1="40" y1="80" x2="40" y2="100" />
-      <line x1="80" y1="80" x2="80" y2="100" />
-    </svg>
-
-    <!-- 大きな装飾文字（PCのみ） -->
-    <div class="bg-letter hidden md:block" style="bottom: 4%; left: -2%; opacity: 0.06;" aria-hidden="true">T</div>
-
-    <!-- 【Signature】徳丸商会 封蝋風 seal stamp（PC のみ装飾的に） -->
-    <svg class="hero-seal" viewBox="0 0 200 200" aria-hidden="true">
-      <defs>
-        <path id="hero-seal-circle-path" d="M 100,100 m -82,0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0" />
-      </defs>
-      <!-- 外周二重円 -->
-      <circle class="hero-seal-circle" cx="100" cy="100" r="92" stroke-dasharray="1.5 1.5" />
-      <circle class="hero-seal-circle" cx="100" cy="100" r="80" />
-      <circle class="hero-seal-circle" cx="100" cy="100" r="62" />
-      <!-- 円周テキスト 上 -->
-      <text class="hero-seal-text">
-        <textPath href="#hero-seal-circle-path" startOffset="50%" text-anchor="middle">
-          ★ TOKUMARU SHOKAI ★ NAGOYA APPRAISAL ★
-        </textPath>
-      </text>
-      <!-- 中央 -->
-      <text class="hero-seal-center" x="100" y="98">徳丸</text>
-      <text class="hero-seal-center" x="100" y="124" style="font-size:14px;">商會</text>
-      <text class="hero-seal-center-sub" x="100" y="148">EST. NAGOYA</text>
-      <!-- 細い装飾線 -->
-      <line x1="42" y1="100" x2="58" y2="100" stroke="var(--color-accent-warm)" stroke-width="0.5" opacity="0.6" />
-      <line x1="142" y1="100" x2="158" y2="100" stroke="var(--color-accent-warm)" stroke-width="0.5" opacity="0.6" />
-    </svg>
-
-    <!-- コンテンツ: モバイル=画像下にスタック、PC=絶対配置で底に揃える -->
-    <div class="relative lg:absolute lg:inset-0 lg:flex lg:items-end z-10">
-      <div class="container-content w-full pt-8 pb-12 lg:pt-32 lg:pb-20">
-        <div class="grid lg:grid-cols-12 gap-8 items-end">
-          <div class="lg:col-span-8 reveal">
-            <!-- 【Signature】オークションハウス記法: 大判 Lot ナンバー + メタ -->
-            <div class="hero-lot">
-              <span class="hero-lot-num"><span class="hero-lot-num-prefix">Lot</span>001</span>
-              <span class="hero-lot-meta">
-                Brand Buyback
-                <span class="hero-lot-meta-sub">名古屋・出張ブランド買取</span>
-              </span>
-            </div>
-
-            <!-- 大判 display 見出し -->
-            <h1 class="hero-display max-w-3xl" aria-label="名古屋ブランド出張買取の徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを一点ずつご自宅で丁寧に拝見">
-              <span class="block">一点ずつ拝見します、</span>
-              <span class="block italic" style="color: var(--color-accent-soft);">ご自宅<span class="text-[var(--color-text)] not-italic">で。</span></span>
-            </h1>
-
-            <!-- Provenance 分類行（auction-house metadata 風） -->
-            <div class="hero-classification">
-              <span><em class="hero-cl-key">Provenance</em> — 名古屋市中村区</span>
-              <span class="hero-classification-sep">·</span>
-              <span><em class="hero-cl-key">License</em> — 愛知県公安委員会許可 第541042309800号</span>
-            </div>
-
-            <!-- 取扱ブランド ストリップ（モバイル: 3+2 / PC: 1行） -->
-            <div class="hero-brand-strip" aria-label="取扱主要ブランド">
-              <span class="hero-brand-name">HERMES</span>
-              <span class="hero-brand-sep">·</span>
-              <span class="hero-brand-name">CHANEL</span>
-              <span class="hero-brand-sep">·</span>
-              <span class="hero-brand-name">LOUIS VUITTON</span>
-              <span class="hero-brand-sep hero-brand-sep-md">·</span>
-              <span class="hero-brand-row-break" aria-hidden="true"></span>
-              <span class="hero-brand-name">ROLEX</span>
-              <span class="hero-brand-sep">·</span>
-              <span class="hero-brand-name">Cartier</span>
-            </div>
-
-            <!-- subcopy（短く・editorial） -->
-            <p class="hero-subcopy max-w-xl">
-              <span class="hero-subcopy-lead">親から受け継いだ品も、長くしまわれた品も。</span>
-              名古屋市内最短当日訪問、出張料・査定料・キャンセル料は頂戴いたしません。
-            </p>
+    <!-- PC: split (left panel + right image) / Mobile: stacked content under image -->
+    <div class="hero-v2-grid">
+      <!-- LEFT: warm sandy panel with editorial content -->
+      <div class="hero-v2-panel">
+        <div class="hero-v2-panel-inner reveal">
+          <!-- eyebrow: catalog feature label -->
+          <div class="hero-v2-eyebrow">
+            <span class="hero-v2-eyebrow-num">N° 001</span>
+            <span class="hero-v2-eyebrow-label">Featured Buyback</span>
           </div>
 
-          <div class="lg:col-span-4 reveal reveal-delay-1">
-            <!-- キャンペーン訴求バナー（CV直前に提示） -->
-            <a href={sectionPath("campaigns")} class="block mb-3 border border-[var(--color-accent-soft)] bg-[var(--color-bg)] px-4 py-3 hover:bg-[var(--color-bg-2)] transition group">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="bg-[var(--color-text)] text-[var(--color-bg)] text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 font-medium">期間限定</span>
-                <span class="text-[10px] text-[var(--color-text-sub)] tracking-wider">{yearDotMonth}</span>
-              </div>
-              <p class="text-[13px] text-[var(--color-text)] leading-snug">
-                エルメス・シャネル・ロレックス <span class="font-serif italic" style="color: var(--color-accent-soft);">買取UP +5〜10%</span><br />
-                <span class="text-[var(--color-text-sub)] text-[11px]">／ LINE登録で +3% UP（常設）</span>
-              </p>
+          <!-- title group -->
+          <h1 class="hero-v2-title" aria-label="名古屋ブランド出張買取の徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを一点ずつご自宅で丁寧に拝見">
+            <span class="hero-v2-title-en">Brand Buyback,</span>
+            <span class="hero-v2-title-jp"><em>名古屋から</em>。</span>
+          </h1>
+
+          <!-- subtitle / lead -->
+          <p class="hero-v2-lead">
+            親から受け継いだ品も、長くしまわれた品も。<br />
+            一点ずつ、ご自宅で拝見します。
+          </p>
+
+          <!-- metadata (auction catalog style) -->
+          <dl class="hero-v2-meta">
+            <div class="hero-v2-meta-row">
+              <dt>取扱</dt>
+              <dd>HERMES · CHANEL · LOUIS VUITTON · ROLEX · Cartier</dd>
+            </div>
+            <div class="hero-v2-meta-row">
+              <dt>方法</dt>
+              <dd>出張買取 ／ LINE査定 ／ 宅配買取</dd>
+            </div>
+            <div class="hero-v2-meta-row">
+              <dt>所在</dt>
+              <dd>名古屋市中村区横井 ／ 9:00–21:00 年中無休</dd>
+            </div>
+            <div class="hero-v2-meta-row">
+              <dt>許可</dt>
+              <dd>愛知県公安委員会 第541042309800号</dd>
+            </div>
+          </dl>
+
+          <!-- CTA bar -->
+          <div class="hero-v2-cta">
+            <a href={lineUrl} target="_blank" rel="noopener" class="hero-v2-cta-primary">
+              <span class="hero-v2-cta-primary-label">LINEで無料査定する</span>
+              <span class="hero-v2-cta-primary-meta">最短15分／写真と型番だけ／+3% UP</span>
             </a>
-
-            <div class="bg-[var(--color-bg)] border border-[var(--color-border)] p-6 deco-corners">
-              <div class="numero mb-5">N° 01</div>
-              <div class="flex flex-col gap-3">
-                <a href={lineUrl} target="_blank" rel="noopener" class="btn btn-line btn-lg w-full">
-                  LINEで無料査定
-                </a>
-                <a href={phoneTel} class="btn btn-outline w-full">
-                  いますぐ電話する
-                </a>
-                <a href={sectionPath("contact")} class="text-center text-[13px] text-[var(--color-text-sub)] hover:text-[var(--color-text)] transition pt-2 underline-offset-4 hover:underline">
-                  フォームから相談する
-                </a>
-              </div>
+            <div class="hero-v2-cta-row">
+              <a href={phoneTel} class="hero-v2-cta-secondary">
+                <span class="hero-v2-cta-secondary-label">電話で相談</span>
+                <span class="hero-v2-cta-secondary-num">{company.phone}</span>
+              </a>
+              <a href={sectionPath("contact")} class="hero-v2-cta-tertiary">
+                フォーム →
+              </a>
             </div>
           </div>
+
+          <!-- campaign tag -->
+          <a href={sectionPath("campaigns")} class="hero-v2-campaign">
+            <span class="hero-v2-campaign-tag">期間限定 {yearDotMonth}</span>
+            <span>エルメス・シャネル・ロレックス <em>買取UP +5〜10%</em></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: full-bleed editorial image (PC only — mobile uses top image above) -->
+      <div class="hero-v2-image">
+        <picture>
+          <source srcset={assetPath("images/hero/hero-brandbuyback.webp")} type="image/webp" />
+          <img src={assetPath("images/hero/hero-brandbuyback.jpg")} alt="ブランド品査定の現場。コニャック色の革のハンドバッグ、腕時計、白手袋、真鍮の拡大鏡。" loading="eager" fetchpriority="high" width="1920" height="1080" />
+        </picture>
+        <div class="hero-v2-image-caption">
+          <span class="hero-v2-image-caption-label">— Recent Appraisal</span>
+          <span class="hero-v2-image-caption-text">HERMES バーキン25 トゴ／ブラック</span>
+          <span class="hero-v2-image-caption-est">Estimate ¥206 〜 ¥390万</span>
         </div>
       </div>
     </div>
