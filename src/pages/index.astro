@@ -208,9 +208,9 @@ const midToMan = (label: string): string => {
           <div class="flex items-center gap-3 mb-4">
             <span class="numero">N° 02</span>
             <span class="block w-8 h-px bg-[var(--color-border)]"></span>
-            <span class="eyebrow">私たちの姿勢</span>
+            <span class="eyebrow">ブランド買取の姿勢</span>
           </div>
-          <h2 class="dossier-title mb-8">
+          <h2 class="dossier-title mb-8" aria-label="ブランド買取の姿勢｜他店で値が付かなかった品も丁寧に拝見します">
             他店で値が付かなかった<br />品も、<span class="italic" style="color: var(--color-accent-soft);">丁寧に</span>拝見します。
           </h2>
           <p class="dossier-copy text-base text-[var(--color-text-sub)] leading-loose">
@@ -412,9 +412,9 @@ const midToMan = (label: string): string => {
           <div class="chapter-kicker">
             <span class="numero">N° 04</span>
             <span class="block w-8 h-px bg-[var(--color-border)]"></span>
-            <span class="eyebrow">3つのご利用方法</span>
+            <span class="eyebrow">出張買取・LINE査定・宅配買取</span>
           </div>
-          <h2 class="chapter-title max-w-xl">
+          <h2 class="chapter-title max-w-xl" aria-label="ブランド買取の3つの方法｜出張買取・LINE査定・宅配買取からご都合の良い方法をお選びください">
             ご都合の良い方法を、<span class="italic" style="color: var(--color-accent-soft);">お選びください。</span>
           </h2>
           <p class="text-[15px] text-[var(--color-text-sub)] mt-6 max-w-md leading-loose">
@@ -504,9 +504,9 @@ const midToMan = (label: string): string => {
           <div class="chapter-kicker">
             <span class="numero">N° 05</span>
             <span class="block w-8 h-px bg-[var(--color-accent-soft)]"></span>
-            <span class="eyebrow eyebrow-accent">期間限定 ＋ 常設特典</span>
+            <span class="eyebrow eyebrow-accent">ブランド買取キャンペーン</span>
           </div>
-          <h2 class="chapter-title max-w-xl">
+          <h2 class="chapter-title max-w-xl" aria-label="ブランド買取キャンペーン｜期間限定特典と常設特典の3つ">
             ご利用いただきやすい、<br /><span class="italic" style="color: var(--color-accent-soft);">3つの</span>キャンペーン。
           </h2>
           <p class="text-[15px] text-[var(--color-text-sub)] mt-6 max-w-md leading-loose">
@@ -573,9 +573,9 @@ const midToMan = (label: string): string => {
           <div class="chapter-kicker">
             <span class="numero">N° 06</span>
             <span class="block w-8 h-px bg-[var(--color-border)]"></span>
-            <span class="eyebrow">査定を担当する2人</span>
+            <span class="eyebrow">ブランド査定士のご紹介</span>
           </div>
-          <h2 class="chapter-title max-w-xl">
+          <h2 class="chapter-title max-w-xl" aria-label="ブランド査定士のご紹介｜顔の見える査定をお約束する2名の専門スタッフ">
             顔の<span class="italic" style="color: var(--color-accent-soft);">見える、</span>査定。
           </h2>
           <p class="text-[15px] text-[var(--color-text-sub)] mt-6 max-w-md leading-loose">
@@ -627,8 +627,8 @@ const midToMan = (label: string): string => {
     <div class="container-content">
       <div class="chapter-row mb-12 lg:mb-20">
         <div class="reveal">
-          <div class="eyebrow mb-4">お客様からの言葉</div>
-          <h2 class="chapter-title max-w-xl">
+          <div class="eyebrow mb-4">お客様の声 — 相続・形見整理・断捨離</div>
+          <h2 class="chapter-title max-w-xl" aria-label="お客様の声｜相続・形見整理・断捨離でのブランド買取ご利用例">
             相続・形見整理、<br />断捨離のご利用から。
           </h2>
           <p class="text-[15px] text-[var(--color-text-sub)] mt-6 max-w-md leading-loose">
@@ -674,8 +674,8 @@ const midToMan = (label: string): string => {
   <section id="faq" class="section-pad bg-[var(--color-bg)]">
     <div class="container-narrow">
       <div class="text-center mb-12 reveal">
-        <div class="eyebrow mb-4">よくあるご質問</div>
-        <h2 class="display-2">
+        <div class="eyebrow mb-4">ブランド買取FAQ</div>
+        <h2 class="display-2" aria-label="ブランド買取に関するよくあるご質問｜ご利用前のご不安にお答えします">
           ご利用前のご不安に、お答えします。
         </h2>
       </div>
@@ -734,6 +734,35 @@ const midToMan = (label: string): string => {
           </div>
         </dl>
       </div>
+
+      <!-- 主要対応エリア（地域SEO・h3でローカル検索流入を確保） -->
+      <div class="mt-14 pt-10 border-t border-[var(--color-border)] reveal">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="block w-8 h-px bg-[var(--color-border)]"></span>
+          <span class="eyebrow">主要対応エリア — 名古屋市内</span>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-7">
+          <div>
+            <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">中村区</h3>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">名古屋市中村区のブランド買取。本社所在地・最短当日訪問。</p>
+          </div>
+          <div>
+            <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">中区</h3>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">栄・大須・伏見エリアのブランド出張買取に対応。</p>
+          </div>
+          <div>
+            <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">千種区</h3>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">覚王山・本山エリアのブランド品出張買取・LINE査定。</p>
+          </div>
+          <div>
+            <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">名東区</h3>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">高針・上社エリアのブランド買取に出張対応。</p>
+          </div>
+        </div>
+        <p class="text-[11px] text-[var(--color-text-sub)] mt-7 leading-relaxed">
+          上記4区以外の名古屋市16区（千種・東・北・西・昭和・瑞穂・熱田・中川・港・南・守山・緑・天白）、および尾張・知多・西三河エリアにも出張買取で対応します。詳細は <a href={sectionPath("contact")} class="underline underline-offset-2 hover:text-[var(--color-text)]">お問い合わせ</a> ください。
+        </p>
+      </div>
     </div>
   </section>
 
@@ -741,8 +770,8 @@ const midToMan = (label: string): string => {
   <section id="contact" class="section-pad bg-[var(--color-bg)]">
     <div class="container-content">
       <div class="text-center mb-14 reveal">
-        <div class="eyebrow mb-4">お問い合わせ</div>
-        <h2 class="display-2 max-w-2xl mx-auto">
+        <div class="eyebrow mb-4">名古屋ブランド買取のご相談</div>
+        <h2 class="display-2 max-w-2xl mx-auto" aria-label="名古屋ブランド買取のご相談｜出張買取・LINE査定・宅配買取・お電話・フォームでお気軽に">
           まずは、お気軽に。
         </h2>
         <p class="text-[15px] text-[var(--color-text-sub)] mt-6">
