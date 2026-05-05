@@ -147,14 +147,24 @@ const midToMan = (label: string): string => {
       <div class="container-content w-full pt-8 pb-12 lg:pt-32 lg:pb-20">
         <div class="grid lg:grid-cols-12 gap-8 items-end">
           <div class="lg:col-span-8 reveal">
-            <!-- 業種明示ラベル（h1 前に大判で「ブランド買取」を視認させる） -->
-            <div class="hero-purpose">
-              <div class="hero-purpose-en">BRAND BUYBACK</div>
-              <div class="hero-purpose-jp">
-                <span>名古屋 出張ブランド買取</span>
-                <span class="hero-purpose-jp-sep">／</span>
-                <span class="hero-purpose-jp-sub">バッグ・時計・ジュエリー</span>
-              </div>
+            <!-- 【Signature】オークションハウス記法: Lot ナンバー + 分類線 -->
+            <div class="hero-lot">
+              <span class="hero-lot-num">Lot 001</span>
+              <span class="hero-lot-rule" aria-hidden="true"></span>
+              <span class="hero-lot-meta">Brand Buyback ／ Nagoya</span>
+            </div>
+
+            <!-- 大判 display 見出し -->
+            <h1 class="hero-display max-w-3xl" aria-label="名古屋ブランド出張買取の徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを一点ずつご自宅で丁寧に拝見">
+              <span class="block">一点ずつ拝見します、</span>
+              <span class="block italic" style="color: var(--color-accent-soft);">ご自宅<span class="text-[var(--color-text)] not-italic">で。</span></span>
+            </h1>
+
+            <!-- Provenance 分類行（auction-house metadata 風） -->
+            <div class="hero-classification">
+              <span><em class="hero-cl-key">Provenance</em> — 名古屋市中村区</span>
+              <span class="hero-classification-sep">·</span>
+              <span><em class="hero-cl-key">License</em> — 愛知県公安委員会許可 第541042309800号</span>
             </div>
 
             <!-- 取扱ブランド ストリップ（モバイル: 3+2 / PC: 1行） -->
@@ -171,19 +181,11 @@ const midToMan = (label: string): string => {
               <span class="hero-brand-name">Cartier</span>
             </div>
 
-            <h1 class="display-1 mb-6 max-w-3xl" aria-label="名古屋ブランド出張買取の徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを一点ずつご自宅で丁寧に拝見">
-              <span class="block">一点ずつ拝見します、</span>
-              <span class="block italic font-serif" style="color: var(--color-accent-soft);">ご自宅<span class="text-[var(--color-text)] not-italic">で。</span></span>
-            </h1>
-
-            <!-- 装飾線 + コピー -->
-            <div class="line-vertical pl-6 max-w-xl mb-8">
-              <p class="text-base md:text-lg text-[var(--color-text-sub)] leading-loose">
-                <span class="text-[var(--color-text)]">親から受け継いだ品も、<wbr />長くしまわれた品も。</span><br />
-                名古屋市内最短当日訪問。<wbr />出張料・査定料・キャンセル料は頂戴いたしません。<br />
-                <span class="text-[13px]">LINE査定・宅配買取にも対応。</span>
-              </p>
-            </div>
+            <!-- subcopy（短く・editorial） -->
+            <p class="hero-subcopy max-w-xl">
+              <span class="hero-subcopy-lead">親から受け継いだ品も、長くしまわれた品も。</span>
+              名古屋市内最短当日訪問、出張料・査定料・キャンセル料は頂戴いたしません。
+            </p>
           </div>
 
           <div class="lg:col-span-4 reveal reveal-delay-1">
