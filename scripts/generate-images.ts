@@ -119,7 +119,61 @@ Composition: subject in the lower-right, ~60% empty space at the top and left fo
 Negative prompt: ${NEGATIVE}, decorations, holiday, christmas, sparkle, glitter, gold ribbon, red ribbon`,
   },
 
-  /* ============== Visit buyback hero (出張買取明示用 - 開いた革のケース) ============== */
+  /* ============== Brand buyback hero (ブランド品査定の現場 - バッグ+時計+査定道具) ============== */
+  {
+    name: "hero-brandbuyback",
+    outputDir: "public/images/hero",
+    width: 1920,
+    height: 1080,
+    quality: 80,
+    aspectRatio: "16:9",
+    prompt: `${STYLE_BASE}
+
+A refined editorial still-life of a luxury brand item appraisal moment.
+
+CENTER SUBJECT: A dark cognac-brown leather handbag — an unbranded, structured tote or doctor's bag style with subtle brass hardware (NO visible logos, NO monogram patterns, NO embossed text — completely plain smooth leather). Placed on a vintage wooden table, slightly open showing folded white linen inside.
+
+BESIDE IT: A vintage round-faced wristwatch (plain white dial, slim brass hands, dark leather strap, NO brand text or logos visible) lying on folded white linen cloth.
+
+ACCENT: An antique brass magnifying loupe with patina resting nearby. White cotton inspection gloves folded neatly. A small empty cream-colored velvet jewelry tray at the corner (the tray is empty — no items, no rings, no jewelry).
+
+LIGHTING: Warm afternoon window light from upper-left, casting long gentle shadows on the wooden surface.
+
+BACKGROUND: Warm ivory wall, softly out of focus.
+
+COMPOSITION: Subjects arranged in lower-center to right of frame, with ~50% empty wall/space in the upper-left for h1 text overlay.
+
+MOOD: Refined professional appraisal moment — the quiet seconds before a brand item is examined for valuation. Editorial magazine quality, Kinfolk-Aesop atmosphere.
+
+Negative prompt: ${NEGATIVE}, brand logos, monogram patterns, brand names, embossed text, watch dial text, jewelry on tray, items inside tray, hands holding, fingers, faces, gold metallic flash, sparkle, multiple bags`,
+  },
+  {
+    name: "hero-brandbuyback-portrait",
+    outputDir: "public/images/hero",
+    width: 1200,
+    height: 1600,
+    quality: 80,
+    aspectRatio: "3:4",
+    prompt: `${STYLE_BASE.replace("Aspect ratio 16:9 cinematic, horizontal landscape orientation.", "Aspect ratio 3:4 portrait orientation for mobile.")}
+
+Portrait composition of a luxury brand item appraisal moment.
+
+CENTER SUBJECT: A dark cognac-brown leather handbag — unbranded, structured tote or doctor's bag style with subtle brass hardware (NO visible logos, NO monograms, NO embossed text — completely plain smooth leather). Placed on a vintage wooden table.
+
+ABOVE OR BESIDE: A vintage round-faced wristwatch (plain white dial, NO brand text or logos) lying on folded white linen cloth, with leather strap visible.
+
+ACCENT: An antique brass magnifying loupe with patina nearby, folded white cotton inspection gloves.
+
+LIGHTING: Warm afternoon window light from upper-left, long gentle shadows on the wooden surface.
+
+BACKGROUND: Warm ivory wall, softly out of focus.
+
+COMPOSITION: Subjects placed in lower-third of vertical frame, with ~55-60% empty space at the top — meant for h1 text overlay below the image.
+
+MOOD: Refined professional appraisal moment, editorial magazine quality.
+
+Negative prompt: ${NEGATIVE}, brand logos, monogram patterns, brand names, embossed text, watch dial text, jewelry on tray, hands, faces, gold metallic flash, multiple bags`,
+  },
   {
     name: "hero-visit",
     outputDir: "public/images/hero",
