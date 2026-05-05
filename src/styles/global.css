@@ -906,6 +906,86 @@ section[id] { scroll-margin-top: 4rem; }
 }
 
 /* ───────────────────────────────────────────────
+ * Hero 信頼ストリップ（広告LP用 / 4信頼指標）
+ * ─────────────────────────────────────────────── */
+
+.hero-trust-strip {
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.hero-trust-strip > .container-content {
+  padding-block: clamp(1.25rem, 2.6vw, 2.25rem);
+}
+.hero-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+@media (min-width: 768px) {
+  .hero-trust-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.hero-trust-item {
+  padding: 0.65rem 0.85rem;
+  border-left: 1px solid var(--color-border);
+  text-align: left;
+}
+.hero-trust-item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+@media (max-width: 767px) {
+  .hero-trust-item:nth-child(2n+1) {
+    border-left: none;
+    padding-left: 0;
+  }
+  .hero-trust-item:nth-child(n+3) {
+    margin-top: 0.85rem;
+  }
+}
+
+.hero-trust-num {
+  font-family: var(--font-serif);
+  font-size: clamp(1.55rem, 2.8vw, 2.1rem);
+  font-weight: 500;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+.hero-trust-num-suffix {
+  font-size: 0.55em;
+  font-weight: 400;
+  margin-left: 0.1em;
+  color: var(--color-text-sub);
+}
+.hero-trust-num-jp {
+  font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+  letter-spacing: 0.05em;
+  font-feature-settings: normal;
+  font-variant-numeric: normal;
+  color: var(--color-accent-warm);
+}
+.hero-trust-num-license {
+  font-family: var(--font-sans);
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.hero-trust-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--color-text-sub);
+  margin-top: 0.4rem;
+  line-height: 1.45;
+}
+
+/* ───────────────────────────────────────────────
  * PC Floating CTA（lg+ 右下固定 / 広告LP感）
  * ─────────────────────────────────────────────── */
 
