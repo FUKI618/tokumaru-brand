@@ -71,11 +71,23 @@ const midToMan = (label: string): string => {
         <a href={sectionPath("faq")} class="text-[var(--color-text-sub)] hover:text-[var(--color-text)] transition">FAQ</a>
         <a href={sectionPath("contact")} class="text-[var(--color-text-sub)] hover:text-[var(--color-text)] transition">お問い合わせ</a>
       </nav>
+      <!-- PC: テキスト付きCTA -->
       <div class="hidden md:flex items-center gap-2">
         <a href={phoneTel} class="btn btn-outline btn-sm">
           いますぐ電話
         </a>
         <a href={lineUrl} target="_blank" rel="noopener" class="btn btn-line btn-sm">LINEで査定</a>
+      </div>
+      <!-- モバイル: アイコン圧縮CTA（常時表示・即タップ可） -->
+      <div class="flex md:hidden items-center gap-1.5">
+        <a href={phoneTel} aria-label="電話で問い合わせ" class="inline-flex items-center justify-center w-9 h-9 border border-[var(--color-text)] text-[var(--color-text)] hover:bg-[var(--color-text)] hover:text-[var(--color-bg)] transition">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+        </a>
+        <a href={lineUrl} target="_blank" rel="noopener" aria-label="LINEで査定" class="inline-flex items-center justify-center px-3 h-9 bg-[var(--color-line)] text-white text-[11px] font-semibold tracking-wider">
+          LINE
+        </a>
       </div>
     </div>
   </header>
@@ -167,6 +179,18 @@ const midToMan = (label: string): string => {
           </div>
 
           <div class="lg:col-span-4 reveal reveal-delay-1">
+            <!-- キャンペーン訴求バナー（CV直前に提示） -->
+            <a href={sectionPath("campaigns")} class="block mb-3 border border-[var(--color-accent-soft)] bg-[var(--color-bg)] px-4 py-3 hover:bg-[var(--color-bg-2)] transition group">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="bg-[var(--color-text)] text-[var(--color-bg)] text-[9px] tracking-[0.2em] uppercase px-2 py-0.5 font-medium">期間限定</span>
+                <span class="text-[10px] text-[var(--color-text-sub)] tracking-wider">2026.5</span>
+              </div>
+              <p class="text-[13px] text-[var(--color-text)] leading-snug">
+                エルメス・シャネル・ロレックス <span class="font-serif italic" style="color: var(--color-accent-soft);">買取UP +5〜10%</span><br />
+                <span class="text-[var(--color-text-sub)] text-[11px]">／ LINE登録で +3% UP（常設）</span>
+              </p>
+            </a>
+
             <div class="bg-[var(--color-bg)] border border-[var(--color-border)] p-6 deco-corners">
               <div class="numero mb-5">N° 01</div>
               <div class="flex flex-col gap-3">
