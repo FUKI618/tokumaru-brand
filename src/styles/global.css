@@ -2404,6 +2404,10 @@ header {
   display: none;
 }
 
+.section-divider {
+  display: none;
+}
+
 header {
   background: rgba(251, 250, 247, 0.96) !important;
   border-bottom-color: rgba(16, 18, 20, 0.1);
@@ -2414,14 +2418,15 @@ header {
   padding: clamp(6.25rem, 9vw, 8rem) 0 clamp(2.5rem, 5vw, 4rem);
   color: var(--pro-ink);
   background:
-    linear-gradient(105deg, #fbfaf7 0%, #f3efe6 56%, #101214 56%, #101214 100%);
+    linear-gradient(180deg, #fbfaf7 0%, #f3efe6 100%);
 }
 
 .hero-v2::after {
   z-index: 0;
   background:
-    radial-gradient(circle at 8% 18%, rgba(154, 88, 57, 0.16), transparent 25%),
-    radial-gradient(circle at 52% 15%, rgba(49, 95, 102, 0.16), transparent 26%);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.64) 0%, rgba(255, 255, 255, 0) 44%),
+    radial-gradient(circle at 16% 14%, rgba(154, 88, 57, 0.12), transparent 24%),
+    radial-gradient(circle at 72% 18%, rgba(49, 95, 102, 0.10), transparent 24%);
 }
 
 .hero-v2-mobile-image {
@@ -2429,13 +2434,13 @@ header {
 }
 
 .hero-v2-grid {
-  width: min(calc(100% - 2rem), 1360px);
+  width: min(calc(100% - 2rem), 1280px);
   min-height: auto;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 0.94fr) minmax(25rem, 0.82fr);
-  gap: clamp(1.4rem, 3.4vw, 3.5rem);
-  align-items: center;
+  grid-template-columns: minmax(0, 0.96fr) minmax(24rem, 0.9fr);
+  gap: clamp(1.25rem, 3vw, 2.8rem);
+  align-items: start;
 }
 
 .hero-v2-panel {
@@ -2446,7 +2451,7 @@ header {
 }
 
 .hero-v2-panel-inner {
-  max-width: 44rem;
+  max-width: 42rem;
 }
 
 .hero-v2-eyebrow {
@@ -2466,8 +2471,8 @@ header {
   max-width: 12ch;
   margin-bottom: 1rem;
   color: var(--pro-ink);
-  font-size: clamp(2.8rem, 5.2vw, 5.7rem);
-  line-height: 0.95;
+  font-size: clamp(2.65rem, 4.8vw, 5.2rem);
+  line-height: 0.98;
   letter-spacing: -0.02em;
   text-shadow: none;
 }
@@ -2499,7 +2504,7 @@ header {
 }
 
 .hero-v2-proof {
-  min-height: 5.4rem;
+  min-height: 4.9rem;
   padding: 0.85rem;
   background: #fff;
   border: 1px solid rgba(16, 18, 20, 0.12);
@@ -2568,7 +2573,7 @@ header {
   padding: clamp(0.9rem, 1.6vw, 1.2rem);
   background: #fff;
   border: 1px solid rgba(16, 18, 20, 0.12);
-  box-shadow: 0 28px 72px rgba(16, 18, 20, 0.13);
+  box-shadow: 0 22px 62px rgba(16, 18, 20, 0.11);
 }
 
 .hero-v2-cta-primary {
@@ -2625,11 +2630,12 @@ header {
   position: relative;
   inset: auto;
   z-index: 2;
-  height: clamp(32rem, 48vw, 43rem);
+  margin-top: clamp(0.5rem, 2.4vw, 2.2rem);
+  height: clamp(29rem, 42vw, 38rem);
   overflow: hidden;
-  background: var(--pro-ink);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 0 42px 96px rgba(16, 18, 20, 0.28);
+  background: #fff;
+  border: 1px solid rgba(16, 18, 20, 0.14);
+  box-shadow: 0 34px 82px rgba(16, 18, 20, 0.16);
 }
 
 .hero-v2-image picture,
@@ -2641,7 +2647,7 @@ header {
 
 .hero-v2-image img {
   object-fit: cover;
-  object-position: center;
+  object-position: 60% center;
 }
 
 .hero-v2-image::after {
@@ -2650,8 +2656,7 @@ header {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, transparent 42%, rgba(16, 18, 20, 0.56) 100%),
-    linear-gradient(90deg, rgba(16, 18, 20, 0.12), transparent 38%);
+    linear-gradient(180deg, transparent 54%, rgba(16, 18, 20, 0.46) 100%);
 }
 
 .hero-v2-image-caption {
@@ -2666,15 +2671,15 @@ header {
 
 .hero-rate-strip {
   margin-top: 0;
-  padding: 0 0 clamp(1.6rem, 3vw, 2.6rem);
-  background: var(--pro-ink);
+  padding: clamp(1.2rem, 2.6vw, 2rem) 0 clamp(1.6rem, 3vw, 2.6rem);
+  background: #fff;
+  border-top: 1px solid rgba(16, 18, 20, 0.1);
 }
 
 .hero-rate-strip .container-content {
-  transform: translateY(-1px);
   background: #fff;
-  border: 0;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(16, 18, 20, 0.1);
+  box-shadow: none;
 }
 
 .hero-rate-header {
@@ -2683,8 +2688,14 @@ header {
 }
 
 .hero-rate-card {
+  background: #f8f8f7;
   border-color: rgba(16, 18, 20, 0.1);
   box-shadow: none;
+}
+
+.hero-rate-card-bag,
+.hero-rate-card-jewelry {
+  background: #f8f8f7;
 }
 
 .hero-trust-strip {
@@ -2730,6 +2741,11 @@ header {
   color: var(--pro-ink);
   background: #fbfaf7;
   border-color: rgba(16, 18, 20, 0.12);
+}
+
+.dossier-section-dark .dossier-quote-card *,
+.dossier-section-dark .dossier-condition-grid * {
+  color: var(--pro-ink) !important;
 }
 
 #rates {
@@ -2800,7 +2816,7 @@ header {
   .hero-v2 {
     min-height: auto;
     padding: 5.6rem 0 0;
-    background: var(--pro-paper);
+    background: #fbfaf7;
   }
 
   .hero-v2::after {
@@ -2818,7 +2834,8 @@ header {
 
   .hero-v2-image {
     order: 2;
-    height: clamp(10.5rem, 42vw, 16rem);
+    margin-top: 0;
+    height: clamp(11rem, 44vw, 16rem);
   }
 
   .hero-v2-image-caption {
