@@ -96,40 +96,37 @@ const midToMan = (label: string): string => {
   <!-- ============== 1. Hero — listing-ad conversion layout ============== -->
   <section id="hero" class="hero-v2">
 
-    <!-- モバイル: 既存の上部画像ヘッダー -->
+    <!-- Generated hero image: premium listing-ad conversion visual -->
     <div class="hero-v2-mobile-image">
       <picture class="absolute inset-0" aria-hidden="true">
-        <source srcset={assetPath("images/generated/pro-hero-portrait.webp")} type="image/webp" />
-        <img src={assetPath("images/generated/pro-hero-portrait.jpg")} alt="ブランド品査定の現場。木のテーブルにコニャック色の革のハンドバッグと腕時計、真鍮の拡大鏡、白手袋。" class="w-full h-full object-cover object-bottom" loading="eager" fetchpriority="high" width="1200" height="1600" />
+        <source srcset={assetPath("images/generated/ad-hero-mobile.webp")} type="image/webp" />
+        <img src={assetPath("images/generated/ad-hero-mobile.jpg")} alt="ブランド品査定の現場。革のハンドバッグ、腕時計、白手袋、スマートフォン、真鍮のルーペ。" class="w-full h-full object-cover object-bottom" loading="eager" fetchpriority="high" width="1200" height="1500" />
       </picture>
       <div class="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none" style="background: linear-gradient(180deg, transparent 0%, var(--color-bg-3) 100%);"></div>
       <div class="absolute left-6 bottom-6 z-10">
         <div class="flex items-center gap-3">
           <span class="block w-10 h-px bg-[var(--color-accent-warm)]"></span>
-          <div class="eyebrow text-[var(--color-text)]">出張買取 — 名古屋市中村区</div>
+          <div class="eyebrow text-[var(--color-text)]">LINE査定 — 最短15分</div>
         </div>
       </div>
     </div>
 
-    <!-- PC: split (left panel + right image) / Mobile: stacked content under image -->
+    <!-- PC: conversion panel + generated image / Mobile: stacked content -->
     <div class="hero-v2-grid">
-      <!-- LEFT: warm sandy panel with editorial content -->
       <div class="hero-v2-panel">
         <div class="hero-v2-panel-inner reveal">
           <div class="hero-v2-eyebrow">
-            <span class="hero-v2-eyebrow-label">名古屋ブランド買取</span>
+            <span class="hero-v2-eyebrow-label">名古屋ブランド買取 / 広告限定導線</span>
           </div>
 
-          <!-- title group -->
-          <h1 class="hero-v2-title" aria-label="名古屋ブランド出張買取の徳丸商会｜エルメス・シャネル・ヴィトン・ロレックス・カルティエを一点ずつご自宅で丁寧に拝見">
-            <span class="hero-v2-title-en">Brand Buyback,</span>
-            <span class="hero-v2-title-jp"><em>名古屋から</em>。</span>
+          <h1 class="hero-v2-title" aria-label="名古屋でブランド品を売るなら、まずLINEで相場確認。徳丸商会の出張買取・LINE査定・宅配買取">
+            <span class="hero-v2-title-en">売る前に、</span>
+            <span class="hero-v2-title-jp"><em>相場を確認</em>。</span>
           </h1>
 
-          <!-- subtitle / lead -->
           <p class="hero-v2-lead">
-            親から受け継いだ品も、長くしまわれた品も。<br />
-            一点ずつ、ご自宅で拝見します。
+            バッグ・時計・ジュエリーの写真を送るだけ。<br />
+            名古屋の査定員が、出張前に目安額をお返しします。
           </p>
 
           <div class="hero-v2-proof-grid" aria-label="徳丸商会の査定メリット">
@@ -150,7 +147,7 @@ const midToMan = (label: string): string => {
           <dl class="hero-v2-meta">
             <div class="hero-v2-meta-row">
               <dt>取扱</dt>
-              <dd>HERMES · CHANEL · LOUIS VUITTON · ROLEX · Cartier</dd>
+              <dd>エルメス・シャネル・ヴィトン・ロレックス・カルティエ</dd>
             </div>
             <div class="hero-v2-meta-row">
               <dt>方法</dt>
@@ -166,11 +163,10 @@ const midToMan = (label: string): string => {
             </div>
           </dl>
 
-          <!-- CTA bar -->
           <div class="hero-v2-cta">
             <a href={lineUrl} target="_blank" rel="noopener" class="hero-v2-cta-primary">
-              <span class="hero-v2-cta-primary-label">LINEで無料査定する</span>
-              <span class="hero-v2-cta-primary-meta">最短15分／写真と型番だけ／+3% UP</span>
+              <span class="hero-v2-cta-primary-label">LINEで相場を確認する</span>
+              <span class="hero-v2-cta-primary-meta">写真だけ / 最短15分 / 公式LINE特典 +3% UP</span>
             </a>
             <div class="hero-v2-cta-row">
               <a href={phoneTel} class="hero-v2-cta-secondary">
@@ -183,24 +179,22 @@ const midToMan = (label: string): string => {
             </div>
           </div>
 
-          <!-- campaign tag -->
           <a href={sectionPath("campaigns")} class="hero-v2-campaign">
             <span class="hero-v2-campaign-tag">期間限定 {yearDotMonth}</span>
-            <span>エルメス・シャネル・ロレックス <em>買取UP +5〜10%</em></span>
+            <span>主要ブランド <em>買取UP +5〜10%</em> / 初回相談無料</span>
           </a>
         </div>
       </div>
 
-      <!-- RIGHT: full-bleed editorial image (PC only — mobile uses top image above) -->
       <div class="hero-v2-image">
         <picture>
-          <source srcset={assetPath("images/generated/pro-hero.webp")} type="image/webp" />
-          <img src={assetPath("images/generated/pro-hero.jpg")} alt="ブランド品査定の現場。コニャック色の革のハンドバッグ、腕時計、白手袋、真鍮の拡大鏡。" loading="eager" fetchpriority="high" width="1920" height="1080" />
+          <source srcset={assetPath("images/generated/ad-hero-desktop.webp")} type="image/webp" />
+          <img src={assetPath("images/generated/ad-hero-desktop.jpg")} alt="ブランド品査定の現場。革のハンドバッグ、腕時計、白手袋、スマートフォン、真鍮のルーペ。" loading="eager" fetchpriority="high" width="1920" height="1080" />
         </picture>
         <div class="hero-v2-image-caption">
-          <span class="hero-v2-image-caption-label">— Recent Appraisal</span>
-          <span class="hero-v2-image-caption-text">HERMES バーキン25 トゴ／ブラック</span>
-          <span class="hero-v2-image-caption-est">Estimate ¥206 〜 ¥390万</span>
+          <span class="hero-v2-image-caption-label">査定前に分かること</span>
+          <span class="hero-v2-image-caption-text">現在の相場帯 / 付属品の影響 / 売り時</span>
+          <span class="hero-v2-image-caption-est">例：HERMES バーキン25 ¥206〜390万</span>
         </div>
       </div>
     </div>
