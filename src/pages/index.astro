@@ -99,8 +99,8 @@ const midToMan = (label: string): string => {
     <!-- モバイル: 既存の上部画像ヘッダー -->
     <div class="hero-v2-mobile-image">
       <picture class="absolute inset-0" aria-hidden="true">
-        <source srcset={assetPath("images/hero/hero-brandbuyback-portrait.webp")} type="image/webp" />
-        <img src={assetPath("images/hero/hero-brandbuyback-portrait.jpg")} alt="ブランド品査定の現場。木のテーブルにコニャック色の革のハンドバッグと腕時計、真鍮の拡大鏡、白手袋。" class="w-full h-full object-cover object-bottom" loading="eager" fetchpriority="high" width="1200" height="1600" />
+        <source srcset={assetPath("images/generated/pro-hero-portrait.webp")} type="image/webp" />
+        <img src={assetPath("images/generated/pro-hero-portrait.jpg")} alt="ブランド品査定の現場。木のテーブルにコニャック色の革のハンドバッグと腕時計、真鍮の拡大鏡、白手袋。" class="w-full h-full object-cover object-bottom" loading="eager" fetchpriority="high" width="1200" height="1600" />
       </picture>
       <div class="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none" style="background: linear-gradient(180deg, transparent 0%, var(--color-bg-3) 100%);"></div>
       <div class="absolute left-6 bottom-6 z-10">
@@ -182,8 +182,8 @@ const midToMan = (label: string): string => {
       <!-- RIGHT: full-bleed editorial image (PC only — mobile uses top image above) -->
       <div class="hero-v2-image">
         <picture>
-          <source srcset={assetPath("images/hero/hero-brandbuyback.webp")} type="image/webp" />
-          <img src={assetPath("images/hero/hero-brandbuyback.jpg")} alt="ブランド品査定の現場。コニャック色の革のハンドバッグ、腕時計、白手袋、真鍮の拡大鏡。" loading="eager" fetchpriority="high" width="1920" height="1080" />
+          <source srcset={assetPath("images/generated/pro-hero.webp")} type="image/webp" />
+          <img src={assetPath("images/generated/pro-hero.jpg")} alt="ブランド品査定の現場。コニャック色の革のハンドバッグ、腕時計、白手袋、真鍮の拡大鏡。" loading="eager" fetchpriority="high" width="1920" height="1080" />
         </picture>
         <div class="hero-v2-image-caption">
           <span class="hero-v2-image-caption-label">— Recent Appraisal</span>
@@ -296,10 +296,10 @@ const midToMan = (label: string): string => {
           <!-- 主役画像（全幅・大判）を最上段に -->
           <figure class="editorial-figure dossier-photo-card reveal reveal-delay-1">
             <picture class="editorial-media aspect-[3/4] lg:aspect-[4/3]">
-              <source media="(min-width: 1024px)" srcset={assetPath("images/sections/story-notebook.webp")} type="image/webp" />
-              <source media="(min-width: 1024px)" srcset={assetPath("images/sections/story-notebook.jpg")} type="image/jpeg" />
-              <source srcset={assetPath("images/sections/story-notebook-portrait.webp")} type="image/webp" />
-              <img src={assetPath("images/sections/story-notebook-portrait.jpg")} alt="木のテーブルに置かれた革のノートブックと真鍮の万年筆、窓からの斜光" loading="lazy" width="1200" height="1600" />
+              <source media="(min-width: 1024px)" srcset={assetPath("images/generated/pro-tools.webp")} type="image/webp" />
+              <source media="(min-width: 1024px)" srcset={assetPath("images/generated/pro-tools.jpg")} type="image/jpeg" />
+              <source srcset={assetPath("images/generated/pro-tools.webp")} type="image/webp" />
+              <img src={assetPath("images/generated/pro-tools.jpg")} alt="査定道具の静物写真。白手袋、真鍮の拡大鏡、天秤、空のトレー。" loading="lazy" width="1920" height="1080" />
             </picture>
             <figcaption class="editorial-caption">
               査定の記録は、一点ごとの状態と背景を残すところから始まります。
@@ -488,10 +488,10 @@ const midToMan = (label: string): string => {
 
         <figure class="editorial-figure photo-slab reveal reveal-delay-1">
           <picture class="editorial-media aspect-[3/4] sm:aspect-[4/5] lg:aspect-[21/9]">
-            <source media="(min-width: 1024px)" srcset={assetPath("images/sections/methods-parcel.webp")} type="image/webp" />
-            <source media="(min-width: 1024px)" srcset={assetPath("images/sections/methods-parcel.jpg")} type="image/jpeg" />
-            <source srcset={assetPath("images/sections/methods-parcel-portrait.webp")} type="image/webp" />
-            <img src={assetPath("images/sections/methods-parcel-portrait.jpg")} alt="木のテーブルに置かれた白い小包と麻紐、リネン布" loading="lazy" width="1200" height="1600" />
+            <source media="(min-width: 1024px)" srcset={assetPath("images/generated/pro-process.webp")} type="image/webp" />
+            <source media="(min-width: 1024px)" srcset={assetPath("images/generated/pro-process.jpg")} type="image/jpeg" />
+            <source srcset={assetPath("images/generated/pro-process.webp")} type="image/webp" />
+            <img src={assetPath("images/generated/pro-process.jpg")} alt="宅配査定キットの静物写真。クリーム色の箱、保護布、白手袋、真鍮の拡大鏡。" loading="lazy" width="1920" height="1080" />
           </picture>
           <figcaption class="editorial-caption lg:ml-auto">
             宅配キットも、査定品を傷めない梱包から丁寧にご案内します。
@@ -558,8 +558,8 @@ const midToMan = (label: string): string => {
   <section id="campaigns" class="dossier-section campaign-stage bg-[var(--color-bg-3)] relative overflow-hidden paper-bg">
     <div class="bg-letter" style="bottom: -10%; right: -3%;" aria-hidden="true">V</div>
     <picture class="campaign-bg-image hidden lg:block absolute inset-y-0 right-0 w-[42%] opacity-60" aria-hidden="true" style="mask-image: linear-gradient(90deg, transparent 0%, black 18%, black 78%, transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 18%, black 78%, transparent 100%);">
-      <source srcset={assetPath("images/sections/campaigns-ribbon.webp")} type="image/webp" />
-      <img src={assetPath("images/sections/campaigns-ribbon.jpg")} alt="" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
+      <source srcset={assetPath("images/generated/pro-campaign.webp")} type="image/webp" />
+      <img src={assetPath("images/generated/pro-campaign.jpg")} alt="" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080" />
     </picture>
 
     <div class="container-content relative">
@@ -580,8 +580,8 @@ const midToMan = (label: string): string => {
 
         <figure class="editorial-figure photo-slab lg:hidden reveal reveal-delay-1">
           <picture class="editorial-media aspect-[4/5]">
-            <source srcset={assetPath("images/sections/campaigns-ribbon-portrait.webp")} type="image/webp" />
-            <img src={assetPath("images/sections/campaigns-ribbon-portrait.jpg")} alt="木のテーブルに置かれたリネンリボンの小箱と便箋・押し花" loading="lazy" width="1200" height="1600" />
+            <source srcset={assetPath("images/generated/pro-campaign.webp")} type="image/webp" />
+            <img src={assetPath("images/generated/pro-campaign.jpg")} alt="リネンリボンの箱、白手袋、真鍮の拡大鏡を置いたキャンペーン用の静物写真。" loading="lazy" width="1920" height="1080" />
           </picture>
           <figcaption class="editorial-caption">
             贈り物のように、査定前の不安をひとつずつ解いていくための特典です。
@@ -649,10 +649,10 @@ const midToMan = (label: string): string => {
 
         <figure class="editorial-figure photo-slab reveal reveal-delay-1">
           <picture class="editorial-media aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/3]">
-            <source media="(min-width: 1024px)" srcset={assetPath("images/sections/staff-tools.webp")} type="image/webp" />
-            <source media="(min-width: 1024px)" srcset={assetPath("images/sections/staff-tools.jpg")} type="image/jpeg" />
-            <source srcset={assetPath("images/sections/staff-tools-portrait.webp")} type="image/webp" />
-            <img src={assetPath("images/sections/staff-tools-portrait.jpg")} alt="木のテーブルに並ぶ真鍮の天秤・ルーペ・白手袋" loading="lazy" width="1200" height="1600" />
+            <source media="(min-width: 1024px)" srcset={assetPath("images/generated/pro-tools.webp")} type="image/webp" />
+            <source media="(min-width: 1024px)" srcset={assetPath("images/generated/pro-tools.jpg")} type="image/jpeg" />
+            <source srcset={assetPath("images/generated/pro-tools.webp")} type="image/webp" />
+            <img src={assetPath("images/generated/pro-tools.jpg")} alt="木のテーブルに並ぶ真鍮の天秤・ルーペ・白手袋" loading="lazy" width="1920" height="1080" />
           </picture>
           <figcaption class="editorial-caption lg:ml-auto">
             査定の道具は、状態を見極めるための観察の延長にあります。
