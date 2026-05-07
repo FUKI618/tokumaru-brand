@@ -4256,3 +4256,151 @@ header .btn-outline {
 .hero-trust-label {
   color: var(--gamma-ink-2) !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+ * γ Palette Cascade — middle sections inheritance (2026-05-07)
+ * Strategy: Legacy tokens (--color-bg etc.) are remapped to γ values
+ * so every section using `bg-[var(--color-bg-N)]` auto-shifts to γ.
+ * Dark sections (.dossier-section-dark) keep their own overrides.
+ * ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Light surface tokens — remap to γ palette */
+  --color-bg: #faf3e2;            /* gamma-bg-paper — lightest cream surface */
+  --color-bg-2: #f3ead8;          /* gamma-bg — main warm beige */
+  --color-bg-3: #ebdec3;          /* gamma-bg-2 — deeper beige */
+
+  /* Text tokens — remap to γ wine-brown */
+  --color-text: #2a1d12;          /* gamma-ink */
+  --color-text-sub: #5c4a3a;      /* gamma-ink-2 */
+  --color-text-mute: #8a7a68;     /* gamma-ink-3 */
+
+  /* Accent tokens — gold-led */
+  --color-accent: #2a1d12;        /* CTA primary stays solid ink */
+  --color-accent-soft: #836423;   /* gamma-gold-deep — for eyebrow lines/divider motifs */
+  --color-accent-warm: #a78640;   /* gamma-gold — primary highlight */
+
+  /* Borders — γ ink based */
+  --color-border: rgba(42, 29, 18, 0.14);
+  --color-border-strong: rgba(42, 29, 18, 0.32);
+}
+
+/* Body explicit re-pin (some Tailwind utilities cache) */
+html, body { background-color: var(--color-bg-2); color: var(--color-text); }
+
+/* Section divider motifs — gold up */
+.section-divider-motif {
+  color: var(--gamma-gold-deep) !important;
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif !important;
+  font-style: italic;
+}
+
+.section-divider {
+  border-color: var(--gamma-border) !important;
+}
+
+/* Eyebrow & numero in light sections — gold ink */
+:not(.dossier-section-dark) > * .eyebrow,
+:not(.dossier-section-dark) .eyebrow {
+  color: var(--gamma-gold-deep);
+  font-family: "Noto Serif JP", "Cormorant Garamond", serif;
+  font-style: italic;
+}
+
+:not(.dossier-section-dark) .numero {
+  color: var(--gamma-gold);
+  font-family: "Cormorant Garamond", serif;
+}
+
+/* Display headlines — emphasize serif weight in middle sections */
+.dossier-title,
+.display-2,
+.display-3 {
+  font-family: "Noto Serif JP", "Cormorant Garamond", "Yu Mincho", serif;
+  letter-spacing: 0.02em;
+}
+
+/* Cards — paper feel with gold top border accent */
+.section-pad article,
+[class*="bg-[var(--color-bg)]"][class*="border"],
+.dossier-photo-card,
+.dossier-quote-card {
+  border-color: var(--gamma-border);
+}
+
+/* Rates / Campaigns / Voices boxes — subtle gold accent on hover */
+[class*="bg-[var(--color-bg-2)]"] [class*="border-[var(--color-border)]"]:hover,
+[class*="bg-[var(--color-bg-3)]"] [class*="border-[var(--color-border)]"]:hover {
+  border-top: 2px solid var(--gamma-gold);
+}
+
+/* Method cards 人気 ribbon — gold instead of teal */
+[class*="bg-[var(--color-accent-soft)]"] {
+  background-color: var(--gamma-gold-deep) !important;
+}
+
+/* Form inputs in light sections */
+input:not([type="radio"]):not([type="checkbox"]),
+textarea,
+select {
+  background-color: var(--color-bg);
+  border: 1px solid var(--gamma-border);
+  color: var(--gamma-ink);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--gamma-gold) !important;
+  outline: 2px solid rgba(167, 134, 64, 0.18);
+  outline-offset: 1px;
+}
+
+/* Mobile sticky CTA — γ matched */
+.mobile-sticky-cta-strip,
+.mobile-sticky-cta {
+  border-top: 1px solid var(--gamma-border) !important;
+}
+
+/* Dark sections preserved — but accent-warm now γ-gold */
+.dossier-section-dark .text-\[var\(--color-accent-warm\)\],
+.dossier-section-dark [class*="text-[var(--color-accent-warm)]"] {
+  color: var(--gamma-gold-light) !important;
+}
+
+.dossier-section-dark .border-\[var\(--color-accent-warm\)\] {
+  border-color: var(--gamma-gold-light) !important;
+}
+
+/* Footer dark inverse — light gold accent */
+footer .text-\[var\(--color-accent-warm\)\],
+footer [class*="text-[var(--color-accent-warm)]"] {
+  color: var(--gamma-gold-light) !important;
+}
+
+/* Hero rate strip & trust strip already overridden above; reinforce */
+.hero-rate-eyebrow,
+.hero-rate-meta {
+  font-family: "Noto Serif JP", "Cormorant Garamond", serif !important;
+}
+
+.hero-rate-model,
+.hero-trust-num {
+  font-family: "Noto Serif JP", "Cormorant Garamond", serif !important;
+}
+
+/* h2 / dossier titles in light sections — Noto Serif JP for 婦人 elegance */
+:not(.dossier-section-dark) > .dossier-section .dossier-title,
+:not(.dossier-section-dark) > section .dossier-title,
+section:not(.dossier-section-dark) .dossier-title,
+section:not(.dossier-section-dark) h2 {
+  font-family: "Noto Serif JP", "Cormorant Garamond", "Yu Mincho", serif;
+  font-weight: 500;
+}
+
+/* Buttons — γ accent on outline buttons */
+.btn-outline:hover {
+  background-color: var(--gamma-ink) !important;
+  color: var(--gamma-bg-paper) !important;
+  border-color: var(--gamma-ink) !important;
+}
+
+/* ────── End of γ Palette Cascade ────── */
