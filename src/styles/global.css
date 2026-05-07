@@ -5278,3 +5278,94 @@ header .container-content {
     padding-block: 0.7rem !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+ * Header rebalance (2026-05-08) — Takashimaya density
+ * - wordmark を縮小して画面幅を取りすぎないように
+ * - ロゴ+wordmark セット ↔ CTAセット の余白を確保
+ * - 電話/LINE を同じピル形状で揃え、γ palette に馴染ませる
+ * ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1023px) {
+  /* Wordmark を 30% 縮小 */
+  .header-wordmark-main {
+    font-size: 1.3rem !important;
+    letter-spacing: 0;
+  }
+
+  /* ロゴアイコン微調整 */
+  .header-logo-img {
+    height: 48px !important;
+  }
+
+  /* ロゴ + wordmark セットと CTAセットの間に空白を確保
+     justify-between が space-between を作るので、wordmark の右マージンで密度調整 */
+  .header-brand {
+    gap: 0.65rem !important;
+  }
+
+  /* CTA ピル: 電話と LINE を同じ形状で統一 */
+  .header-cta-mobile {
+    gap: 0.4rem;
+    margin-left: auto;        /* CTA セットを右端に */
+  }
+
+  .header-cta-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.34rem;
+    height: 38px;
+    padding: 0 0.85rem;
+    font-family: "Noto Sans JP", system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+    border-radius: 0;            /* 直角でクラシック */
+    line-height: 1;
+  }
+
+  /* 電話: γ ベージュ枠 + ink 文字（控えめ） */
+  .header-cta-phone {
+    background: var(--gamma-bg-paper);
+    border: 1px solid var(--gamma-ink);
+    color: var(--gamma-ink);
+  }
+
+  .header-cta-phone:hover,
+  .header-cta-phone:active {
+    background: var(--gamma-ink);
+    color: var(--gamma-bg-paper);
+  }
+
+  /* LINE: ベージュ枠 + 緑 LINE 文字（背景に馴染ませつつ LINE色は維持） */
+  .header-cta-line {
+    background: #06c755;
+    border: 1px solid #06c755;
+    color: #fff;
+  }
+
+  .header-cta-line:hover,
+  .header-cta-line:active {
+    background: #04a946;
+    border-color: #04a946;
+  }
+
+  .header-cta-pill svg {
+    flex-shrink: 0;
+  }
+
+  /* ヘッダー container 内の3要素 (brand / [empty] / cta) を均等に */
+  header .container-content {
+    gap: 0.75rem;
+  }
+}
+
+/* デスクトップでも同じピル形に揃える（既存 btn-* を上書き） */
+@media (min-width: 1024px) {
+  .header-cta-mobile {
+    display: none;
+  }
+}
