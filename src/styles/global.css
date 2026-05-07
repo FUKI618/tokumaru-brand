@@ -4493,3 +4493,448 @@ footer a, footer .text-\[var\(--color-text-sub\)\] {
 footer a:hover {
   color: var(--gamma-gold-light) !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+ * Rates Classic — 三越婦人ブランドカタログ風 (2026-05-07)
+ * Replace spreadsheet-feel rates with dept-store catalog frames.
+ * ═══════════════════════════════════════════════════════════════ */
+
+.rates-classic {
+  position: relative;
+  padding: 6rem 0 7rem;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(167, 134, 64, 0.10), transparent 38%),
+    radial-gradient(circle at 5% 90%, rgba(167, 134, 64, 0.08), transparent 42%),
+    linear-gradient(180deg, #f3ead8 0%, #ebdec3 100%);
+  overflow: hidden;
+}
+
+.rates-classic::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(167, 134, 64, 0.022) 0,
+    rgba(167, 134, 64, 0.022) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rates-classic-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+/* ───── Section header ───── */
+.rates-classic-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(42, 29, 18, 0.12);
+}
+
+.rates-classic-numero {
+  display: block;
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  letter-spacing: 0.32em;
+  color: var(--gamma-gold-deep);
+  margin-bottom: 1.4rem;
+}
+
+.rates-classic-title {
+  font-family: "Noto Serif JP", "Cormorant Garamond", "Yu Mincho", serif;
+  font-size: clamp(1.85rem, 4.4vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--gamma-ink);
+  margin: 0 0 1.2rem;
+}
+
+.rates-classic-title em {
+  font-style: normal;
+  color: var(--gamma-gold-deep);
+  border-bottom: 2px solid var(--gamma-gold);
+  padding-bottom: 0.06em;
+  margin: 0 0.04em;
+}
+
+.rates-classic-eyebrow {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  color: var(--gamma-gold-deep);
+  margin-bottom: 1.5rem;
+}
+
+.rates-classic-lead {
+  font-family: "Noto Serif JP", serif;
+  font-size: 0.95rem;
+  line-height: 2;
+  color: var(--gamma-ink-2);
+  max-width: 640px;
+  margin: 0 auto 1.2rem;
+}
+
+.rates-classic-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--gamma-ink-3);
+  letter-spacing: 0.06em;
+}
+
+.rates-classic-meta-divider {
+  color: var(--gamma-gold);
+}
+
+/* ───── Minimum guarantee panel ───── */
+.rates-guarantee {
+  position: relative;
+  margin: 0 auto 5rem;
+  padding: 3rem 2rem 2.5rem;
+  background:
+    linear-gradient(180deg, #faf3e2 0%, #f5ecd5 100%);
+  max-width: 1140px;
+  border: 1px solid rgba(42, 29, 18, 0.18);
+}
+
+.rates-guarantee-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--gamma-gold);
+  border-style: solid;
+}
+
+.rates-guarantee-corner-tl { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+.rates-guarantee-corner-tr { top: 8px; right: 8px; border-width: 1px 1px 0 0; }
+.rates-guarantee-corner-bl { bottom: 8px; left: 8px; border-width: 0 0 1px 1px; }
+.rates-guarantee-corner-br { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
+
+.rates-guarantee-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(167, 134, 64, 0.32);
+}
+
+.rates-guarantee-eyebrow {
+  display: block;
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-style: italic;
+  font-size: 0.86rem;
+  letter-spacing: 0.22em;
+  color: var(--gamma-gold-deep);
+  margin-bottom: 0.6rem;
+}
+
+.rates-guarantee-title {
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-size: clamp(1.45rem, 2.6vw, 1.85rem);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: var(--gamma-ink);
+  margin: 0 0 0.4rem;
+}
+
+.rates-guarantee-sub {
+  font-family: "Noto Serif JP", serif;
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  color: var(--gamma-ink-2);
+  margin: 0;
+}
+
+.rates-guarantee-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .rates-guarantee-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .rates-guarantee-grid { grid-template-columns: repeat(5, 1fr); gap: 2.4rem 0.8rem; }
+}
+
+.rates-guarantee-item {
+  text-align: center;
+  position: relative;
+}
+
+.rates-guarantee-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  right: -0.4rem;
+  width: 1px;
+  background: rgba(167, 134, 64, 0.22);
+}
+
+@media (max-width: 1023px) {
+  .rates-guarantee-item:not(:last-child)::after { display: none; }
+}
+
+.rates-guarantee-brand {
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--gamma-ink);
+  margin-bottom: 0.18rem;
+}
+
+.rates-guarantee-jp {
+  font-family: "Noto Serif JP", serif;
+  font-size: 0.7rem;
+  color: var(--gamma-ink-2);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.85rem;
+}
+
+.rates-guarantee-price {
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  font-weight: 500;
+  color: var(--gamma-gold-deep);
+  letter-spacing: 0.02em;
+}
+
+.rates-guarantee-tilde {
+  font-style: italic;
+  font-size: 0.8em;
+  color: var(--gamma-gold);
+  margin-left: 0.1em;
+}
+
+.rates-guarantee-note {
+  font-family: "Noto Serif JP", serif;
+  font-size: 0.74rem;
+  line-height: 1.85;
+  color: var(--gamma-ink-2);
+  text-align: center;
+  margin: 2rem 0 0;
+  letter-spacing: 0.04em;
+}
+
+/* ───── Per-category catalog ───── */
+.rates-category {
+  margin-bottom: 4.5rem;
+}
+
+.rates-category-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.rates-category-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(167, 134, 64, 0.42) 50%, transparent 100%);
+}
+
+.rates-category-titleblock {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.rates-category-en {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  letter-spacing: 0.32em;
+  color: var(--gamma-gold-deep);
+  margin-bottom: 0.4rem;
+}
+
+.rates-category-jp {
+  font-family: "Noto Serif JP", "Yu Mincho", serif;
+  font-size: clamp(1.55rem, 3vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--gamma-ink);
+  margin: 0 0 0.4rem;
+}
+
+.rates-category-count {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  color: var(--gamma-ink-3);
+}
+
+/* ───── Catalog cards ───── */
+.rates-category-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.4rem;
+}
+
+@media (min-width: 720px) {
+  .rates-category-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+
+@media (min-width: 1100px) {
+  .rates-category-grid { grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
+}
+
+.rates-card {
+  position: relative;
+  padding: 1.85rem 1.6rem 1.5rem;
+  background: linear-gradient(180deg, #faf3e2 0%, #f5ecd5 100%);
+  border: 1px solid rgba(42, 29, 18, 0.14);
+  border-top: 2px solid var(--gamma-gold);
+  transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+}
+
+.rates-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 40px -16px rgba(42, 29, 18, 0.18);
+  border-top-color: var(--gamma-gold-deep);
+}
+
+.rates-card-corner {
+  position: absolute;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-color: var(--gamma-gold);
+}
+
+.rates-card-corner-tl { left: 6px; border-style: solid; border-width: 1px 0 0 1px; }
+.rates-card-corner-tr { right: 6px; border-style: solid; border-width: 1px 1px 0 0; }
+
+.rates-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.rates-card-brand {
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--gamma-ink);
+}
+
+.rates-card-survey {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: var(--gamma-ink-3);
+}
+
+.rates-card-model {
+  font-family: "Noto Serif JP", "Yu Mincho", serif;
+  font-size: 1.18rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--gamma-ink);
+  line-height: 1.4;
+  margin-bottom: 0.18rem;
+}
+
+.rates-card-variant {
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-style: italic;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  color: var(--gamma-ink-2);
+  margin-bottom: 0.6rem;
+}
+
+.rates-card-rule {
+  height: 1px;
+  background: rgba(167, 134, 64, 0.32);
+  margin: 0.95rem 0 1.1rem;
+}
+
+.rates-card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--gamma-ink);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.rates-card-price-num {
+  font-feature-settings: "tnum" 1;
+}
+
+.rates-card-price-tilde {
+  color: var(--gamma-gold);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.rates-card-mid {
+  margin-top: 0.65rem;
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-size: 0.76rem;
+  font-style: italic;
+  color: var(--gamma-ink-2);
+  letter-spacing: 0.04em;
+}
+
+.rates-card-mid em {
+  font-style: italic;
+  color: var(--gamma-gold-deep);
+  font-weight: 500;
+  margin-left: 0.2em;
+}
+
+.rates-card-note {
+  margin: 0.9rem 0 0;
+  padding-top: 0.7rem;
+  border-top: 1px dashed rgba(167, 134, 64, 0.28);
+  font-family: "Noto Serif JP", serif;
+  font-size: 0.7rem;
+  line-height: 1.7;
+  color: var(--gamma-ink-2);
+  letter-spacing: 0.02em;
+}
+
+/* ───── Disclaimer ───── */
+.rates-classic-disclaimer {
+  margin: 4rem auto 0;
+  max-width: 880px;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(42, 29, 18, 0.12);
+  font-family: "Noto Serif JP", serif;
+  font-size: 0.74rem;
+  line-height: 2;
+  color: var(--gamma-ink-3);
+  letter-spacing: 0.04em;
+  text-align: center;
+}

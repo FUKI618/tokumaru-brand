@@ -340,102 +340,94 @@ const midToMan = (label: string): string => {
   </div>
 
   <!-- ============== 3. Rates（参考買取相場） ============== -->
-  <section id="rates" class="section-pad bg-[var(--color-bg-2)] relative overflow-hidden">
-    <div class="bg-letter" style="bottom: -8%; left: -2%;" aria-hidden="true">III</div>
+  <section id="rates" class="rates-classic">
+    <div class="rates-classic-inner">
 
-    <div class="container-content relative">
-      <div class="grid lg:grid-cols-12 gap-8 mb-12 reveal">
-        <div class="lg:col-span-5">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="block w-8 h-px bg-[var(--color-border)]"></span>
-            <span class="eyebrow">主要ブランドの参考買取相場</span>
-          </div>
-          <h2 class="display-2">相場で見る、<br />買取の<span class="italic" style="color: var(--color-accent-soft);">目安。</span></h2>
+      <!-- Section header — 三越カタログ風 -->
+      <header class="rates-classic-header reveal">
+        <span class="rates-classic-numero">— No. III —</span>
+        <h2 class="rates-classic-title">
+          相場で見る、<br />買取の<em>目安</em>。
+        </h2>
+        <span class="rates-classic-eyebrow">Reference Buyback Estimates — Verified Cross-Source</span>
+        <p class="rates-classic-lead">
+          主要ブランドの公開買取実績から3社以上の実数値をクロスチェックして算出した、<br class="hidden md:inline" />
+          エルメス・シャネル・ロレックス等を含む全12モデルの参考相場です。
+        </p>
+        <div class="rates-classic-meta">
+          <span>集計期間 — {rateMetadata.collectionPeriod}</span>
+          <span class="rates-classic-meta-divider">·</span>
+          <span>最終更新 — {rateMetadata.updatedAt}</span>
         </div>
-        <div class="lg:col-span-7 lg:pt-6">
-          <p class="text-[15px] text-[var(--color-text-sub)] leading-loose">
-            主要ブランドの公開買取実績から3社以上の実数値をクロスチェックして算出した、エルメス・シャネル・ロレックス等を含む12モデルの参考相場です。
-            <span class="text-xs block mt-2">集計期間：{rateMetadata.collectionPeriod} ／ 更新：{rateMetadata.updatedAt}</span>
-          </p>
+      </header>
+
+      <!-- Minimum guarantee — 婦人売場フレーム -->
+      <div class="rates-guarantee reveal">
+        <div class="rates-guarantee-corner rates-guarantee-corner-tl"></div>
+        <div class="rates-guarantee-corner rates-guarantee-corner-tr"></div>
+        <div class="rates-guarantee-corner rates-guarantee-corner-bl"></div>
+        <div class="rates-guarantee-corner rates-guarantee-corner-br"></div>
+        <header class="rates-guarantee-header">
+          <span class="rates-guarantee-eyebrow">— 最低買取保証額 —</span>
+          <h3 class="rates-guarantee-title">Minimum Guaranteed Buyback</h3>
+          <p class="rates-guarantee-sub">主要5ブランド・状態問わず正規品をお約束</p>
+        </header>
+        <div class="rates-guarantee-grid">
+          {buybackGuarantees.map((g) => (
+            <div class="rates-guarantee-item">
+              <div class="rates-guarantee-brand">{g.brand}</div>
+              <div class="rates-guarantee-jp">{g.jpName}</div>
+              <div class="rates-guarantee-price">¥{g.minPrice.toLocaleString()}<span class="rates-guarantee-tilde">〜</span></div>
+            </div>
+          ))}
         </div>
+        <p class="rates-guarantee-note">※ 正規品確認後、状態問わず最低買取保証額をお約束します。詳細条件はお問い合わせください。</p>
       </div>
 
-      <!-- 主要ブランド最低買取保証額（Story から移動） -->
-      <div class="mb-14 reveal">
-        <div class="border border-[var(--color-border)] bg-[var(--color-bg)] p-6 md:p-8">
-          <div class="flex items-baseline justify-between mb-5 pb-3 border-b border-[var(--color-border)]">
-            <div class="eyebrow">主要ブランドの最低買取保証額</div>
-            <div class="text-[10px] text-[var(--color-text-sub)] tracking-widest hidden sm:block">Minimum Guaranteed Buyback</div>
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-5 gap-x-4">
-            {buybackGuarantees.map((g, i) => (
-              <div class={`text-center sm:text-left ${i === buybackGuarantees.length - 1 ? "col-span-2 sm:col-span-1 border-t border-[var(--color-border)] pt-4 sm:border-0 sm:pt-0" : ""}`}>
-                <div class="font-serif text-[var(--color-text)]">{g.brand}</div>
-                <div class="text-[10px] text-[var(--color-text-sub)] mb-2">{g.jpName}</div>
-                <div class="font-sans tabular-nums text-lg text-[var(--color-text)]" style="color: var(--color-accent-soft);">¥{g.minPrice.toLocaleString()}〜</div>
-              </div>
-            ))}
-          </div>
-          <p class="text-[11px] text-[var(--color-text-sub)] mt-5 leading-relaxed">
-            ※ 正規品確認後、状態問わず最低買取保証額をお約束します。詳細条件はお問い合わせください。
-          </p>
-        </div>
-      </div>
-
+      <!-- Categories — 三越カタログのフロアガイド風 -->
       {[
-        { id: "bag", label: "バッグ", items: bagRates },
-        { id: "watch", label: "時計", items: watchRates },
-        { id: "jewelry", label: "ジュエリー", items: jewelryRates },
-      ].map((cat, idx) => (
-        <div class="mb-10 lg:mb-12 reveal" x-data={`{ open: ${idx === 0 ? "true" : "false"} }`}>
-          <button
-            type="button"
-            @click="open = !open"
-            class="w-full flex items-end justify-between mb-6 pb-3 border-b border-[var(--color-border)] lg:cursor-default lg:pointer-events-none"
-            :aria-expanded="open"
-            aria-controls={`rates-${cat.id}`}
-          >
-            <h3 class="font-serif text-xl text-[var(--color-text)]">{cat.label}</h3>
-            <div class="flex items-center gap-3">
-              <div class="text-xs text-[var(--color-text-sub)] numeric tracking-wider">{cat.items.length} models</div>
-              <svg class="lg:hidden w-3.5 h-3.5 text-[var(--color-text-sub)] transition-transform duration-200" :class="open && 'rotate-180'" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path d="M2 4l4 4 4-4" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+        { id: "bag", label: "バッグ", labelEn: "Handbags", items: bagRates },
+        { id: "watch", label: "時計", labelEn: "Watches & Timepieces", items: watchRates },
+        { id: "jewelry", label: "ジュエリー", labelEn: "Fine Jewelry", items: jewelryRates },
+      ].map((cat) => (
+        <div class="rates-category reveal" id={`rates-${cat.id}`}>
+          <header class="rates-category-header">
+            <span class="rates-category-rule"></span>
+            <div class="rates-category-titleblock">
+              <span class="rates-category-en">{cat.labelEn}</span>
+              <h3 class="rates-category-jp">{cat.label}</h3>
+              <span class="rates-category-count">— {cat.items.length} models —</span>
             </div>
-          </button>
-          <div id={`rates-${cat.id}`} class="lg:!block" :class="!open && 'hidden'">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
-              {cat.items.map((r) => (
-                <article class="py-6 border-t border-[var(--color-border)]">
-                  <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-3">
-                    <div class="md:flex-1">
-                      <div class="flex items-baseline gap-3 mb-1">
-                        <span class="font-serif text-base text-[var(--color-text)] tracking-wide">{r.brand}</span>
-                        <span class="text-[10px] text-[var(--color-text-sub)] tracking-widest">×{r.sources}社調査</span>
-                      </div>
-                      <div class="text-[15px] text-[var(--color-text)] font-medium">{r.model}</div>
-                      {r.variant && <div class="text-[11px] text-[var(--color-text-sub)] mt-0.5">{r.variant}</div>}
-                    </div>
-                    <div class="md:text-right whitespace-nowrap">
-                      <div class="font-sans tabular-nums font-normal text-[26px] md:text-[30px] leading-none text-[var(--color-text)] tracking-tight">
-                        {formatMan(r.min)}<span class="text-[var(--color-text-sub)] text-[20px] mx-2 font-light">〜</span>{formatMan(r.max)}
-                      </div>
-                      <div class="font-sans tabular-nums text-[11px] text-[var(--color-text-sub)] mt-2 tracking-tight">
-                        中心帯 <span style="color: var(--color-accent-soft);">{midToMan(r.midLabel)}</span>
-                      </div>
-                    </div>
-                  </div>
-                  {r.note && (
-                    <p class="text-[10px] text-[var(--color-text-sub)] mt-3 leading-relaxed">※ {r.note}</p>
-                  )}
-                </article>
-              ))}
-            </div>
+            <span class="rates-category-rule"></span>
+          </header>
+          <div class="rates-category-grid">
+            {cat.items.map((r) => (
+              <article class="rates-card">
+                <div class="rates-card-corner rates-card-corner-tl"></div>
+                <div class="rates-card-corner rates-card-corner-tr"></div>
+                <div class="rates-card-head">
+                  <span class="rates-card-brand">{r.brand}</span>
+                  <span class="rates-card-survey">×{r.sources} sources</span>
+                </div>
+                <div class="rates-card-model">{r.model}</div>
+                {r.variant && <div class="rates-card-variant">— {r.variant} —</div>}
+                <div class="rates-card-rule"></div>
+                <div class="rates-card-price">
+                  <span class="rates-card-price-num">{formatMan(r.min)}</span>
+                  <span class="rates-card-price-tilde">—</span>
+                  <span class="rates-card-price-num">{formatMan(r.max)}</span>
+                </div>
+                <div class="rates-card-mid">
+                  中心帯 <em>{midToMan(r.midLabel)}</em>
+                </div>
+                {r.note && <p class="rates-card-note">※ {r.note}</p>}
+              </article>
+            ))}
           </div>
         </div>
       ))}
 
-      <p class="text-xs text-[var(--color-text-sub)] mt-10 max-w-3xl leading-relaxed">
+      <p class="rates-classic-disclaimer">
         ※ 表示金額の幅は「使用感あり・付属品なしの最低帯」から「未使用品・人気色のプレミアム上限」までを示します。<br />
         ※ 「中心帯」は集計データの中位レンジで、最も多く取引されている価格帯です。<br />
         ※ {rateMetadata.disclaimer}
