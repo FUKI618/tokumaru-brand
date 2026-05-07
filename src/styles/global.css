@@ -4404,3 +4404,92 @@ section:not(.dossier-section-dark) h2 {
 }
 
 /* ────── End of γ Palette Cascade ────── */
+
+/* ─── γ residual fix: Tailwind arbitrary utility classes need direct override ─── */
+/* @theme tokens are baked into utility class definitions at compile time,
+ * so :root overrides above don't propagate to .text-[var(--color-accent-soft)] etc.
+ * Override the utility class definitions directly with !important. */
+
+.text-\[var\(--color-accent-soft\)\] {
+  color: var(--gamma-gold-deep) !important;
+}
+
+.text-\[var\(--color-accent-warm\)\] {
+  color: var(--gamma-gold) !important;
+}
+
+.bg-\[var\(--color-accent-soft\)\] {
+  background-color: var(--gamma-gold-deep) !important;
+}
+
+.bg-\[var\(--color-accent-warm\)\] {
+  background-color: var(--gamma-gold) !important;
+}
+
+.border-\[var\(--color-accent-soft\)\] {
+  border-color: var(--gamma-gold-deep) !important;
+}
+
+.border-\[var\(--color-accent-warm\)\] {
+  border-color: var(--gamma-gold) !important;
+}
+
+/* Background tier utilities — γ palette enforced */
+.bg-\[var\(--color-bg\)\] {
+  background-color: #faf3e2 !important;
+}
+
+.bg-\[var\(--color-bg-2\)\] {
+  background-color: #f3ead8 !important;
+}
+
+.bg-\[var\(--color-bg-3\)\] {
+  background-color: #ebdec3 !important;
+}
+
+/* Display-2 / display-3 inner em (the "丁寧に" / "お選びください" emphasis) */
+.display-2 em,
+.display-3 em,
+.dossier-title em,
+section h2 em {
+  color: var(--gamma-gold-deep) !important;
+  font-style: italic;
+}
+
+/* font-serif spans inside display titles get gold accent */
+.display-2 .font-serif,
+.display-3 .font-serif,
+.dossier-title .font-serif {
+  color: var(--gamma-gold-deep) !important;
+}
+
+/* Story dossier-section-dark — was meant to be dark but now blends; restore γ ink panel */
+.dossier-section-dark {
+  background: linear-gradient(180deg, #f3ead8 0%, #ebdec3 100%) !important;
+  color: var(--gamma-ink) !important;
+}
+
+.dossier-section-dark .dossier-title,
+.dossier-section-dark .dossier-copy,
+.dossier-section-dark .eyebrow {
+  color: var(--gamma-ink) !important;
+}
+
+.dossier-section-dark .text-\[var\(--color-text-sub\)\],
+.dossier-section-dark [class*="text-[var(--color-text-sub)]"] {
+  color: var(--gamma-ink-2) !important;
+}
+
+/* Footer dark section preserved (footer uses bg-[var(--color-bg-dark)]) */
+footer {
+  background-color: #1a120c !important;
+  color: #e9dcc1 !important;
+}
+
+footer a, footer .text-\[var\(--color-text-sub\)\] {
+  color: rgba(233, 220, 193, 0.7) !important;
+}
+
+footer a:hover {
+  color: var(--gamma-gold-light) !important;
+}
