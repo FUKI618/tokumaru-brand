@@ -5212,3 +5212,69 @@ header .container-content {
 .header-logo-img {
   display: block;
 }
+
+/* ─── Header brand sign — Takashimaya-inspired (2026-05-07) ─── */
+.header-brand {
+  text-decoration: none;
+}
+
+.header-logo-img {
+  display: block;
+  height: 56px;          /* mobile: 56px (was 48) */
+  width: auto;
+}
+
+@media (min-width: 768px) {
+  .header-logo-img {
+    height: 60px;        /* tablet/desktop slightly taller */
+  }
+}
+
+.header-wordmark {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+.header-wordmark-main {
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-size: 1.55rem;     /* big sign-like wordmark */
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.005em;
+  color: var(--gamma-ink);
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .header-wordmark-main {
+    font-size: 1.85rem;
+  }
+}
+
+.header-wordmark-sub {
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gamma-gold-deep);
+  line-height: 1;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .header-wordmark-sub {
+    font-size: 0.7rem;
+  }
+}
+
+/* Header padding adjustments for taller logo */
+header .container-content {
+  padding-block: 0.55rem !important;
+}
+
+@media (min-width: 768px) {
+  header .container-content {
+    padding-block: 0.7rem !important;
+  }
+}
