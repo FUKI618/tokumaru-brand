@@ -4991,3 +4991,184 @@ footer a:hover {
   font-family: "Cormorant Garamond", "Noto Serif JP", serif !important;
   font-style: italic;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+ * Hero Classic — Mobile FullBleed Image Overlay (2026-05-07)
+ * モバイルのファーストビューを「画像 × h1 オーバーレイ」型に変更。
+ * h1/lead は画像の上に白文字で乗る（dark→cream グラデで可読性確保）。
+ * Pillars / CTAs / meta は画像下のcream領域に。
+ * Desktop (≥1024px) は既存の2カラム構成を維持。
+ * ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1023px) {
+  .hero-classic {
+    padding: 0;
+    position: relative;
+    background: var(--gamma-bg);
+  }
+
+  .hero-classic::before {
+    display: none;
+  }
+
+  .hero-classic-grid {
+    display: block;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* Visual becomes absolute backdrop in first viewport */
+  .hero-classic-visual {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 78vh;
+    min-height: 560px;
+    max-height: none;
+    margin: 0;
+    aspect-ratio: auto;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero-classic-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* corner marks not relevant on mobile bg */
+    border: none;
+  }
+
+  .hero-classic-visual picture,
+  .hero-classic-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+  }
+
+  /* Dark→cream gradient overlay for h1 readability */
+  .hero-classic-visual picture::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* Use a layered overlay via a wrapper pseudo */
+  .hero-classic-visual {
+    box-shadow: none;
+  }
+
+  .hero-classic-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(42, 29, 18, 0.55) 0%,
+      rgba(42, 29, 18, 0.32) 22%,
+      rgba(42, 29, 18, 0.12) 42%,
+      rgba(243, 234, 216, 0.5) 70%,
+      rgba(243, 234, 216, 0.96) 88%,
+      #f3ead8 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Hide the separate caption — it lived inside the image block */
+  .hero-classic-visual-caption {
+    display: none !important;
+  }
+
+  /* Content sits over the image (z-index 2) for h1/lead, then below for rest */
+  .hero-classic-content {
+    position: relative;
+    z-index: 2;
+    padding: 5.5rem 1.4rem 3rem;
+    min-height: 78vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* h1: WHITE on image, gold underline lighter for contrast */
+  .hero-classic-h1 {
+    color: #ffffff;
+    text-shadow: 0 2px 22px rgba(42, 29, 18, 0.55), 0 1px 4px rgba(42, 29, 18, 0.35);
+    font-size: clamp(2rem, 7.5vw, 2.6rem);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-classic-h1 .h1-emph {
+    color: #e3c171;
+    border-bottom-color: rgba(227, 193, 113, 0.85);
+  }
+
+  .hero-classic-h1 .h1-strong {
+    font-size: 1em;
+    color: #ffffff;
+  }
+
+  .hero-classic-lead {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 14px rgba(42, 29, 18, 0.55);
+    max-width: 26rem;
+    font-size: 0.92rem;
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  /* Spacer pushes pillars below image gradient fade */
+  .hero-classic-pillars {
+    margin-top: auto;       /* fill space, then sit at cream area */
+    padding-top: 3.5rem;     /* clearance from lead */
+    background: var(--gamma-bg);
+    margin-left: -1.4rem;
+    margin-right: -1.4rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+    padding-bottom: 0.4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Pillars in cream — keep ink colors */
+  .hero-classic-pillars li {
+    background: var(--gamma-bg-paper);
+  }
+
+  .hero-classic-pillars li em {
+    color: var(--gamma-ink) !important;
+    text-shadow: none !important;
+  }
+
+  .hero-classic-pillars li span {
+    color: var(--gamma-ink-2) !important;
+    text-shadow: none !important;
+  }
+
+  /* CTAs and meta on cream */
+  .hero-classic-cta,
+  .hero-classic-meta {
+    background: var(--gamma-bg);
+    margin-left: -1.4rem;
+    margin-right: -1.4rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* iPhone safe area / smaller heights */
+@media (max-width: 480px) and (max-height: 760px) {
+  .hero-classic-visual {
+    height: 72vh;
+    min-height: 500px;
+  }
+  .hero-classic-content {
+    min-height: 72vh;
+  }
+}
