@@ -5172,3 +5172,22 @@ footer a:hover {
     min-height: 72vh;
   }
 }
+
+/* ─── Mobile pillar text wrap fix (2026-05-07) ─── */
+@media (max-width: 1023px) {
+  .hero-classic-pillars {
+    gap: 0.4rem;
+  }
+  .hero-classic-pillars li {
+    padding: 1rem 0.4rem 0.95rem;
+  }
+  .hero-classic-pillars li em {
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+    font-size: clamp(0.88rem, 3.2vw, 1.05rem);
+  }
+  .hero-classic-pillars li span {
+    font-size: 0.62rem;
+    letter-spacing: 0.01em;
+  }
+}
