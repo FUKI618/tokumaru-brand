@@ -93,112 +93,94 @@ const midToMan = (label: string): string => {
     </div>
   </header>
 
-  <!-- ============== 1. Hero — listing-ad conversion layout ============== -->
-  <section id="hero" class="hero-v2">
-
-    <!-- Generated hero image: premium listing-ad conversion visual -->
-    <div class="hero-v2-mobile-image">
-      <picture class="absolute inset-0" aria-hidden="true">
-        <source srcset={assetPath("images/generated/ad-hero-mobile.webp")} type="image/webp" />
-        <img src={assetPath("images/generated/ad-hero-mobile.jpg")} alt="ブランド品査定の現場。革のハンドバッグ、腕時計、白手袋、スマートフォン、真鍮のルーペ。" class="w-full h-full object-cover object-bottom" loading="eager" fetchpriority="high" width="1200" height="1500" />
-      </picture>
-      <div class="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none" style="background: linear-gradient(180deg, transparent 0%, var(--color-bg-3) 100%);"></div>
-      <div class="absolute left-6 bottom-6 z-10">
-        <div class="flex items-center gap-3">
-          <span class="block w-10 h-px bg-[var(--color-accent-warm)]"></span>
-          <div class="eyebrow text-[var(--color-text)]">LINE査定 — 最短15分</div>
-        </div>
+  <!-- ============== 1. Hero — γ Classic Luxury Rebuild (2026-05-06) ============== -->
+  <section id="hero" class="hero-classic">
+    <div class="hero-classic-inner">
+      <div class="hero-classic-eyebrow">
+        Tokumaru Shokai — Established in Nakamura, Nagoya
       </div>
-    </div>
 
-    <!-- PC: conversion panel + generated image / Mobile: stacked content -->
-    <div class="hero-v2-grid">
-      <div class="hero-v2-panel">
-        <div class="hero-v2-panel-inner reveal">
-          <div class="hero-v2-eyebrow">
-            <span class="hero-v2-eyebrow-label">名古屋ブランド買取 / 広告限定導線</span>
-          </div>
-
-          <h1 class="hero-v2-title" aria-label="名古屋でブランド品を売るなら、まずLINEで相場確認。徳丸商会の出張買取・LINE査定・宅配買取">
-            <span class="hero-v2-title-en">売る前に、</span>
-            <span class="hero-v2-title-jp"><em>相場を確認</em>。</span>
+      <div class="hero-classic-grid">
+        <!-- ========== Left: Story-driven content ========== -->
+        <div class="hero-classic-content reveal">
+          <h1 class="hero-classic-h1" aria-label="タンスに眠るあの一品を、現在の相場で正当に買取いたします。徳丸商会のブランド買取。">
+            <span class="h1-line">タンスに眠る、</span>
+            <span class="h1-line"><span class="h1-emph">あの一品</span>を。</span>
+            <span class="h1-line h1-strong">現在の相場で、正当に。</span>
           </h1>
 
-          <p class="hero-v2-lead">
-            バッグ・時計・ジュエリーの写真を送るだけ。<br />
-            名古屋の査定員が、出張前に目安額をお返しします。
+          <p class="hero-classic-lead">
+            若き日に手にしたヴィトンや、譲り受けたシャネル。<br />
+            名古屋の査定士が一品ずつ拝見し、根拠ある金額でお買取りします。
           </p>
 
-          <div class="hero-v2-proof-grid" aria-label="徳丸商会の査定メリット">
-            <div class="hero-v2-proof">
-              <span>LINE査定</span>
-              <strong>最短15分</strong>
-            </div>
-            <div class="hero-v2-proof">
-              <span>出張・査定</span>
-              <strong>無料</strong>
-            </div>
-            <div class="hero-v2-proof">
-              <span>受付</span>
-              <strong>21時まで</strong>
-            </div>
-          </div>
+          <ul class="hero-classic-pillars" aria-label="徳丸商会の三つのお約束">
+            <li>
+              <em>高価買取</em>
+              <span>主要5ブランド<br />最低買取保証</span>
+            </li>
+            <li>
+              <em>手数料無料</em>
+              <span>出張・査定<br />キャンセル</span>
+            </li>
+            <li>
+              <em>最短15分</em>
+              <span>LINE査定<br />（営業時間内）</span>
+            </li>
+          </ul>
 
-          <dl class="hero-v2-meta">
-            <div class="hero-v2-meta-row">
-              <dt>取扱</dt>
-              <dd>エルメス・シャネル・ヴィトン・ロレックス・カルティエ</dd>
-            </div>
-            <div class="hero-v2-meta-row">
-              <dt>方法</dt>
-              <dd>出張買取 ／ LINE査定 ／ 宅配買取</dd>
-            </div>
-            <div class="hero-v2-meta-row">
-              <dt>所在</dt>
-              <dd>名古屋市中村区横井 ／ 9:00–21:00 年中無休</dd>
-            </div>
-            <div class="hero-v2-meta-row">
-              <dt>許可</dt>
-              <dd>愛知県公安委員会 第541042309800号</dd>
-            </div>
-          </dl>
-
-          <div class="hero-v2-cta">
-            <a href={lineUrl} target="_blank" rel="noopener" class="hero-v2-cta-primary">
-              <span class="hero-v2-cta-primary-label">LINEで相場を確認する</span>
-              <span class="hero-v2-cta-primary-meta">写真だけ / 最短15分 / 公式LINE特典 +3% UP</span>
+          <div class="hero-classic-cta">
+            <a href={lineUrl} target="_blank" rel="noopener" class="hero-classic-cta-line">
+              LINEで写真を送って査定
+              <span class="hero-classic-cta-meta">営業時間内 最短15分でお返事 / 無料</span>
             </a>
-            <div class="hero-v2-cta-row">
-              <a href={phoneTel} class="hero-v2-cta-secondary">
-                <span class="hero-v2-cta-secondary-label">電話で相談</span>
-                <span class="hero-v2-cta-secondary-num">{company.phone}</span>
-              </a>
-              <a href={sectionPath("contact")} class="hero-v2-cta-tertiary">
-                フォーム →
-              </a>
-            </div>
+            <a href={phoneTel} class="hero-classic-cta-phone">
+              <span class="hero-classic-cta-phone-num">{company.phone}</span>
+              <span class="hero-classic-cta-phone-meta">9:00–21:00 年中無休</span>
+            </a>
           </div>
 
-          <a href={sectionPath("campaigns")} class="hero-v2-campaign">
-            <span class="hero-v2-campaign-tag">期間限定 {yearDotMonth}</span>
-            <span>主要ブランド <em>買取UP +5〜10%</em> / 初回相談無料</span>
-          </a>
+          <div class="hero-classic-meta" aria-label="店舗・許可情報">
+            <span class="hero-classic-meta-item">名古屋市中村区横井</span>
+            <span class="hero-classic-meta-item">古物商許可 第541042309800号</span>
+            <span class="hero-classic-meta-item">出張・LINE・宅配対応</span>
+          </div>
         </div>
-      </div>
 
-      <div class="hero-v2-image">
-        <picture>
-          <source srcset={assetPath("images/generated/ad-hero-desktop.webp")} type="image/webp" />
-          <img src={assetPath("images/generated/ad-hero-desktop.jpg")} alt="ブランド品査定の現場。革のハンドバッグ、腕時計、白手袋、スマートフォン、真鍮のルーペ。" loading="eager" fetchpriority="high" width="1920" height="1080" />
-        </picture>
-        <div class="hero-v2-image-caption">
-          <span class="hero-v2-image-caption-label">査定前に分かること</span>
-          <span class="hero-v2-image-caption-text">現在の相場帯 / 付属品の影響 / 売り時</span>
-          <span class="hero-v2-image-caption-est">例：HERMES バーキン25 ¥206〜390万</span>
+        <!-- ========== Right: Visual + caption ========== -->
+        <div class="hero-classic-visual">
+          <picture>
+            <source media="(min-width: 1024px)" srcset={assetPath("images/generated/ad-hero-desktop.webp")} type="image/webp" />
+            <source media="(min-width: 1024px)" srcset={assetPath("images/generated/ad-hero-desktop.jpg")} type="image/jpeg" />
+            <source srcset={assetPath("images/generated/ad-hero-mobile.webp")} type="image/webp" />
+            <img src={assetPath("images/generated/ad-hero-mobile.jpg")} alt="徳丸商会の査定現場。革のハンドバッグ、機械式腕時計、白手袋、真鍮のルーペが並ぶ整った査定卓。" loading="eager" fetchpriority="high" width="1200" height="1500" />
+          </picture>
+          <div class="hero-classic-visual-caption">
+            <strong>名古屋鑑定 — 二人の査定士</strong>
+            時計・ジュエリー / バッグ・アパレル<br />
+            それぞれの専門で、根拠ある金額をお伝えします。
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- ========== Bottom: Staff trust strip ========== -->
+    <div class="hero-classic-staff-strip">
+      <div class="hero-classic-inner">
+        <span class="hero-classic-staff-eyebrow">— 名古屋市中村区から、査定一筋の二人。 —</span>
+      </div>
+      <div class="hero-classic-staff-grid">
+        {staff.map((s) => (
+          <div class="hero-classic-staff-item">
+            <div class="hero-classic-staff-name">
+              <strong>{s.surname}</strong>
+              <span>{s.role}</span>
+            </div>
+            <p class="hero-classic-staff-quote">「{s.policy}」</p>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 
   <!-- ============== Hero 直下: 主要ブランド買取相場 3枚（広告LP/即理解） ============== -->
