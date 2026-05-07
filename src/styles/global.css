@@ -4938,3 +4938,56 @@ footer a:hover {
   letter-spacing: 0.04em;
   text-align: center;
 }
+
+/* ─── Hero rate strip — γ over-cascade fix (2026-05-07) ─── */
+/* watch card was originally dark bg + white text. γ override flipped bg to
+ * light cream but white text persisted, making "サブマリーナ" invisible. */
+
+.hero-rate-card-watch {
+  background: var(--gamma-bg-paper) !important;
+  color: var(--gamma-ink) !important;
+}
+
+.hero-rate-card-watch .hero-rate-brand,
+.hero-rate-card-watch .hero-rate-model,
+.hero-rate-card-watch .hero-rate-price,
+.hero-rate-card-watch .hero-rate-note,
+.hero-rate-card-watch .hero-rate-num-small,
+.hero-rate-card-watch .hero-rate-tilde,
+.hero-rate-card-watch .hero-rate-unit {
+  color: var(--gamma-ink) !important;
+}
+
+.hero-rate-card-watch .hero-rate-price {
+  color: var(--gamma-gold-deep) !important;
+}
+
+/* All three hero-rate-cards consistent γ treatment */
+.hero-rate-card-bag,
+.hero-rate-card-watch,
+.hero-rate-card-jewelry {
+  background: var(--gamma-bg-paper) !important;
+  border: 1px solid var(--gamma-border) !important;
+  border-top: 2px solid var(--gamma-gold) !important;
+}
+
+.hero-rate-card .hero-rate-brand {
+  color: var(--gamma-ink) !important;
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif !important;
+}
+
+.hero-rate-card .hero-rate-model {
+  color: var(--gamma-ink) !important;
+  font-family: "Noto Serif JP", "Yu Mincho", serif !important;
+}
+
+.hero-rate-card .hero-rate-price {
+  color: var(--gamma-gold-deep) !important;
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif !important;
+}
+
+.hero-rate-card .hero-rate-note {
+  color: var(--gamma-ink-2) !important;
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif !important;
+  font-style: italic;
+}
