@@ -5191,3 +5191,24 @@ footer a:hover {
     letter-spacing: 0.01em;
   }
 }
+
+/* ─── Header brand alignment (2026-05-07) — push logo flush left ─── */
+header .container-content {
+  padding-inline-start: 0.4rem !important;
+}
+
+@media (min-width: 768px) {
+  header .container-content {
+    padding-inline-start: 0.6rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  header .container-content {
+    padding-inline-start: 0.9rem !important;
+  }
+}
+
+.header-logo-img {
+  display: block;
+}
