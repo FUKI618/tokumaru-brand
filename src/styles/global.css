@@ -5369,3 +5369,100 @@ header .container-content {
     display: none;
   }
 }
+
+/* ─── Header mobile: refined ghost icon + small LINE pill (2026-05-08) ─── */
+@media (max-width: 1023px) {
+  /* 古いピル型 (.header-cta-pill, .header-cta-phone, .header-cta-line) を上書き／無効化 */
+  .header-cta-pill {
+    display: none !important;
+  }
+
+  /* Wordmark を 1行固定 + 小ぶりに */
+  .header-wordmark-main {
+    font-size: 1.18rem !important;
+    white-space: nowrap;
+    letter-spacing: 0;
+  }
+
+  /* CTA グループ: 余白でセパレーション、CTAは右端に */
+  .header-cta-mobile {
+    margin-left: auto;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  /* 電話 = ghost icon (枠なし、アイコンのみ) */
+  .header-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: var(--gamma-ink);
+    background: transparent;
+    border: none;
+    transition: color 200ms ease, background 200ms ease;
+    text-decoration: none;
+  }
+
+  .header-cta-ghost:hover,
+  .header-cta-ghost:active {
+    color: var(--gamma-gold-deep);
+    background: rgba(167, 134, 64, 0.08);
+  }
+
+  /* LINE = small green pill, "LINE" only */
+  .header-cta-line-mini {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.32rem;
+    height: 32px;
+    padding: 0 0.85rem;
+    background: #06c755;
+    color: #fff;
+    font-family: "Noto Sans JP", system-ui, sans-serif;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-radius: 0;
+    line-height: 1;
+    transition: background 200ms ease;
+  }
+
+  .header-cta-line-mini:hover,
+  .header-cta-line-mini:active {
+    background: #04a946;
+  }
+
+  /* ロゴアイコン少し縮小（48→52px最適） */
+  .header-logo-img {
+    height: 52px !important;
+  }
+
+  /* ロゴ + wordmark セットの間隔調整 */
+  .header-brand {
+    gap: 0.7rem !important;
+  }
+
+  /* Header padding: 余白確保しつつタイト */
+  header .container-content {
+    padding-block: 0.55rem !important;
+    padding-inline-end: 0.5rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  /* iPhone SE 等の極小幅: wordmark を更に縮小 or 隠す */
+  .header-wordmark-main {
+    font-size: 1.05rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-cta-ghost,
+  .header-cta-line-mini {
+    display: none;
+  }
+}
