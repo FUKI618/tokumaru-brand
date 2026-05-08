@@ -21,3 +21,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
+
+# Playwright / browser session artifacts
+.playwright-mcp/
+*.tmp.png
+mob-*.png
+tokumaru-*.png
+post-cleanup-*.png
+takashimaya-*.png
