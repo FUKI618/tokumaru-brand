@@ -32,11 +32,14 @@
 
 ## 現状（v1: 2026-05-08 時点）
 
-- ✅ Workflow YAML 完成（cron + 手動trigger + 失敗時 issue 作成）
+- ✅ Workflow YAML 完成（cron + 月初ガード + 手動trigger + 失敗時 issue 作成）
 - ✅ Scrape framework 完成（base class / aggregate / validate / merge）
-- ✅ Demo source 動作確認可能（既存 rates 値からのジッタリングで pipeline 検証）
-- ⚠ **実 spider 未実装**: Yahoo!オークション skeleton のみ
-- 📝 拡張点として KOMEHYO / バイセル / なんぼや / 大黒屋 / ブランドオフ の spider を追加可能
+- ✅ Demo source 動作確認可能（passthrough で idempotent）
+- ⚠ **実 spider 未稼働**: 監査結果により対象サイト2件は robots.txt Disallow を確認、無効化中
+  - `yahoo_auctions.py` (`enabled = False`): auctions.yahoo.co.jp/closedsearch を Disallow
+  - `uridoki.py` (`enabled = False`): uridoki.net/search を Disallow
+- 📝 **代替ソース実装が必要**: KOMEHYO 公式相場ページ、メルカリ ShopList API 等の robots.txt 許可ソース
+- 📝 valid な real source が無い間は **Demo のみで idempotent commit のみ** 発生（rates.ts 不変）
 
 ## 新規 source の追加方法
 

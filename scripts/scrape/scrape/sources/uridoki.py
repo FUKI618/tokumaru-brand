@@ -33,10 +33,15 @@ USER_AGENT = (
 
 
 class UridokiSource(BaseSource):
-    """ウリドキの集約買取相場データ source."""
+    """ウリドキの集約買取相場データ source.
+
+    ⚠ DISABLED: 2026-05-08 audit で uridoki.net/robots.txt が
+    /search?* および /search/* を Disallow にしていることを確認。
+    継続スクレイプは ToS 違反のため代替ソース実装まで無効化。
+    """
 
     name = "uridoki"
-    enabled = True
+    enabled = False  # robots.txt: Disallow /search/*
 
     def fetch_prices(
         self, models: Iterable[ModelQuery]

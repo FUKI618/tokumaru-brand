@@ -46,10 +46,16 @@ USER_AGENT = (
 
 
 class YahooAuctionsSource(BaseSource):
-    """Yahoo!オークション落札相場を買取相場へ換算する source."""
+    """Yahoo!オークション落札相場を買取相場へ換算する source.
+
+    ⚠ DISABLED: 2026-05-08 audit で auctions.yahoo.co.jp/robots.txt が
+    /closedsearch/ を Disallow にしていることを確認。
+    継続スクレイプは ToS 違反 + 偽計業務妨害リスクあり。
+    代替ソース実装まで本ソースは無効化。
+    """
 
     name = "yahoo-auctions-closed"
-    enabled = True
+    enabled = False  # robots.txt: Disallow /closedsearch/
 
     def fetch_prices(
         self, models: Iterable[ModelQuery]

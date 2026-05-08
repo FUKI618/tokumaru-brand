@@ -48,6 +48,19 @@ def main() -> int:
         logger.warning("No prior snapshot — validation will be permissive (first run)")
 
     errors: list[str] = []
+    warnings_count = 0
+
+    # Demo passthrough だけが source の場合「成功」を演出してしまうので
+    # 実 source が ≥1 あることを確認する
+    real_sources_present = any(
+        item.get("n_sources", 0) >= 2 for item in new.values()
+    )
+    if not real_sources_present:
+        logger.warning(
+            "All models have only 1 source (likely DemoSource passthrough only). "
+            "Real spiders may be silently broken."
+        )
+        warnings_count += 1
 
     for model_id, item in new.items():
         # Rule 1: minimum observations
@@ -85,7 +98,13 @@ def main() -> int:
             logger.error("  - %s", e)
         return 1
 
-    logger.info("✓ Validation passed (%d models)", len(new))
+    if warnings_count:
+        logger.warning(
+            "✓ Validation passed (%d models) — but %d warnings emitted",
+            len(new), warnings_count
+        )
+    else:
+        logger.info("✓ Validation passed (%d models)", len(new))
     return 0
 
 
