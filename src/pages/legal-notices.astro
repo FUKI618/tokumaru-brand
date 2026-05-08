@@ -10,28 +10,28 @@ const updatedAt = "2026年5月8日";
 ---
 
 <Layout title={title} description={description}>
-  <div class="bg-[var(--color-bg)] min-h-screen">
+  <div class="bg-[var(--color-bg)] min-h-screen text-[var(--color-text)]">
 
-    <!-- Page Header -->
-    <header class="bg-luxury-radial text-white py-20 sm:py-24 relative overflow-hidden grain">
+    <!-- Page Hero -->
+    <section class="legal-hero">
       <div class="max-w-4xl mx-auto px-5 sm:px-8 relative">
-        <a href={homePath} class="text-[10px] tracking-[0.3em] text-[var(--color-champagne)] uppercase hover:underline">← ホームへ戻る</a>
-        <div class="chapter-num mt-4 mb-3">Legal Notices</div>
-        <h1 class="display-md heading-rule">特定商取引法に基づく表記</h1>
-        <p class="mt-6 text-sm text-white/70">最終更新日: {updatedAt}</p>
+        <a href={homePath} class="legal-hero__back">← ホームへ戻る</a>
+        <div class="legal-hero__eyebrow">Legal Notices</div>
+        <h1 class="legal-hero__title">特定商取引法に基づく表記</h1>
+        <p class="legal-hero__meta">最終更新日: {updatedAt}</p>
       </div>
-    </header>
+    </section>
 
     <main class="max-w-4xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
 
       <!-- 前文 -->
-      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8 leading-loose text-[15px] text-[var(--color-text)]">
+      <section class="bg-white rounded-xl border border-[var(--color-border)] p-7 sm:p-10 mb-8 leading-loose text-[15px] text-[var(--color-text)]">
         <p>
           徳丸商会を運営する{company.legalName}（以下「当社」といいます）は、特定商取引に関する法律（特定商取引法）、古物営業法、消費者契約法その他関連法令を遵守し、お客様との取引にあたって以下の事項を表示します。
           <br /><br />
           当社の取引形態は次のとおりです:
         </p>
-        <ul class="list-disc pl-6 mt-3 space-y-1 text-[14px]">
+        <ul class="list-disc pl-6 mt-3 space-y-1 text-[14px] text-[var(--color-text-sub)]">
           <li>店頭買取（来店のうえ査定・買取契約）</li>
           <li>出張買取（訪問購入：当社が訪問しお客様のお品物を査定・買取）</li>
           <li>宅配買取（お客様より発送いただいたお品物を当社にて査定・買取）</li>
@@ -40,52 +40,50 @@ const updatedAt = "2026年5月8日";
       </section>
 
       <!-- 事業者情報 -->
-      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
-        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">1. 事業者情報</h2>
-        <dl class="text-[14px] leading-loose space-y-3">
-          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+      <section class="bg-white rounded-xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="font-serif text-xl text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">1. 事業者情報</h2>
+        <dl class="text-[14px] leading-loose space-y-3 text-[var(--color-text)]">
+          <div class="grid grid-cols-1 sm:grid-cols-[180px,1fr] gap-x-4">
             <dt class="text-[var(--color-text-sub)]">事業者の名称</dt>
             <dd>{company.legalName}</dd>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+          <div class="grid grid-cols-1 sm:grid-cols-[180px,1fr] gap-x-4">
             <dt class="text-[var(--color-text-sub)]">屋号・サービス名</dt>
             <dd>{company.name}</dd>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+          <div class="grid grid-cols-1 sm:grid-cols-[180px,1fr] gap-x-4">
             <dt class="text-[var(--color-text-sub)]">所在地</dt>
             <dd>{company.address.full}</dd>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+          <div class="grid grid-cols-1 sm:grid-cols-[180px,1fr] gap-x-4">
             <dt class="text-[var(--color-text-sub)]">電話番号</dt>
             <dd class="numeric">{company.phone}（受付 9:00–21:00 年中無休）</dd>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+          <div class="grid grid-cols-1 sm:grid-cols-[180px,1fr] gap-x-4">
             <dt class="text-[var(--color-text-sub)]">メールアドレス</dt>
-            <dd>{contactEmail}</dd>
+            <dd class="break-all">{contactEmail}</dd>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+          <div class="grid grid-cols-1 sm:grid-cols-[180px,1fr] gap-x-4">
             <dt class="text-[var(--color-text-sub)]">古物商許可番号</dt>
             <dd>{company.licenseAuthority} {company.license}</dd>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+          <div class="grid grid-cols-1 sm:grid-cols-[180px,1fr] gap-x-4">
             <dt class="text-[var(--color-text-sub)]">事業形態</dt>
             <dd>法人（古物商）</dd>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+          <div class="grid grid-cols-1 sm:grid-cols-[180px,1fr] gap-x-4">
             <dt class="text-[var(--color-text-sub)]">代表者・業務責任者</dt>
-            <dd>
-              <span class="text-[var(--color-text-sub)] italic">
-                ※ 公開準備中。お取引・苦情等で代表者氏名のご請求があった場合、特定商取引法第11条第6号の規定に基づき遅滞なく書面でお伝えします。
-              </span>
+            <dd class="text-[var(--color-text-sub)]">
+              ※ 公開準備中。お取引・苦情等で代表者氏名のご請求があった場合、特定商取引法第11条第6号の規定に基づき遅滞なく書面でお伝えします。
             </dd>
           </div>
         </dl>
       </section>
 
       <!-- 取引条件 -->
-      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
-        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">2. 取引方法・取引条件</h2>
-        <dl class="text-[14px] leading-loose space-y-4">
+      <section class="bg-white rounded-xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="font-serif text-xl text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">2. 取引方法・取引条件</h2>
+        <dl class="text-[14px] leading-loose space-y-5 text-[var(--color-text)]">
           <div>
             <dt class="font-medium text-[var(--color-text)] mb-1">取扱商材</dt>
             <dd class="text-[var(--color-text-sub)]">
@@ -135,9 +133,9 @@ const updatedAt = "2026年5月8日";
       </section>
 
       <!-- 訪問購入 (出張買取) のクーリングオフ -->
-      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
-        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">3. 訪問購入（出張買取）における重要事項</h2>
-        <dl class="text-[14px] leading-loose space-y-4">
+      <section class="bg-white rounded-xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="font-serif text-xl text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">3. 訪問購入（出張買取）における重要事項</h2>
+        <dl class="text-[14px] leading-loose space-y-5 text-[var(--color-text)]">
           <div>
             <dt class="font-medium text-[var(--color-text)] mb-1">クーリングオフ（特定商取引法第58条の14）</dt>
             <dd class="text-[var(--color-text-sub)]">
@@ -164,26 +162,26 @@ const updatedAt = "2026年5月8日";
             <dd class="text-[var(--color-text-sub)]">
               書面（はがき・封書）に加えて、<strong class="text-[var(--color-text)]">電子メール・公式LINE・お問い合わせフォーム等の電磁的記録</strong>でも契約解除のご通知をお受けいたします（消費者契約に関する判例・消費者庁ガイドライン準拠）。<br />
               <span class="block mt-2">送付先（書面）: 〒453-0863 愛知県名古屋市中村区横井2丁目71番地 徳丸商会 宛</span>
-              <span class="block">メール: <a href={`mailto:${contactEmail}`} class="underline">{contactEmail}</a></span>
+              <span class="block">メール: <a href={`mailto:${contactEmail}`} class="underline text-[var(--color-text)] hover:text-[var(--color-accent-warm)] transition">{contactEmail}</a></span>
               <span class="block">公式LINE: 友だち追加後、トークから「クーリングオフ希望」とお送りください</span>
-              <span class="block">お問い合わせフォーム: <a href={`${assetPath("")}#contact`} class="underline">トップページ #お問い合わせ</a></span>
+              <span class="block">お問い合わせフォーム: <a href={`${assetPath("")}#contact`} class="underline text-[var(--color-text)] hover:text-[var(--color-accent-warm)] transition">トップページ #お問い合わせ</a></span>
             </dd>
           </div>
         </dl>
       </section>
 
       <!-- 個人情報・データ -->
-      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
-        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">4. 個人情報の取扱い</h2>
+      <section class="bg-white rounded-xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="font-serif text-xl text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">4. 個人情報の取扱い</h2>
         <p class="text-[14px] text-[var(--color-text-sub)] leading-loose">
-          お客様の個人情報の取扱いについては、別途<a href={assetPath("privacy-policy/")} class="underline">プライバシーポリシー</a>に定めています。
+          お客様の個人情報の取扱いについては、別途<a href={assetPath("privacy-policy/")} class="underline text-[var(--color-text)] hover:text-[var(--color-accent-warm)] transition">プライバシーポリシー</a>に定めています。
           古物営業法第18条に基づく取引帳簿への記録、および個人情報保護法に基づく適正な取扱いを徹底します。
         </p>
       </section>
 
       <!-- 表現上の留意 -->
-      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
-        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">5. 表示についてのご留意</h2>
+      <section class="bg-white rounded-xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="font-serif text-xl text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">5. 表示についてのご留意</h2>
         <ul class="list-disc pl-6 space-y-2 text-[14px] text-[var(--color-text-sub)] leading-loose">
           <li>サイト上に掲載する買取相場・参考価格は、過去の取引実績および公開市場データから算出した参考値です。最終的な買取金額は実物の状態・市況により個別に確定します。</li>
           <li>「最短15分でLINE返信」「最短当日訪問」等の所要時間表示は、営業時間内（9:00–21:00）における当社運用上の目安であり、混雑状況や訪問エリアにより前後する場合があります。</li>
@@ -193,17 +191,17 @@ const updatedAt = "2026年5月8日";
       </section>
 
       <!-- 苦情・相談 -->
-      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
-        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">6. 苦情・お問い合わせ窓口</h2>
+      <section class="bg-white rounded-xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="font-serif text-xl text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">6. 苦情・お問い合わせ窓口</h2>
         <p class="text-[14px] text-[var(--color-text-sub)] leading-loose mb-3">
           取引内容についてのご相談・苦情は、以下までご連絡ください。
         </p>
-        <dl class="text-[14px] leading-loose space-y-1.5">
+        <dl class="text-[14px] leading-loose space-y-1.5 text-[var(--color-text)]">
           <div><dt class="inline text-[var(--color-text-sub)] mr-2">電話</dt><dd class="inline numeric">{company.phone}</dd></div>
-          <div><dt class="inline text-[var(--color-text-sub)] mr-2">メール</dt><dd class="inline">{contactEmail}</dd></div>
+          <div><dt class="inline text-[var(--color-text-sub)] mr-2">メール</dt><dd class="inline break-all">{contactEmail}</dd></div>
           <div><dt class="inline text-[var(--color-text-sub)] mr-2">受付時間</dt><dd class="inline">9:00–21:00（年中無休）</dd></div>
         </dl>
-        <p class="text-[12px] text-[var(--color-text-sub)] leading-relaxed mt-5">
+        <p class="text-[12px] text-[var(--color-text-mute)] leading-relaxed mt-5">
           上記窓口でも解決しない場合は、消費生活センター（消費者ホットライン 188）または愛知県消費生活総合センターへご相談いただけます。
         </p>
       </section>
@@ -212,7 +210,7 @@ const updatedAt = "2026年5月8日";
       <section class="text-center text-[12px] text-[var(--color-text-sub)] mt-12">
         <p>本表記は{updatedAt}に最終改定されました。</p>
         <p class="mt-2">関連する法令・ガイドラインの改定や、当社の運用変更にあわせ、随時更新いたします。</p>
-        <a href={homePath} class="inline-block mt-6 text-[10px] tracking-[0.3em] uppercase underline-offset-4 hover:underline">← ホームへ戻る</a>
+        <a href={homePath} class="inline-block mt-8 text-[10px] tracking-[0.3em] uppercase text-[var(--color-text)] underline-offset-4 hover:underline">← ホームへ戻る</a>
       </section>
     </main>
   </div>
