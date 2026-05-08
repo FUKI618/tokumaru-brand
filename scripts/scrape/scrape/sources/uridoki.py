@@ -44,8 +44,12 @@ class UridokiSource(BaseSource):
     ) -> list[PriceObservation]:
         try:
             from scrapling.fetchers import StealthyFetcher
-        except ImportError:
-            logger.error("scrapling not installed — uridoki disabled")
+            logger.info("Scrapling StealthyFetcher loaded")
+        except ImportError as e:
+            logger.error("scrapling import failed: %s — uridoki disabled", e)
+            return []
+        except Exception as e:
+            logger.error("scrapling unexpected error: %s — uridoki disabled", e)
             return []
 
         observations: list[PriceObservation] = []

@@ -54,8 +54,12 @@ class YahooAuctionsSource(BaseSource):
     ) -> list[PriceObservation]:
         try:
             from scrapling.fetchers import StealthyFetcher
-        except ImportError:
-            logger.error("scrapling not installed — yahoo-auctions disabled")
+            logger.info("Scrapling StealthyFetcher loaded")
+        except ImportError as e:
+            logger.error("scrapling import failed: %s — yahoo-auctions disabled", e)
+            return []
+        except Exception as e:
+            logger.error("scrapling unexpected error: %s — yahoo-auctions disabled", e)
             return []
 
         observations: list[PriceObservation] = []
