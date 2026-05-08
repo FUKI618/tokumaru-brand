@@ -106,6 +106,7 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
       "@type": ["LocalBusiness", "PawnShop"],
       "@id": `${homeUrl}#localbusiness`,
       "name": "徳丸商会",
+      "legalName": company.legalName,
       "alternateName": "徳丸商会 ブランド買取",
       "description": "名古屋市中村区横井の古物商。ブランドバッグ・時計・ジュエリー・アパレルを名古屋市内および尾張・知多・西三河エリアで出張買取・LINE査定・宅配買取。営業9:00〜21:00 年中無休。",
       "telephone": company.phone,
@@ -213,8 +214,13 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "徳丸商会",
+      "name": company.legalName,
+      "alternateName": "徳丸商会",
       "url": homeUrl,
+      "brand": {
+        "@type": "Brand",
+        "name": "徳丸商会"
+      },
       "logo": {
         "@type": "ImageObject",
         "@id": `${homeUrl}#logo`,

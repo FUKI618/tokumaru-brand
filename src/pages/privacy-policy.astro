@@ -27,7 +27,7 @@ const updatedAt = "2026年5月4日";
       <!-- 前文 -->
       <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8 leading-loose text-[15px] text-[var(--color-text)]">
         <p>
-          徳丸商会（以下「当社」といいます）は、お客様の個人情報を適切に取り扱うことが社会的責務であると認識し、個人情報の保護に関する法律（個人情報保護法）、古物営業法、その他関連法令を遵守します。<br />
+          徳丸商会を運営する{company.legalName}（以下「当社」といいます）は、お客様の個人情報を適切に取り扱うことが社会的責務であると認識し、個人情報の保護に関する法律（個人情報保護法）、古物営業法、その他関連法令を遵守します。<br />
           当社が運営するブランド買取サービスにおいて、お客様の個人情報の取り扱いについて以下のとおり定めます。
         </p>
       </section>
@@ -135,7 +135,11 @@ const updatedAt = "2026年5月4日";
           <dl class="text-sm text-[var(--color-text)] leading-loose space-y-2">
             <div class="flex flex-col sm:flex-row sm:gap-4 py-2 border-b border-[var(--color-border)]">
               <dt class="sm:w-40 font-bold text-[var(--color-navy)]">商号</dt>
-              <dd>株式会社 徳丸商会</dd>
+              <dd>{company.legalName}</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:gap-4 py-2 border-b border-[var(--color-border)]">
+              <dt class="sm:w-40 font-bold text-[var(--color-navy)]">屋号・サービス名</dt>
+              <dd>{company.name}</dd>
             </div>
             <div class="flex flex-col sm:flex-row sm:gap-4 py-2 border-b border-[var(--color-border)]">
               <dt class="sm:w-40 font-bold text-[var(--color-navy)]">所在地</dt>
@@ -173,7 +177,7 @@ const updatedAt = "2026年5月4日";
             個人情報の取り扱い・本ポリシーに関するご質問・ご請求は、以下の窓口までご連絡ください。
           </p>
           <div class="text-sm text-[var(--color-text)] space-y-1.5 leading-loose">
-            <div><strong class="text-[var(--color-navy)]">株式会社 徳丸商会</strong> 個人情報保護管理者</div>
+            <div><strong class="text-[var(--color-navy)]">{company.legalName}</strong> 個人情報保護管理者</div>
             <div>{company.address.full}</div>
             <div>電話: <a href={`tel:${company.phoneTel}`} class="text-[var(--color-bordeaux)] underline numeric">{company.phone}</a>（{company.hoursShort}）</div>
             <div>メール: <a href={`mailto:${contactEmail}`} class="text-[var(--color-bordeaux)] underline">{contactEmail}</a></div>

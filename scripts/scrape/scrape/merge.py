@@ -125,24 +125,21 @@ def main() -> int:
         logger.error("No entries matched. Aborting merge.")
         return 1
 
-    # 未一致が全体の20%を超えたら FAIL (rates.ts フォーマット変更の早期検知)
-    total = matched + len(unmatched)
-    unmatched_ratio = len(unmatched) / total if total > 0 else 0
-    if unmatched_ratio > 0.20:
+    # 未一致が1件でもあれば FAIL する。
+    # snapshot に存在するすべてのエントリは rates.ts に対応するエントリが
+    # 存在することが期待される設計（main.py MODELS と rates.ts は1対1対応）。
+    # unmatched が出る = ID マッピングの不整合 or rates.ts フォーマット変更。
+    if unmatched:
         logger.error(
-            "Too many unmatched entries: %d/%d (%.0f%% > 20%%). "
-            "rates.ts format may have changed. Aborting merge.",
-            len(unmatched), total, unmatched_ratio * 100,
+            "Unmatched entries detected (expected zero): %s. "
+            "Likely cause: ID mapping mismatch or rates.ts format change. "
+            "Aborting merge to prevent partial / inconsistent state.",
+            unmatched,
         )
         return 1
 
     RATES_TS.write_text(ts_source, encoding="utf-8")
     logger.info("Merged %d entries into rates.ts", matched)
-    if unmatched:
-        logger.warning(
-            "Unmatched (kept previous values): %s [%.0f%% — within 20%% threshold]",
-            unmatched, unmatched_ratio * 100,
-        )
 
     # Promote current snapshot to prior for next validation cycle
     shutil.copy(SNAPSHOT, PRIOR_SNAPSHOT)

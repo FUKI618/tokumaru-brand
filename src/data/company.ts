@@ -1,5 +1,6 @@
 export const company = {
   name: "徳丸商会",
+  legalName: "株式会社RENEE Design",
   phone: "052-990-3968",
   phoneTel: "0529903968",
   hours: "9:00〜21:00（年中無休）",
