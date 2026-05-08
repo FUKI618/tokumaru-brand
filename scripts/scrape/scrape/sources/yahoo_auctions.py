@@ -88,9 +88,9 @@ class YahooAuctionsSource(BaseSource):
     def _fetch_single(
         self, q: ModelQuery, client
     ) -> list[PriceObservation]:
+        # variant は混入ノイズの主因なので search query には含めない
+        # (ケリー28 + ブラック で 革小物・財布まで拾ってしまうため)
         terms = [q.brand, q.model]
-        if q.variant:
-            terms.append(q.variant.split()[0])
         keyword = " ".join(terms)
         url = (
             "https://auctions.yahoo.co.jp/closedsearch/closedsearch"
