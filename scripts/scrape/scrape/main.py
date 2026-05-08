@@ -9,6 +9,7 @@ from pathlib import Path
 from .aggregate import aggregate
 from .sources._demo import DemoSource
 from .sources.base import ModelQuery
+from .sources.uridoki import UridokiSource
 from .sources.yahoo_auctions import YahooAuctionsSource
 
 logging.basicConfig(
@@ -65,12 +66,10 @@ MODELS: list[ModelQuery] = [
 ]
 
 SOURCES = [
-    DemoSource(),               # baseline (always works)
-    YahooAuctionsSource(),      # skeleton (currently disabled)
-    # Add more sources here as implemented:
-    # KomehyoSource(),
-    # BuysellSource(),
-    # NanboyaSource(),
+    DemoSource(),               # idempotent baseline (passthrough prior)
+    YahooAuctionsSource(),      # 落札価格 × 買取係数 (実需相場)
+    UridokiSource(),            # 買取相場アグリゲータ (業者公開値)
+    # 拡張余地: Komehyo, Buysell 等の per-model 価格表 spider
 ]
 
 
