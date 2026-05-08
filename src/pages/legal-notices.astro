@@ -1,0 +1,205 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { company } from "../data/company";
+import { assetPath, homePath } from "../lib/site";
+
+const title = "特定商取引法に基づく表記｜徳丸商会 名古屋ブランド買取";
+const description = "徳丸商会の特定商取引法に基づく表記。事業者情報、取引条件、訪問購入におけるクーリングオフ等の表示。愛知県公安委員会許可 第541042309800号。";
+const contactEmail = "kaitori@tokumarushokai.com";
+const updatedAt = "2026年5月8日";
+---
+
+<Layout title={title} description={description}>
+  <div class="bg-[var(--color-bg)] min-h-screen">
+
+    <!-- Page Header -->
+    <header class="bg-luxury-radial text-white py-20 sm:py-24 relative overflow-hidden grain">
+      <div class="max-w-4xl mx-auto px-5 sm:px-8 relative">
+        <a href={homePath} class="text-[10px] tracking-[0.3em] text-[var(--color-champagne)] uppercase hover:underline">← ホームへ戻る</a>
+        <div class="chapter-num mt-4 mb-3">Legal Notices</div>
+        <h1 class="display-md heading-rule">特定商取引法に基づく表記</h1>
+        <p class="mt-6 text-sm text-white/70">最終更新日: {updatedAt}</p>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+
+      <!-- 前文 -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8 leading-loose text-[15px] text-[var(--color-text)]">
+        <p>
+          徳丸商会（以下「当社」といいます）は、特定商取引に関する法律（特定商取引法）、古物営業法、消費者契約法その他関連法令を遵守し、お客様との取引にあたって以下の事項を表示します。
+          <br /><br />
+          当社の取引形態は次のとおりです:
+        </p>
+        <ul class="list-disc pl-6 mt-3 space-y-1 text-[14px]">
+          <li>店頭買取（来店のうえ査定・買取契約）</li>
+          <li>出張買取（訪問購入：当社が訪問しお客様のお品物を査定・買取）</li>
+          <li>宅配買取（お客様より発送いただいたお品物を当社にて査定・買取）</li>
+          <li>LINE査定（写真査定による参考買取額のご案内のみ。買取契約は別途上記いずれかの方法で実施）</li>
+        </ul>
+      </section>
+
+      <!-- 事業者情報 -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">1. 事業者情報</h2>
+        <dl class="text-[14px] leading-loose space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+            <dt class="text-[var(--color-text-sub)]">事業者の名称</dt>
+            <dd>{company.name}</dd>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+            <dt class="text-[var(--color-text-sub)]">所在地</dt>
+            <dd>{company.address.full}</dd>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+            <dt class="text-[var(--color-text-sub)]">電話番号</dt>
+            <dd class="numeric">{company.phone}（受付 9:00–21:00 年中無休）</dd>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+            <dt class="text-[var(--color-text-sub)]">メールアドレス</dt>
+            <dd>{contactEmail}</dd>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+            <dt class="text-[var(--color-text-sub)]">古物商許可番号</dt>
+            <dd>{company.licenseAuthority} {company.license}</dd>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+            <dt class="text-[var(--color-text-sub)]">代表者</dt>
+            <dd class="text-[var(--color-text-sub)] italic">※ 請求があった場合は遅滞なく開示します</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- 取引条件 -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">2. 取引方法・取引条件</h2>
+        <dl class="text-[14px] leading-loose space-y-4">
+          <div>
+            <dt class="font-medium text-[var(--color-text)] mb-1">取扱商材</dt>
+            <dd class="text-[var(--color-text-sub)]">
+              ブランドバッグ、ブランド時計、ジュエリー、ブランドアパレル、財布・革小物。<br />
+              主要ブランド: エルメス、シャネル、ルイ・ヴィトン、ロレックス、カルティエ、ティファニー、ブルガリ、グッチ、プラダ、オメガ、パテック・フィリップ、オーデマピゲ等。
+            </dd>
+          </div>
+          <div>
+            <dt class="font-medium text-[var(--color-text)] mb-1">取引方法</dt>
+            <dd class="text-[var(--color-text-sub)]">店頭買取／出張買取（訪問購入）／宅配買取／LINE査定（参考額のご案内のみ）</dd>
+          </div>
+          <div>
+            <dt class="font-medium text-[var(--color-text)] mb-1">買取金額</dt>
+            <dd class="text-[var(--color-text-sub)]">
+              ブランド・モデル・状態・付属品・市場相場により個別に査定し、お見積もりとしてご提示します。<br />
+              査定額は実物を確認のうえ確定するもので、LINE査定の参考額は最終買取額とは異なる場合があります。
+            </dd>
+          </div>
+          <div>
+            <dt class="font-medium text-[var(--color-text)] mb-1">手数料</dt>
+            <dd class="text-[var(--color-text-sub)]">
+              査定料・出張料・キャンセル料・宅配キット代・送料・返送料、すべて当社負担（無料）。
+            </dd>
+          </div>
+          <div>
+            <dt class="font-medium text-[var(--color-text)] mb-1">代金の支払時期・方法</dt>
+            <dd class="text-[var(--color-text-sub)]">
+              店頭買取・出張買取: 査定額にご納得いただきました場合、その場で現金または銀行振込（即日）。<br />
+              宅配買取: お品物到着・査定完了後、最短当日中にお客様指定口座へ銀行振込。
+            </dd>
+          </div>
+          <div>
+            <dt class="font-medium text-[var(--color-text)] mb-1">本人確認</dt>
+            <dd class="text-[var(--color-text-sub)]">
+              古物営業法に基づき、買取契約時にご本人確認書類（運転免許証・健康保険証＋住民票・パスポート 顔写真付き 等）のご提示を必ずお願いいたします。<br />
+              18歳未満の方からの買取はお断りしております。18歳以上20歳未満の方は保護者の同意書および保護者の本人確認書類が必要です。
+            </dd>
+          </div>
+          <div>
+            <dt class="font-medium text-[var(--color-text)] mb-1">キャンセル・返品</dt>
+            <dd class="text-[var(--color-text-sub)]">
+              査定額にご納得いただけない場合、契約成立前であればいつでもキャンセル可能です（キャンセル料無料）。<br />
+              宅配買取で査定後にお取引を見送られる場合、お品物は当社負担にてご返送いたします。
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- 訪問購入 (出張買取) のクーリングオフ -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">3. 訪問購入（出張買取）における重要事項</h2>
+        <dl class="text-[14px] leading-loose space-y-4">
+          <div>
+            <dt class="font-medium text-[var(--color-text)] mb-1">クーリングオフ（特定商取引法第58条の14）</dt>
+            <dd class="text-[var(--color-text-sub)]">
+              出張買取（訪問購入）でお買取りした物品については、契約日を含めて<strong class="text-[var(--color-text)]">8日間</strong>以内であれば、書面により契約の申込みの撤回または契約の解除（クーリングオフ）が可能です。<br />
+              クーリングオフの期間内は、お買取りした物品の引渡しを拒むことができ、当社は引渡しの拒絶ができる旨を告知する義務を負います。<br />
+              クーリングオフによる契約解除に伴う損害賠償・違約金等の請求はいたしません。お品物の返送に要する費用も当社負担です。
+            </dd>
+          </div>
+          <div>
+            <dt class="font-medium text-[var(--color-text)] mb-1">不招請勧誘の禁止（特定商取引法第58条の6）</dt>
+            <dd class="text-[var(--color-text-sub)]">
+              当社は、お客様からの事前のご依頼・ご請求がない場合、訪問購入の勧誘を行うことを目的として営業所等以外の場所においてお伺いすることはありません。<br />
+              お客様のご自宅・職場へお伺いするのは、お電話・LINE・お問い合わせフォームから事前にご依頼をいただいた場合に限ります。
+            </dd>
+          </div>
+          <div>
+            <dt class="font-medium text-[var(--color-text)] mb-1">引渡しの猶予</dt>
+            <dd class="text-[var(--color-text-sub)]">
+              お買取り成立後でも、クーリングオフ期間内（8日間）はお品物の引渡しを留保していただいて構いません。引渡しを留保される場合は、お申し出ください。
+            </dd>
+          </div>
+          <div>
+            <dt class="font-medium text-[var(--color-text)] mb-1">クーリングオフの方法</dt>
+            <dd class="text-[var(--color-text-sub)]">
+              書面（はがき・封書）または電子メールにて、契約解除のご通知をお送りください。<br />
+              送付先: 〒453-0863 愛知県名古屋市中村区横井2丁目71番地 徳丸商会 宛<br />
+              メール: <a href={`mailto:${contactEmail}`} class="underline">{contactEmail}</a>
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- 個人情報・データ -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">4. 個人情報の取扱い</h2>
+        <p class="text-[14px] text-[var(--color-text-sub)] leading-loose">
+          お客様の個人情報の取扱いについては、別途<a href={assetPath("privacy-policy/")} class="underline">プライバシーポリシー</a>に定めています。
+          古物営業法第18条に基づく取引帳簿への記録、および個人情報保護法に基づく適正な取扱いを徹底します。
+        </p>
+      </section>
+
+      <!-- 表現上の留意 -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">5. 表示についてのご留意</h2>
+        <ul class="list-disc pl-6 space-y-2 text-[14px] text-[var(--color-text-sub)] leading-loose">
+          <li>サイト上に掲載する買取相場・参考価格は、過去の取引実績および公開市場データから算出した参考値です。最終的な買取金額は実物の状態・市況により個別に確定します。</li>
+          <li>「最短15分でLINE返信」「最短当日訪問」等の所要時間表示は、営業時間内（9:00–21:00）における当社運用上の目安であり、混雑状況や訪問エリアにより前後する場合があります。</li>
+          <li>「主要5ブランド最低買取保証額」は、正規品確認のうえ、当社が定める対象モデル・対象条件において保証する最低額です。詳細条件はお問い合わせ時にご案内します。</li>
+          <li>サイトに掲載するお客様の声は、いただいたご相談内容と所感をもとに再構成した典型的なご利用シナリオであり、特定の個人を表したものではありません。</li>
+        </ul>
+      </section>
+
+      <!-- 苦情・相談 -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-7 sm:p-10 mb-8">
+        <h2 class="text-lg font-serif text-[var(--color-text)] mb-5 pb-3 border-b border-[var(--color-border)]">6. 苦情・お問い合わせ窓口</h2>
+        <p class="text-[14px] text-[var(--color-text-sub)] leading-loose mb-3">
+          取引内容についてのご相談・苦情は、以下までご連絡ください。
+        </p>
+        <dl class="text-[14px] leading-loose space-y-1.5">
+          <div><dt class="inline text-[var(--color-text-sub)] mr-2">電話</dt><dd class="inline numeric">{company.phone}</dd></div>
+          <div><dt class="inline text-[var(--color-text-sub)] mr-2">メール</dt><dd class="inline">{contactEmail}</dd></div>
+          <div><dt class="inline text-[var(--color-text-sub)] mr-2">受付時間</dt><dd class="inline">9:00–21:00（年中無休）</dd></div>
+        </dl>
+        <p class="text-[12px] text-[var(--color-text-sub)] leading-relaxed mt-5">
+          上記窓口でも解決しない場合は、消費生活センター（消費者ホットライン 188）または愛知県消費生活総合センターへご相談いただけます。
+        </p>
+      </section>
+
+      <!-- 改定 -->
+      <section class="text-center text-[12px] text-[var(--color-text-sub)] mt-12">
+        <p>本表記は{updatedAt}に最終改定されました。</p>
+        <p class="mt-2">関連する法令・ガイドラインの改定や、当社の運用変更にあわせ、随時更新いたします。</p>
+        <a href={homePath} class="inline-block mt-6 text-[10px] tracking-[0.3em] uppercase underline-offset-4 hover:underline">← ホームへ戻る</a>
+      </section>
+    </main>
+  </div>
+</Layout>

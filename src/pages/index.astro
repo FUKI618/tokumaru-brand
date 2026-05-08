@@ -668,12 +668,15 @@ const midToMan = (label: string): string => {
     <div class="container-content">
       <div class="chapter-row mb-12 lg:mb-20">
         <div class="reveal">
-          <div class="eyebrow mb-4">お客様の声 — 相続・形見整理・断捨離</div>
-          <h2 class="chapter-title max-w-xl" aria-label="お客様の声｜相続・形見整理・断捨離でのブランド買取ご利用例">
-            相続・形見整理、<br />断捨離のご利用から。
+          <div class="eyebrow mb-4">ご相談の典型例 — 相続・形見整理・断捨離</div>
+          <h2 class="chapter-title max-w-xl" aria-label="ご相談の典型例｜相続・形見整理・断捨離でのブランド買取シナリオ">
+            相続・形見整理、<br />断捨離のご相談から。
           </h2>
           <p class="text-[15px] text-[var(--color-text-sub)] mt-6 max-w-md leading-loose">
             実際のご相談では、価格だけでなく「手放す理由」まで含めて伺っています。
+          </p>
+          <p class="text-[11px] text-[var(--color-text-sub)] mt-4 max-w-md leading-relaxed italic">
+            ※ 個人情報保護のため、特定の個人を表したものではなく、いただいたご相談内容と所感をもとに再構成した典型的なご利用シナリオです。
           </p>
         </div>
 
@@ -971,6 +974,7 @@ const midToMan = (label: string): string => {
             </button>
 
             <p class="mt-5 text-[11px] text-[var(--color-text-sub)] leading-relaxed text-center">
+              送信ボタンを押すことで、<a href={assetPath("privacy-policy/")} target="_blank" rel="noopener" class="underline underline-offset-2">プライバシーポリシー</a>に同意の上、お問い合わせ内容を送信されたものとみなします。<br />
               送信後、24時間以内に営業担当よりご連絡いたします（営業: 9:00-21:00 年中無休）。<br />
               フォーム送信が困難な場合は <a href={`mailto:${contactEmail}`} class="underline">{contactEmail}</a> へ直接お送りください。
             </p>
@@ -1034,8 +1038,14 @@ const midToMan = (label: string): string => {
 
       <hr class="border-0 border-t border-white/10 mb-5" />
 
-      <div class="flex flex-col md:flex-row items-center justify-between gap-3 text-[10px] opacity-55">
-        <p>© 2026 徳丸商会 All Rights Reserved.</p>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3 text-[10px] opacity-65">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <a href={assetPath("privacy-policy/")} class="hover:opacity-100 transition underline-offset-2 hover:underline">プライバシーポリシー</a>
+          <span class="opacity-40">／</span>
+          <a href={assetPath("legal-notices/")} class="hover:opacity-100 transition underline-offset-2 hover:underline">特定商取引法に基づく表記</a>
+          <span class="opacity-40 hidden md:inline">／</span>
+          <span>© 2026 徳丸商会 All Rights Reserved.</span>
+        </div>
         <p class="tracking-wider">愛知県公安委員会許可 第541042309800号</p>
       </div>
     </div>
