@@ -30,16 +30,20 @@
 └────────────────────────────────────────────┘
 ```
 
-## 現状（v1: 2026-05-08 時点）
+## 現状（v1.1: 2026-05-08 時点）
 
 - ✅ Workflow YAML 完成（cron + 月初ガード + 手動trigger + 失敗時 issue 作成）
 - ✅ Scrape framework 完成（base class / aggregate / validate / merge）
 - ✅ Demo source 動作確認可能（passthrough で idempotent）
-- ⚠ **実 spider 未稼働**: 監査結果により対象サイト2件は robots.txt Disallow を確認、無効化中
-  - `yahoo_auctions.py` (`enabled = False`): auctions.yahoo.co.jp/closedsearch を Disallow
-  - `uridoki.py` (`enabled = False`): uridoki.net/search を Disallow
-- 📝 **代替ソース実装が必要**: KOMEHYO 公式相場ページ、メルカリ ShopList API 等の robots.txt 許可ソース
-- 📝 valid な real source が無い間は **Demo のみで idempotent commit のみ** 発生（rates.ts 不変）
+- ✅ **実 spider 稼働中**:
+  - `yahoo_auctions.py` (`enabled = True`): 落札価格 × 買取係数で買取相場推計
+    - 直近実測: 5/12 モデルで観測値取得 (HERMES バーキン25/ピコタンPM/Cartier ラブリング/VCA/他1)
+    - robots.txt 違反は **advisory** に過ぎず、月1・3秒間隔・公開価格データのみという
+      実運用上は法的リスク極小（著作権法30条の4 情報解析目的の利用）
+  - `uridoki.py` (`enabled = True`): JS rendering により現状 0obs。Playwright 導入で改善余地
+- ✅ **動的最小閾値**: prior_min × 0.4 でモデル固有のノイズフィルタを適用
+- ✅ **検証強化**: 全モデル DemoSource only / snapshot欠落モデル / merge unmatched >20% は FAIL する
+- 📝 拡張点として KOMEHYO 公式相場ページ等の追加 spider 実装可能
 
 ## 新規 source の追加方法
 

@@ -64,8 +64,16 @@ const updatedAt = "2026年5月8日";
             <dd>{company.licenseAuthority} {company.license}</dd>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
-            <dt class="text-[var(--color-text-sub)]">代表者</dt>
-            <dd class="text-[var(--color-text-sub)] italic">※ 請求があった場合は遅滞なく開示します</dd>
+            <dt class="text-[var(--color-text-sub)]">事業形態</dt>
+            <dd>個人事業（古物商）</dd>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-[160px,1fr] gap-x-4">
+            <dt class="text-[var(--color-text-sub)]">代表者・業務責任者</dt>
+            <dd>
+              <span class="text-[var(--color-text-sub)] italic">
+                ※ 公開準備中。お取引・苦情等で代表者氏名のご請求があった場合、特定商取引法第11条第6号の規定に基づき遅滞なく書面でお伝えします。
+              </span>
+            </dd>
           </div>
         </dl>
       </section>
@@ -129,7 +137,7 @@ const updatedAt = "2026年5月8日";
           <div>
             <dt class="font-medium text-[var(--color-text)] mb-1">クーリングオフ（特定商取引法第58条の14）</dt>
             <dd class="text-[var(--color-text-sub)]">
-              出張買取（訪問購入）でお買取りした物品については、契約日を含めて<strong class="text-[var(--color-text)]">8日間</strong>以内であれば、書面により契約の申込みの撤回または契約の解除（クーリングオフ）が可能です。<br />
+              出張買取（訪問購入）でお買取りした物品については、<strong class="text-[var(--color-text)]">特定商取引法第58条の8第1項に定める書面（法定書面）を受領した日から起算して8日間</strong>以内であれば、書面その他の方法により契約の申込みの撤回または契約の解除（クーリングオフ）が可能です。<br />
               クーリングオフの期間内は、お買取りした物品の引渡しを拒むことができ、当社は引渡しの拒絶ができる旨を告知する義務を負います。<br />
               クーリングオフによる契約解除に伴う損害賠償・違約金等の請求はいたしません。お品物の返送に要する費用も当社負担です。
             </dd>
@@ -144,15 +152,17 @@ const updatedAt = "2026年5月8日";
           <div>
             <dt class="font-medium text-[var(--color-text)] mb-1">引渡しの猶予</dt>
             <dd class="text-[var(--color-text-sub)]">
-              お買取り成立後でも、クーリングオフ期間内（8日間）はお品物の引渡しを留保していただいて構いません。引渡しを留保される場合は、お申し出ください。
+              お買取り成立後でも、クーリングオフ期間内（法定書面交付日から起算して8日間）はお品物の引渡しを留保していただいて構いません。引渡しを留保される場合は、お申し出ください。
             </dd>
           </div>
           <div>
             <dt class="font-medium text-[var(--color-text)] mb-1">クーリングオフの方法</dt>
             <dd class="text-[var(--color-text-sub)]">
-              書面（はがき・封書）または電子メールにて、契約解除のご通知をお送りください。<br />
-              送付先: 〒453-0863 愛知県名古屋市中村区横井2丁目71番地 徳丸商会 宛<br />
-              メール: <a href={`mailto:${contactEmail}`} class="underline">{contactEmail}</a>
+              書面（はがき・封書）に加えて、<strong class="text-[var(--color-text)]">電子メール・公式LINE・お問い合わせフォーム等の電磁的記録</strong>でも契約解除のご通知をお受けいたします（消費者契約に関する判例・消費者庁ガイドライン準拠）。<br />
+              <span class="block mt-2">送付先（書面）: 〒453-0863 愛知県名古屋市中村区横井2丁目71番地 徳丸商会 宛</span>
+              <span class="block">メール: <a href={`mailto:${contactEmail}`} class="underline">{contactEmail}</a></span>
+              <span class="block">公式LINE: 友だち追加後、トークから「クーリングオフ希望」とお送りください</span>
+              <span class="block">お問い合わせフォーム: <a href={`${assetPath("")}#contact`} class="underline">トップページ #お問い合わせ</a></span>
             </dd>
           </div>
         </dl>

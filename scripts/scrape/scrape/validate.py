@@ -48,19 +48,27 @@ def main() -> int:
         logger.warning("No prior snapshot — validation will be permissive (first run)")
 
     errors: list[str] = []
-    warnings_count = 0
 
-    # Demo passthrough だけが source の場合「成功」を演出してしまうので
-    # 実 source が ≥1 あることを確認する
-    real_sources_present = any(
-        item.get("n_sources", 0) >= 2 for item in new.values()
+    # Rule 0 (新): Demo passthrough だけが source の場合は FAIL する
+    # 実 spider が黙って 0 obs を返すと DemoSource (n_sources=1) のみが
+    # 全モデルを埋めるため、validate が「成功」を演出してしまう。
+    # 実 source >= 1 が必須。
+    real_source_models = sum(
+        1 for item in new.values() if item.get("n_sources", 0) >= 2
     )
-    if not real_sources_present:
-        logger.warning(
-            "All models have only 1 source (likely DemoSource passthrough only). "
-            "Real spiders may be silently broken."
+    if real_source_models == 0:
+        errors.append(
+            f"NO_REAL_SOURCE: all {len(new)} models rely on DemoSource passthrough only. "
+            "Real spiders are silently broken — investigate spider logs."
         )
-        warnings_count += 1
+
+    # Rule 0.5: 期待モデル数 (12) に snapshot が満たない場合も FAIL
+    EXPECTED_MODELS = 12
+    if len(new) < EXPECTED_MODELS:
+        errors.append(
+            f"MISSING_MODELS: snapshot has {len(new)}/{EXPECTED_MODELS} models — "
+            "some sources failed to produce observations for missing models."
+        )
 
     for model_id, item in new.items():
         # Rule 1: minimum observations
@@ -98,13 +106,7 @@ def main() -> int:
             logger.error("  - %s", e)
         return 1
 
-    if warnings_count:
-        logger.warning(
-            "✓ Validation passed (%d models) — but %d warnings emitted",
-            len(new), warnings_count
-        )
-    else:
-        logger.info("✓ Validation passed (%d models)", len(new))
+    logger.info("✓ Validation passed (%d models)", len(new))
     return 0
 
 
