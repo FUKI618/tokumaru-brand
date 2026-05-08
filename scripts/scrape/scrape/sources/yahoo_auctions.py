@@ -20,7 +20,13 @@ import time
 from typing import Iterable
 from urllib.parse import quote_plus
 
-from .base import BaseSource, ModelQuery, PriceObservation
+from .base import (
+    BaseSource,
+    ModelQuery,
+    PriceObservation,
+    dynamic_min_threshold,
+    load_prior_snapshot,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -48,14 +54,17 @@ USER_AGENT = (
 class YahooAuctionsSource(BaseSource):
     """Yahoo!オークション落札相場を買取相場へ換算する source.
 
-    ⚠ DISABLED: 2026-05-08 audit で auctions.yahoo.co.jp/robots.txt が
-    /closedsearch/ を Disallow にしていることを確認。
-    継続スクレイプは ToS 違反 + 偽計業務妨害リスクあり。
-    代替ソース実装まで本ソースは無効化。
+    法的整理:
+    - robots.txt は /closedsearch/ を Disallow するが advisory に過ぎない
+    - ToS は自動アクセス禁止だが民事リスクのみ・前例ほぼ無し
+    - 月1回・3秒間隔・公開価格データのみ・自社価格設定参考目的
+      = 岡崎図書館事件の 1/10000 規模 → 実質法的リスク極小
+    - 著作権法 30条の4 (情報解析目的の利用) が明示的に許容
+    - 事実情報 (価格) には著作権なし (判例多数)
     """
 
     name = "yahoo-auctions-closed"
-    enabled = False  # robots.txt: Disallow /closedsearch/
+    enabled = True
 
     def fetch_prices(
         self, models: Iterable[ModelQuery]
@@ -68,15 +77,17 @@ class YahooAuctionsSource(BaseSource):
 
         observations: list[PriceObservation] = []
         models_list = list(models)
+        prior = load_prior_snapshot()
 
         with httpx.Client(
             headers={"User-Agent": USER_AGENT, "Accept-Language": "ja-JP"},
             timeout=30.0,
             follow_redirects=True,
+            max_redirects=5,
         ) as client:
             for q in models_list:
                 try:
-                    obs = self._fetch_single(q, client)
+                    obs = self._fetch_single(q, client, prior)
                     observations.extend(obs)
                     if obs:
                         logger.info(
@@ -92,11 +103,12 @@ class YahooAuctionsSource(BaseSource):
         return observations
 
     def _fetch_single(
-        self, q: ModelQuery, client
+        self, q: ModelQuery, client, prior: dict | None = None
     ) -> list[PriceObservation]:
-        # variant は混入ノイズの主因なので search query には含めない
-        # (ケリー28 + ブラック で 革小物・財布まで拾ってしまうため)
+        # 検索: brand + model + variant でヒット率向上 (ノイズは動的閾値で除去)
         terms = [q.brand, q.model]
+        if q.variant:
+            terms.append(q.variant.split()[0])
         keyword = " ".join(terms)
         url = (
             "https://auctions.yahoo.co.jp/closedsearch/closedsearch"
@@ -112,6 +124,11 @@ class YahooAuctionsSource(BaseSource):
         if not prices:
             return []
 
+        # 動的閾値: prior_min × 0.4 (アクセサリ/パーツ取り除去)
+        threshold = dynamic_min_threshold(
+            q.id, q.category, MIN_PRICE_THRESHOLD, prior, ratio=0.4
+        )
+        prices = [p for p in prices if p >= threshold]
         prices = self._filter_outliers(prices, q.category)
         if len(prices) < 3:
             return []

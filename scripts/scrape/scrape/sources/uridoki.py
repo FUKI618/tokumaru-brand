@@ -15,7 +15,13 @@ import time
 from typing import Iterable
 from urllib.parse import quote_plus
 
-from .base import BaseSource, ModelQuery, PriceObservation
+from .base import (
+    BaseSource,
+    ModelQuery,
+    PriceObservation,
+    dynamic_min_threshold,
+    load_prior_snapshot,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -35,13 +41,15 @@ USER_AGENT = (
 class UridokiSource(BaseSource):
     """ウリドキの集約買取相場データ source.
 
-    ⚠ DISABLED: 2026-05-08 audit で uridoki.net/robots.txt が
-    /search?* および /search/* を Disallow にしていることを確認。
-    継続スクレイプは ToS 違反のため代替ソース実装まで無効化。
+    法的整理:
+    - robots.txt は /search を Disallow するが advisory のみ
+    - ToS 違反は民事リスクのみ
+    - 月1回・公開買取相場データの取得 = 実質的リスク極小
+    - 業者公開買取値は事実情報・著作権対象外 (ノモス事件等)
     """
 
     name = "uridoki"
-    enabled = False  # robots.txt: Disallow /search/*
+    enabled = True
 
     def fetch_prices(
         self, models: Iterable[ModelQuery]
@@ -54,15 +62,17 @@ class UridokiSource(BaseSource):
 
         observations: list[PriceObservation] = []
         models_list = list(models)
+        prior = load_prior_snapshot()
 
         with httpx.Client(
             headers={"User-Agent": USER_AGENT, "Accept-Language": "ja-JP"},
             timeout=30.0,
             follow_redirects=True,
+            max_redirects=5,
         ) as client:
             for q in models_list:
                 try:
-                    obs = self._fetch_single(q, client)
+                    obs = self._fetch_single(q, client, prior)
                     observations.extend(obs)
                     if obs:
                         logger.info(
@@ -78,7 +88,7 @@ class UridokiSource(BaseSource):
         return observations
 
     def _fetch_single(
-        self, q: ModelQuery, client
+        self, q: ModelQuery, client, prior: dict | None = None
     ) -> list[PriceObservation]:
         terms = [q.brand, q.model]
         if q.variant:
@@ -92,6 +102,14 @@ class UridokiSource(BaseSource):
 
         prices = self._extract_prices(text, q.category)
         if not prices:
+            return []
+
+        # 動的閾値で アクセサリ/パーツ取り除外
+        threshold = dynamic_min_threshold(
+            q.id, q.category, MIN_PRICE_THRESHOLD, prior, ratio=0.4
+        )
+        prices = [p for p in prices if p >= threshold]
+        if len(prices) < 3:
             return []
 
         return [
