@@ -8,11 +8,9 @@
 URL パターン:
   https://auctions.yahoo.co.jp/closedsearch/closedsearch?p={KEYWORD}
 
-注意:
-- Yahoo!オークション ToS は商用利用の自動収集を制限する場合あり
-  → 「市場相場の引用」「自社価格設定の参考」として年4回程度なら許容範囲（参考: 著作権法第32条引用要件）
-- 偽物・パーツ取りは外れ値除去（aggregator の P10/P90 で対応）
-- カテゴリ別買取係数は競合7社調査の業界平均から導出
+実装方針: httpx + BeautifulSoup
+- closed search は SSR で価格情報を HTML に含むため JS不要
+- httpx の方が Playwright より軽量・安定 (PR で先生まれたバージョン違いを回避)
 """
 
 from __future__ import annotations
@@ -32,15 +30,19 @@ CATEGORY_BUYBACK_RATIO = {
     "jewelry": 0.55,  # 宝飾: 地金除き 50-60%
 }
 
-# 価格レンジフィルタ（明らかなノイズを除外）
 MIN_PRICE_THRESHOLD = {
-    "bag": 30_000,        # 3万未満はパーツ取り/ジャンク
-    "watch": 50_000,      # 5万未満は壊れ品
+    "bag": 30_000,
+    "watch": 50_000,
     "jewelry": 10_000,
 }
 MAX_PRICE_MULTIPLIER = 5.0  # 中央値の5倍超は外れ値
 
-REQUEST_DELAY_SECONDS = 3.0  # サイト負荷配慮
+REQUEST_DELAY_SECONDS = 3.0
+USER_AGENT = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/127.0.0.0 Safari/537.36"
+)
 
 
 class YahooAuctionsSource(BaseSource):
@@ -53,101 +55,79 @@ class YahooAuctionsSource(BaseSource):
         self, models: Iterable[ModelQuery]
     ) -> list[PriceObservation]:
         try:
-            from scrapling.fetchers import StealthyFetcher
-            logger.info("Scrapling StealthyFetcher loaded")
+            import httpx
         except ImportError as e:
-            logger.error("scrapling import failed: %s — yahoo-auctions disabled", e)
-            return []
-        except Exception as e:
-            logger.error("scrapling unexpected error: %s — yahoo-auctions disabled", e)
+            logger.error("httpx import failed: %s — yahoo-auctions disabled", e)
             return []
 
         observations: list[PriceObservation] = []
         models_list = list(models)
-        for q in models_list:
-            try:
-                obs = self._fetch_single(q, StealthyFetcher)
-                observations.extend(obs)
-                if obs:
-                    logger.info(
-                        "  ✓ %s: %d valid observations", q.id, len(obs)
+
+        with httpx.Client(
+            headers={"User-Agent": USER_AGENT, "Accept-Language": "ja-JP"},
+            timeout=30.0,
+            follow_redirects=True,
+        ) as client:
+            for q in models_list:
+                try:
+                    obs = self._fetch_single(q, client)
+                    observations.extend(obs)
+                    if obs:
+                        logger.info(
+                            "  ✓ %s: %d valid observations", q.id, len(obs)
+                        )
+                    else:
+                        logger.warning("  ✗ %s: no valid observations", q.id)
+                except Exception as e:
+                    logger.warning(
+                        "  ! %s failed on %s: %s", q.id, self.name, e
                     )
-                else:
-                    logger.warning("  ✗ %s: no valid observations", q.id)
-            except Exception as e:
-                logger.warning(
-                    "  ! %s failed on %s: %s", q.id, self.name, e
-                )
-            time.sleep(REQUEST_DELAY_SECONDS)
+                time.sleep(REQUEST_DELAY_SECONDS)
         return observations
 
     def _fetch_single(
-        self, q: ModelQuery, fetcher
+        self, q: ModelQuery, client
     ) -> list[PriceObservation]:
-        # 検索クエリ構築
         terms = [q.brand, q.model]
         if q.variant:
-            terms.append(q.variant.split()[0])  # 主バリアント語のみ
+            terms.append(q.variant.split()[0])
         keyword = " ".join(terms)
         url = (
             "https://auctions.yahoo.co.jp/closedsearch/closedsearch"
             f"?p={quote_plus(keyword)}&va={quote_plus(keyword)}"
             "&fixed=1"
         )
-        logger.debug("Fetching %s: %s", q.id, url)
 
-        page = fetcher.fetch(
-            url,
-            headless=True,
-            network_idle=True,
-            timeout=30000,
-        )
+        resp = client.get(url)
+        resp.raise_for_status()
+        text = resp.text
 
-        # 落札価格抽出: Yahoo!オークションは複数のlayout で価格を表示
-        # 候補 selector を順に試す
-        prices = self._extract_prices(page)
+        prices = self._extract_prices(text)
         if not prices:
             return []
 
-        # ノイズフィルタ
         prices = self._filter_outliers(prices, q.category)
         if len(prices) < 3:
-            logger.debug(
-                "  %s: too few after filter (%d)", q.id, len(prices)
-            )
             return []
 
-        # 買取相場へ換算
         ratio = CATEGORY_BUYBACK_RATIO.get(q.category, 0.65)
-        url_for_log = url
         return [
             PriceObservation(
                 source=self.name,
                 model_id=q.id,
                 price=int(p * ratio),
-                url=url_for_log,
-                note=f"sold price ¥{p:,} × ratio {ratio}",
+                url=url,
+                note=f"sold ¥{p:,} × {ratio}",
             )
             for p in prices
         ]
 
-    def _extract_prices(self, page) -> list[int]:
-        """価格抽出. 複数 selector を順に試行（HTML構造変化に堅牢）."""
+    def _extract_prices(self, html: str) -> list[int]:
+        """¥X,XXX,XXX もしくは X,XXX,XXX円 形式の価格を抽出."""
         prices: list[int] = []
-
-        # 戦略: 落札価格を含む可能性のある要素を全部 sweep し、
-        #        ¥XXX,XXX 形式のテキストを抜く
-        text_blob = ""
-        try:
-            text_blob = page.html_content if hasattr(page, "html_content") else str(page)
-        except Exception:
-            return []
-
-        # マッチ: ¥1,234,567 / 1,234,567円 / 1,234,567 円
-        price_pattern = re.compile(
-            r"(?:¥|￥)\s*([\d,]{4,})|([\d,]{4,})\s*円"
-        )
-        for match in price_pattern.finditer(text_blob):
+        for match in re.finditer(
+            r"(?:¥|￥)\s*([\d,]{4,})|([\d,]{4,})\s*円", html
+        ):
             raw = match.group(1) or match.group(2)
             if not raw:
                 continue
@@ -157,13 +137,11 @@ class YahooAuctionsSource(BaseSource):
                 continue
             if 1_000 <= price <= 50_000_000:
                 prices.append(price)
-
         return prices
 
     def _filter_outliers(
         self, prices: list[int], category: str
     ) -> list[int]:
-        """カテゴリ別下限 + 中央値の5倍上限で外れ値除去."""
         min_thr = MIN_PRICE_THRESHOLD.get(category, 5_000)
         filtered = [p for p in prices if p >= min_thr]
         if len(filtered) < 3:

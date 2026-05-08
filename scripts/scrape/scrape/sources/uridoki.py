@@ -5,13 +5,7 @@
 - 業者公開値の中央値が「業界相場」として参考になる
 - カテゴリ別係数の補正不要（既に買取価格データ）
 
-URL パターン:
-  https://uridoki.net/search?keyword={KEYWORD}
-
-注意:
-- ウリドキは独自の比較データを公開しており robots.txt も基本許可
-- 月1回のクロールは ToS 上問題ない範囲
-- HTML 構造変化に備え多重 selector 戦略
+実装方針: httpx + BeautifulSoup (SSR HTML パース)
 """
 
 from __future__ import annotations
@@ -31,6 +25,11 @@ MIN_PRICE_THRESHOLD = {
     "watch": 30_000,
     "jewelry": 5_000,
 }
+USER_AGENT = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/127.0.0.0 Safari/537.36"
+)
 
 
 class UridokiSource(BaseSource):
@@ -43,52 +42,50 @@ class UridokiSource(BaseSource):
         self, models: Iterable[ModelQuery]
     ) -> list[PriceObservation]:
         try:
-            from scrapling.fetchers import StealthyFetcher
-            logger.info("Scrapling StealthyFetcher loaded")
+            import httpx
         except ImportError as e:
-            logger.error("scrapling import failed: %s — uridoki disabled", e)
-            return []
-        except Exception as e:
-            logger.error("scrapling unexpected error: %s — uridoki disabled", e)
+            logger.error("httpx import failed: %s — uridoki disabled", e)
             return []
 
         observations: list[PriceObservation] = []
         models_list = list(models)
-        for q in models_list:
-            try:
-                obs = self._fetch_single(q, StealthyFetcher)
-                observations.extend(obs)
-                if obs:
-                    logger.info(
-                        "  ✓ %s: %d valid observations", q.id, len(obs)
+
+        with httpx.Client(
+            headers={"User-Agent": USER_AGENT, "Accept-Language": "ja-JP"},
+            timeout=30.0,
+            follow_redirects=True,
+        ) as client:
+            for q in models_list:
+                try:
+                    obs = self._fetch_single(q, client)
+                    observations.extend(obs)
+                    if obs:
+                        logger.info(
+                            "  ✓ %s: %d valid observations", q.id, len(obs)
+                        )
+                    else:
+                        logger.warning("  ✗ %s: no valid observations", q.id)
+                except Exception as e:
+                    logger.warning(
+                        "  ! %s failed on %s: %s", q.id, self.name, e
                     )
-                else:
-                    logger.warning("  ✗ %s: no valid observations", q.id)
-            except Exception as e:
-                logger.warning(
-                    "  ! %s failed on %s: %s", q.id, self.name, e
-                )
-            time.sleep(REQUEST_DELAY_SECONDS)
+                time.sleep(REQUEST_DELAY_SECONDS)
         return observations
 
     def _fetch_single(
-        self, q: ModelQuery, fetcher
+        self, q: ModelQuery, client
     ) -> list[PriceObservation]:
         terms = [q.brand, q.model]
         if q.variant:
             terms.append(q.variant.split()[0])
         keyword = " ".join(terms)
         url = f"https://uridoki.net/search?keyword={quote_plus(keyword)}"
-        logger.debug("Fetching %s: %s", q.id, url)
 
-        page = fetcher.fetch(
-            url,
-            headless=True,
-            network_idle=True,
-            timeout=30000,
-        )
+        resp = client.get(url)
+        resp.raise_for_status()
+        text = resp.text
 
-        prices = self._extract_prices(page, q.category)
+        prices = self._extract_prices(text, q.category)
         if not prices:
             return []
 
@@ -103,17 +100,12 @@ class UridokiSource(BaseSource):
             for p in prices
         ]
 
-    def _extract_prices(self, page, category: str) -> list[int]:
-        """価格抽出。¥XXX,XXX もしくは X万円 形式に対応."""
+    def _extract_prices(self, html: str, category: str) -> list[int]:
+        """¥XXX,XXX もしくは X万円 形式の価格を抽出."""
         prices: list[int] = []
-        try:
-            text_blob = page.html_content if hasattr(page, "html_content") else str(page)
-        except Exception:
-            return []
 
-        # ¥1,234,567 / 1,234,567円
         for match in re.finditer(
-            r"(?:¥|￥)\s*([\d,]{4,})|([\d,]{4,})\s*円", text_blob
+            r"(?:¥|￥)\s*([\d,]{4,})|([\d,]{4,})\s*円", html
         ):
             raw = match.group(1) or match.group(2)
             if not raw:
@@ -125,9 +117,8 @@ class UridokiSource(BaseSource):
             if 1_000 <= price <= 50_000_000:
                 prices.append(price)
 
-        # X万円 / X万 表記（ウリドキ独特）
         for match in re.finditer(
-            r"([\d,]+(?:\.\d+)?)\s*万円?", text_blob
+            r"([\d,]+(?:\.\d+)?)\s*万円?", html
         ):
             try:
                 man_value = float(match.group(1).replace(",", ""))
@@ -137,6 +128,5 @@ class UridokiSource(BaseSource):
             if 10_000 <= price <= 50_000_000:
                 prices.append(price)
 
-        # 下限フィルタ
         min_thr = MIN_PRICE_THRESHOLD.get(category, 5_000)
         return [p for p in prices if p >= min_thr]
