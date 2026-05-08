@@ -64,8 +64,9 @@ jobs:
       - name: Merge into src/data/rates.ts
         id: merge
         if: steps.validate.outcome == 'success'
+        # merge.py uses absolute paths via __file__, so cwd doesn't matter for I/O.
+        # Stay in scripts/scrape so module resolution works.
         run: python -m scrape.merge
-        working-directory: ${{ github.workspace }}
 
       - name: Commit & push
         if: |
