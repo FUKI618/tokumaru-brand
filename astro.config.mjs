@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://fuki618.github.io",
+  site: process.env.PUBLIC_SITE_ORIGIN ?? "https://fuki618.github.io",
   base: process.env.PUBLIC_SITE_BASE ?? "/tokumaru-brand",
   integrations: [sitemap()],
   vite: {
