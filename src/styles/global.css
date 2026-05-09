@@ -2443,6 +2443,13 @@ header .btn-outline {
   max-width: 32rem;
 }
 
+/* モバイル限定の強制改行（「ヴィトンや、」直後で折返し、
+   「譲り受けたシャネル。」を2行目の頭にする） */
+.hero-lead-br-mobile { display: none; }
+@media (max-width: 1023px) {
+  .hero-lead-br-mobile { display: inline; }
+}
+
 .hero-classic-pillars {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
