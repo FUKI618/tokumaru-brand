@@ -3620,8 +3620,12 @@ footer a:hover {
   }
 
   .hero-classic-h1 .h1-strong {
-    font-size: 1em;
+    /* モバイルでは「現在の相場で、正当に。」を1行固定。
+       極小幅(iPhone SE 320px等)でもはみ出さないよう vw で上限を絞る。 */
+    font-size: min(0.92em, 7vw);
     color: #ffffff;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
   }
 
   .hero-classic-lead {
