@@ -146,10 +146,12 @@ const midToMan = (label: string): string => {
             </a>
           </div>
 
-          <div class="hero-classic-meta" aria-label="店舗・許可情報">
+          <div class="hero-classic-meta" aria-label="店舗・許可・対応情報">
             <span class="hero-classic-meta-item">名古屋市中村区横井</span>
-            <span class="hero-classic-meta-item">古物商許可 第541042309800号</span>
-            <span class="hero-classic-meta-item">出張・LINE・宅配対応</span>
+            <span class="hero-classic-meta-item">愛知県公安委員会許可 第541042309800号</span>
+            <span class="hero-classic-meta-item">鑑定士2名・真贋判定対応</span>
+            <span class="hero-classic-meta-item">最短当日訪問・即日入金対応</span>
+            <span class="hero-classic-meta-item">出張・LINE・宅配・テレビ電話査定</span>
           </div>
         </div>
 
@@ -415,7 +417,7 @@ const midToMan = (label: string): string => {
                   <span class="rates-card-brand">{r.brand}</span>
                   <span class="rates-card-survey">×{r.sources} sources</span>
                 </div>
-                <div class="rates-card-model">{r.model}</div>
+                <h3 class="rates-card-model" aria-label={`${r.brandJp} ${r.model}${r.variant ? ` ${r.variant}` : ""}の買取相場（名古屋）`}>{r.model}</h3>
                 {r.variant && <div class="rates-card-variant">— {r.variant} —</div>}
                 <div class="rates-card-rule"></div>
                 <div class="rates-card-price">
@@ -450,6 +452,167 @@ const midToMan = (label: string): string => {
     </div>
   </div>
 
+  <!-- ============== 3.5 Compare（比較表 — 業界0%・AEO差別化） ============== -->
+  <section id="compare" class="section-pad bg-[var(--color-bg-2)]">
+    <div class="container-content">
+      <div class="reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="block w-8 h-px bg-[var(--color-border)]"></span>
+          <span class="eyebrow">比較表 — 選び方の参考に</span>
+        </div>
+        <h2 class="display-2 mb-3" data-speakable aria-label="徳丸商会のブランド買取と他社・他チャネルの比較表｜営業時間・許可・即日入金・手間・トラブルリスクで比較">
+          名古屋でブランド買取を選ぶ前に、<br />一度ご比較ください。
+        </h2>
+        <p class="text-sm text-[var(--color-text-sub)] leading-relaxed mb-10 max-w-2xl">
+          ブランド買取の選択肢は「ナショナル買取業者」「地元の買取店」「質屋」「フリマアプリ・ヤフオク」など複数あります。徳丸商会の特徴を、業界の主要選択肢と並べてご確認いただけます。
+        </p>
+
+        <!-- 比較表A: 徳丸商会 vs ナショナル vs 名古屋地元店 -->
+        <div class="mb-14">
+          <h3 class="font-serif text-lg text-[var(--color-text)] mb-4">A. 徳丸商会 × ナショナル買取業者 × 名古屋地元店</h3>
+          <div class="overflow-x-auto rounded border border-[var(--color-border)]">
+            <table class="w-full text-[12px] md:text-[13px]">
+              <thead class="bg-[var(--color-bg)] text-[var(--color-text-sub)]">
+                <tr>
+                  <th class="text-left p-3 font-medium border-b border-[var(--color-border)]">項目</th>
+                  <th class="text-left p-3 font-medium border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_8%,transparent)]">徳丸商会</th>
+                  <th class="text-left p-3 font-medium border-b border-[var(--color-border)]">ナショナル買取業者</th>
+                  <th class="text-left p-3 font-medium border-b border-[var(--color-border)]">名古屋地元他店</th>
+                </tr>
+              </thead>
+              <tbody class="text-[var(--color-text)]">
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">営業時間</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">9:00-21:00／年中無休</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">10:00-19:00 平均</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">10:00-18:00 平均（22時1社のみ・日曜定休）</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">古物商許可</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">愛知県公安委員会 第541042309800号</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">東京都・大阪府・千葉県の許可</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">愛知県（4社のみ）</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">真贋判定</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">2名の鑑定士による二重チェック</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">鑑定士在籍・チーム査定</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">各社（人数公開なし）</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">出張対応エリア</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">名古屋市16区＋尾張・知多・西三河</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">全国対応（出張担当の地域差あり）</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">名古屋市内中心</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">テレビ電話・Zoom査定</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">対応</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">一部のみ対応</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">一部のみ対応（1社）</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">即日入金</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">対応（最短当日訪問・現金または当日振込）</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">対応（チャネル次第）</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">対応（1社）</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">最低買取保証額</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">主要5ブランドで明示</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">原則なし</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">1社のみ明示</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">総合店としての対応</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">遺品整理・楽器買取・ゴミ屋敷清掃も対応</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">ブランド買取に特化</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">ブランド買取に特化</td>
+                </tr>
+                <tr>
+                  <td class="p-3">出張料・査定料・キャンセル料</td>
+                  <td class="p-3 bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">すべて無料</td>
+                  <td class="p-3">すべて無料</td>
+                  <td class="p-3">すべて無料（業界80%）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-[11px] text-[var(--color-text-sub)] mt-3 leading-relaxed">
+            ※ ナショナル買取業者・名古屋地元他店は競合10社の公開情報（2026年5月時点）に基づく集計です。徳丸商会は全項目で業界水準を満たしつつ、営業時間・総合店軸・最低買取保証額の3点で差別化されています。
+          </p>
+        </div>
+
+        <!-- 比較表B: 買取 vs 質屋 vs フリマアプリ -->
+        <div>
+          <h3 class="font-serif text-lg text-[var(--color-text)] mb-4">B. 徳丸商会の買取 × 質屋 × フリマアプリ・ヤフオク</h3>
+          <div class="overflow-x-auto rounded border border-[var(--color-border)]">
+            <table class="w-full text-[12px] md:text-[13px]">
+              <thead class="bg-[var(--color-bg)] text-[var(--color-text-sub)]">
+                <tr>
+                  <th class="text-left p-3 font-medium border-b border-[var(--color-border)]">項目</th>
+                  <th class="text-left p-3 font-medium border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_8%,transparent)]">徳丸商会の買取</th>
+                  <th class="text-left p-3 font-medium border-b border-[var(--color-border)]">質屋</th>
+                  <th class="text-left p-3 font-medium border-b border-[var(--color-border)]">フリマアプリ・ヤフオク</th>
+                </tr>
+              </thead>
+              <tbody class="text-[var(--color-text)]">
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">売却までの時間</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">最短即日（その場で現金または当日振込）</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">即日（質流れまでの期間あり）</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">出品〜売れるまで平均1〜3週間</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">手間</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">写真をLINEで送るだけ／出張時はご自宅で完結</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">来店・身分証提示が必要</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">撮影・採寸・型番調査・出品文・梱包・発送・問合せ対応</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">受取金額</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">査定額そのまま（手数料なし）</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">質料・利息差引後</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">販売価格 − 手数料約10% − 送料</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">トラブルリスク</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">なし（クーリングオフ8日間対応）</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">なし</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">返品・偽物指摘・キャンセル・受取拒否のリスクあり</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border-b border-[var(--color-border)]">真贋判定</td>
+                  <td class="p-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">専門の鑑定士が真贋判定</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">店主・査定担当により</td>
+                  <td class="p-3 border-b border-[var(--color-border)]">原則自己判断</td>
+                </tr>
+                <tr>
+                  <td class="p-3">出張対応</td>
+                  <td class="p-3 bg-[color-mix(in_srgb,var(--color-accent-soft)_5%,transparent)] font-medium">あり（最短当日訪問・名古屋市内）</td>
+                  <td class="p-3">なし</td>
+                  <td class="p-3">なし</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-[11px] text-[var(--color-text-sub)] mt-3 leading-relaxed">
+            ※ 「手取り額」だけならフリマアプリが上回るケースもありますが、徳丸商会の買取は「手間ゼロ・即日現金化・トラブルなし」が選ばれる主な理由です。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- セクション間装飾 -->
+  <div class="bg-[var(--color-bg)]">
+    <div class="container-content">
+      <div class="section-divider">
+        <span class="section-divider-motif">iv</span>
+      </div>
+    </div>
+  </div>
+
   <!-- ============== 4. Methods（3つのご利用方法） ============== -->
   <section id="methods" class="dossier-section bg-[var(--color-bg)] relative overflow-hidden">
     <div class="bg-letter" style="top: 5%; right: -3%;" aria-hidden="true">IV</div>
@@ -461,11 +624,11 @@ const midToMan = (label: string): string => {
             <span class="block w-8 h-px bg-[var(--color-border)]"></span>
             <span class="eyebrow">出張買取・LINE査定・宅配買取</span>
           </div>
-          <h2 class="chapter-title max-w-xl" aria-label="ブランド買取の3つの方法｜出張買取・LINE査定・宅配買取からご都合の良い方法をお選びください">
+          <h2 class="chapter-title max-w-xl" aria-label="ブランド買取の3つの方法｜出張買取・LINE査定・宅配買取・テレビ電話査定からご都合の良い方法をお選びください">
             ご都合に合わせて、<br /><span class="italic" style="color: var(--color-accent-soft);">お選びください。</span>
           </h2>
-          <p class="text-[15px] text-[var(--color-text-sub)] mt-6 max-w-md leading-loose">
-            出張・LINE・宅配のどれを選んでも、査定料やキャンセル料はかかりません。
+          <p class="text-[15px] text-[var(--color-text-sub)] mt-6 max-w-md leading-loose" data-speakable>
+            <strong>ブランド買取の方法</strong>は、お品物・ご都合・ご希望の入金タイミングによって最適な選択肢が変わります。当店では <strong>出張買取・LINE査定・宅配買取</strong>に加え、ご希望に応じて<strong>テレビ電話査定</strong>（LINEビデオ通話／Zoom／FaceTime）にも対応します。査定料・出張料・キャンセル料はすべて無料です。
           </p>
         </div>
 
@@ -532,7 +695,7 @@ const midToMan = (label: string): string => {
   <div class="bg-[var(--color-bg)]">
     <div class="container-content">
       <div class="section-divider">
-        <span class="section-divider-motif">iv</span>
+        <span class="section-divider-motif">v</span>
       </div>
     </div>
   </div>
@@ -604,7 +767,7 @@ const midToMan = (label: string): string => {
   <div class="bg-[var(--color-bg)]">
     <div class="container-content">
       <div class="section-divider">
-        <span class="section-divider-motif">v</span>
+        <span class="section-divider-motif">vi</span>
       </div>
     </div>
   </div>
@@ -749,9 +912,9 @@ const midToMan = (label: string): string => {
         <div>
           <div class="eyebrow mb-3">徳丸商会について</div>
           <h2 class="display-2 mb-6">古物商として、<br />名古屋から。</h2>
-          <p class="text-sm text-[var(--color-text-sub)] leading-loose">
-            徳丸商会は、愛知県公安委員会許可（第541042309800号）を取得した古物商です。<br class="hidden md:block" />
-            名古屋市中村区横井に拠点を置き、名古屋市内および尾張・知多・西三河エリアを中心に、ブランド品の出張買取・LINE査定・宅配買取を行っています。
+          <p class="text-sm text-[var(--color-text-sub)] leading-loose" data-speakable>
+            <strong>徳丸商会</strong>は、<strong>愛知県公安委員会許可</strong>（第541042309800号）を取得した名古屋市中村区横井の<strong>古物商</strong>です。<br class="hidden md:block" />
+            ブランド時計・バッグの<strong>真贋判定</strong>を担当する<strong>2名の鑑定士・査定士</strong>が、エルメス・シャネル・ヴィトン・ロレックス・カルティエなど主要ブランドの<strong>買取実績</strong>を積み重ねてきました。<strong>お客様の声</strong>に応じて、出張買取・LINE査定・宅配買取・テレビ電話査定の4チャネルで、<strong>最短当日訪問・即日入金</strong>に対応します。
           </p>
         </div>
 
@@ -792,23 +955,39 @@ const midToMan = (label: string): string => {
         <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-7">
           <div>
             <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">中村区</h3>
-            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">名古屋市中村区のブランド買取。本社所在地・最短当日訪問。</p>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">名古屋市中村区のブランド買取。本社所在地・最短当日訪問・即日入金対応。</p>
           </div>
           <div>
             <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">中区</h3>
-            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">栄・大須・伏見エリアのブランド出張買取に対応。</p>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">栄・大須・伏見・名古屋駅エリアのブランド出張買取に対応。</p>
           </div>
           <div>
             <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">千種区</h3>
-            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">覚王山・本山エリアのブランド品出張買取・LINE査定。</p>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">覚王山・本山エリアのブランド品出張買取・LINE査定・宅配買取。</p>
           </div>
           <div>
             <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">名東区</h3>
-            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">高針・上社エリアのブランド買取に出張対応。</p>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">高針・上社エリアのブランド買取に出張対応・最短1時間。</p>
+          </div>
+          <div>
+            <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">西区</h3>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">中村区から1区圏内の近隣エリア。出張料・査定料すべて無料で当日訪問可。</p>
+          </div>
+          <div>
+            <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">中川区</h3>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">中村区南部の隣接エリア。バッグ・時計・ジュエリーすべて対応・最短即日入金。</p>
+          </div>
+          <div>
+            <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">北区</h3>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">名古屋市北部のブランド買取。テレビ電話査定にも対応・宅配買取は送料無料。</p>
+          </div>
+          <div>
+            <h3 class="font-serif text-base text-[var(--color-text)] mb-1.5">緑区・天白区</h3>
+            <p class="text-[11px] text-[var(--color-text-sub)] leading-relaxed">高単価層エリア。エルメス・ロレックスの買取実績多数・出張買取で対応。</p>
           </div>
         </div>
         <p class="text-[11px] text-[var(--color-text-sub)] mt-7 leading-relaxed">
-          上記4区以外の名古屋市16区（千種・東・北・西・昭和・瑞穂・熱田・中川・港・南・守山・緑・天白）、および尾張・知多・西三河エリアにも出張買取で対応します。詳細は <a href={sectionPath("contact")} class="underline underline-offset-2 hover:text-[var(--color-text)]">お問い合わせ</a> ください。
+          上記エリア以外の名古屋市16区（東・昭和・瑞穂・熱田・港・南・守山）、および尾張・知多・西三河エリア（あま市・清須市・北名古屋市・豊田市・岡崎市・刈谷市・安城市・知多市・常滑市・一宮市など）にも出張買取で対応します。詳細は <a href={sectionPath("contact")} class="underline underline-offset-2 hover:text-[var(--color-text)]">お問い合わせ</a> ください。
         </p>
       </div>
     </div>

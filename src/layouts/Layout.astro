@@ -11,6 +11,7 @@ import { faqsToJsonLd } from "../data/faq";
 import { company } from "../data/company";
 import { flagshipBrands } from "../data/brands";
 import { staff } from "../data/staff";
+import { rateData } from "../data/rates";
 
 const { title, description, extraJsonLd = [] } = Astro.props;
 const canonicalUrl = Astro.url.href;
@@ -108,7 +109,7 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
       "name": "徳丸商会",
       "legalName": company.legalName,
       "alternateName": "徳丸商会 ブランド買取",
-      "description": "名古屋市中村区横井の古物商。ブランドバッグ・時計・ジュエリー・アパレルを名古屋市内および尾張・知多・西三河エリアで出張買取・LINE査定・宅配買取。営業9:00〜21:00 年中無休。",
+      "description": "名古屋市中村区横井の古物商。エルメス・シャネル・ヴィトン・ロレックス・カルティエなど主要ブランドのバッグ・時計・ジュエリー・財布・アパレルを、愛知県公安委員会許可の鑑定士が真贋判定込みで査定。出張買取・LINE査定・宅配買取・テレビ電話査定の4チャネル、最短当日訪問・即日入金対応。営業9:00〜21:00 年中無休、累計多数の買取実績。",
       "telephone": company.phone,
       "url": homeUrl,
       "image": ogImage,
@@ -410,6 +411,38 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
         "@type": "SpeakableSpecification",
         "cssSelector": ["h1", "h2", "[data-speakable]"]
       }
+    })} />
+
+    <!-- JSON-LD #7: ItemList（買取実績一覧／rateData 自動生成・ロングテールKWに有効） -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "@id": `${homeUrl}#rate-itemlist`,
+      "name": "ブランド買取実績・相場一覧（名古屋）",
+      "description": "徳丸商会が名古屋で実際に対応している主要ブランド・モデル別の買取相場一覧。エルメス バーキン・ケリー、ロレックス サブマリーナ・デイトジャスト、シャネル マトラッセ、ヴィトン モノグラム、カルティエ サントスなどを掲載。",
+      "numberOfItems": rateData.length,
+      "itemListOrder": "https://schema.org/ItemListOrderDescending",
+      "itemListElement": rateData.map((r, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+          "@type": "Product",
+          "name": `${r.brandJp} ${r.model}${r.variant ? ` ${r.variant}` : ""}`,
+          "category": r.category === "bag" ? "ブランドバッグ買取" : r.category === "watch" ? "ブランド時計買取" : "ブランドジュエリー買取",
+          "brand": { "@type": "Brand", "name": r.brandJp },
+          "offers": {
+            "@type": "AggregateOffer",
+            "@id": `${homeUrl}#rate-${r.brand.toLowerCase()}-${r.model.replace(/\s+/g, "-")}`,
+            "priceCurrency": "JPY",
+            "lowPrice": r.min,
+            "highPrice": r.max,
+            "offerCount": r.sources,
+            "availability": "https://schema.org/InStock",
+            "areaServed": "JP",
+            "seller": { "@id": `${homeUrl}#localbusiness` }
+          }
+        }
+      }))
     })} />
 
     {extraJsonLd.map((entry) => (
