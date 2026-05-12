@@ -23,6 +23,14 @@ const formAction = FORMSPREE_FORM_ID
   ? `https://formspree.io/f/${FORMSPREE_FORM_ID}`
   : `mailto:${contactEmail}`;
 
+// コンテンツ最終更新日（ビルド時に自動生成、JSON-LD dateModified と同期 / aeo-block-engine 鮮度シグナル）
+const lastUpdated = new Date().toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+const lastUpdatedISO = new Date().toISOString().slice(0, 10);
+
 // ブランドカテゴリ
 const bagsBrands = popularBrands.filter((b) => b.category === "bag");
 const watchesBrands = popularBrands.filter((b) => b.category === "watch");
@@ -58,7 +66,7 @@ const midToMan = (label: string): string => {
   <header class="fixed top-0 inset-x-0 z-40 bg-[var(--color-bg)]/85 backdrop-blur-md border-b border-[var(--color-border)]">
     <div class="container-content flex items-center justify-between py-4">
       <a href={sectionPath("hero")} class="header-brand flex items-center gap-3" aria-label="徳丸商会 トップへ">
-        <img src={assetPath("logo.svg")} alt="徳丸商会" class="header-logo-img" width="64" height="64" />
+        <img src={assetPath("logo.svg")} alt="徳丸商会" class="header-logo-img" width="64" height="64" loading="eager" />
         <div class="header-wordmark leading-none">
           <div class="header-wordmark-main">Tokumaru Shokai</div>
         </div>
@@ -105,7 +113,7 @@ const midToMan = (label: string): string => {
       <div class="hero-classic-grid">
         <!-- ========== Left: Story-driven content ========== -->
         <div class="hero-classic-content reveal">
-          <h1 class="hero-classic-h1" aria-label="タンスに眠るあの一品を、現在の相場で正当に買取いたします。徳丸商会のブランド買取。">
+          <h1 class="hero-classic-h1" aria-label="名古屋市中村区のブランド買取・徳丸商会。タンスに眠るあの一品を、現在の相場で正当にお買取りします。">
             <span class="h1-line">タンスに眠る、</span>
             <span class="h1-line"><span class="h1-emph">あの一品</span>を。</span>
             <span class="h1-line h1-strong">現在の相場で、正当に。</span>
@@ -113,7 +121,7 @@ const midToMan = (label: string): string => {
 
           <p class="hero-classic-lead">
             若き日に手にしたヴィトンや、<br class="hero-lead-br-mobile" />譲り受けたシャネル。<br />
-            名古屋の査定士が一品ずつ拝見し、根拠ある金額でお買取りします。
+            名古屋でブランド買取をお考えなら、徳丸商会の査定士が一品ずつ拝見し、根拠ある金額でお買取りします。
           </p>
 
           <ul class="hero-classic-pillars" aria-label="徳丸商会の三つのお約束">
@@ -272,6 +280,9 @@ const midToMan = (label: string): string => {
           <h2 class="dossier-title mb-8" aria-label="ブランド買取の姿勢｜他店で値が付かなかった品も丁寧に拝見します">
             他店で値が付かなかった品も、<br /><span class="italic" style="color: var(--color-accent-soft);">丁寧に</span>拝見します。
           </h2>
+          <p class="dossier-copy text-base text-[var(--color-text)] leading-loose mb-5" data-speakable>
+            名古屋・愛知のブランド買取で、他店で値が付かなかったエルメス・シャネル・ロレックス・カルティエ等を再査定。保証書なし・使用感あり・廃番モデルでも、海外バイヤーと専門業者ネットワークを通じた独自販売ルートで適正価格をご提示します。
+          </p>
           <p class="dossier-copy text-base text-[var(--color-text-sub)] leading-loose">
             「もう古いから」「使用感があるから」「保証書がないから」——<br />
             そんな理由で諦めたお品を、もう一度お持ちいただきたいのです。
@@ -357,11 +368,10 @@ const midToMan = (label: string): string => {
         <h2 class="rates-classic-title">
           相場で見る、<br />買取の<em>目安</em>。
         </h2>
-        <span class="rates-classic-eyebrow">Reference Buyback Estimates — Verified Cross-Source</span>
-        <p class="rates-classic-lead">
-          主要ブランドの公開買取実績から3社以上の実数値をクロスチェックして算出した、<br class="hidden md:inline" />
-          エルメス・シャネル・ロレックス等を含む全12モデルの参考相場です。
+        <p class="rates-classic-lead" data-speakable>
+          名古屋ブランド買取の参考相場（{rateMetadata.updatedAt}時点）—— エルメス バーキン・ケリー、ロレックス サブマリーナ・デイトジャスト、シャネル マトラッセ、ヴィトン モノグラム等、主要12モデルの実数値を3社以上の公開買取データからクロスチェックして算出しています。
         </p>
+        <span class="rates-classic-eyebrow">Reference Buyback Estimates — Verified Cross-Source</span>
         <div class="rates-classic-meta">
           <span>集計期間 — {rateMetadata.collectionPeriod}</span>
           <span class="rates-classic-meta-divider">·</span>
@@ -839,7 +849,10 @@ const midToMan = (label: string): string => {
           <h2 class="chapter-title max-w-xl" aria-label="ご相談の典型例｜相続・形見整理・断捨離でのブランド買取シナリオ">
             相続・形見整理、<br />断捨離のご相談から。
           </h2>
-          <p class="text-[15px] text-[var(--color-text-sub)] mt-6 max-w-md leading-loose">
+          <p class="text-[15px] text-[var(--color-text)] mt-6 max-w-md leading-loose" data-speakable>
+            相続・形見整理・断捨離のブランド買取は、名古屋市内16区＋尾張・知多・西三河エリアへ最短当日訪問で対応。エルメス・シャネル・ロレックス等を複数まとめてお買取りし、お部屋を動かさずその場で査定します。
+          </p>
+          <p class="text-[15px] text-[var(--color-text-sub)] mt-4 max-w-md leading-loose">
             実際のご相談では、価格だけでなく「手放す理由」まで含めて伺っています。
           </p>
           <p class="text-[11px] text-[var(--color-text-sub)] mt-4 max-w-md leading-relaxed italic">
@@ -1180,7 +1193,7 @@ const midToMan = (label: string): string => {
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
         <div>
           <div class="flex items-center gap-2.5 mb-4">
-            <img src={assetPath("logo.svg")} alt="徳丸商会" class="h-10 w-auto" width="45" height="45" />
+            <img src={assetPath("logo.svg")} alt="徳丸商会" class="h-10 w-auto" width="45" height="45" loading="lazy" />
             <div>
               <div class="text-[10px] tracking-[0.25em] uppercase opacity-60">Tokumaru Shokai</div>
               <div class="font-serif text-base">徳丸商会</div>
@@ -1228,6 +1241,8 @@ const midToMan = (label: string): string => {
           <a href={assetPath("legal-notices/")} class="hover:opacity-100 transition underline-offset-2 hover:underline">特定商取引法に基づく表記</a>
           <span class="opacity-40 hidden md:inline">／</span>
           <span>© 2026 徳丸商会 All Rights Reserved.</span>
+          <span class="opacity-40 hidden md:inline">／</span>
+          <span>コンテンツ最終更新日: <time datetime={lastUpdatedISO}>{lastUpdated}</time></span>
         </div>
         <p class="tracking-wider">愛知県公安委員会許可 第541042309800号</p>
       </div>
