@@ -6,6 +6,7 @@ dist/
 screenshots/
 .env
 .env.*
+!.env.example
 .vscode/
 .idea/
 

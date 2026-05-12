@@ -20,6 +20,10 @@ const homeUrl = new URL(homePath, siteUrl).toString();
 const ogImage = new URL(assetPath("og-image.webp"), siteUrl).toString();
 const faviconUrl = assetPath("favicon.svg");
 const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
+
+// Microsoft Clarity: PUBLIC_CLARITY_PROJECT_ID を .env に設定すると有効化
+// pro-lp-launch L1.5 / pro-lp-ops W3.5 で活用
+const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 ---
 
 <!doctype html>
@@ -31,7 +35,7 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="keywords" content="ブランド買取,名古屋ブランド買取,出張買取,LINE査定,宅配買取,ロレックス買取,エルメス買取,シャネル買取,ルイヴィトン買取,名古屋市中村区" />
     <meta name="theme-color" content="#fdfbf9" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.com https://www.google-analytics.com https://www.googleadservices.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google-analytics.com https://www.google.co.jp; connect-src 'self' https://www.google-analytics.com https://www.google.com https://googleads.g.doubleclick.net https://analytics.google.com https://fonts.googleapis.com https://fonts.gstatic.com https://region1.google-analytics.com https://formspree.io; form-action 'self' https://formspree.io; frame-src https://www.googletagmanager.com https://googleads.g.doubleclick.net" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.com https://www.google-analytics.com https://www.googleadservices.com https://cdn.jsdelivr.net https://www.clarity.ms https://*.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google-analytics.com https://www.google.co.jp https://*.clarity.ms https://c.bing.com; connect-src 'self' https://www.google-analytics.com https://www.google.com https://googleads.g.doubleclick.net https://analytics.google.com https://fonts.googleapis.com https://fonts.gstatic.com https://region1.google-analytics.com https://formspree.io https://www.clarity.ms https://*.clarity.ms https://c.bing.com; form-action 'self' https://formspree.io; frame-src https://www.googletagmanager.com https://googleads.g.doubleclick.net" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     <title>{title}</title>
@@ -100,6 +104,19 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
         })(window,document,'script','dataLayer','GTM-W493L98W');
       },3000);
     </script>
+
+    {clarityProjectId && (
+      <!-- Microsoft Clarity: 3秒遅延（Core Web Vitals保護）/ pro-lp-launch L1.5 -->
+      <script is:inline define:vars={{ clarityProjectId }}>
+        setTimeout(function(){
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", clarityProjectId);
+        }, 3000);
+      </script>
+    )}
 
     <!-- JSON-LD #1: LocalBusiness + PawnShop（@id 参照型・OfferCatalog 内蔵） -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -351,7 +368,7 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
       ]
     })} />
 
-    <!-- JSON-LD #4.5: Person（査定員2名のE-E-A-T強化） -->
+    <!-- JSON-LD #4.5: Person（査定員2名のE-E-A-T強化 + sameAs / aeo-block-engine +3.2x） -->
     <script type="application/ld+json" set:html={JSON.stringify(
       staff.map((s) => ({
         "@context": "https://schema.org",
@@ -362,6 +379,8 @@ const logoUrl = new URL(assetPath("logo.svg"), siteUrl).toString();
         "worksFor": { "@id": `${homeUrl}#localbusiness` },
         "knowsAbout": s.specialty,
         "description": s.message,
+        "url": `${homeUrl}#staff-${s.surnameKana.toLowerCase()}`,
+        ...(s.sameAs && s.sameAs.length > 0 ? { "sameAs": s.sameAs } : {}),
       }))
     )} />
 
