@@ -33,7 +33,7 @@ jobs:
       run:
         working-directory: ./scripts/scrape
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Guard — only run on JST day 01 (cron expansion 28-31 fires up to 4×/month)
         id: guard
@@ -52,7 +52,7 @@ jobs:
             echo "JST day=$JST_DAY (not 01) — skipping (cron 28-31 over-firing)"
           fi
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         if: steps.guard.outputs.skip != 'true'
         with:
           python-version: '3.11'
@@ -105,7 +105,7 @@ jobs:
         if: |
           steps.guard.outputs.skip != 'true' &&
           (steps.scrape.outcome == 'failure' || steps.validate.outcome == 'failure')
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const date = new Date().toISOString().slice(0,10);
