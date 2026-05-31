@@ -4,13 +4,13 @@
     "model": "バーキン25",
     "variant": "トゴ ブラック",
     "category": "bag",
-    "min": 2060000,
+    "min": 1136200,
     "max": 3900000,
-    "mid_low": 2500000,
+    "mid_low": 1798387,
     "mid_high": 2800000,
-    "median": 2650000,
-    "n_observations": 5,
-    "n_sources": 1
+    "median": 2554875,
+    "n_observations": 8,
+    "n_sources": 2
   },
   "hermes-kelly28-black-gold": {
     "brand": "HERMES",
@@ -30,13 +30,13 @@
     "model": "ピコタンPM",
     "variant": "トリヨン",
     "category": "bag",
-    "min": 130000,
+    "min": 103992,
     "max": 735000,
-    "mid_low": 250000,
-    "mid_high": 400000,
-    "median": 325000,
-    "n_observations": 5,
-    "n_sources": 1
+    "mid_low": 130000,
+    "mid_high": 518375,
+    "median": 287500,
+    "n_observations": 8,
+    "n_sources": 2
   },
   "chanel-matrasse-large": {
     "brand": "CHANEL",
@@ -122,25 +122,25 @@
     "variant": "K18WG (1色)",
     "category": "jewelry",
     "min": 40000,
-    "max": 133000,
-    "mid_low": 70000,
-    "mid_high": 110000,
-    "median": 90000,
-    "n_observations": 5,
-    "n_sources": 1
+    "max": 196020,
+    "mid_low": 46750,
+    "mid_high": 133000,
+    "median": 87612,
+    "n_observations": 8,
+    "n_sources": 2
   },
   "vca-perlee-clover": {
     "brand": "VAN CLEEF & ARPELS",
     "model": "ヴィンテージアルハンブラ",
     "variant": "ペンダント YG",
     "category": "jewelry",
-    "min": 250000,
+    "min": 242000,
     "max": 548400,
-    "mid_low": 285000,
-    "mid_high": 330000,
-    "median": 307500,
-    "n_observations": 5,
-    "n_sources": 1
+    "mid_low": 250000,
+    "mid_high": 341332,
+    "median": 301388,
+    "n_observations": 8,
+    "n_sources": 2
   },
   "tiffany-solitaire": {
     "brand": "TIFFANY",
