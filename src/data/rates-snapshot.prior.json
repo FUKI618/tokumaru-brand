@@ -6,9 +6,9 @@
     "category": "bag",
     "min": 1136200,
     "max": 3900000,
-    "mid_low": 1798387,
+    "mid_low": 1136200,
     "mid_high": 2800000,
-    "median": 2554875,
+    "median": 2176631,
     "n_observations": 8,
     "n_sources": 2
   },
@@ -32,9 +32,9 @@
     "category": "bag",
     "min": 103992,
     "max": 735000,
-    "mid_low": 130000,
+    "mid_low": 103992,
     "mid_high": 518375,
-    "median": 287500,
+    "median": 246710,
     "n_observations": 8,
     "n_sources": 2
   },
@@ -124,8 +124,8 @@
     "min": 40000,
     "max": 196020,
     "mid_low": 46750,
-    "mid_high": 133000,
-    "median": 87612,
+    "mid_high": 186340,
+    "median": 87135,
     "n_observations": 8,
     "n_sources": 2
   },
@@ -139,8 +139,8 @@
     "mid_low": 250000,
     "mid_high": 341332,
     "median": 301388,
-    "n_observations": 8,
-    "n_sources": 2
+    "n_observations": 5,
+    "n_sources": 1
   },
   "tiffany-solitaire": {
     "brand": "TIFFANY",
