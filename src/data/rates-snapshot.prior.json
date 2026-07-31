@@ -8,7 +8,7 @@
     "max": 3900000,
     "mid_low": 1136200,
     "mid_high": 2800000,
-    "median": 2176631,
+    "median": 1987509,
     "n_observations": 8,
     "n_sources": 2
   },
@@ -35,8 +35,8 @@
     "mid_low": 103992,
     "mid_high": 518375,
     "median": 246710,
-    "n_observations": 8,
-    "n_sources": 2
+    "n_observations": 5,
+    "n_sources": 1
   },
   "chanel-matrasse-large": {
     "brand": "CHANEL",
@@ -125,7 +125,7 @@
     "max": 196020,
     "mid_low": 46750,
     "mid_high": 186340,
-    "median": 87135,
+    "median": 87237,
     "n_observations": 8,
     "n_sources": 2
   },
