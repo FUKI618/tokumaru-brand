@@ -8,7 +8,7 @@
     "max": 3900000,
     "mid_low": 1136200,
     "mid_high": 2800000,
-    "median": 1987509,
+    "median": 1898359,
     "n_observations": 8,
     "n_sources": 2
   },
@@ -125,7 +125,7 @@
     "max": 196020,
     "mid_low": 46750,
     "mid_high": 186340,
-    "median": 87237,
+    "median": 85736,
     "n_observations": 8,
     "n_sources": 2
   },
