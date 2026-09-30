@@ -139,7 +139,7 @@ export const rateData: RateModel[] = [
     variant: "K18WG (1色)",
     category: "jewelry",
     min: 40_000,
-    midLabel: "¥46,750 〜 ¥186,340",
+    midLabel: "¥44,000 〜 ¥186,340",
     max: 196_020,
     sources: 5,
     note: "刻印・地金重量で変動",
